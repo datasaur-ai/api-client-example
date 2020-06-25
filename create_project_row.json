@@ -1,0 +1,81 @@
+{
+    "operationName": "LaunchTextProjectMutation",
+    "variables": {
+      "input": {
+        "name": "Test Project",
+        "documentSettings": {
+          "kind": "ROW_BASED",
+          "autoScrollWhenLabeling": true,
+          "displayedRows": 1,
+          "mediaDisplayStrategy": "THUMBNAIL"
+        },
+        "assignees": [
+          {
+            "email": "ivan@datasaur.ai"
+          }
+        ],
+        "projectSettings": {
+          "consensus": 1,
+          "enableEditLabelSet": true,
+          "enableEditSentence": true
+        },
+        "documents": [
+          {
+            "name": "file.csv",
+            "file": null,
+            "fileName": "file.csv",
+            "settings": {
+              "questions": [
+                {
+                  "type": "HIERARCHICAL_DROPDOWN",
+                  "config": {
+                    "multiple": false,
+                    "options": [
+                        {
+                            "id" : "1",
+                            "label" : "Yes"
+                        },
+                        {
+                            "id" : "2",
+                            "label" : "No"
+                        }
+                    ]
+                  },
+                  "name": "Google Taxonomy",
+                  "label": "Please fill Google Taxonomy",
+                  "required": false
+                },
+                {
+                  "type": "DROPDOWN",
+                  "config": {
+                    "multiple": true,
+                    "options": [
+                        {
+                            "id" : "1",
+                            "label" : "Red"
+                        },
+                        {
+                            "id" : "2",
+                            "label" : "Black"
+                        },
+                        {
+                            "id" : "3",
+                            "label" : "White"
+                        }
+                    ]
+                  },
+                  "name": "Color",
+                  "label": "What color is it?",
+                  "required": false
+                }
+              ]
+            },
+            "docFileOptions": {
+              "firstRowAsHeader": true
+            }
+          }
+        ]
+      }
+    },
+    "query": "mutation LaunchTextProjectMutation($input: LaunchTextProjectInput!) {  launchTextProject(input: $input) {    id    rootDocumentId    settings {      consensus      enableEditLabelSet      enableEditSentence      __typename    }    __typename  }}"
+  }

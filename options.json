@@ -1,0 +1,7214 @@
+[
+    {
+        "label": "Management Occupations",
+        "id": 1
+    },
+    {
+        "label": "Top Executives",
+        "id": 2,
+        "parentId": 1
+    },
+    {
+        "label": "Chief Executives",
+        "id": 3,
+        "parentId": 2
+    },
+    {
+        "label": "Chief Executives",
+        "id": 4,
+        "parentId": 3
+    },
+    {
+        "label": "General and Operations Managers",
+        "id": 5,
+        "parentId": 2
+    },
+    {
+        "label": "General and Operations Managers",
+        "id": 6,
+        "parentId": 5
+    },
+    {
+        "label": "Legislators",
+        "id": 7,
+        "parentId": 2
+    },
+    {
+        "label": "Legislators",
+        "id": 8,
+        "parentId": 7
+    },
+    {
+        "label": "Advertising, Marketing, Promotions, Public Relations, and Sales Managers",
+        "id": 9,
+        "parentId": 1
+    },
+    {
+        "label": "Advertising and Promotions Managers",
+        "id": 10,
+        "parentId": 9
+    },
+    {
+        "label": "Advertising and Promotions Managers",
+        "id": 11,
+        "parentId": 10
+    },
+    {
+        "label": "Marketing and Sales Managers",
+        "id": 12,
+        "parentId": 9
+    },
+    {
+        "label": "Marketing Managers",
+        "id": 13,
+        "parentId": 12
+    },
+    {
+        "label": "Sales Managers",
+        "id": 14,
+        "parentId": 12
+    },
+    {
+        "label": "Public Relations and Fundraising Managers",
+        "id": 15,
+        "parentId": 9
+    },
+    {
+        "label": "Public Relations Managers",
+        "id": 16,
+        "parentId": 15
+    },
+    {
+        "label": "Fundraising Managers",
+        "id": 17,
+        "parentId": 15
+    },
+    {
+        "label": "Operations Specialties Managers",
+        "id": 18,
+        "parentId": 1
+    },
+    {
+        "label": "Administrative Services and Facilities Managers",
+        "id": 19,
+        "parentId": 18
+    },
+    {
+        "label": "Administrative Services Managers",
+        "id": 20,
+        "parentId": 19
+    },
+    {
+        "label": "Facilities Managers",
+        "id": 21,
+        "parentId": 19
+    },
+    {
+        "label": "Computer and Information Systems Managers",
+        "id": 22,
+        "parentId": 18
+    },
+    {
+        "label": "Computer and Information Systems Managers",
+        "id": 23,
+        "parentId": 22
+    },
+    {
+        "label": "Financial Managers",
+        "id": 24,
+        "parentId": 18
+    },
+    {
+        "label": "Financial Managers",
+        "id": 25,
+        "parentId": 24
+    },
+    {
+        "label": "Industrial Production Managers",
+        "id": 26,
+        "parentId": 18
+    },
+    {
+        "label": "Industrial Production Managers",
+        "id": 27,
+        "parentId": 26
+    },
+    {
+        "label": "Purchasing Managers",
+        "id": 28,
+        "parentId": 18
+    },
+    {
+        "label": "Purchasing Managers",
+        "id": 29,
+        "parentId": 28
+    },
+    {
+        "label": "Transportation, Storage, and Distribution Managers",
+        "id": 30,
+        "parentId": 18
+    },
+    {
+        "label": "Transportation, Storage, and Distribution Managers",
+        "id": 31,
+        "parentId": 30
+    },
+    {
+        "label": "Compensation and Benefits Managers",
+        "id": 32,
+        "parentId": 18
+    },
+    {
+        "label": "Compensation and Benefits Managers",
+        "id": 33,
+        "parentId": 32
+    },
+    {
+        "label": "Human Resources Managers",
+        "id": 34,
+        "parentId": 18
+    },
+    {
+        "label": "Human Resources Managers",
+        "id": 35,
+        "parentId": 34
+    },
+    {
+        "label": "Training and Development Managers",
+        "id": 36,
+        "parentId": 18
+    },
+    {
+        "label": "Training and Development Managers",
+        "id": 37,
+        "parentId": 36
+    },
+    {
+        "label": "Other Management Occupations",
+        "id": 38,
+        "parentId": 1
+    },
+    {
+        "label": "Farmers, Ranchers, and Other Agricultural Managers",
+        "id": 39,
+        "parentId": 38
+    },
+    {
+        "label": "Farmers, Ranchers, and Other Agricultural Managers",
+        "id": 40,
+        "parentId": 39
+    },
+    {
+        "label": "Construction Managers",
+        "id": 41,
+        "parentId": 38
+    },
+    {
+        "label": "Construction Managers",
+        "id": 42,
+        "parentId": 41
+    },
+    {
+        "label": "Education and Childcare Administrators",
+        "id": 43,
+        "parentId": 38
+    },
+    {
+        "label": "Education and Childcare Administrators, Preschool and Daycare",
+        "id": 44,
+        "parentId": 43
+    },
+    {
+        "label": "Education Administrators, Kindergarten through Secondary",
+        "id": 45,
+        "parentId": 43
+    },
+    {
+        "label": "Education Administrators, Postsecondary",
+        "id": 46,
+        "parentId": 43
+    },
+    {
+        "label": "Education Administrators, All Other",
+        "id": 47,
+        "parentId": 43
+    },
+    {
+        "label": "Architectural and Engineering Managers",
+        "id": 48,
+        "parentId": 38
+    },
+    {
+        "label": "Architectural and Engineering Managers",
+        "id": 49,
+        "parentId": 48
+    },
+    {
+        "label": "Food Service Managers",
+        "id": 50,
+        "parentId": 38
+    },
+    {
+        "label": "Food Service Managers",
+        "id": 51,
+        "parentId": 50
+    },
+    {
+        "label": "Entertainment and Recreation Managers",
+        "id": 52,
+        "parentId": 38
+    },
+    {
+        "label": "Gambling Managers",
+        "id": 53,
+        "parentId": 52
+    },
+    {
+        "label": "Entertainment and Recreation Managers, Except Gambling",
+        "id": 54,
+        "parentId": 52
+    },
+    {
+        "label": "Lodging Managers",
+        "id": 55,
+        "parentId": 38
+    },
+    {
+        "label": "Lodging Managers",
+        "id": 56,
+        "parentId": 55
+    },
+    {
+        "label": "Medical and Health Services Managers",
+        "id": 57,
+        "parentId": 38
+    },
+    {
+        "label": "Medical and Health Services Managers",
+        "id": 58,
+        "parentId": 57
+    },
+    {
+        "label": "Natural Sciences Managers",
+        "id": 59,
+        "parentId": 38
+    },
+    {
+        "label": "Natural Sciences Managers",
+        "id": 60,
+        "parentId": 59
+    },
+    {
+        "label": "Postmasters and Mail Superintendents",
+        "id": 61,
+        "parentId": 38
+    },
+    {
+        "label": "Postmasters and Mail Superintendents",
+        "id": 62,
+        "parentId": 61
+    },
+    {
+        "label": "Property, Real Estate, and Community Association Managers",
+        "id": 63,
+        "parentId": 38
+    },
+    {
+        "label": "Property, Real Estate, and Community Association Managers",
+        "id": 64,
+        "parentId": 63
+    },
+    {
+        "label": "Social and Community Service Managers",
+        "id": 65,
+        "parentId": 38
+    },
+    {
+        "label": "Social and Community Service Managers",
+        "id": 66,
+        "parentId": 65
+    },
+    {
+        "label": "Emergency Management Directors",
+        "id": 67,
+        "parentId": 38
+    },
+    {
+        "label": "Emergency Management Directors",
+        "id": 68,
+        "parentId": 67
+    },
+    {
+        "label": "Personal Service Managers",
+        "id": 69,
+        "parentId": 38
+    },
+    {
+        "label": "Funeral Home Managers",
+        "id": 70,
+        "parentId": 69
+    },
+    {
+        "label": "Personal Service Managers, All Other",
+        "id": 71,
+        "parentId": 69
+    },
+    {
+        "label": "Miscellaneous Managers",
+        "id": 72,
+        "parentId": 38
+    },
+    {
+        "label": "Managers, All Other",
+        "id": 73,
+        "parentId": 72
+    },
+    {
+        "label": "Business and Financial Operations Occupations",
+        "id": 74
+    },
+    {
+        "label": "Business Operations Specialists",
+        "id": 75,
+        "parentId": 74
+    },
+    {
+        "label": "Agents and Business Managers of Artists, Performers, and Athletes",
+        "id": 76,
+        "parentId": 75
+    },
+    {
+        "label": "Agents and Business Managers of Artists, Performers, and Athletes",
+        "id": 77,
+        "parentId": 76
+    },
+    {
+        "label": "Buyers and Purchasing Agents",
+        "id": 78,
+        "parentId": 75
+    },
+    {
+        "label": "Buyers and Purchasing Agents, Farm Products",
+        "id": 79,
+        "parentId": 78
+    },
+    {
+        "label": "Wholesale and Retail Buyers, Except Farm Products",
+        "id": 80,
+        "parentId": 78
+    },
+    {
+        "label": "Purchasing Agents, Except Wholesale, Retail, and Farm Products",
+        "id": 81,
+        "parentId": 78
+    },
+    {
+        "label": "Claims Adjusters, Appraisers, Examiners, and Investigators",
+        "id": 82,
+        "parentId": 75
+    },
+    {
+        "label": "Claims Adjusters, Examiners, and Investigators",
+        "id": 83,
+        "parentId": 82
+    },
+    {
+        "label": "Insurance Appraisers, Auto Damage",
+        "id": 84,
+        "parentId": 82
+    },
+    {
+        "label": "Compliance Officers",
+        "id": 85,
+        "parentId": 75
+    },
+    {
+        "label": "Compliance Officers",
+        "id": 86,
+        "parentId": 85
+    },
+    {
+        "label": "Cost Estimators",
+        "id": 87,
+        "parentId": 75
+    },
+    {
+        "label": "Cost Estimators",
+        "id": 88,
+        "parentId": 87
+    },
+    {
+        "label": "Human Resources Workers",
+        "id": 89,
+        "parentId": 75
+    },
+    {
+        "label": "Human Resources Specialists",
+        "id": 90,
+        "parentId": 89
+    },
+    {
+        "label": "Farm Labor Contractors",
+        "id": 91,
+        "parentId": 89
+    },
+    {
+        "label": "Labor Relations Specialists",
+        "id": 92,
+        "parentId": 89
+    },
+    {
+        "label": "Logisticians and Project Management Specialists",
+        "id": 93,
+        "parentId": 75
+    },
+    {
+        "label": "Logisticians",
+        "id": 94,
+        "parentId": 93
+    },
+    {
+        "label": "Project Management Specialists",
+        "id": 95,
+        "parentId": 93
+    },
+    {
+        "label": "Management Analysts",
+        "id": 96,
+        "parentId": 75
+    },
+    {
+        "label": "Management Analysts",
+        "id": 97,
+        "parentId": 96
+    },
+    {
+        "label": "Meeting, Convention, and Event Planners",
+        "id": 98,
+        "parentId": 75
+    },
+    {
+        "label": "Meeting, Convention, and Event Planners",
+        "id": 99,
+        "parentId": 98
+    },
+    {
+        "label": "Fundraisers",
+        "id": 100,
+        "parentId": 75
+    },
+    {
+        "label": "Fundraisers",
+        "id": 101,
+        "parentId": 100
+    },
+    {
+        "label": "Compensation, Benefits, and Job Analysis Specialists",
+        "id": 102,
+        "parentId": 75
+    },
+    {
+        "label": "Compensation, Benefits, and Job Analysis Specialists",
+        "id": 103,
+        "parentId": 102
+    },
+    {
+        "label": "Training and Development Specialists",
+        "id": 104,
+        "parentId": 75
+    },
+    {
+        "label": "Training and Development Specialists",
+        "id": 105,
+        "parentId": 104
+    },
+    {
+        "label": "Market Research Analysts and Marketing Specialists",
+        "id": 106,
+        "parentId": 75
+    },
+    {
+        "label": "Market Research Analysts and Marketing Specialists",
+        "id": 107,
+        "parentId": 106
+    },
+    {
+        "label": "Miscellaneous Business Operations Specialists",
+        "id": 108,
+        "parentId": 75
+    },
+    {
+        "label": "Business Operations Specialists, All Other",
+        "id": 109,
+        "parentId": 108
+    },
+    {
+        "label": "Financial Specialists",
+        "id": 110,
+        "parentId": 74
+    },
+    {
+        "label": "Accountants and Auditors",
+        "id": 111,
+        "parentId": 110
+    },
+    {
+        "label": "Accountants and Auditors",
+        "id": 112,
+        "parentId": 111
+    },
+    {
+        "label": "Property Appraisers and Assessors",
+        "id": 113,
+        "parentId": 110
+    },
+    {
+        "label": "Appraisers of Personal and Business Property",
+        "id": 114,
+        "parentId": 113
+    },
+    {
+        "label": "Appraisers and Assessors of Real Estate",
+        "id": 115,
+        "parentId": 113
+    },
+    {
+        "label": "Budget Analysts",
+        "id": 116,
+        "parentId": 110
+    },
+    {
+        "label": "Budget Analysts",
+        "id": 117,
+        "parentId": 116
+    },
+    {
+        "label": "Credit Analysts",
+        "id": 118,
+        "parentId": 110
+    },
+    {
+        "label": "Credit Analysts",
+        "id": 119,
+        "parentId": 118
+    },
+    {
+        "label": "Financial Analysts and Advisors",
+        "id": 120,
+        "parentId": 110
+    },
+    {
+        "label": "Financial and Investment Analysts",
+        "id": 121,
+        "parentId": 120
+    },
+    {
+        "label": "Personal Financial Advisors",
+        "id": 122,
+        "parentId": 120
+    },
+    {
+        "label": "Insurance Underwriters",
+        "id": 123,
+        "parentId": 120
+    },
+    {
+        "label": "Financial Risk Specialists",
+        "id": 124,
+        "parentId": 120
+    },
+    {
+        "label": "Financial Examiners",
+        "id": 125,
+        "parentId": 110
+    },
+    {
+        "label": "Financial Examiners",
+        "id": 126,
+        "parentId": 125
+    },
+    {
+        "label": "Credit Counselors and Loan Officers",
+        "id": 127,
+        "parentId": 110
+    },
+    {
+        "label": "Credit Counselors",
+        "id": 128,
+        "parentId": 127
+    },
+    {
+        "label": "Loan Officers",
+        "id": 129,
+        "parentId": 127
+    },
+    {
+        "label": "Tax Examiners, Collectors and Preparers, and Revenue Agents",
+        "id": 130,
+        "parentId": 110
+    },
+    {
+        "label": "Tax Examiners and Collectors, and Revenue Agents",
+        "id": 131,
+        "parentId": 130
+    },
+    {
+        "label": "Tax Preparers",
+        "id": 132,
+        "parentId": 130
+    },
+    {
+        "label": "Miscellaneous Financial Specialists",
+        "id": 133,
+        "parentId": 110
+    },
+    {
+        "label": "Financial Specialists, All Other",
+        "id": 134,
+        "parentId": 133
+    },
+    {
+        "label": "Computer and Mathematical Occupations",
+        "id": 135
+    },
+    {
+        "label": "Computer Occupations",
+        "id": 136,
+        "parentId": 135
+    },
+    {
+        "label": "Computer and Information Analysts",
+        "id": 137,
+        "parentId": 136
+    },
+    {
+        "label": "Computer Systems Analysts",
+        "id": 138,
+        "parentId": 137
+    },
+    {
+        "label": "Information Security Analysts",
+        "id": 139,
+        "parentId": 137
+    },
+    {
+        "label": "Computer and Information Research Scientists",
+        "id": 140,
+        "parentId": 136
+    },
+    {
+        "label": "Computer and Information Research Scientists",
+        "id": 141,
+        "parentId": 140
+    },
+    {
+        "label": "Computer Support Specialists",
+        "id": 142,
+        "parentId": 136
+    },
+    {
+        "label": "Computer Network Support Specialists",
+        "id": 143,
+        "parentId": 142
+    },
+    {
+        "label": "Computer User Support Specialists",
+        "id": 144,
+        "parentId": 142
+    },
+    {
+        "label": "Database and Network Administrators and Architects",
+        "id": 145,
+        "parentId": 136
+    },
+    {
+        "label": "Computer Network Architects",
+        "id": 146,
+        "parentId": 145
+    },
+    {
+        "label": "Database Administrators",
+        "id": 147,
+        "parentId": 145
+    },
+    {
+        "label": "Database Architects",
+        "id": 148,
+        "parentId": 145
+    },
+    {
+        "label": "Network and Computer Systems Administrators",
+        "id": 149,
+        "parentId": 145
+    },
+    {
+        "label": "Software and Web Developers, Programmers, and Testers",
+        "id": 150,
+        "parentId": 136
+    },
+    {
+        "label": "Computer Programmers",
+        "id": 151,
+        "parentId": 150
+    },
+    {
+        "label": "Software Developers",
+        "id": 152,
+        "parentId": 150
+    },
+    {
+        "label": "Software Quality Assurance Analysts and Testers",
+        "id": 153,
+        "parentId": 150
+    },
+    {
+        "label": "Web Developers",
+        "id": 154,
+        "parentId": 150
+    },
+    {
+        "label": "Web and Digital Interface Designers",
+        "id": 155,
+        "parentId": 150
+    },
+    {
+        "label": "Miscellaneous Computer Occupations",
+        "id": 156,
+        "parentId": 136
+    },
+    {
+        "label": "Computer Occupations, All Other",
+        "id": 157,
+        "parentId": 156
+    },
+    {
+        "label": "Mathematical Science Occupations",
+        "id": 158,
+        "parentId": 135
+    },
+    {
+        "label": "Actuaries",
+        "id": 159,
+        "parentId": 158
+    },
+    {
+        "label": "Actuaries",
+        "id": 160,
+        "parentId": 159
+    },
+    {
+        "label": "Mathematicians",
+        "id": 161,
+        "parentId": 158
+    },
+    {
+        "label": "Mathematicians",
+        "id": 162,
+        "parentId": 161
+    },
+    {
+        "label": "Operations Research Analysts",
+        "id": 163,
+        "parentId": 158
+    },
+    {
+        "label": "Operations Research Analysts",
+        "id": 164,
+        "parentId": 163
+    },
+    {
+        "label": "Statisticians",
+        "id": 165,
+        "parentId": 158
+    },
+    {
+        "label": "Statisticians",
+        "id": 166,
+        "parentId": 165
+    },
+    {
+        "label": "Data Scientists",
+        "id": 167,
+        "parentId": 158
+    },
+    {
+        "label": "Data Scientists",
+        "id": 168,
+        "parentId": 167
+    },
+    {
+        "label": "Miscellaneous Mathematical Science Occupations",
+        "id": 169,
+        "parentId": 158
+    },
+    {
+        "label": "Mathematical Science Occupations, All Other",
+        "id": 170,
+        "parentId": 169
+    },
+    {
+        "label": "Architecture and Engineering Occupations",
+        "id": 171
+    },
+    {
+        "label": "Architects, Surveyors, and Cartographers",
+        "id": 172,
+        "parentId": 171
+    },
+    {
+        "label": "Architects, Except Naval",
+        "id": 173,
+        "parentId": 172
+    },
+    {
+        "label": "Architects, Except Landscape and Naval",
+        "id": 174,
+        "parentId": 173
+    },
+    {
+        "label": "Landscape Architects",
+        "id": 175,
+        "parentId": 173
+    },
+    {
+        "label": "Surveyors, Cartographers, and Photogrammetrists",
+        "id": 176,
+        "parentId": 172
+    },
+    {
+        "label": "Cartographers and Photogrammetrists",
+        "id": 177,
+        "parentId": 176
+    },
+    {
+        "label": "Surveyors",
+        "id": 178,
+        "parentId": 176
+    },
+    {
+        "label": "Engineers",
+        "id": 179,
+        "parentId": 171
+    },
+    {
+        "label": "Aerospace Engineers",
+        "id": 180,
+        "parentId": 179
+    },
+    {
+        "label": "Aerospace Engineers",
+        "id": 181,
+        "parentId": 180
+    },
+    {
+        "label": "Agricultural Engineers",
+        "id": 182,
+        "parentId": 179
+    },
+    {
+        "label": "Agricultural Engineers",
+        "id": 183,
+        "parentId": 182
+    },
+    {
+        "label": "Bioengineers and Biomedical Engineers",
+        "id": 184,
+        "parentId": 179
+    },
+    {
+        "label": "Bioengineers and Biomedical Engineers",
+        "id": 185,
+        "parentId": 184
+    },
+    {
+        "label": "Chemical Engineers",
+        "id": 186,
+        "parentId": 179
+    },
+    {
+        "label": "Chemical Engineers",
+        "id": 187,
+        "parentId": 186
+    },
+    {
+        "label": "Civil Engineers",
+        "id": 188,
+        "parentId": 179
+    },
+    {
+        "label": "Civil Engineers",
+        "id": 189,
+        "parentId": 188
+    },
+    {
+        "label": "Computer Hardware Engineers",
+        "id": 190,
+        "parentId": 179
+    },
+    {
+        "label": "Computer Hardware Engineers",
+        "id": 191,
+        "parentId": 190
+    },
+    {
+        "label": "Electrical and Electronics Engineers",
+        "id": 192,
+        "parentId": 179
+    },
+    {
+        "label": "Electrical Engineers",
+        "id": 193,
+        "parentId": 192
+    },
+    {
+        "label": "Electronics Engineers, Except Computer",
+        "id": 194,
+        "parentId": 192
+    },
+    {
+        "label": "Environmental Engineers",
+        "id": 195,
+        "parentId": 179
+    },
+    {
+        "label": "Environmental Engineers",
+        "id": 196,
+        "parentId": 195
+    },
+    {
+        "label": "Industrial Engineers, Including Health and Safety",
+        "id": 197,
+        "parentId": 179
+    },
+    {
+        "label": "Health and Safety Engineers, Except Mining Safety Engineers and Inspectors",
+        "id": 198,
+        "parentId": 197
+    },
+    {
+        "label": "Industrial Engineers",
+        "id": 199,
+        "parentId": 197
+    },
+    {
+        "label": "Marine Engineers and Naval Architects",
+        "id": 200,
+        "parentId": 179
+    },
+    {
+        "label": "Marine Engineers and Naval Architects",
+        "id": 201,
+        "parentId": 200
+    },
+    {
+        "label": "Materials Engineers",
+        "id": 202,
+        "parentId": 179
+    },
+    {
+        "label": "Materials Engineers",
+        "id": 203,
+        "parentId": 202
+    },
+    {
+        "label": "Mechanical Engineers",
+        "id": 204,
+        "parentId": 179
+    },
+    {
+        "label": "Mechanical Engineers",
+        "id": 205,
+        "parentId": 204
+    },
+    {
+        "label": "Mining and Geological Engineers, Including Mining Safety Engineers",
+        "id": 206,
+        "parentId": 179
+    },
+    {
+        "label": "Mining and Geological Engineers, Including Mining Safety Engineers",
+        "id": 207,
+        "parentId": 206
+    },
+    {
+        "label": "Nuclear Engineers",
+        "id": 208,
+        "parentId": 179
+    },
+    {
+        "label": "Nuclear Engineers",
+        "id": 209,
+        "parentId": 208
+    },
+    {
+        "label": "Petroleum Engineers",
+        "id": 210,
+        "parentId": 179
+    },
+    {
+        "label": "Petroleum Engineers",
+        "id": 211,
+        "parentId": 210
+    },
+    {
+        "label": "Miscellaneous Engineers",
+        "id": 212,
+        "parentId": 179
+    },
+    {
+        "label": "Engineers, All Other",
+        "id": 213,
+        "parentId": 212
+    },
+    {
+        "label": "Drafters, Engineering Technicians, and Mapping Technicians",
+        "id": 214,
+        "parentId": 171
+    },
+    {
+        "label": "Drafters",
+        "id": 215,
+        "parentId": 214
+    },
+    {
+        "label": "Architectural and Civil Drafters",
+        "id": 216,
+        "parentId": 215
+    },
+    {
+        "label": "Electrical and Electronics Drafters",
+        "id": 217,
+        "parentId": 215
+    },
+    {
+        "label": "Mechanical Drafters",
+        "id": 218,
+        "parentId": 215
+    },
+    {
+        "label": "Drafters, All Other",
+        "id": 219,
+        "parentId": 215
+    },
+    {
+        "label": "Engineering Technologists and Technicians, Except Drafters",
+        "id": 220,
+        "parentId": 214
+    },
+    {
+        "label": "Aerospace Engineering and Operations Technologists and Technicians",
+        "id": 221,
+        "parentId": 220
+    },
+    {
+        "label": "Civil Engineering Technologists and Technicians",
+        "id": 222,
+        "parentId": 220
+    },
+    {
+        "label": "Electrical and Electronic Engineering Technologists and Technicians",
+        "id": 223,
+        "parentId": 220
+    },
+    {
+        "label": "Electro-Mechanical and Mechatronics Technologists and Technicians",
+        "id": 224,
+        "parentId": 220
+    },
+    {
+        "label": "Environmental Engineering Technologists and Technicians",
+        "id": 225,
+        "parentId": 220
+    },
+    {
+        "label": "Industrial Engineering Technologists and Technicians",
+        "id": 226,
+        "parentId": 220
+    },
+    {
+        "label": "Mechanical Engineering Technologists and Technicians",
+        "id": 227,
+        "parentId": 220
+    },
+    {
+        "label": "Calibration Technologists and Technicians",
+        "id": 228,
+        "parentId": 220
+    },
+    {
+        "label": "Engineering Technologists and Technicians, Except Drafters, All Other",
+        "id": 229,
+        "parentId": 220
+    },
+    {
+        "label": "Surveying and Mapping Technicians",
+        "id": 230,
+        "parentId": 214
+    },
+    {
+        "label": "Surveying and Mapping Technicians",
+        "id": 231,
+        "parentId": 230
+    },
+    {
+        "label": "Life, Physical, and Social Science Occupations",
+        "id": 232
+    },
+    {
+        "label": "Life Scientists",
+        "id": 233,
+        "parentId": 232
+    },
+    {
+        "label": "Agricultural and Food Scientists",
+        "id": 234,
+        "parentId": 233
+    },
+    {
+        "label": "Animal Scientists",
+        "id": 235,
+        "parentId": 234
+    },
+    {
+        "label": "Food Scientists and Technologists",
+        "id": 236,
+        "parentId": 234
+    },
+    {
+        "label": "Soil and Plant Scientists",
+        "id": 237,
+        "parentId": 234
+    },
+    {
+        "label": "Biological Scientists",
+        "id": 238,
+        "parentId": 233
+    },
+    {
+        "label": "Biochemists and Biophysicists",
+        "id": 239,
+        "parentId": 238
+    },
+    {
+        "label": "Microbiologists",
+        "id": 240,
+        "parentId": 238
+    },
+    {
+        "label": "Zoologists and Wildlife Biologists",
+        "id": 241,
+        "parentId": 238
+    },
+    {
+        "label": "Biological Scientists, All Other",
+        "id": 242,
+        "parentId": 238
+    },
+    {
+        "label": "Conservation Scientists and Foresters",
+        "id": 243,
+        "parentId": 233
+    },
+    {
+        "label": "Conservation Scientists",
+        "id": 244,
+        "parentId": 243
+    },
+    {
+        "label": "Foresters",
+        "id": 245,
+        "parentId": 243
+    },
+    {
+        "label": "Medical Scientists",
+        "id": 246,
+        "parentId": 233
+    },
+    {
+        "label": "Epidemiologists",
+        "id": 247,
+        "parentId": 246
+    },
+    {
+        "label": "Medical Scientists, Except Epidemiologists",
+        "id": 248,
+        "parentId": 246
+    },
+    {
+        "label": "Miscellaneous Life Scientists",
+        "id": 249,
+        "parentId": 233
+    },
+    {
+        "label": "Life Scientists, All Other",
+        "id": 250,
+        "parentId": 249
+    },
+    {
+        "label": "Physical Scientists",
+        "id": 251,
+        "parentId": 232
+    },
+    {
+        "label": "Astronomers and Physicists",
+        "id": 252,
+        "parentId": 251
+    },
+    {
+        "label": "Astronomers",
+        "id": 253,
+        "parentId": 252
+    },
+    {
+        "label": "Physicists",
+        "id": 254,
+        "parentId": 252
+    },
+    {
+        "label": "Atmospheric and Space Scientists",
+        "id": 255,
+        "parentId": 251
+    },
+    {
+        "label": "Atmospheric and Space Scientists",
+        "id": 256,
+        "parentId": 255
+    },
+    {
+        "label": "Chemists and Materials Scientists",
+        "id": 257,
+        "parentId": 251
+    },
+    {
+        "label": "Chemists",
+        "id": 258,
+        "parentId": 257
+    },
+    {
+        "label": "Materials Scientists",
+        "id": 259,
+        "parentId": 257
+    },
+    {
+        "label": "Environmental Scientists and Geoscientists",
+        "id": 260,
+        "parentId": 251
+    },
+    {
+        "label": "Environmental Scientists and Specialists, Including Health",
+        "id": 261,
+        "parentId": 260
+    },
+    {
+        "label": "Geoscientists, Except Hydrologists and Geographers",
+        "id": 262,
+        "parentId": 260
+    },
+    {
+        "label": "Hydrologists",
+        "id": 263,
+        "parentId": 260
+    },
+    {
+        "label": "Miscellaneous Physical Scientists",
+        "id": 264,
+        "parentId": 251
+    },
+    {
+        "label": "Physical Scientists, All Other",
+        "id": 265,
+        "parentId": 264
+    },
+    {
+        "label": "Social Scientists and Related Workers",
+        "id": 266,
+        "parentId": 232
+    },
+    {
+        "label": "Economists",
+        "id": 267,
+        "parentId": 266
+    },
+    {
+        "label": "Economists",
+        "id": 268,
+        "parentId": 267
+    },
+    {
+        "label": "Survey Researchers",
+        "id": 269,
+        "parentId": 266
+    },
+    {
+        "label": "Survey Researchers",
+        "id": 270,
+        "parentId": 269
+    },
+    {
+        "label": "Psychologists",
+        "id": 271,
+        "parentId": 266
+    },
+    {
+        "label": "Industrial-Organizational Psychologists",
+        "id": 272,
+        "parentId": 271
+    },
+    {
+        "label": "Clinical and Counseling Psychologists",
+        "id": 273,
+        "parentId": 271
+    },
+    {
+        "label": "School Psychologists",
+        "id": 274,
+        "parentId": 271
+    },
+    {
+        "label": "Psychologists, All Other",
+        "id": 275,
+        "parentId": 271
+    },
+    {
+        "label": "Sociologists",
+        "id": 276,
+        "parentId": 266
+    },
+    {
+        "label": "Sociologists",
+        "id": 277,
+        "parentId": 276
+    },
+    {
+        "label": "Urban and Regional Planners",
+        "id": 278,
+        "parentId": 266
+    },
+    {
+        "label": "Urban and Regional Planners",
+        "id": 279,
+        "parentId": 278
+    },
+    {
+        "label": "Miscellaneous Social Scientists and Related Workers",
+        "id": 280,
+        "parentId": 266
+    },
+    {
+        "label": "Anthropologists and Archeologists",
+        "id": 281,
+        "parentId": 280
+    },
+    {
+        "label": "Geographers",
+        "id": 282,
+        "parentId": 280
+    },
+    {
+        "label": "Historians",
+        "id": 283,
+        "parentId": 280
+    },
+    {
+        "label": "Political Scientists",
+        "id": 284,
+        "parentId": 280
+    },
+    {
+        "label": "Social Scientists and Related Workers, All Other",
+        "id": 285,
+        "parentId": 280
+    },
+    {
+        "label": "Life, Physical, and Social Science Technicians",
+        "id": 286,
+        "parentId": 232
+    },
+    {
+        "label": "Agricultural and Food Science Technicians",
+        "id": 287,
+        "parentId": 286
+    },
+    {
+        "label": "Agricultural Technicians",
+        "id": 288,
+        "parentId": 287
+    },
+    {
+        "label": "Food Science Technicians",
+        "id": 289,
+        "parentId": 287
+    },
+    {
+        "label": "Biological Technicians",
+        "id": 290,
+        "parentId": 286
+    },
+    {
+        "label": "Biological Technicians",
+        "id": 291,
+        "parentId": 290
+    },
+    {
+        "label": "Chemical Technicians",
+        "id": 292,
+        "parentId": 286
+    },
+    {
+        "label": "Chemical Technicians",
+        "id": 293,
+        "parentId": 292
+    },
+    {
+        "label": "Environmental Science and Geoscience Technicians",
+        "id": 294,
+        "parentId": 286
+    },
+    {
+        "label": "Environmental Science and Protection Technicians, Including Health",
+        "id": 295,
+        "parentId": 294
+    },
+    {
+        "label": "Geological Technicians, Except Hydrologic Technicians",
+        "id": 296,
+        "parentId": 294
+    },
+    {
+        "label": "Hydrologic Technicians",
+        "id": 297,
+        "parentId": 294
+    },
+    {
+        "label": "Nuclear Technicians",
+        "id": 298,
+        "parentId": 286
+    },
+    {
+        "label": "Nuclear Technicians",
+        "id": 299,
+        "parentId": 298
+    },
+    {
+        "label": "Social Science Research Assistants",
+        "id": 300,
+        "parentId": 286
+    },
+    {
+        "label": "Social Science Research Assistants",
+        "id": 301,
+        "parentId": 300
+    },
+    {
+        "label": "Forest and Conservation Technicians",
+        "id": 302,
+        "parentId": 286
+    },
+    {
+        "label": "Forest and Conservation Technicians",
+        "id": 303,
+        "parentId": 302
+    },
+    {
+        "label": "Miscellaneous Life, Physical, and Social Science Technicians",
+        "id": 304,
+        "parentId": 286
+    },
+    {
+        "label": "Forensic Science Technicians",
+        "id": 305,
+        "parentId": 304
+    },
+    {
+        "label": "Life, Physical, and Social Science Technicians, All Other",
+        "id": 306,
+        "parentId": 304
+    },
+    {
+        "label": "Occupational Health and Safety Specialists and Technicians",
+        "id": 307,
+        "parentId": 232
+    },
+    {
+        "label": "Occupational Health and Safety Specialists and Technicians",
+        "id": 308,
+        "parentId": 307
+    },
+    {
+        "label": "Occupational Health and Safety Specialists",
+        "id": 309,
+        "parentId": 308
+    },
+    {
+        "label": "Occupational Health and Safety Technicians",
+        "id": 310,
+        "parentId": 308
+    },
+    {
+        "label": "Community and Social Service Occupations",
+        "id": 311
+    },
+    {
+        "label": "Counselors, Social Workers, and Other Community and Social Service Specialists",
+        "id": 312,
+        "parentId": 311
+    },
+    {
+        "label": "Counselors",
+        "id": 313,
+        "parentId": 312
+    },
+    {
+        "label": "Substance Abuse and Behavioral Disorder Counselors",
+        "id": 314,
+        "parentId": 313
+    },
+    {
+        "label": "Educational, Guidance, and Career Counselors and Advisors",
+        "id": 315,
+        "parentId": 313
+    },
+    {
+        "label": "Marriage and Family Therapists",
+        "id": 316,
+        "parentId": 313
+    },
+    {
+        "label": "Mental Health Counselors",
+        "id": 317,
+        "parentId": 313
+    },
+    {
+        "label": "Rehabilitation Counselors",
+        "id": 318,
+        "parentId": 313
+    },
+    {
+        "label": "Counselors, All Other",
+        "id": 319,
+        "parentId": 313
+    },
+    {
+        "label": "Social Workers",
+        "id": 320,
+        "parentId": 312
+    },
+    {
+        "label": "Child, Family, and School Social Workers",
+        "id": 321,
+        "parentId": 320
+    },
+    {
+        "label": "Healthcare Social Workers",
+        "id": 322,
+        "parentId": 320
+    },
+    {
+        "label": "Mental Health and Substance Abuse Social Workers",
+        "id": 323,
+        "parentId": 320
+    },
+    {
+        "label": "Social Workers, All Other",
+        "id": 324,
+        "parentId": 320
+    },
+    {
+        "label": "Miscellaneous Community and Social Service Specialists",
+        "id": 325,
+        "parentId": 312
+    },
+    {
+        "label": "Health Education Specialists",
+        "id": 326,
+        "parentId": 325
+    },
+    {
+        "label": "Probation Officers and Correctional Treatment Specialists",
+        "id": 327,
+        "parentId": 325
+    },
+    {
+        "label": "Social and Human Service Assistants",
+        "id": 328,
+        "parentId": 325
+    },
+    {
+        "label": "Community Health Workers",
+        "id": 329,
+        "parentId": 325
+    },
+    {
+        "label": "Community and Social Service Specialists, All Other",
+        "id": 330,
+        "parentId": 325
+    },
+    {
+        "label": "Religious Workers",
+        "id": 331,
+        "parentId": 311
+    },
+    {
+        "label": "Clergy",
+        "id": 332,
+        "parentId": 331
+    },
+    {
+        "label": "Clergy",
+        "id": 333,
+        "parentId": 332
+    },
+    {
+        "label": "Directors, Religious Activities and Education",
+        "id": 334,
+        "parentId": 331
+    },
+    {
+        "label": "Directors, Religious Activities and Education",
+        "id": 335,
+        "parentId": 334
+    },
+    {
+        "label": "Miscellaneous Religious Workers",
+        "id": 336,
+        "parentId": 331
+    },
+    {
+        "label": "Religious Workers, All Other",
+        "id": 337,
+        "parentId": 336
+    },
+    {
+        "label": "Legal Occupations",
+        "id": 338
+    },
+    {
+        "label": "Lawyers, Judges, and Related Workers",
+        "id": 339,
+        "parentId": 338
+    },
+    {
+        "label": "Lawyers and Judicial Law Clerks",
+        "id": 340,
+        "parentId": 339
+    },
+    {
+        "label": "Lawyers",
+        "id": 341,
+        "parentId": 340
+    },
+    {
+        "label": "Judicial Law Clerks",
+        "id": 342,
+        "parentId": 340
+    },
+    {
+        "label": "Judges, Magistrates, and Other Judicial Workers",
+        "id": 343,
+        "parentId": 339
+    },
+    {
+        "label": "Administrative Law Judges, Adjudicators, and Hearing Officers",
+        "id": 344,
+        "parentId": 343
+    },
+    {
+        "label": "Arbitrators, Mediators, and Conciliators",
+        "id": 345,
+        "parentId": 343
+    },
+    {
+        "label": "Judges, Magistrate Judges, and Magistrates",
+        "id": 346,
+        "parentId": 343
+    },
+    {
+        "label": "Legal Support Workers",
+        "id": 347,
+        "parentId": 338
+    },
+    {
+        "label": "Paralegals and Legal Assistants",
+        "id": 348,
+        "parentId": 347
+    },
+    {
+        "label": "Paralegals and Legal Assistants",
+        "id": 349,
+        "parentId": 348
+    },
+    {
+        "label": "Miscellaneous Legal Support Workers",
+        "id": 350,
+        "parentId": 347
+    },
+    {
+        "label": "Title Examiners, Abstractors, and Searchers",
+        "id": 351,
+        "parentId": 350
+    },
+    {
+        "label": "Legal Support Workers, All Other",
+        "id": 352,
+        "parentId": 350
+    },
+    {
+        "label": "Educational Instruction and Library Occupations",
+        "id": 353
+    },
+    {
+        "label": "Postsecondary Teachers",
+        "id": 354,
+        "parentId": 353
+    },
+    {
+        "label": "Business Teachers, Postsecondary",
+        "id": 355,
+        "parentId": 354
+    },
+    {
+        "label": "Business Teachers, Postsecondary",
+        "id": 356,
+        "parentId": 355
+    },
+    {
+        "label": "Math and Computer Science Teachers, Postsecondary",
+        "id": 357,
+        "parentId": 354
+    },
+    {
+        "label": "Computer Science Teachers, Postsecondary",
+        "id": 358,
+        "parentId": 357
+    },
+    {
+        "label": "Mathematical Science Teachers, Postsecondary",
+        "id": 359,
+        "parentId": 357
+    },
+    {
+        "label": "Engineering and Architecture Teachers, Postsecondary",
+        "id": 360,
+        "parentId": 354
+    },
+    {
+        "label": "Architecture Teachers, Postsecondary",
+        "id": 361,
+        "parentId": 360
+    },
+    {
+        "label": "Engineering Teachers, Postsecondary",
+        "id": 362,
+        "parentId": 360
+    },
+    {
+        "label": "Life Sciences Teachers, Postsecondary",
+        "id": 363,
+        "parentId": 354
+    },
+    {
+        "label": "Agricultural Sciences Teachers, Postsecondary",
+        "id": 364,
+        "parentId": 363
+    },
+    {
+        "label": "Biological Science Teachers, Postsecondary",
+        "id": 365,
+        "parentId": 363
+    },
+    {
+        "label": "Forestry and Conservation Science Teachers, Postsecondary",
+        "id": 366,
+        "parentId": 363
+    },
+    {
+        "label": "Physical Sciences Teachers, Postsecondary",
+        "id": 367,
+        "parentId": 354
+    },
+    {
+        "label": "Atmospheric, Earth, Marine, and Space Sciences Teachers, Postsecondary",
+        "id": 368,
+        "parentId": 367
+    },
+    {
+        "label": "Chemistry Teachers, Postsecondary",
+        "id": 369,
+        "parentId": 367
+    },
+    {
+        "label": "Environmental Science Teachers, Postsecondary",
+        "id": 370,
+        "parentId": 367
+    },
+    {
+        "label": "Physics Teachers, Postsecondary",
+        "id": 371,
+        "parentId": 367
+    },
+    {
+        "label": "Social Sciences Teachers, Postsecondary",
+        "id": 372,
+        "parentId": 354
+    },
+    {
+        "label": "Anthropology and Archeology Teachers, Postsecondary",
+        "id": 373,
+        "parentId": 372
+    },
+    {
+        "label": "Area, Ethnic, and Cultural Studies Teachers, Postsecondary",
+        "id": 374,
+        "parentId": 372
+    },
+    {
+        "label": "Economics Teachers, Postsecondary",
+        "id": 375,
+        "parentId": 372
+    },
+    {
+        "label": "Geography Teachers, Postsecondary",
+        "id": 376,
+        "parentId": 372
+    },
+    {
+        "label": "Political Science Teachers, Postsecondary",
+        "id": 377,
+        "parentId": 372
+    },
+    {
+        "label": "Psychology Teachers, Postsecondary",
+        "id": 378,
+        "parentId": 372
+    },
+    {
+        "label": "Sociology Teachers, Postsecondary",
+        "id": 379,
+        "parentId": 372
+    },
+    {
+        "label": "Social Sciences Teachers, Postsecondary, All Other",
+        "id": 380,
+        "parentId": 372
+    },
+    {
+        "label": "Health Teachers, Postsecondary",
+        "id": 381,
+        "parentId": 354
+    },
+    {
+        "label": "Health Specialties Teachers, Postsecondary",
+        "id": 382,
+        "parentId": 381
+    },
+    {
+        "label": "Nursing Instructors and Teachers, Postsecondary",
+        "id": 383,
+        "parentId": 381
+    },
+    {
+        "label": "Education and Library Science Teachers, Postsecondary",
+        "id": 384,
+        "parentId": 354
+    },
+    {
+        "label": "Education Teachers, Postsecondary",
+        "id": 385,
+        "parentId": 384
+    },
+    {
+        "label": "Library Science Teachers, Postsecondary",
+        "id": 386,
+        "parentId": 384
+    },
+    {
+        "label": "Law, Criminal Justice, and Social Work Teachers, Postsecondary",
+        "id": 387,
+        "parentId": 354
+    },
+    {
+        "label": "Criminal Justice and Law Enforcement Teachers, Postsecondary",
+        "id": 388,
+        "parentId": 387
+    },
+    {
+        "label": "Law Teachers, Postsecondary",
+        "id": 389,
+        "parentId": 387
+    },
+    {
+        "label": "Social Work Teachers, Postsecondary",
+        "id": 390,
+        "parentId": 387
+    },
+    {
+        "label": "Arts, Communications, History, and Humanities Teachers, Postsecondary",
+        "id": 391,
+        "parentId": 354
+    },
+    {
+        "label": "Art, Drama, and Music Teachers, Postsecondary",
+        "id": 392,
+        "parentId": 391
+    },
+    {
+        "label": "Communications Teachers, Postsecondary",
+        "id": 393,
+        "parentId": 391
+    },
+    {
+        "label": "English Language and Literature Teachers, Postsecondary",
+        "id": 394,
+        "parentId": 391
+    },
+    {
+        "label": "Foreign Language and Literature Teachers, Postsecondary",
+        "id": 395,
+        "parentId": 391
+    },
+    {
+        "label": "History Teachers, Postsecondary",
+        "id": 396,
+        "parentId": 391
+    },
+    {
+        "label": "Philosophy and Religion Teachers, Postsecondary",
+        "id": 397,
+        "parentId": 391
+    },
+    {
+        "label": "Miscellaneous Postsecondary Teachers",
+        "id": 398,
+        "parentId": 354
+    },
+    {
+        "label": "Family and Consumer Sciences Teachers, Postsecondary",
+        "id": 399,
+        "parentId": 398
+    },
+    {
+        "label": "Recreation and Fitness Studies Teachers, Postsecondary",
+        "id": 400,
+        "parentId": 398
+    },
+    {
+        "label": "Career/Technical Education Teachers, Postsecondary",
+        "id": 401,
+        "parentId": 398
+    },
+    {
+        "label": "Postsecondary Teachers, All Other",
+        "id": 402,
+        "parentId": 398
+    },
+    {
+        "label": "Preschool, Elementary, Middle, Secondary, and Special Education Teachers",
+        "id": 403,
+        "parentId": 353
+    },
+    {
+        "label": "Preschool and Kindergarten Teachers",
+        "id": 404,
+        "parentId": 403
+    },
+    {
+        "label": "Preschool Teachers, Except Special Education",
+        "id": 405,
+        "parentId": 404
+    },
+    {
+        "label": "Kindergarten Teachers, Except Special Education",
+        "id": 406,
+        "parentId": 404
+    },
+    {
+        "label": "Elementary and Middle School Teachers",
+        "id": 407,
+        "parentId": 403
+    },
+    {
+        "label": "Elementary School Teachers, Except Special Education",
+        "id": 408,
+        "parentId": 407
+    },
+    {
+        "label": "Middle School Teachers, Except Special and Career/Technical Education",
+        "id": 409,
+        "parentId": 407
+    },
+    {
+        "label": "Career/Technical Education Teachers, Middle School",
+        "id": 410,
+        "parentId": 407
+    },
+    {
+        "label": "Secondary School Teachers",
+        "id": 411,
+        "parentId": 403
+    },
+    {
+        "label": "Secondary School Teachers, Except Special and Career/Technical Education",
+        "id": 412,
+        "parentId": 411
+    },
+    {
+        "label": "Career/Technical Education Teachers, Secondary School",
+        "id": 413,
+        "parentId": 411
+    },
+    {
+        "label": "Special Education Teachers",
+        "id": 414,
+        "parentId": 403
+    },
+    {
+        "label": "Special Education Teachers, Preschool",
+        "id": 415,
+        "parentId": 414
+    },
+    {
+        "label": "Special Education Teachers, Kindergarten",
+        "id": 416,
+        "parentId": 414
+    },
+    {
+        "label": "Special Education Teachers, Elementary School",
+        "id": 417,
+        "parentId": 414
+    },
+    {
+        "label": "Special Education Teachers, Middle School",
+        "id": 418,
+        "parentId": 414
+    },
+    {
+        "label": "Special Education Teachers, Secondary School",
+        "id": 419,
+        "parentId": 414
+    },
+    {
+        "label": "Special Education Teachers, All Other",
+        "id": 420,
+        "parentId": 414
+    },
+    {
+        "label": "Other Teachers and Instructors",
+        "id": 421,
+        "parentId": 353
+    },
+    {
+        "label": "Adult Basic Education, Adult Secondary Education, and English as a Second Language Instructors",
+        "id": 422,
+        "parentId": 421
+    },
+    {
+        "label": "Adult Basic Education, Adult Secondary Education, and English as a Second Language Instructors",
+        "id": 423,
+        "parentId": 422
+    },
+    {
+        "label": "Self-Enrichment Teachers",
+        "id": 424,
+        "parentId": 421
+    },
+    {
+        "label": "Self-Enrichment Teachers",
+        "id": 425,
+        "parentId": 424
+    },
+    {
+        "label": "Substitute Teachers, Short-Term",
+        "id": 426,
+        "parentId": 421
+    },
+    {
+        "label": "Substitute Teachers, Short-Term",
+        "id": 427,
+        "parentId": 426
+    },
+    {
+        "label": "Tutors",
+        "id": 428,
+        "parentId": 421
+    },
+    {
+        "label": "Tutors",
+        "id": 429,
+        "parentId": 428
+    },
+    {
+        "label": "Miscellaneous Teachers and Instructors",
+        "id": 430,
+        "parentId": 421
+    },
+    {
+        "label": "Teachers and Instructors, All Other",
+        "id": 431,
+        "parentId": 430
+    },
+    {
+        "label": "Librarians, Curators, and Archivists",
+        "id": 432,
+        "parentId": 353
+    },
+    {
+        "label": "Archivists, Curators, and Museum Technicians",
+        "id": 433,
+        "parentId": 432
+    },
+    {
+        "label": "Archivists",
+        "id": 434,
+        "parentId": 433
+    },
+    {
+        "label": "Curators",
+        "id": 435,
+        "parentId": 433
+    },
+    {
+        "label": "Museum Technicians and Conservators",
+        "id": 436,
+        "parentId": 433
+    },
+    {
+        "label": "Librarians and Media Collections Specialists",
+        "id": 437,
+        "parentId": 432
+    },
+    {
+        "label": "Librarians and Media Collections Specialists",
+        "id": 438,
+        "parentId": 437
+    },
+    {
+        "label": "Library Technicians",
+        "id": 439,
+        "parentId": 432
+    },
+    {
+        "label": "Library Technicians",
+        "id": 440,
+        "parentId": 439
+    },
+    {
+        "label": "Other Educational Instruction and Library Occupations",
+        "id": 441,
+        "parentId": 353
+    },
+    {
+        "label": "Farm and Home Management Educators",
+        "id": 442,
+        "parentId": 441
+    },
+    {
+        "label": "Farm and Home Management Educators",
+        "id": 443,
+        "parentId": 442
+    },
+    {
+        "label": "Instructional Coordinators",
+        "id": 444,
+        "parentId": 441
+    },
+    {
+        "label": "Instructional Coordinators",
+        "id": 445,
+        "parentId": 444
+    },
+    {
+        "label": "Teaching Assistants",
+        "id": 446,
+        "parentId": 441
+    },
+    {
+        "label": "Teaching Assistants, Preschool, Elementary, Middle, and Secondary School, Except Special Education",
+        "id": 447,
+        "parentId": 446
+    },
+    {
+        "label": "Teaching Assistants, Special Education",
+        "id": 448,
+        "parentId": 446
+    },
+    {
+        "label": "Teaching Assistants, Postsecondary",
+        "id": 449,
+        "parentId": 446
+    },
+    {
+        "label": "Teaching Assistants, All Other",
+        "id": 450,
+        "parentId": 446
+    },
+    {
+        "label": "Miscellaneous Educational Instruction and Library Workers",
+        "id": 451,
+        "parentId": 441
+    },
+    {
+        "label": "Educational Instruction and Library Workers, All Other",
+        "id": 452,
+        "parentId": 451
+    },
+    {
+        "label": "Arts, Design, Entertainment, Sports, and Media Occupations",
+        "id": 453
+    },
+    {
+        "label": "Art and Design Workers",
+        "id": 454,
+        "parentId": 453
+    },
+    {
+        "label": "Artists and Related Workers",
+        "id": 455,
+        "parentId": 454
+    },
+    {
+        "label": "Art Directors",
+        "id": 456,
+        "parentId": 455
+    },
+    {
+        "label": "Craft Artists",
+        "id": 457,
+        "parentId": 455
+    },
+    {
+        "label": "Fine Artists, Including Painters, Sculptors, and Illustrators",
+        "id": 458,
+        "parentId": 455
+    },
+    {
+        "label": "Special Effects Artists and Animators",
+        "id": 459,
+        "parentId": 455
+    },
+    {
+        "label": "Artists and Related Workers, All Other",
+        "id": 460,
+        "parentId": 455
+    },
+    {
+        "label": "Designers",
+        "id": 461,
+        "parentId": 454
+    },
+    {
+        "label": "Commercial and Industrial Designers",
+        "id": 462,
+        "parentId": 461
+    },
+    {
+        "label": "Fashion Designers",
+        "id": 463,
+        "parentId": 461
+    },
+    {
+        "label": "Floral Designers",
+        "id": 464,
+        "parentId": 461
+    },
+    {
+        "label": "Graphic Designers",
+        "id": 465,
+        "parentId": 461
+    },
+    {
+        "label": "Interior Designers",
+        "id": 466,
+        "parentId": 461
+    },
+    {
+        "label": "Merchandise Displayers and Window Trimmers",
+        "id": 467,
+        "parentId": 461
+    },
+    {
+        "label": "Set and Exhibit Designers",
+        "id": 468,
+        "parentId": 461
+    },
+    {
+        "label": "Designers, All Other",
+        "id": 469,
+        "parentId": 461
+    },
+    {
+        "label": "Entertainers and Performers, Sports and Related Workers",
+        "id": 470,
+        "parentId": 453
+    },
+    {
+        "label": "Actors, Producers, and Directors",
+        "id": 471,
+        "parentId": 470
+    },
+    {
+        "label": "Actors",
+        "id": 472,
+        "parentId": 471
+    },
+    {
+        "label": "Producers and Directors",
+        "id": 473,
+        "parentId": 471
+    },
+    {
+        "label": "Athletes, Coaches, Umpires, and Related Workers",
+        "id": 474,
+        "parentId": 470
+    },
+    {
+        "label": "Athletes and Sports Competitors",
+        "id": 475,
+        "parentId": 474
+    },
+    {
+        "label": "Coaches and Scouts",
+        "id": 476,
+        "parentId": 474
+    },
+    {
+        "label": "Umpires, Referees, and Other Sports Officials",
+        "id": 477,
+        "parentId": 474
+    },
+    {
+        "label": "Dancers and Choreographers",
+        "id": 478,
+        "parentId": 470
+    },
+    {
+        "label": "Dancers",
+        "id": 479,
+        "parentId": 478
+    },
+    {
+        "label": "Choreographers",
+        "id": 480,
+        "parentId": 478
+    },
+    {
+        "label": "Musicians, Singers, and Related Workers",
+        "id": 481,
+        "parentId": 470
+    },
+    {
+        "label": "Music Directors and Composers",
+        "id": 482,
+        "parentId": 481
+    },
+    {
+        "label": "Musicians and Singers",
+        "id": 483,
+        "parentId": 481
+    },
+    {
+        "label": "Miscellaneous Entertainers and Performers, Sports and Related Workers",
+        "id": 484,
+        "parentId": 470
+    },
+    {
+        "label": "Disc Jockeys, Except Radio",
+        "id": 485,
+        "parentId": 484
+    },
+    {
+        "label": "Entertainers and Performers, Sports and Related Workers, All Other",
+        "id": 486,
+        "parentId": 484
+    },
+    {
+        "label": "Media and Communication Workers",
+        "id": 487,
+        "parentId": 453
+    },
+    {
+        "label": "Broadcast Announcers and Radio Disc Jockeys",
+        "id": 488,
+        "parentId": 487
+    },
+    {
+        "label": "Broadcast Announcers and Radio Disc Jockeys",
+        "id": 489,
+        "parentId": 488
+    },
+    {
+        "label": "News Analysts, Reporters and Journalists",
+        "id": 490,
+        "parentId": 487
+    },
+    {
+        "label": "News Analysts, Reporters, and Journalists",
+        "id": 491,
+        "parentId": 490
+    },
+    {
+        "label": "Public Relations Specialists",
+        "id": 492,
+        "parentId": 487
+    },
+    {
+        "label": "Public Relations Specialists",
+        "id": 493,
+        "parentId": 492
+    },
+    {
+        "label": "Writers and Editors",
+        "id": 494,
+        "parentId": 487
+    },
+    {
+        "label": "Editors",
+        "id": 495,
+        "parentId": 494
+    },
+    {
+        "label": "Technical Writers",
+        "id": 496,
+        "parentId": 494
+    },
+    {
+        "label": "Writers and Authors",
+        "id": 497,
+        "parentId": 494
+    },
+    {
+        "label": "Miscellaneous Media and Communication Workers",
+        "id": 498,
+        "parentId": 487
+    },
+    {
+        "label": "Interpreters and Translators",
+        "id": 499,
+        "parentId": 498
+    },
+    {
+        "label": "Court Reporters and Simultaneous Captioners",
+        "id": 500,
+        "parentId": 498
+    },
+    {
+        "label": "Media and Communication Workers, All Other",
+        "id": 501,
+        "parentId": 498
+    },
+    {
+        "label": "Media and Communication Equipment Workers",
+        "id": 502,
+        "parentId": 453
+    },
+    {
+        "label": "Broadcast, Sound, and Lighting Technicians",
+        "id": 503,
+        "parentId": 502
+    },
+    {
+        "label": "Audio and Video Technicians",
+        "id": 504,
+        "parentId": 503
+    },
+    {
+        "label": "Broadcast Technicians",
+        "id": 505,
+        "parentId": 503
+    },
+    {
+        "label": "Sound Engineering Technicians",
+        "id": 506,
+        "parentId": 503
+    },
+    {
+        "label": "Lighting Technicians",
+        "id": 507,
+        "parentId": 503
+    },
+    {
+        "label": "Photographers",
+        "id": 508,
+        "parentId": 502
+    },
+    {
+        "label": "Photographers",
+        "id": 509,
+        "parentId": 508
+    },
+    {
+        "label": "Television, Video, and Film Camera Operators and Editors",
+        "id": 510,
+        "parentId": 502
+    },
+    {
+        "label": "Camera Operators, Television, Video, and Film",
+        "id": 511,
+        "parentId": 510
+    },
+    {
+        "label": "Film and Video Editors",
+        "id": 512,
+        "parentId": 510
+    },
+    {
+        "label": "Miscellaneous Media and Communication Equipment Workers",
+        "id": 513,
+        "parentId": 502
+    },
+    {
+        "label": "Media and Communication Equipment Workers, All Other",
+        "id": 514,
+        "parentId": 513
+    },
+    {
+        "label": "Healthcare Practitioners and Technical Occupations",
+        "id": 515
+    },
+    {
+        "label": "Healthcare Diagnosing or Treating Practitioners",
+        "id": 516,
+        "parentId": 515
+    },
+    {
+        "label": "Chiropractors",
+        "id": 517,
+        "parentId": 516
+    },
+    {
+        "label": "Chiropractors",
+        "id": 518,
+        "parentId": 517
+    },
+    {
+        "label": "Dentists",
+        "id": 519,
+        "parentId": 516
+    },
+    {
+        "label": "Dentists, General",
+        "id": 520,
+        "parentId": 519
+    },
+    {
+        "label": "Oral and Maxillofacial Surgeons",
+        "id": 521,
+        "parentId": 519
+    },
+    {
+        "label": "Orthodontists",
+        "id": 522,
+        "parentId": 519
+    },
+    {
+        "label": "Prosthodontists",
+        "id": 523,
+        "parentId": 519
+    },
+    {
+        "label": "Dentists, All Other Specialists",
+        "id": 524,
+        "parentId": 519
+    },
+    {
+        "label": "Dietitians and Nutritionists",
+        "id": 525,
+        "parentId": 516
+    },
+    {
+        "label": "Dietitians and Nutritionists",
+        "id": 526,
+        "parentId": 525
+    },
+    {
+        "label": "Optometrists",
+        "id": 527,
+        "parentId": 516
+    },
+    {
+        "label": "Optometrists",
+        "id": 528,
+        "parentId": 527
+    },
+    {
+        "label": "Pharmacists",
+        "id": 529,
+        "parentId": 516
+    },
+    {
+        "label": "Pharmacists",
+        "id": 530,
+        "parentId": 529
+    },
+    {
+        "label": "Physician Assistants",
+        "id": 531,
+        "parentId": 516
+    },
+    {
+        "label": "Physician Assistants",
+        "id": 532,
+        "parentId": 531
+    },
+    {
+        "label": "Podiatrists",
+        "id": 533,
+        "parentId": 516
+    },
+    {
+        "label": "Podiatrists",
+        "id": 534,
+        "parentId": 533
+    },
+    {
+        "label": "Therapists",
+        "id": 535,
+        "parentId": 516
+    },
+    {
+        "label": "Occupational Therapists",
+        "id": 536,
+        "parentId": 535
+    },
+    {
+        "label": "Physical Therapists",
+        "id": 537,
+        "parentId": 535
+    },
+    {
+        "label": "Radiation Therapists",
+        "id": 538,
+        "parentId": 535
+    },
+    {
+        "label": "Recreational Therapists",
+        "id": 539,
+        "parentId": 535
+    },
+    {
+        "label": "Respiratory Therapists",
+        "id": 540,
+        "parentId": 535
+    },
+    {
+        "label": "Speech-Language Pathologists",
+        "id": 541,
+        "parentId": 535
+    },
+    {
+        "label": "Exercise Physiologists",
+        "id": 542,
+        "parentId": 535
+    },
+    {
+        "label": "Therapists, All Other",
+        "id": 543,
+        "parentId": 535
+    },
+    {
+        "label": "Veterinarians",
+        "id": 544,
+        "parentId": 516
+    },
+    {
+        "label": "Veterinarians",
+        "id": 545,
+        "parentId": 544
+    },
+    {
+        "label": "Registered Nurses",
+        "id": 546,
+        "parentId": 516
+    },
+    {
+        "label": "Registered Nurses",
+        "id": 547,
+        "parentId": 546
+    },
+    {
+        "label": "Nurse Anesthetists",
+        "id": 548,
+        "parentId": 516
+    },
+    {
+        "label": "Nurse Anesthetists",
+        "id": 549,
+        "parentId": 548
+    },
+    {
+        "label": "Nurse Midwives",
+        "id": 550,
+        "parentId": 516
+    },
+    {
+        "label": "Nurse Midwives",
+        "id": 551,
+        "parentId": 550
+    },
+    {
+        "label": "Nurse Practitioners",
+        "id": 552,
+        "parentId": 516
+    },
+    {
+        "label": "Nurse Practitioners",
+        "id": 553,
+        "parentId": 552
+    },
+    {
+        "label": "Audiologists",
+        "id": 554,
+        "parentId": 516
+    },
+    {
+        "label": "Audiologists",
+        "id": 555,
+        "parentId": 554
+    },
+    {
+        "label": "Physicians",
+        "id": 556,
+        "parentId": 516
+    },
+    {
+        "label": "Anesthesiologists",
+        "id": 557,
+        "parentId": 556
+    },
+    {
+        "label": "Cardiologists",
+        "id": 558,
+        "parentId": 556
+    },
+    {
+        "label": "Dermatologists",
+        "id": 559,
+        "parentId": 556
+    },
+    {
+        "label": "Emergency Medicine Physicians",
+        "id": 560,
+        "parentId": 556
+    },
+    {
+        "label": "Family Medicine Physicians",
+        "id": 561,
+        "parentId": 556
+    },
+    {
+        "label": "General Internal Medicine Physicians",
+        "id": 562,
+        "parentId": 556
+    },
+    {
+        "label": "Neurologists",
+        "id": 563,
+        "parentId": 556
+    },
+    {
+        "label": "Obstetricians and Gynecologists",
+        "id": 564,
+        "parentId": 556
+    },
+    {
+        "label": "Pediatricians, General",
+        "id": 565,
+        "parentId": 556
+    },
+    {
+        "label": "Physicians, Pathologists",
+        "id": 566,
+        "parentId": 556
+    },
+    {
+        "label": "Psychiatrists",
+        "id": 567,
+        "parentId": 556
+    },
+    {
+        "label": "Radiologists",
+        "id": 568,
+        "parentId": 556
+    },
+    {
+        "label": "Physicians, All Other",
+        "id": 569,
+        "parentId": 556
+    },
+    {
+        "label": "Surgeons",
+        "id": 570,
+        "parentId": 516
+    },
+    {
+        "label": "Ophthalmologists, Except Pediatric",
+        "id": 571,
+        "parentId": 570
+    },
+    {
+        "label": "Orthopedic Surgeons, Except Pediatric",
+        "id": 572,
+        "parentId": 570
+    },
+    {
+        "label": "Pediatric Surgeons",
+        "id": 573,
+        "parentId": 570
+    },
+    {
+        "label": "Surgeons, All Other",
+        "id": 574,
+        "parentId": 570
+    },
+    {
+        "label": "Miscellaneous Healthcare Diagnosing or Treating Practitioners",
+        "id": 575,
+        "parentId": 516
+    },
+    {
+        "label": "Acupuncturists",
+        "id": 576,
+        "parentId": 575
+    },
+    {
+        "label": "Dental Hygienists",
+        "id": 577,
+        "parentId": 575
+    },
+    {
+        "label": "Healthcare Diagnosing or Treating Practitioners, All Other",
+        "id": 578,
+        "parentId": 575
+    },
+    {
+        "label": "Health Technologists and Technicians",
+        "id": 579,
+        "parentId": 515
+    },
+    {
+        "label": "Clinical Laboratory Technologists and Technicians",
+        "id": 580,
+        "parentId": 579
+    },
+    {
+        "label": "Medical and Clinical Laboratory Technologists",
+        "id": 581,
+        "parentId": 580
+    },
+    {
+        "label": "Medical and Clinical Laboratory Technicians",
+        "id": 582,
+        "parentId": 580
+    },
+    {
+        "label": "Diagnostic Related Technologists and Technicians",
+        "id": 583,
+        "parentId": 579
+    },
+    {
+        "label": "Cardiovascular Technologists and Technicians",
+        "id": 584,
+        "parentId": 583
+    },
+    {
+        "label": "Diagnostic Medical Sonographers",
+        "id": 585,
+        "parentId": 583
+    },
+    {
+        "label": "Nuclear Medicine Technologists",
+        "id": 586,
+        "parentId": 583
+    },
+    {
+        "label": "Radiologic Technologists and Technicians",
+        "id": 587,
+        "parentId": 583
+    },
+    {
+        "label": "Magnetic Resonance Imaging Technologists",
+        "id": 588,
+        "parentId": 583
+    },
+    {
+        "label": "Medical Dosimetrists",
+        "id": 589,
+        "parentId": 583
+    },
+    {
+        "label": "Emergency Medical Technicians and Paramedics",
+        "id": 590,
+        "parentId": 579
+    },
+    {
+        "label": "Emergency Medical Technicians",
+        "id": 591,
+        "parentId": 590
+    },
+    {
+        "label": "Paramedics",
+        "id": 592,
+        "parentId": 590
+    },
+    {
+        "label": "Health Practitioner Support Technologists and Technicians",
+        "id": 593,
+        "parentId": 579
+    },
+    {
+        "label": "Dietetic Technicians",
+        "id": 594,
+        "parentId": 593
+    },
+    {
+        "label": "Pharmacy Technicians",
+        "id": 595,
+        "parentId": 593
+    },
+    {
+        "label": "Psychiatric Technicians",
+        "id": 596,
+        "parentId": 593
+    },
+    {
+        "label": "Surgical Technologists",
+        "id": 597,
+        "parentId": 593
+    },
+    {
+        "label": "Veterinary Technologists and Technicians",
+        "id": 598,
+        "parentId": 593
+    },
+    {
+        "label": "Ophthalmic Medical Technicians",
+        "id": 599,
+        "parentId": 593
+    },
+    {
+        "label": "Licensed Practical and Licensed Vocational Nurses",
+        "id": 600,
+        "parentId": 579
+    },
+    {
+        "label": "Licensed Practical and Licensed Vocational Nurses",
+        "id": 601,
+        "parentId": 600
+    },
+    {
+        "label": "Medical Records Specialists",
+        "id": 602,
+        "parentId": 579
+    },
+    {
+        "label": "Medical Records Specialists",
+        "id": 603,
+        "parentId": 602
+    },
+    {
+        "label": "Opticians, Dispensing",
+        "id": 604,
+        "parentId": 579
+    },
+    {
+        "label": "Opticians, Dispensing",
+        "id": 605,
+        "parentId": 604
+    },
+    {
+        "label": "Miscellaneous Health Technologists and Technicians",
+        "id": 606,
+        "parentId": 579
+    },
+    {
+        "label": "Orthotists and Prosthetists",
+        "id": 607,
+        "parentId": 606
+    },
+    {
+        "label": "Hearing Aid Specialists",
+        "id": 608,
+        "parentId": 606
+    },
+    {
+        "label": "Health Technologists and Technicians, All Other",
+        "id": 609,
+        "parentId": 606
+    },
+    {
+        "label": "Other Healthcare Practitioners and Technical Occupations",
+        "id": 610,
+        "parentId": 515
+    },
+    {
+        "label": "Health Information Technologists and Medical Registrars",
+        "id": 611,
+        "parentId": 610
+    },
+    {
+        "label": "Health Information Technologists and Medical Registrars",
+        "id": 612,
+        "parentId": 611
+    },
+    {
+        "label": "Miscellaneous Health Practitioners and Technical Workers",
+        "id": 613,
+        "parentId": 610
+    },
+    {
+        "label": "Athletic Trainers",
+        "id": 614,
+        "parentId": 613
+    },
+    {
+        "label": "Genetic Counselors",
+        "id": 615,
+        "parentId": 613
+    },
+    {
+        "label": "Surgical Assistants",
+        "id": 616,
+        "parentId": 613
+    },
+    {
+        "label": "Healthcare Practitioners and Technical Workers, All Other",
+        "id": 617,
+        "parentId": 613
+    },
+    {
+        "label": "Healthcare Support Occupations",
+        "id": 618
+    },
+    {
+        "label": "Home Health and Personal Care Aides; and Nursing Assistants, Orderlies, and Psychiatric Aides",
+        "id": 619,
+        "parentId": 618
+    },
+    {
+        "label": "Home Health and Personal Care Aides",
+        "id": 620,
+        "parentId": 619
+    },
+    {
+        "label": "Home Health Aides",
+        "id": 621,
+        "parentId": 620
+    },
+    {
+        "label": "Personal Care Aides",
+        "id": 622,
+        "parentId": 620
+    },
+    {
+        "label": "Nursing Assistants, Orderlies, and Psychiatric Aides",
+        "id": 623,
+        "parentId": 619
+    },
+    {
+        "label": "Nursing Assistants",
+        "id": 624,
+        "parentId": 623
+    },
+    {
+        "label": "Orderlies",
+        "id": 625,
+        "parentId": 623
+    },
+    {
+        "label": "Psychiatric Aides",
+        "id": 626,
+        "parentId": 623
+    },
+    {
+        "label": "Occupational Therapy and Physical Therapist Assistants and Aides",
+        "id": 627,
+        "parentId": 618
+    },
+    {
+        "label": "Occupational Therapy Assistants and Aides",
+        "id": 628,
+        "parentId": 627
+    },
+    {
+        "label": "Occupational Therapy Assistants",
+        "id": 629,
+        "parentId": 628
+    },
+    {
+        "label": "Occupational Therapy Aides",
+        "id": 630,
+        "parentId": 628
+    },
+    {
+        "label": "Physical Therapist Assistants and Aides",
+        "id": 631,
+        "parentId": 627
+    },
+    {
+        "label": "Physical Therapist Assistants",
+        "id": 632,
+        "parentId": 631
+    },
+    {
+        "label": "Physical Therapist Aides",
+        "id": 633,
+        "parentId": 631
+    },
+    {
+        "label": "Other Healthcare Support Occupations",
+        "id": 634,
+        "parentId": 618
+    },
+    {
+        "label": "Massage Therapists",
+        "id": 635,
+        "parentId": 634
+    },
+    {
+        "label": "Massage Therapists",
+        "id": 636,
+        "parentId": 635
+    },
+    {
+        "label": "Miscellaneous Healthcare Support Occupations",
+        "id": 637,
+        "parentId": 634
+    },
+    {
+        "label": "Dental Assistants",
+        "id": 638,
+        "parentId": 637
+    },
+    {
+        "label": "Medical Assistants",
+        "id": 639,
+        "parentId": 637
+    },
+    {
+        "label": "Medical Equipment Preparers",
+        "id": 640,
+        "parentId": 637
+    },
+    {
+        "label": "Medical Transcriptionists",
+        "id": 641,
+        "parentId": 637
+    },
+    {
+        "label": "Pharmacy Aides",
+        "id": 642,
+        "parentId": 637
+    },
+    {
+        "label": "Veterinary Assistants and Laboratory Animal Caretakers",
+        "id": 643,
+        "parentId": 637
+    },
+    {
+        "label": "Phlebotomists",
+        "id": 644,
+        "parentId": 637
+    },
+    {
+        "label": "Healthcare Support Workers, All Other",
+        "id": 645,
+        "parentId": 637
+    },
+    {
+        "label": "Protective Service Occupations",
+        "id": 646
+    },
+    {
+        "label": "Supervisors of Protective Service Workers",
+        "id": 647,
+        "parentId": 646
+    },
+    {
+        "label": "First-Line Supervisors of Law Enforcement Workers",
+        "id": 648,
+        "parentId": 647
+    },
+    {
+        "label": "First-Line Supervisors of Correctional Officers",
+        "id": 649,
+        "parentId": 648
+    },
+    {
+        "label": "First-Line Supervisors of Police and Detectives",
+        "id": 650,
+        "parentId": 648
+    },
+    {
+        "label": "First-Line Supervisors of Firefighting and Prevention Workers",
+        "id": 651,
+        "parentId": 647
+    },
+    {
+        "label": "First-Line Supervisors of Firefighting and Prevention Workers",
+        "id": 652,
+        "parentId": 651
+    },
+    {
+        "label": "Miscellaneous First-Line Supervisors, Protective Service Workers",
+        "id": 653,
+        "parentId": 647
+    },
+    {
+        "label": "First-Line Supervisors of Security Workers",
+        "id": 654,
+        "parentId": 653
+    },
+    {
+        "label": "First-Line Supervisors of Protective Service Workers, All Other",
+        "id": 655,
+        "parentId": 653
+    },
+    {
+        "label": "Firefighting and Prevention Workers",
+        "id": 656,
+        "parentId": 646
+    },
+    {
+        "label": "Firefighters",
+        "id": 657,
+        "parentId": 656
+    },
+    {
+        "label": "Firefighters",
+        "id": 658,
+        "parentId": 657
+    },
+    {
+        "label": "Fire Inspectors",
+        "id": 659,
+        "parentId": 656
+    },
+    {
+        "label": "Fire Inspectors and Investigators",
+        "id": 660,
+        "parentId": 659
+    },
+    {
+        "label": "Forest Fire Inspectors and Prevention Specialists",
+        "id": 661,
+        "parentId": 659
+    },
+    {
+        "label": "Law Enforcement Workers",
+        "id": 662,
+        "parentId": 646
+    },
+    {
+        "label": "Bailiffs, Correctional Officers, and Jailers",
+        "id": 663,
+        "parentId": 662
+    },
+    {
+        "label": "Bailiffs",
+        "id": 664,
+        "parentId": 663
+    },
+    {
+        "label": "Correctional Officers and Jailers",
+        "id": 665,
+        "parentId": 663
+    },
+    {
+        "label": "Detectives and Criminal Investigators",
+        "id": 666,
+        "parentId": 662
+    },
+    {
+        "label": "Detectives and Criminal Investigators",
+        "id": 667,
+        "parentId": 666
+    },
+    {
+        "label": "Fish and Game Wardens",
+        "id": 668,
+        "parentId": 662
+    },
+    {
+        "label": "Fish and Game Wardens",
+        "id": 669,
+        "parentId": 668
+    },
+    {
+        "label": "Parking Enforcement Workers",
+        "id": 670,
+        "parentId": 662
+    },
+    {
+        "label": "Parking Enforcement Workers",
+        "id": 671,
+        "parentId": 670
+    },
+    {
+        "label": "Police Officers",
+        "id": 672,
+        "parentId": 662
+    },
+    {
+        "label": "Police and Sheriff’s Patrol Officers",
+        "id": 673,
+        "parentId": 672
+    },
+    {
+        "label": "Transit and Railroad Police",
+        "id": 674,
+        "parentId": 672
+    },
+    {
+        "label": "Other Protective Service Workers",
+        "id": 675,
+        "parentId": 646
+    },
+    {
+        "label": "Animal Control Workers",
+        "id": 676,
+        "parentId": 675
+    },
+    {
+        "label": "Animal Control Workers",
+        "id": 677,
+        "parentId": 676
+    },
+    {
+        "label": "Private Detectives and Investigators",
+        "id": 678,
+        "parentId": 675
+    },
+    {
+        "label": "Private Detectives and Investigators",
+        "id": 679,
+        "parentId": 678
+    },
+    {
+        "label": "Security Guards and Gambling Surveillance Officers",
+        "id": 680,
+        "parentId": 675
+    },
+    {
+        "label": "Gambling Surveillance Officers and Gambling Investigators",
+        "id": 681,
+        "parentId": 680
+    },
+    {
+        "label": "Security Guards",
+        "id": 682,
+        "parentId": 680
+    },
+    {
+        "label": "Miscellaneous Protective Service Workers",
+        "id": 683,
+        "parentId": 675
+    },
+    {
+        "label": "Crossing Guards and Flaggers",
+        "id": 684,
+        "parentId": 683
+    },
+    {
+        "label": "Lifeguards, Ski Patrol, and Other Recreational Protective Service Workers",
+        "id": 685,
+        "parentId": 683
+    },
+    {
+        "label": "Transportation Security Screeners",
+        "id": 686,
+        "parentId": 683
+    },
+    {
+        "label": "School Bus Monitors",
+        "id": 687,
+        "parentId": 683
+    },
+    {
+        "label": "Protective Service Workers, All Other",
+        "id": 688,
+        "parentId": 683
+    },
+    {
+        "label": "Food Preparation and Serving Related Occupations",
+        "id": 689
+    },
+    {
+        "label": "Supervisors of Food Preparation and Serving Workers",
+        "id": 690,
+        "parentId": 689
+    },
+    {
+        "label": "Supervisors of Food Preparation and Serving Workers",
+        "id": 691,
+        "parentId": 690
+    },
+    {
+        "label": "Chefs and Head Cooks",
+        "id": 692,
+        "parentId": 691
+    },
+    {
+        "label": "First-Line Supervisors of Food Preparation and Serving Workers",
+        "id": 693,
+        "parentId": 691
+    },
+    {
+        "label": "Cooks and Food Preparation Workers",
+        "id": 694,
+        "parentId": 689
+    },
+    {
+        "label": "Cooks",
+        "id": 695,
+        "parentId": 694
+    },
+    {
+        "label": "Cooks, Fast Food",
+        "id": 696,
+        "parentId": 695
+    },
+    {
+        "label": "Cooks, Institution and Cafeteria",
+        "id": 697,
+        "parentId": 695
+    },
+    {
+        "label": "Cooks, Private Household",
+        "id": 698,
+        "parentId": 695
+    },
+    {
+        "label": "Cooks, Restaurant",
+        "id": 699,
+        "parentId": 695
+    },
+    {
+        "label": "Cooks, Short Order",
+        "id": 700,
+        "parentId": 695
+    },
+    {
+        "label": "Cooks, All Other",
+        "id": 701,
+        "parentId": 695
+    },
+    {
+        "label": "Food Preparation Workers",
+        "id": 702,
+        "parentId": 694
+    },
+    {
+        "label": "Food Preparation Workers",
+        "id": 703,
+        "parentId": 702
+    },
+    {
+        "label": "Food and Beverage Serving Workers",
+        "id": 704,
+        "parentId": 689
+    },
+    {
+        "label": "Bartenders",
+        "id": 705,
+        "parentId": 704
+    },
+    {
+        "label": "Bartenders",
+        "id": 706,
+        "parentId": 705
+    },
+    {
+        "label": "Fast Food and Counter Workers",
+        "id": 707,
+        "parentId": 704
+    },
+    {
+        "label": "Fast Food and Counter Workers",
+        "id": 708,
+        "parentId": 707
+    },
+    {
+        "label": "Waiters and Waitresses",
+        "id": 709,
+        "parentId": 704
+    },
+    {
+        "label": "Waiters and Waitresses",
+        "id": 710,
+        "parentId": 709
+    },
+    {
+        "label": "Food Servers, Nonrestaurant",
+        "id": 711,
+        "parentId": 704
+    },
+    {
+        "label": "Food Servers, Nonrestaurant",
+        "id": 712,
+        "parentId": 711
+    },
+    {
+        "label": "Other Food Preparation and Serving Related Workers",
+        "id": 713,
+        "parentId": 689
+    },
+    {
+        "label": "Dining Room and Cafeteria Attendants and Bartender Helpers",
+        "id": 714,
+        "parentId": 713
+    },
+    {
+        "label": "Dining Room and Cafeteria Attendants and Bartender Helpers",
+        "id": 715,
+        "parentId": 714
+    },
+    {
+        "label": "Dishwashers",
+        "id": 716,
+        "parentId": 713
+    },
+    {
+        "label": "Dishwashers",
+        "id": 717,
+        "parentId": 716
+    },
+    {
+        "label": "Hosts and Hostesses, Restaurant, Lounge, and Coffee Shop",
+        "id": 718,
+        "parentId": 713
+    },
+    {
+        "label": "Hosts and Hostesses, Restaurant, Lounge, and Coffee Shop",
+        "id": 719,
+        "parentId": 718
+    },
+    {
+        "label": "Miscellaneous Food Preparation and Serving Related Workers",
+        "id": 720,
+        "parentId": 713
+    },
+    {
+        "label": "Food Preparation and Serving Related Workers, All Other",
+        "id": 721,
+        "parentId": 720
+    },
+    {
+        "label": "Building and Grounds Cleaning and Maintenance Occupations",
+        "id": 722
+    },
+    {
+        "label": "Supervisors of Building and Grounds Cleaning and Maintenance Workers",
+        "id": 723,
+        "parentId": 722
+    },
+    {
+        "label": "First-Line Supervisors of Building and Grounds Cleaning and Maintenance Workers",
+        "id": 724,
+        "parentId": 723
+    },
+    {
+        "label": "First-Line Supervisors of Housekeeping and Janitorial Workers",
+        "id": 725,
+        "parentId": 724
+    },
+    {
+        "label": "First-Line Supervisors of Landscaping, Lawn Service, and Groundskeeping Workers",
+        "id": 726,
+        "parentId": 724
+    },
+    {
+        "label": "Building Cleaning and Pest Control Workers",
+        "id": 727,
+        "parentId": 722
+    },
+    {
+        "label": "Building Cleaning Workers",
+        "id": 728,
+        "parentId": 727
+    },
+    {
+        "label": "Janitors and Cleaners, Except Maids and Housekeeping Cleaners",
+        "id": 729,
+        "parentId": 728
+    },
+    {
+        "label": "Maids and Housekeeping Cleaners",
+        "id": 730,
+        "parentId": 728
+    },
+    {
+        "label": "Building Cleaning Workers, All Other",
+        "id": 731,
+        "parentId": 728
+    },
+    {
+        "label": "Pest Control Workers",
+        "id": 732,
+        "parentId": 727
+    },
+    {
+        "label": "Pest Control Workers",
+        "id": 733,
+        "parentId": 732
+    },
+    {
+        "label": "Grounds Maintenance Workers",
+        "id": 734,
+        "parentId": 722
+    },
+    {
+        "label": "Grounds Maintenance Workers",
+        "id": 735,
+        "parentId": 734
+    },
+    {
+        "label": "Landscaping and Groundskeeping Workers",
+        "id": 736,
+        "parentId": 735
+    },
+    {
+        "label": "Pesticide Handlers, Sprayers, and Applicators, Vegetation",
+        "id": 737,
+        "parentId": 735
+    },
+    {
+        "label": "Tree Trimmers and Pruners",
+        "id": 738,
+        "parentId": 735
+    },
+    {
+        "label": "Grounds Maintenance Workers, All Other",
+        "id": 739,
+        "parentId": 735
+    },
+    {
+        "label": "Personal Care and Service Occupations",
+        "id": 740
+    },
+    {
+        "label": "Supervisors of Personal Care and Service Workers",
+        "id": 741,
+        "parentId": 740
+    },
+    {
+        "label": "First-Line Supervisors of Entertainment and Recreation Workers",
+        "id": 742,
+        "parentId": 741
+    },
+    {
+        "label": "First-Line Supervisors of Gambling Services Workers",
+        "id": 743,
+        "parentId": 742
+    },
+    {
+        "label": "First-Line Supervisors of Entertainment and Recreation Workers, Except Gambling Services",
+        "id": 744,
+        "parentId": 742
+    },
+    {
+        "label": "First-Line Supervisors of Personal Service Workers",
+        "id": 745,
+        "parentId": 741
+    },
+    {
+        "label": "First-Line Supervisors of Personal Service Workers",
+        "id": 746,
+        "parentId": 745
+    },
+    {
+        "label": "Animal Care and Service Workers",
+        "id": 747,
+        "parentId": 740
+    },
+    {
+        "label": "Animal Trainers",
+        "id": 748,
+        "parentId": 747
+    },
+    {
+        "label": "Animal Trainers",
+        "id": 749,
+        "parentId": 748
+    },
+    {
+        "label": "Animal Caretakers",
+        "id": 750,
+        "parentId": 747
+    },
+    {
+        "label": "Animal Caretakers",
+        "id": 751,
+        "parentId": 750
+    },
+    {
+        "label": "Entertainment Attendants and Related Workers",
+        "id": 752,
+        "parentId": 740
+    },
+    {
+        "label": "Gambling Services Workers",
+        "id": 753,
+        "parentId": 752
+    },
+    {
+        "label": "Gambling Dealers",
+        "id": 754,
+        "parentId": 753
+    },
+    {
+        "label": "Gambling and Sports Book Writers and Runners",
+        "id": 755,
+        "parentId": 753
+    },
+    {
+        "label": "Gambling Service Workers, All Other",
+        "id": 756,
+        "parentId": 753
+    },
+    {
+        "label": "Motion Picture Projectionists",
+        "id": 757,
+        "parentId": 752
+    },
+    {
+        "label": "Motion Picture Projectionists",
+        "id": 758,
+        "parentId": 757
+    },
+    {
+        "label": "Ushers, Lobby Attendants, and Ticket Takers",
+        "id": 759,
+        "parentId": 752
+    },
+    {
+        "label": "Ushers, Lobby Attendants, and Ticket Takers",
+        "id": 760,
+        "parentId": 759
+    },
+    {
+        "label": "Miscellaneous Entertainment Attendants and Related Workers",
+        "id": 761,
+        "parentId": 752
+    },
+    {
+        "label": "Amusement and Recreation Attendants",
+        "id": 762,
+        "parentId": 761
+    },
+    {
+        "label": "Costume Attendants",
+        "id": 763,
+        "parentId": 761
+    },
+    {
+        "label": "Locker Room, Coatroom, and Dressing Room Attendants",
+        "id": 764,
+        "parentId": 761
+    },
+    {
+        "label": "Entertainment Attendants and Related Workers, All Other",
+        "id": 765,
+        "parentId": 761
+    },
+    {
+        "label": "Funeral Service Workers",
+        "id": 766,
+        "parentId": 740
+    },
+    {
+        "label": "Embalmers and Crematory Operators",
+        "id": 767,
+        "parentId": 766
+    },
+    {
+        "label": "Embalmers",
+        "id": 768,
+        "parentId": 767
+    },
+    {
+        "label": "Crematory Operators",
+        "id": 769,
+        "parentId": 767
+    },
+    {
+        "label": "Funeral Attendants",
+        "id": 770,
+        "parentId": 766
+    },
+    {
+        "label": "Funeral Attendants",
+        "id": 771,
+        "parentId": 770
+    },
+    {
+        "label": "Morticians, Undertakers, and Funeral Arrangers",
+        "id": 772,
+        "parentId": 766
+    },
+    {
+        "label": "Morticians, Undertakers, and Funeral Arrangers",
+        "id": 773,
+        "parentId": 772
+    },
+    {
+        "label": "Personal Appearance Workers",
+        "id": 774,
+        "parentId": 740
+    },
+    {
+        "label": "Barbers, Hairdressers, Hairstylists and Cosmetologists",
+        "id": 775,
+        "parentId": 774
+    },
+    {
+        "label": "Barbers",
+        "id": 776,
+        "parentId": 775
+    },
+    {
+        "label": "Hairdressers, Hairstylists, and Cosmetologists",
+        "id": 777,
+        "parentId": 775
+    },
+    {
+        "label": "Miscellaneous Personal Appearance Workers",
+        "id": 778,
+        "parentId": 774
+    },
+    {
+        "label": "Makeup Artists, Theatrical and Performance",
+        "id": 779,
+        "parentId": 778
+    },
+    {
+        "label": "Manicurists and Pedicurists",
+        "id": 780,
+        "parentId": 778
+    },
+    {
+        "label": "Shampooers",
+        "id": 781,
+        "parentId": 778
+    },
+    {
+        "label": "Skincare Specialists",
+        "id": 782,
+        "parentId": 778
+    },
+    {
+        "label": "Baggage Porters, Bellhops, and Concierges",
+        "id": 783,
+        "parentId": 740
+    },
+    {
+        "label": "Baggage Porters, Bellhops, and Concierges",
+        "id": 784,
+        "parentId": 783
+    },
+    {
+        "label": "Baggage Porters and Bellhops",
+        "id": 785,
+        "parentId": 784
+    },
+    {
+        "label": "Concierges",
+        "id": 786,
+        "parentId": 784
+    },
+    {
+        "label": "Tour and Travel Guides",
+        "id": 787,
+        "parentId": 740
+    },
+    {
+        "label": "Tour and Travel Guides",
+        "id": 788,
+        "parentId": 787
+    },
+    {
+        "label": "Tour Guides and Escorts",
+        "id": 789,
+        "parentId": 788
+    },
+    {
+        "label": "Travel Guides",
+        "id": 790,
+        "parentId": 788
+    },
+    {
+        "label": "Other Personal Care and Service Workers",
+        "id": 791,
+        "parentId": 740
+    },
+    {
+        "label": "Childcare Workers",
+        "id": 792,
+        "parentId": 791
+    },
+    {
+        "label": "Childcare Workers",
+        "id": 793,
+        "parentId": 792
+    },
+    {
+        "label": "Recreation and Fitness Workers",
+        "id": 794,
+        "parentId": 791
+    },
+    {
+        "label": "Exercise Trainers and Group Fitness Instructors",
+        "id": 795,
+        "parentId": 794
+    },
+    {
+        "label": "Recreation Workers",
+        "id": 796,
+        "parentId": 794
+    },
+    {
+        "label": "Residential Advisors",
+        "id": 797,
+        "parentId": 791
+    },
+    {
+        "label": "Residential Advisors",
+        "id": 798,
+        "parentId": 797
+    },
+    {
+        "label": "Miscellaneous Personal Care and Service Workers",
+        "id": 799,
+        "parentId": 791
+    },
+    {
+        "label": "Personal Care and Service Workers, All Other",
+        "id": 800,
+        "parentId": 799
+    },
+    {
+        "label": "Sales and Related Occupations",
+        "id": 801
+    },
+    {
+        "label": "Supervisors of Sales Workers",
+        "id": 802,
+        "parentId": 801
+    },
+    {
+        "label": "First-Line Supervisors of Sales Workers",
+        "id": 803,
+        "parentId": 802
+    },
+    {
+        "label": "First-Line Supervisors of Retail Sales Workers",
+        "id": 804,
+        "parentId": 803
+    },
+    {
+        "label": "First-Line Supervisors of Non-Retail Sales Workers",
+        "id": 805,
+        "parentId": 803
+    },
+    {
+        "label": "Retail Sales Workers",
+        "id": 806,
+        "parentId": 801
+    },
+    {
+        "label": "Cashiers",
+        "id": 807,
+        "parentId": 806
+    },
+    {
+        "label": "Cashiers",
+        "id": 808,
+        "parentId": 807
+    },
+    {
+        "label": "Gambling Change Persons and Booth Cashiers",
+        "id": 809,
+        "parentId": 807
+    },
+    {
+        "label": "Counter and Rental Clerks and Parts Salespersons",
+        "id": 810,
+        "parentId": 806
+    },
+    {
+        "label": "Counter and Rental Clerks",
+        "id": 811,
+        "parentId": 810
+    },
+    {
+        "label": "Parts Salespersons",
+        "id": 812,
+        "parentId": 810
+    },
+    {
+        "label": "Retail Salespersons",
+        "id": 813,
+        "parentId": 806
+    },
+    {
+        "label": "Retail Salespersons",
+        "id": 814,
+        "parentId": 813
+    },
+    {
+        "label": "Sales Representatives, Services",
+        "id": 815,
+        "parentId": 801
+    },
+    {
+        "label": "Advertising Sales Agents",
+        "id": 816,
+        "parentId": 815
+    },
+    {
+        "label": "Advertising Sales Agents",
+        "id": 817,
+        "parentId": 816
+    },
+    {
+        "label": "Insurance Sales Agents",
+        "id": 818,
+        "parentId": 815
+    },
+    {
+        "label": "Insurance Sales Agents",
+        "id": 819,
+        "parentId": 818
+    },
+    {
+        "label": "Securities, Commodities, and Financial Services Sales Agents",
+        "id": 820,
+        "parentId": 815
+    },
+    {
+        "label": "Securities, Commodities, and Financial Services Sales Agents",
+        "id": 821,
+        "parentId": 820
+    },
+    {
+        "label": "Travel Agents",
+        "id": 822,
+        "parentId": 815
+    },
+    {
+        "label": "Travel Agents",
+        "id": 823,
+        "parentId": 822
+    },
+    {
+        "label": "Miscellaneous Sales Representatives, Services",
+        "id": 824,
+        "parentId": 815
+    },
+    {
+        "label": "Sales Representatives of Services, Except Advertising, Insurance, Financial Services, and Travel",
+        "id": 825,
+        "parentId": 824
+    },
+    {
+        "label": "Sales Representatives, Wholesale and Manufacturing",
+        "id": 826,
+        "parentId": 801
+    },
+    {
+        "label": "Sales Representatives, Wholesale and Manufacturing",
+        "id": 827,
+        "parentId": 826
+    },
+    {
+        "label": "Sales Representatives, Wholesale and Manufacturing, Technical and Scientific Products",
+        "id": 828,
+        "parentId": 827
+    },
+    {
+        "label": "Sales Representatives, Wholesale and Manufacturing, Except Technical and Scientific Products",
+        "id": 829,
+        "parentId": 827
+    },
+    {
+        "label": "Other Sales and Related Workers",
+        "id": 830,
+        "parentId": 801
+    },
+    {
+        "label": "Models, Demonstrators, and Product Promoters",
+        "id": 831,
+        "parentId": 830
+    },
+    {
+        "label": "Demonstrators and Product Promoters",
+        "id": 832,
+        "parentId": 831
+    },
+    {
+        "label": "Models",
+        "id": 833,
+        "parentId": 831
+    },
+    {
+        "label": "Real Estate Brokers and Sales Agents",
+        "id": 834,
+        "parentId": 830
+    },
+    {
+        "label": "Real Estate Brokers",
+        "id": 835,
+        "parentId": 834
+    },
+    {
+        "label": "Real Estate Sales Agents",
+        "id": 836,
+        "parentId": 834
+    },
+    {
+        "label": "Sales Engineers",
+        "id": 837,
+        "parentId": 830
+    },
+    {
+        "label": "Sales Engineers",
+        "id": 838,
+        "parentId": 837
+    },
+    {
+        "label": "Telemarketers",
+        "id": 839,
+        "parentId": 830
+    },
+    {
+        "label": "Telemarketers",
+        "id": 840,
+        "parentId": 839
+    },
+    {
+        "label": "Miscellaneous Sales and Related Workers",
+        "id": 841,
+        "parentId": 830
+    },
+    {
+        "label": "Door-to-Door Sales Workers, News and Street Vendors, and Related Workers",
+        "id": 842,
+        "parentId": 841
+    },
+    {
+        "label": "Sales and Related Workers, All Other",
+        "id": 843,
+        "parentId": 841
+    },
+    {
+        "label": "Office and Administrative Support Occupations",
+        "id": 844
+    },
+    {
+        "label": "Supervisors of Office and Administrative Support Workers",
+        "id": 845,
+        "parentId": 844
+    },
+    {
+        "label": "First-Line Supervisors of Office and Administrative Support Workers",
+        "id": 846,
+        "parentId": 845
+    },
+    {
+        "label": "First-Line Supervisors of Office and Administrative Support Workers",
+        "id": 847,
+        "parentId": 846
+    },
+    {
+        "label": "Communications Equipment Operators",
+        "id": 848,
+        "parentId": 844
+    },
+    {
+        "label": "Switchboard Operators, Including Answering Service",
+        "id": 849,
+        "parentId": 848
+    },
+    {
+        "label": "Switchboard Operators, Including Answering Service",
+        "id": 850,
+        "parentId": 849
+    },
+    {
+        "label": "Telephone Operators",
+        "id": 851,
+        "parentId": 848
+    },
+    {
+        "label": "Telephone Operators",
+        "id": 852,
+        "parentId": 851
+    },
+    {
+        "label": "Miscellaneous Communications Equipment Operators",
+        "id": 853,
+        "parentId": 848
+    },
+    {
+        "label": "Communications Equipment Operators, All Other",
+        "id": 854,
+        "parentId": 853
+    },
+    {
+        "label": "Financial Clerks",
+        "id": 855,
+        "parentId": 844
+    },
+    {
+        "label": "Bill and Account Collectors",
+        "id": 856,
+        "parentId": 855
+    },
+    {
+        "label": "Bill and Account Collectors",
+        "id": 857,
+        "parentId": 856
+    },
+    {
+        "label": "Billing and Posting Clerks",
+        "id": 858,
+        "parentId": 855
+    },
+    {
+        "label": "Billing and Posting Clerks",
+        "id": 859,
+        "parentId": 858
+    },
+    {
+        "label": "Bookkeeping, Accounting, and Auditing Clerks",
+        "id": 860,
+        "parentId": 855
+    },
+    {
+        "label": "Bookkeeping, Accounting, and Auditing Clerks",
+        "id": 861,
+        "parentId": 860
+    },
+    {
+        "label": "Gambling Cage Workers",
+        "id": 862,
+        "parentId": 855
+    },
+    {
+        "label": "Gambling Cage Workers",
+        "id": 863,
+        "parentId": 862
+    },
+    {
+        "label": "Payroll and Timekeeping Clerks",
+        "id": 864,
+        "parentId": 855
+    },
+    {
+        "label": "Payroll and Timekeeping Clerks",
+        "id": 865,
+        "parentId": 864
+    },
+    {
+        "label": "Procurement Clerks",
+        "id": 866,
+        "parentId": 855
+    },
+    {
+        "label": "Procurement Clerks",
+        "id": 867,
+        "parentId": 866
+    },
+    {
+        "label": "Tellers",
+        "id": 868,
+        "parentId": 855
+    },
+    {
+        "label": "Tellers",
+        "id": 869,
+        "parentId": 868
+    },
+    {
+        "label": "Miscellaneous Financial Clerks",
+        "id": 870,
+        "parentId": 855
+    },
+    {
+        "label": "Financial Clerks, All Other",
+        "id": 871,
+        "parentId": 870
+    },
+    {
+        "label": "Information and Record Clerks",
+        "id": 872,
+        "parentId": 844
+    },
+    {
+        "label": "Brokerage Clerks",
+        "id": 873,
+        "parentId": 872
+    },
+    {
+        "label": "Brokerage Clerks",
+        "id": 874,
+        "parentId": 873
+    },
+    {
+        "label": "Correspondence Clerks",
+        "id": 875,
+        "parentId": 872
+    },
+    {
+        "label": "Correspondence Clerks",
+        "id": 876,
+        "parentId": 875
+    },
+    {
+        "label": "Court, Municipal, and License Clerks",
+        "id": 877,
+        "parentId": 872
+    },
+    {
+        "label": "Court, Municipal, and License Clerks",
+        "id": 878,
+        "parentId": 877
+    },
+    {
+        "label": "Credit Authorizers, Checkers, and Clerks",
+        "id": 879,
+        "parentId": 872
+    },
+    {
+        "label": "Credit Authorizers, Checkers, and Clerks",
+        "id": 880,
+        "parentId": 879
+    },
+    {
+        "label": "Customer Service Representatives",
+        "id": 881,
+        "parentId": 872
+    },
+    {
+        "label": "Customer Service Representatives",
+        "id": 882,
+        "parentId": 881
+    },
+    {
+        "label": "Eligibility Interviewers, Government Programs",
+        "id": 883,
+        "parentId": 872
+    },
+    {
+        "label": "Eligibility Interviewers, Government Programs",
+        "id": 884,
+        "parentId": 883
+    },
+    {
+        "label": "File Clerks",
+        "id": 885,
+        "parentId": 872
+    },
+    {
+        "label": "File Clerks",
+        "id": 886,
+        "parentId": 885
+    },
+    {
+        "label": "Hotel, Motel, and Resort Desk Clerks",
+        "id": 887,
+        "parentId": 872
+    },
+    {
+        "label": "Hotel, Motel, and Resort Desk Clerks",
+        "id": 888,
+        "parentId": 887
+    },
+    {
+        "label": "Interviewers, Except Eligibility and Loan",
+        "id": 889,
+        "parentId": 872
+    },
+    {
+        "label": "Interviewers, Except Eligibility and Loan",
+        "id": 890,
+        "parentId": 889
+    },
+    {
+        "label": "Library Assistants, Clerical",
+        "id": 891,
+        "parentId": 872
+    },
+    {
+        "label": "Library Assistants, Clerical",
+        "id": 892,
+        "parentId": 891
+    },
+    {
+        "label": "Loan Interviewers and Clerks",
+        "id": 893,
+        "parentId": 872
+    },
+    {
+        "label": "Loan Interviewers and Clerks",
+        "id": 894,
+        "parentId": 893
+    },
+    {
+        "label": "New Accounts Clerks",
+        "id": 895,
+        "parentId": 872
+    },
+    {
+        "label": "New Accounts Clerks",
+        "id": 896,
+        "parentId": 895
+    },
+    {
+        "label": "Order Clerks",
+        "id": 897,
+        "parentId": 872
+    },
+    {
+        "label": "Order Clerks",
+        "id": 898,
+        "parentId": 897
+    },
+    {
+        "label": "Human Resources Assistants, Except Payroll and Timekeeping",
+        "id": 899,
+        "parentId": 872
+    },
+    {
+        "label": "Human Resources Assistants, Except Payroll and Timekeeping",
+        "id": 900,
+        "parentId": 899
+    },
+    {
+        "label": "Receptionists and Information Clerks",
+        "id": 901,
+        "parentId": 872
+    },
+    {
+        "label": "Receptionists and Information Clerks",
+        "id": 902,
+        "parentId": 901
+    },
+    {
+        "label": "Reservation and Transportation Ticket Agents and Travel Clerks",
+        "id": 903,
+        "parentId": 872
+    },
+    {
+        "label": "Reservation and Transportation Ticket Agents and Travel Clerks",
+        "id": 904,
+        "parentId": 903
+    },
+    {
+        "label": "Miscellaneous Information and Record Clerks",
+        "id": 905,
+        "parentId": 872
+    },
+    {
+        "label": "Information and Record Clerks, All Other",
+        "id": 906,
+        "parentId": 905
+    },
+    {
+        "label": "Material Recording, Scheduling, Dispatching, and Distributing Workers",
+        "id": 907,
+        "parentId": 844
+    },
+    {
+        "label": "Cargo and Freight Agents",
+        "id": 908,
+        "parentId": 907
+    },
+    {
+        "label": "Cargo and Freight Agents",
+        "id": 909,
+        "parentId": 908
+    },
+    {
+        "label": "Couriers and Messengers",
+        "id": 910,
+        "parentId": 907
+    },
+    {
+        "label": "Couriers and Messengers",
+        "id": 911,
+        "parentId": 910
+    },
+    {
+        "label": "Dispatchers",
+        "id": 912,
+        "parentId": 907
+    },
+    {
+        "label": "Public Safety Telecommunicators",
+        "id": 913,
+        "parentId": 912
+    },
+    {
+        "label": "Dispatchers, Except Police, Fire, and Ambulance",
+        "id": 914,
+        "parentId": 912
+    },
+    {
+        "label": "Meter Readers, Utilities",
+        "id": 915,
+        "parentId": 907
+    },
+    {
+        "label": "Meter Readers, Utilities",
+        "id": 916,
+        "parentId": 915
+    },
+    {
+        "label": "Postal Service Workers",
+        "id": 917,
+        "parentId": 907
+    },
+    {
+        "label": "Postal Service Clerks",
+        "id": 918,
+        "parentId": 917
+    },
+    {
+        "label": "Postal Service Mail Carriers",
+        "id": 919,
+        "parentId": 917
+    },
+    {
+        "label": "Postal Service Mail Sorters, Processors, and Processing Machine Operators",
+        "id": 920,
+        "parentId": 917
+    },
+    {
+        "label": "Production, Planning, and Expediting Clerks",
+        "id": 921,
+        "parentId": 907
+    },
+    {
+        "label": "Production, Planning, and Expediting Clerks",
+        "id": 922,
+        "parentId": 921
+    },
+    {
+        "label": "Shipping, Receiving, and Inventory Clerks",
+        "id": 923,
+        "parentId": 907
+    },
+    {
+        "label": "Shipping, Receiving, and Inventory Clerks",
+        "id": 924,
+        "parentId": 923
+    },
+    {
+        "label": "Weighers, Measurers, Checkers, and Samplers, Recordkeeping",
+        "id": 925,
+        "parentId": 907
+    },
+    {
+        "label": "Weighers, Measurers, Checkers, and Samplers, Recordkeeping",
+        "id": 926,
+        "parentId": 925
+    },
+    {
+        "label": "Secretaries and Administrative Assistants",
+        "id": 927,
+        "parentId": 844
+    },
+    {
+        "label": "Secretaries and Administrative Assistants",
+        "id": 928,
+        "parentId": 927
+    },
+    {
+        "label": "Executive Secretaries and Executive Administrative Assistants",
+        "id": 929,
+        "parentId": 928
+    },
+    {
+        "label": "Legal Secretaries and Administrative Assistants",
+        "id": 930,
+        "parentId": 928
+    },
+    {
+        "label": "Medical Secretaries and Administrative Assistants",
+        "id": 931,
+        "parentId": 928
+    },
+    {
+        "label": "Secretaries and Administrative Assistants, Except Legal, Medical, and Executive",
+        "id": 932,
+        "parentId": 928
+    },
+    {
+        "label": "Other Office and Administrative Support Workers",
+        "id": 933,
+        "parentId": 844
+    },
+    {
+        "label": "Data Entry and Information Processing Workers",
+        "id": 934,
+        "parentId": 933
+    },
+    {
+        "label": "Data Entry Keyers",
+        "id": 935,
+        "parentId": 934
+    },
+    {
+        "label": "Word Processors and Typists",
+        "id": 936,
+        "parentId": 934
+    },
+    {
+        "label": "Desktop Publishers",
+        "id": 937,
+        "parentId": 933
+    },
+    {
+        "label": "Desktop Publishers",
+        "id": 938,
+        "parentId": 937
+    },
+    {
+        "label": "Insurance Claims and Policy Processing Clerks",
+        "id": 939,
+        "parentId": 933
+    },
+    {
+        "label": "Insurance Claims and Policy Processing Clerks",
+        "id": 940,
+        "parentId": 939
+    },
+    {
+        "label": "Mail Clerks and Mail Machine Operators, Except Postal Service",
+        "id": 941,
+        "parentId": 933
+    },
+    {
+        "label": "Mail Clerks and Mail Machine Operators, Except Postal Service",
+        "id": 942,
+        "parentId": 941
+    },
+    {
+        "label": "Office Clerks, General",
+        "id": 943,
+        "parentId": 933
+    },
+    {
+        "label": "Office Clerks, General",
+        "id": 944,
+        "parentId": 943
+    },
+    {
+        "label": "Office Machine Operators, Except Computer",
+        "id": 945,
+        "parentId": 933
+    },
+    {
+        "label": "Office Machine Operators, Except Computer",
+        "id": 946,
+        "parentId": 945
+    },
+    {
+        "label": "Proofreaders and Copy Markers",
+        "id": 947,
+        "parentId": 933
+    },
+    {
+        "label": "Proofreaders and Copy Markers",
+        "id": 948,
+        "parentId": 947
+    },
+    {
+        "label": "Statistical Assistants",
+        "id": 949,
+        "parentId": 933
+    },
+    {
+        "label": "Statistical Assistants",
+        "id": 950,
+        "parentId": 949
+    },
+    {
+        "label": "Miscellaneous Office and Administrative Support Workers",
+        "id": 951,
+        "parentId": 933
+    },
+    {
+        "label": "Office and Administrative Support Workers, All Other",
+        "id": 952,
+        "parentId": 951
+    },
+    {
+        "label": "Farming, Fishing, and Forestry Occupations",
+        "id": 953
+    },
+    {
+        "label": "Supervisors of Farming, Fishing, and Forestry Workers",
+        "id": 954,
+        "parentId": 953
+    },
+    {
+        "label": "First-Line Supervisors of Farming, Fishing, and Forestry Workers",
+        "id": 955,
+        "parentId": 954
+    },
+    {
+        "label": "First-Line Supervisors of Farming, Fishing, and Forestry Workers",
+        "id": 956,
+        "parentId": 955
+    },
+    {
+        "label": "Agricultural Workers",
+        "id": 957,
+        "parentId": 953
+    },
+    {
+        "label": "Agricultural Inspectors",
+        "id": 958,
+        "parentId": 957
+    },
+    {
+        "label": "Agricultural Inspectors",
+        "id": 959,
+        "parentId": 958
+    },
+    {
+        "label": "Animal Breeders",
+        "id": 960,
+        "parentId": 957
+    },
+    {
+        "label": "Animal Breeders",
+        "id": 961,
+        "parentId": 960
+    },
+    {
+        "label": "Graders and Sorters, Agricultural Products",
+        "id": 962,
+        "parentId": 957
+    },
+    {
+        "label": "Graders and Sorters, Agricultural Products",
+        "id": 963,
+        "parentId": 962
+    },
+    {
+        "label": "Miscellaneous Agricultural Workers",
+        "id": 964,
+        "parentId": 957
+    },
+    {
+        "label": "Agricultural Equipment Operators",
+        "id": 965,
+        "parentId": 964
+    },
+    {
+        "label": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
+        "id": 966,
+        "parentId": 964
+    },
+    {
+        "label": "Farmworkers, Farm, Ranch, and Aquacultural Animals",
+        "id": 967,
+        "parentId": 964
+    },
+    {
+        "label": "Agricultural Workers, All Other",
+        "id": 968,
+        "parentId": 964
+    },
+    {
+        "label": "Fishing and Hunting Workers",
+        "id": 969,
+        "parentId": 953
+    },
+    {
+        "label": "Fishing and Hunting Workers",
+        "id": 970,
+        "parentId": 969
+    },
+    {
+        "label": "Fishing and Hunting Workers",
+        "id": 971,
+        "parentId": 970
+    },
+    {
+        "label": "Forest, Conservation, and Logging Workers",
+        "id": 972,
+        "parentId": 953
+    },
+    {
+        "label": "Forest and Conservation Workers",
+        "id": 973,
+        "parentId": 972
+    },
+    {
+        "label": "Forest and Conservation Workers",
+        "id": 974,
+        "parentId": 973
+    },
+    {
+        "label": "Logging Workers",
+        "id": 975,
+        "parentId": 972
+    },
+    {
+        "label": "Fallers",
+        "id": 976,
+        "parentId": 975
+    },
+    {
+        "label": "Logging Equipment Operators",
+        "id": 977,
+        "parentId": 975
+    },
+    {
+        "label": "Log Graders and Scalers",
+        "id": 978,
+        "parentId": 975
+    },
+    {
+        "label": "Logging Workers, All Other",
+        "id": 979,
+        "parentId": 975
+    },
+    {
+        "label": "Construction and Extraction Occupations",
+        "id": 980
+    },
+    {
+        "label": "Supervisors of Construction and Extraction Workers",
+        "id": 981,
+        "parentId": 980
+    },
+    {
+        "label": "First-Line Supervisors of Construction Trades and Extraction Workers",
+        "id": 982,
+        "parentId": 981
+    },
+    {
+        "label": "First-Line Supervisors of Construction Trades and Extraction Workers",
+        "id": 983,
+        "parentId": 982
+    },
+    {
+        "label": "Construction Trades Workers",
+        "id": 984,
+        "parentId": 980
+    },
+    {
+        "label": "Boilermakers",
+        "id": 985,
+        "parentId": 984
+    },
+    {
+        "label": "Boilermakers",
+        "id": 986,
+        "parentId": 985
+    },
+    {
+        "label": "Brickmasons, Blockmasons, and Stonemasons",
+        "id": 987,
+        "parentId": 984
+    },
+    {
+        "label": "Brickmasons and Blockmasons",
+        "id": 988,
+        "parentId": 987
+    },
+    {
+        "label": "Stonemasons",
+        "id": 989,
+        "parentId": 987
+    },
+    {
+        "label": "Carpenters",
+        "id": 990,
+        "parentId": 984
+    },
+    {
+        "label": "Carpenters",
+        "id": 991,
+        "parentId": 990
+    },
+    {
+        "label": "Carpet, Floor, and Tile Installers and Finishers",
+        "id": 992,
+        "parentId": 984
+    },
+    {
+        "label": "Carpet Installers",
+        "id": 993,
+        "parentId": 992
+    },
+    {
+        "label": "Floor Layers, Except Carpet, Wood, and Hard Tiles",
+        "id": 994,
+        "parentId": 992
+    },
+    {
+        "label": "Floor Sanders and Finishers",
+        "id": 995,
+        "parentId": 992
+    },
+    {
+        "label": "Tile and Stone Setters",
+        "id": 996,
+        "parentId": 992
+    },
+    {
+        "label": "Cement Masons, Concrete Finishers, and Terrazzo Workers",
+        "id": 997,
+        "parentId": 984
+    },
+    {
+        "label": "Cement Masons and Concrete Finishers",
+        "id": 998,
+        "parentId": 997
+    },
+    {
+        "label": "Terrazzo Workers and Finishers",
+        "id": 999,
+        "parentId": 997
+    },
+    {
+        "label": "Construction Laborers",
+        "id": 1000,
+        "parentId": 984
+    },
+    {
+        "label": "Construction Laborers",
+        "id": 1001,
+        "parentId": 1000
+    },
+    {
+        "label": "Construction Equipment Operators",
+        "id": 1002,
+        "parentId": 984
+    },
+    {
+        "label": "Paving, Surfacing, and Tamping Equipment Operators",
+        "id": 1003,
+        "parentId": 1002
+    },
+    {
+        "label": "Pile Driver Operators",
+        "id": 1004,
+        "parentId": 1002
+    },
+    {
+        "label": "Operating Engineers and Other Construction Equipment Operators",
+        "id": 1005,
+        "parentId": 1002
+    },
+    {
+        "label": "Drywall Installers, Ceiling Tile Installers, and Tapers",
+        "id": 1006,
+        "parentId": 984
+    },
+    {
+        "label": "Drywall and Ceiling Tile Installers",
+        "id": 1007,
+        "parentId": 1006
+    },
+    {
+        "label": "Tapers",
+        "id": 1008,
+        "parentId": 1006
+    },
+    {
+        "label": "Electricians",
+        "id": 1009,
+        "parentId": 984
+    },
+    {
+        "label": "Electricians",
+        "id": 1010,
+        "parentId": 1009
+    },
+    {
+        "label": "Glaziers",
+        "id": 1011,
+        "parentId": 984
+    },
+    {
+        "label": "Glaziers",
+        "id": 1012,
+        "parentId": 1011
+    },
+    {
+        "label": "Insulation Workers",
+        "id": 1013,
+        "parentId": 984
+    },
+    {
+        "label": "Insulation Workers, Floor, Ceiling, and Wall",
+        "id": 1014,
+        "parentId": 1013
+    },
+    {
+        "label": "Insulation Workers, Mechanical",
+        "id": 1015,
+        "parentId": 1013
+    },
+    {
+        "label": "Painters and Paperhangers",
+        "id": 1016,
+        "parentId": 984
+    },
+    {
+        "label": "Painters, Construction and Maintenance",
+        "id": 1017,
+        "parentId": 1016
+    },
+    {
+        "label": "Paperhangers",
+        "id": 1018,
+        "parentId": 1016
+    },
+    {
+        "label": "Pipelayers, Plumbers, Pipefitters, and Steamfitters",
+        "id": 1019,
+        "parentId": 984
+    },
+    {
+        "label": "Pipelayers",
+        "id": 1020,
+        "parentId": 1019
+    },
+    {
+        "label": "Plumbers, Pipefitters, and Steamfitters",
+        "id": 1021,
+        "parentId": 1019
+    },
+    {
+        "label": "Plasterers and Stucco Masons",
+        "id": 1022,
+        "parentId": 984
+    },
+    {
+        "label": "Plasterers and Stucco Masons",
+        "id": 1023,
+        "parentId": 1022
+    },
+    {
+        "label": "Reinforcing Iron and Rebar Workers",
+        "id": 1024,
+        "parentId": 984
+    },
+    {
+        "label": "Reinforcing Iron and Rebar Workers",
+        "id": 1025,
+        "parentId": 1024
+    },
+    {
+        "label": "Roofers",
+        "id": 1026,
+        "parentId": 984
+    },
+    {
+        "label": "Roofers",
+        "id": 1027,
+        "parentId": 1026
+    },
+    {
+        "label": "Sheet Metal Workers",
+        "id": 1028,
+        "parentId": 984
+    },
+    {
+        "label": "Sheet Metal Workers",
+        "id": 1029,
+        "parentId": 1028
+    },
+    {
+        "label": "Structural Iron and Steel Workers",
+        "id": 1030,
+        "parentId": 984
+    },
+    {
+        "label": "Structural Iron and Steel Workers",
+        "id": 1031,
+        "parentId": 1030
+    },
+    {
+        "label": "Solar Photovoltaic Installers",
+        "id": 1032,
+        "parentId": 984
+    },
+    {
+        "label": "Solar Photovoltaic Installers",
+        "id": 1033,
+        "parentId": 1032
+    },
+    {
+        "label": "Helpers, Construction Trades",
+        "id": 1034,
+        "parentId": 980
+    },
+    {
+        "label": "Helpers, Construction Trades",
+        "id": 1035,
+        "parentId": 1034
+    },
+    {
+        "label": "Helpers--Brickmasons, Blockmasons, Stonemasons, and Tile and Marble Setters",
+        "id": 1036,
+        "parentId": 1035
+    },
+    {
+        "label": "Helpers--Carpenters",
+        "id": 1037,
+        "parentId": 1035
+    },
+    {
+        "label": "Helpers--Electricians",
+        "id": 1038,
+        "parentId": 1035
+    },
+    {
+        "label": "Helpers--Painters, Paperhangers, Plasterers, and Stucco Masons",
+        "id": 1039,
+        "parentId": 1035
+    },
+    {
+        "label": "Helpers--Pipelayers, Plumbers, Pipefitters, and Steamfitters",
+        "id": 1040,
+        "parentId": 1035
+    },
+    {
+        "label": "Helpers--Roofers",
+        "id": 1041,
+        "parentId": 1035
+    },
+    {
+        "label": "Helpers, Construction Trades, All Other",
+        "id": 1042,
+        "parentId": 1035
+    },
+    {
+        "label": "Other Construction and Related Workers",
+        "id": 1043,
+        "parentId": 980
+    },
+    {
+        "label": "Construction and Building Inspectors",
+        "id": 1044,
+        "parentId": 1043
+    },
+    {
+        "label": "Construction and Building Inspectors",
+        "id": 1045,
+        "parentId": 1044
+    },
+    {
+        "label": "Elevator and Escalator Installers and Repairers",
+        "id": 1046,
+        "parentId": 1043
+    },
+    {
+        "label": "Elevator and Escalator Installers and Repairers",
+        "id": 1047,
+        "parentId": 1046
+    },
+    {
+        "label": "Fence Erectors",
+        "id": 1048,
+        "parentId": 1043
+    },
+    {
+        "label": "Fence Erectors",
+        "id": 1049,
+        "parentId": 1048
+    },
+    {
+        "label": "Hazardous Materials Removal Workers",
+        "id": 1050,
+        "parentId": 1043
+    },
+    {
+        "label": "Hazardous Materials Removal Workers",
+        "id": 1051,
+        "parentId": 1050
+    },
+    {
+        "label": "Highway Maintenance Workers",
+        "id": 1052,
+        "parentId": 1043
+    },
+    {
+        "label": "Highway Maintenance Workers",
+        "id": 1053,
+        "parentId": 1052
+    },
+    {
+        "label": "Rail-Track Laying and Maintenance Equipment Operators",
+        "id": 1054,
+        "parentId": 1043
+    },
+    {
+        "label": "Rail-Track Laying and Maintenance Equipment Operators",
+        "id": 1055,
+        "parentId": 1054
+    },
+    {
+        "label": "Septic Tank Servicers and Sewer Pipe Cleaners",
+        "id": 1056,
+        "parentId": 1043
+    },
+    {
+        "label": "Septic Tank Servicers and Sewer Pipe Cleaners",
+        "id": 1057,
+        "parentId": 1056
+    },
+    {
+        "label": "Miscellaneous Construction and Related Workers",
+        "id": 1058,
+        "parentId": 1043
+    },
+    {
+        "label": "Segmental Pavers",
+        "id": 1059,
+        "parentId": 1058
+    },
+    {
+        "label": "Construction and Related Workers, All Other",
+        "id": 1060,
+        "parentId": 1058
+    },
+    {
+        "label": "Extraction Workers",
+        "id": 1061,
+        "parentId": 980
+    },
+    {
+        "label": "Derrick, Rotary Drill, and Service Unit Operators, Oil and Gas",
+        "id": 1062,
+        "parentId": 1061
+    },
+    {
+        "label": "Derrick Operators, Oil and Gas",
+        "id": 1063,
+        "parentId": 1062
+    },
+    {
+        "label": "Rotary Drill Operators, Oil and Gas",
+        "id": 1064,
+        "parentId": 1062
+    },
+    {
+        "label": "Service Unit Operators, Oil and Gas",
+        "id": 1065,
+        "parentId": 1062
+    },
+    {
+        "label": "Surface Mining Machine Operators and Earth Drillers",
+        "id": 1066,
+        "parentId": 1061
+    },
+    {
+        "label": "Excavating and Loading Machine and Dragline Operators, Surface Mining",
+        "id": 1067,
+        "parentId": 1066
+    },
+    {
+        "label": "Earth Drillers, Except Oil and Gas",
+        "id": 1068,
+        "parentId": 1066
+    },
+    {
+        "label": "Explosives Workers, Ordnance Handling Experts, and Blasters",
+        "id": 1069,
+        "parentId": 1061
+    },
+    {
+        "label": "Explosives Workers, Ordnance Handling Experts, and Blasters",
+        "id": 1070,
+        "parentId": 1069
+    },
+    {
+        "label": "Underground Mining Machine Operators",
+        "id": 1071,
+        "parentId": 1061
+    },
+    {
+        "label": "Continuous Mining Machine Operators",
+        "id": 1072,
+        "parentId": 1071
+    },
+    {
+        "label": "Roof Bolters, Mining",
+        "id": 1073,
+        "parentId": 1071
+    },
+    {
+        "label": "Loading and Moving Machine Operators, Underground Mining",
+        "id": 1074,
+        "parentId": 1071
+    },
+    {
+        "label": "Underground Mining Machine Operators, All Other",
+        "id": 1075,
+        "parentId": 1071
+    },
+    {
+        "label": "Rock Splitters, Quarry",
+        "id": 1076,
+        "parentId": 1061
+    },
+    {
+        "label": "Rock Splitters, Quarry",
+        "id": 1077,
+        "parentId": 1076
+    },
+    {
+        "label": "Roustabouts, Oil and Gas",
+        "id": 1078,
+        "parentId": 1061
+    },
+    {
+        "label": "Roustabouts, Oil and Gas",
+        "id": 1079,
+        "parentId": 1078
+    },
+    {
+        "label": "Helpers--Extraction Workers",
+        "id": 1080,
+        "parentId": 1061
+    },
+    {
+        "label": "Helpers--Extraction Workers",
+        "id": 1081,
+        "parentId": 1080
+    },
+    {
+        "label": "Miscellaneous Extraction Workers",
+        "id": 1082,
+        "parentId": 1061
+    },
+    {
+        "label": "Extraction Workers, All Other",
+        "id": 1083,
+        "parentId": 1082
+    },
+    {
+        "label": "Installation, Maintenance, and Repair Occupations",
+        "id": 1084
+    },
+    {
+        "label": "Supervisors of Installation, Maintenance, and Repair Workers",
+        "id": 1085,
+        "parentId": 1084
+    },
+    {
+        "label": "First-Line Supervisors of Mechanics, Installers, and Repairers",
+        "id": 1086,
+        "parentId": 1085
+    },
+    {
+        "label": "First-Line Supervisors of Mechanics, Installers, and Repairers",
+        "id": 1087,
+        "parentId": 1086
+    },
+    {
+        "label": "Electrical and Electronic Equipment Mechanics, Installers, and Repairers",
+        "id": 1088,
+        "parentId": 1084
+    },
+    {
+        "label": "Computer, Automated Teller, and Office Machine Repairers",
+        "id": 1089,
+        "parentId": 1088
+    },
+    {
+        "label": "Computer, Automated Teller, and Office Machine Repairers",
+        "id": 1090,
+        "parentId": 1089
+    },
+    {
+        "label": "Radio and Telecommunications Equipment Installers and Repairers",
+        "id": 1091,
+        "parentId": 1088
+    },
+    {
+        "label": "Radio, Cellular, and Tower Equipment Installers and Repairers",
+        "id": 1092,
+        "parentId": 1091
+    },
+    {
+        "label": "Telecommunications Equipment Installers and Repairers, Except Line Installers",
+        "id": 1093,
+        "parentId": 1091
+    },
+    {
+        "label": "Miscellaneous Electrical and Electronic Equipment Mechanics, Installers, and Repairers",
+        "id": 1094,
+        "parentId": 1088
+    },
+    {
+        "label": "Avionics Technicians",
+        "id": 1095,
+        "parentId": 1094
+    },
+    {
+        "label": "Electric Motor, Power Tool, and Related Repairers",
+        "id": 1096,
+        "parentId": 1094
+    },
+    {
+        "label": "Electrical and Electronics Installers and Repairers, Transportation Equipment",
+        "id": 1097,
+        "parentId": 1094
+    },
+    {
+        "label": "Electrical and Electronics Repairers, Commercial and Industrial Equipment",
+        "id": 1098,
+        "parentId": 1094
+    },
+    {
+        "label": "Electrical and Electronics Repairers, Powerhouse, Substation, and Relay",
+        "id": 1099,
+        "parentId": 1094
+    },
+    {
+        "label": "Electronic Equipment Installers and Repairers, Motor Vehicles",
+        "id": 1100,
+        "parentId": 1094
+    },
+    {
+        "label": "Audiovisual Equipment Installers and Repairers",
+        "id": 1101,
+        "parentId": 1094
+    },
+    {
+        "label": "Security and Fire Alarm Systems Installers",
+        "id": 1102,
+        "parentId": 1094
+    },
+    {
+        "label": "Vehicle and Mobile Equipment Mechanics, Installers, and Repairers",
+        "id": 1103,
+        "parentId": 1084
+    },
+    {
+        "label": "Aircraft Mechanics and Service Technicians",
+        "id": 1104,
+        "parentId": 1103
+    },
+    {
+        "label": "Aircraft Mechanics and Service Technicians",
+        "id": 1105,
+        "parentId": 1104
+    },
+    {
+        "label": "Automotive Technicians and Repairers",
+        "id": 1106,
+        "parentId": 1103
+    },
+    {
+        "label": "Automotive Body and Related Repairers",
+        "id": 1107,
+        "parentId": 1106
+    },
+    {
+        "label": "Automotive Glass Installers and Repairers",
+        "id": 1108,
+        "parentId": 1106
+    },
+    {
+        "label": "Automotive Service Technicians and Mechanics",
+        "id": 1109,
+        "parentId": 1106
+    },
+    {
+        "label": "Bus and Truck Mechanics and Diesel Engine Specialists",
+        "id": 1110,
+        "parentId": 1103
+    },
+    {
+        "label": "Bus and Truck Mechanics and Diesel Engine Specialists",
+        "id": 1111,
+        "parentId": 1110
+    },
+    {
+        "label": "Heavy Vehicle and Mobile Equipment Service Technicians and Mechanics",
+        "id": 1112,
+        "parentId": 1103
+    },
+    {
+        "label": "Farm Equipment Mechanics and Service Technicians",
+        "id": 1113,
+        "parentId": 1112
+    },
+    {
+        "label": "Mobile Heavy Equipment Mechanics, Except Engines",
+        "id": 1114,
+        "parentId": 1112
+    },
+    {
+        "label": "Rail Car Repairers",
+        "id": 1115,
+        "parentId": 1112
+    },
+    {
+        "label": "Small Engine Mechanics",
+        "id": 1116,
+        "parentId": 1103
+    },
+    {
+        "label": "Motorboat Mechanics and Service Technicians",
+        "id": 1117,
+        "parentId": 1116
+    },
+    {
+        "label": "Motorcycle Mechanics",
+        "id": 1118,
+        "parentId": 1116
+    },
+    {
+        "label": "Outdoor Power Equipment and Other Small Engine Mechanics",
+        "id": 1119,
+        "parentId": 1116
+    },
+    {
+        "label": "Miscellaneous Vehicle and Mobile Equipment Mechanics, Installers, and Repairers",
+        "id": 1120,
+        "parentId": 1103
+    },
+    {
+        "label": "Bicycle Repairers",
+        "id": 1121,
+        "parentId": 1120
+    },
+    {
+        "label": "Recreational Vehicle Service Technicians",
+        "id": 1122,
+        "parentId": 1120
+    },
+    {
+        "label": "Tire Repairers and Changers",
+        "id": 1123,
+        "parentId": 1120
+    },
+    {
+        "label": "Other Installation, Maintenance, and Repair Occupations",
+        "id": 1124,
+        "parentId": 1084
+    },
+    {
+        "label": "Control and Valve Installers and Repairers",
+        "id": 1125,
+        "parentId": 1124
+    },
+    {
+        "label": "Mechanical Door Repairers",
+        "id": 1126,
+        "parentId": 1125
+    },
+    {
+        "label": "Control and Valve Installers and Repairers, Except Mechanical Door",
+        "id": 1127,
+        "parentId": 1125
+    },
+    {
+        "label": "Heating, Air Conditioning, and Refrigeration Mechanics and Installers",
+        "id": 1128,
+        "parentId": 1124
+    },
+    {
+        "label": "Heating, Air Conditioning, and Refrigeration Mechanics and Installers",
+        "id": 1129,
+        "parentId": 1128
+    },
+    {
+        "label": "Home Appliance Repairers",
+        "id": 1130,
+        "parentId": 1124
+    },
+    {
+        "label": "Home Appliance Repairers",
+        "id": 1131,
+        "parentId": 1130
+    },
+    {
+        "label": "Industrial Machinery Installation, Repair, and Maintenance Workers",
+        "id": 1132,
+        "parentId": 1124
+    },
+    {
+        "label": "Industrial Machinery Mechanics",
+        "id": 1133,
+        "parentId": 1132
+    },
+    {
+        "label": "Maintenance Workers, Machinery",
+        "id": 1134,
+        "parentId": 1132
+    },
+    {
+        "label": "Millwrights",
+        "id": 1135,
+        "parentId": 1132
+    },
+    {
+        "label": "Refractory Materials Repairers, Except Brickmasons",
+        "id": 1136,
+        "parentId": 1132
+    },
+    {
+        "label": "Line Installers and Repairers",
+        "id": 1137,
+        "parentId": 1124
+    },
+    {
+        "label": "Electrical Power-Line Installers and Repairers",
+        "id": 1138,
+        "parentId": 1137
+    },
+    {
+        "label": "Telecommunications Line Installers and Repairers",
+        "id": 1139,
+        "parentId": 1137
+    },
+    {
+        "label": "Precision Instrument and Equipment Repairers",
+        "id": 1140,
+        "parentId": 1124
+    },
+    {
+        "label": "Camera and Photographic Equipment Repairers",
+        "id": 1141,
+        "parentId": 1140
+    },
+    {
+        "label": "Medical Equipment Repairers",
+        "id": 1142,
+        "parentId": 1140
+    },
+    {
+        "label": "Musical Instrument Repairers and Tuners",
+        "id": 1143,
+        "parentId": 1140
+    },
+    {
+        "label": "Watch and Clock Repairers",
+        "id": 1144,
+        "parentId": 1140
+    },
+    {
+        "label": "Precision Instrument and Equipment Repairers, All Other",
+        "id": 1145,
+        "parentId": 1140
+    },
+    {
+        "label": "Maintenance and Repair Workers, General",
+        "id": 1146,
+        "parentId": 1124
+    },
+    {
+        "label": "Maintenance and Repair Workers, General",
+        "id": 1147,
+        "parentId": 1146
+    },
+    {
+        "label": "Wind Turbine Service Technicians",
+        "id": 1148,
+        "parentId": 1124
+    },
+    {
+        "label": "Wind Turbine Service Technicians",
+        "id": 1149,
+        "parentId": 1148
+    },
+    {
+        "label": "Miscellaneous Installation, Maintenance, and Repair Workers",
+        "id": 1150,
+        "parentId": 1124
+    },
+    {
+        "label": "Coin, Vending, and Amusement Machine Servicers and Repairers",
+        "id": 1151,
+        "parentId": 1150
+    },
+    {
+        "label": "Commercial Divers",
+        "id": 1152,
+        "parentId": 1150
+    },
+    {
+        "label": "Locksmiths and Safe Repairers",
+        "id": 1153,
+        "parentId": 1150
+    },
+    {
+        "label": "Manufactured Building and Mobile Home Installers",
+        "id": 1154,
+        "parentId": 1150
+    },
+    {
+        "label": "Riggers",
+        "id": 1155,
+        "parentId": 1150
+    },
+    {
+        "label": "Signal and Track Switch Repairers",
+        "id": 1156,
+        "parentId": 1150
+    },
+    {
+        "label": "Helpers--Installation, Maintenance, and Repair Workers",
+        "id": 1157,
+        "parentId": 1150
+    },
+    {
+        "label": "Installation, Maintenance, and Repair Workers, All Other",
+        "id": 1158,
+        "parentId": 1150
+    },
+    {
+        "label": "Production Occupations",
+        "id": 1159
+    },
+    {
+        "label": "Supervisors of Production Workers",
+        "id": 1160,
+        "parentId": 1159
+    },
+    {
+        "label": "First-Line Supervisors of Production and Operating Workers",
+        "id": 1161,
+        "parentId": 1160
+    },
+    {
+        "label": "First-Line Supervisors of Production and Operating Workers",
+        "id": 1162,
+        "parentId": 1161
+    },
+    {
+        "label": "Assemblers and Fabricators",
+        "id": 1163,
+        "parentId": 1159
+    },
+    {
+        "label": "Aircraft Structure, Surfaces, Rigging, and Systems Assemblers",
+        "id": 1164,
+        "parentId": 1163
+    },
+    {
+        "label": "Aircraft Structure, Surfaces, Rigging, and Systems Assemblers",
+        "id": 1165,
+        "parentId": 1164
+    },
+    {
+        "label": "Electrical, Electronics, and Electromechanical Assemblers",
+        "id": 1166,
+        "parentId": 1163
+    },
+    {
+        "label": "Coil Winders, Tapers, and Finishers",
+        "id": 1167,
+        "parentId": 1166
+    },
+    {
+        "label": "Electrical and Electronic Equipment Assemblers",
+        "id": 1168,
+        "parentId": 1166
+    },
+    {
+        "label": "Electromechanical Equipment Assemblers",
+        "id": 1169,
+        "parentId": 1166
+    },
+    {
+        "label": "Engine and Other Machine Assemblers",
+        "id": 1170,
+        "parentId": 1163
+    },
+    {
+        "label": "Engine and Other Machine Assemblers",
+        "id": 1171,
+        "parentId": 1170
+    },
+    {
+        "label": "Structural Metal Fabricators and Fitters",
+        "id": 1172,
+        "parentId": 1163
+    },
+    {
+        "label": "Structural Metal Fabricators and Fitters",
+        "id": 1173,
+        "parentId": 1172
+    },
+    {
+        "label": "Fiberglass Laminators and Fabricators",
+        "id": 1174,
+        "parentId": 1163
+    },
+    {
+        "label": "Fiberglass Laminators and Fabricators",
+        "id": 1175,
+        "parentId": 1174
+    },
+    {
+        "label": "Timing Device Assemblers and Adjusters",
+        "id": 1176,
+        "parentId": 1163
+    },
+    {
+        "label": "Timing Device Assemblers and Adjusters",
+        "id": 1177,
+        "parentId": 1176
+    },
+    {
+        "label": "Miscellaneous Assemblers and Fabricators",
+        "id": 1178,
+        "parentId": 1163
+    },
+    {
+        "label": "Team Assemblers",
+        "id": 1179,
+        "parentId": 1178
+    },
+    {
+        "label": "Assemblers and Fabricators, All Other",
+        "id": 1180,
+        "parentId": 1178
+    },
+    {
+        "label": "Food Processing Workers",
+        "id": 1181,
+        "parentId": 1159
+    },
+    {
+        "label": "Bakers",
+        "id": 1182,
+        "parentId": 1181
+    },
+    {
+        "label": "Bakers",
+        "id": 1183,
+        "parentId": 1182
+    },
+    {
+        "label": "Butchers and Other Meat, Poultry, and Fish Processing Workers",
+        "id": 1184,
+        "parentId": 1181
+    },
+    {
+        "label": "Butchers and Meat Cutters",
+        "id": 1185,
+        "parentId": 1184
+    },
+    {
+        "label": "Meat, Poultry, and Fish Cutters and Trimmers",
+        "id": 1186,
+        "parentId": 1184
+    },
+    {
+        "label": "Slaughterers and Meat Packers",
+        "id": 1187,
+        "parentId": 1184
+    },
+    {
+        "label": "Miscellaneous Food Processing Workers",
+        "id": 1188,
+        "parentId": 1181
+    },
+    {
+        "label": "Food and Tobacco Roasting, Baking, and Drying Machine Operators and Tenders",
+        "id": 1189,
+        "parentId": 1188
+    },
+    {
+        "label": "Food Batchmakers",
+        "id": 1190,
+        "parentId": 1188
+    },
+    {
+        "label": "Food Cooking Machine Operators and Tenders",
+        "id": 1191,
+        "parentId": 1188
+    },
+    {
+        "label": "Food Processing Workers, All Other",
+        "id": 1192,
+        "parentId": 1188
+    },
+    {
+        "label": "Metal Workers and Plastic Workers",
+        "id": 1193,
+        "parentId": 1159
+    },
+    {
+        "label": "Forming Machine Setters, Operators, and Tenders, Metal and Plastic",
+        "id": 1194,
+        "parentId": 1193
+    },
+    {
+        "label": "Extruding and Drawing Machine Setters, Operators, and Tenders, Metal and Plastic",
+        "id": 1195,
+        "parentId": 1194
+    },
+    {
+        "label": "Forging Machine Setters, Operators, and Tenders, Metal and Plastic",
+        "id": 1196,
+        "parentId": 1194
+    },
+    {
+        "label": "Rolling Machine Setters, Operators, and Tenders, Metal and Plastic",
+        "id": 1197,
+        "parentId": 1194
+    },
+    {
+        "label": "Machine Tool Cutting Setters, Operators, and Tenders, Metal and Plastic",
+        "id": 1198,
+        "parentId": 1193
+    },
+    {
+        "label": "Cutting, Punching, and Press Machine Setters, Operators, and Tenders, Metal and Plastic",
+        "id": 1199,
+        "parentId": 1198
+    },
+    {
+        "label": "Drilling and Boring Machine Tool Setters, Operators, and Tenders, Metal and Plastic",
+        "id": 1200,
+        "parentId": 1198
+    },
+    {
+        "label": "Grinding, Lapping, Polishing, and Buffing Machine Tool Setters, Operators, and Tenders, Metal and Plastic",
+        "id": 1201,
+        "parentId": 1198
+    },
+    {
+        "label": "Lathe and Turning Machine Tool Setters, Operators, and Tenders, Metal and Plastic",
+        "id": 1202,
+        "parentId": 1198
+    },
+    {
+        "label": "Milling and Planing Machine Setters, Operators, and Tenders, Metal and Plastic",
+        "id": 1203,
+        "parentId": 1198
+    },
+    {
+        "label": "Machinists",
+        "id": 1204,
+        "parentId": 1193
+    },
+    {
+        "label": "Machinists",
+        "id": 1205,
+        "parentId": 1204
+    },
+    {
+        "label": "Metal Furnace Operators, Tenders, Pourers, and Casters",
+        "id": 1206,
+        "parentId": 1193
+    },
+    {
+        "label": "Metal-Refining Furnace Operators and Tenders",
+        "id": 1207,
+        "parentId": 1206
+    },
+    {
+        "label": "Pourers and Casters, Metal",
+        "id": 1208,
+        "parentId": 1206
+    },
+    {
+        "label": "Model Makers and Patternmakers, Metal and Plastic",
+        "id": 1209,
+        "parentId": 1193
+    },
+    {
+        "label": "Model Makers, Metal and Plastic",
+        "id": 1210,
+        "parentId": 1209
+    },
+    {
+        "label": "Patternmakers, Metal and Plastic",
+        "id": 1211,
+        "parentId": 1209
+    },
+    {
+        "label": "Molders and Molding Machine Setters, Operators, and Tenders, Metal and Plastic",
+        "id": 1212,
+        "parentId": 1193
+    },
+    {
+        "label": "Foundry Mold and Coremakers",
+        "id": 1213,
+        "parentId": 1212
+    },
+    {
+        "label": "Molding, Coremaking, and Casting Machine Setters, Operators, and Tenders, Metal and Plastic",
+        "id": 1214,
+        "parentId": 1212
+    },
+    {
+        "label": "Multiple Machine Tool Setters, Operators, and Tenders, Metal and Plastic",
+        "id": 1215,
+        "parentId": 1193
+    },
+    {
+        "label": "Multiple Machine Tool Setters, Operators, and Tenders, Metal and Plastic",
+        "id": 1216,
+        "parentId": 1215
+    },
+    {
+        "label": "Tool and Die Makers",
+        "id": 1217,
+        "parentId": 1193
+    },
+    {
+        "label": "Tool and Die Makers",
+        "id": 1218,
+        "parentId": 1217
+    },
+    {
+        "label": "Welding, Soldering, and Brazing Workers",
+        "id": 1219,
+        "parentId": 1193
+    },
+    {
+        "label": "Welders, Cutters, Solderers, and Brazers",
+        "id": 1220,
+        "parentId": 1219
+    },
+    {
+        "label": "Welding, Soldering, and Brazing Machine Setters, Operators, and Tenders",
+        "id": 1221,
+        "parentId": 1219
+    },
+    {
+        "label": "Miscellaneous Metal Workers and Plastic Workers",
+        "id": 1222,
+        "parentId": 1193
+    },
+    {
+        "label": "Heat Treating Equipment Setters, Operators, and Tenders, Metal and Plastic",
+        "id": 1223,
+        "parentId": 1222
+    },
+    {
+        "label": "Layout Workers, Metal and Plastic",
+        "id": 1224,
+        "parentId": 1222
+    },
+    {
+        "label": "Plating Machine Setters, Operators, and Tenders, Metal and Plastic",
+        "id": 1225,
+        "parentId": 1222
+    },
+    {
+        "label": "Tool Grinders, Filers, and Sharpeners",
+        "id": 1226,
+        "parentId": 1222
+    },
+    {
+        "label": "Metal Workers and Plastic Workers, All Other",
+        "id": 1227,
+        "parentId": 1222
+    },
+    {
+        "label": "Printing Workers",
+        "id": 1228,
+        "parentId": 1159
+    },
+    {
+        "label": "Printing Workers",
+        "id": 1229,
+        "parentId": 1228
+    },
+    {
+        "label": "Prepress Technicians and Workers",
+        "id": 1230,
+        "parentId": 1229
+    },
+    {
+        "label": "Printing Press Operators",
+        "id": 1231,
+        "parentId": 1229
+    },
+    {
+        "label": "Print Binding and Finishing Workers",
+        "id": 1232,
+        "parentId": 1229
+    },
+    {
+        "label": "Textile, Apparel, and Furnishings Workers",
+        "id": 1233,
+        "parentId": 1159
+    },
+    {
+        "label": "Laundry and Dry-Cleaning Workers",
+        "id": 1234,
+        "parentId": 1233
+    },
+    {
+        "label": "Laundry and Dry-Cleaning Workers",
+        "id": 1235,
+        "parentId": 1234
+    },
+    {
+        "label": "Pressers, Textile, Garment, and Related Materials",
+        "id": 1236,
+        "parentId": 1233
+    },
+    {
+        "label": "Pressers, Textile, Garment, and Related Materials",
+        "id": 1237,
+        "parentId": 1236
+    },
+    {
+        "label": "Sewing Machine Operators",
+        "id": 1238,
+        "parentId": 1233
+    },
+    {
+        "label": "Sewing Machine Operators",
+        "id": 1239,
+        "parentId": 1238
+    },
+    {
+        "label": "Shoe and Leather Workers",
+        "id": 1240,
+        "parentId": 1233
+    },
+    {
+        "label": "Shoe and Leather Workers and Repairers",
+        "id": 1241,
+        "parentId": 1240
+    },
+    {
+        "label": "Shoe Machine Operators and Tenders",
+        "id": 1242,
+        "parentId": 1240
+    },
+    {
+        "label": "Tailors, Dressmakers, and Sewers",
+        "id": 1243,
+        "parentId": 1233
+    },
+    {
+        "label": "Sewers, Hand",
+        "id": 1244,
+        "parentId": 1243
+    },
+    {
+        "label": "Tailors, Dressmakers, and Custom Sewers",
+        "id": 1245,
+        "parentId": 1243
+    },
+    {
+        "label": "Textile Machine Setters, Operators, and Tenders",
+        "id": 1246,
+        "parentId": 1233
+    },
+    {
+        "label": "Textile Bleaching and Dyeing Machine Operators and Tenders",
+        "id": 1247,
+        "parentId": 1246
+    },
+    {
+        "label": "Textile Cutting Machine Setters, Operators, and Tenders",
+        "id": 1248,
+        "parentId": 1246
+    },
+    {
+        "label": "Textile Knitting and Weaving Machine Setters, Operators, and Tenders",
+        "id": 1249,
+        "parentId": 1246
+    },
+    {
+        "label": "Textile Winding, Twisting, and Drawing Out Machine Setters, Operators, and Tenders",
+        "id": 1250,
+        "parentId": 1246
+    },
+    {
+        "label": "Miscellaneous Textile, Apparel, and Furnishings Workers",
+        "id": 1251,
+        "parentId": 1233
+    },
+    {
+        "label": "Extruding and Forming Machine Setters, Operators, and Tenders, Synthetic and Glass Fibers",
+        "id": 1252,
+        "parentId": 1251
+    },
+    {
+        "label": "Fabric and Apparel Patternmakers",
+        "id": 1253,
+        "parentId": 1251
+    },
+    {
+        "label": "Upholsterers",
+        "id": 1254,
+        "parentId": 1251
+    },
+    {
+        "label": "Textile, Apparel, and Furnishings Workers, All Other",
+        "id": 1255,
+        "parentId": 1251
+    },
+    {
+        "label": "Woodworkers",
+        "id": 1256,
+        "parentId": 1159
+    },
+    {
+        "label": "Cabinetmakers and Bench Carpenters",
+        "id": 1257,
+        "parentId": 1256
+    },
+    {
+        "label": "Cabinetmakers and Bench Carpenters",
+        "id": 1258,
+        "parentId": 1257
+    },
+    {
+        "label": "Furniture Finishers",
+        "id": 1259,
+        "parentId": 1256
+    },
+    {
+        "label": "Furniture Finishers",
+        "id": 1260,
+        "parentId": 1259
+    },
+    {
+        "label": "Model Makers and Patternmakers, Wood",
+        "id": 1261,
+        "parentId": 1256
+    },
+    {
+        "label": "Model Makers, Wood",
+        "id": 1262,
+        "parentId": 1261
+    },
+    {
+        "label": "Patternmakers, Wood",
+        "id": 1263,
+        "parentId": 1261
+    },
+    {
+        "label": "Woodworking Machine Setters, Operators, and Tenders",
+        "id": 1264,
+        "parentId": 1256
+    },
+    {
+        "label": "Sawing Machine Setters, Operators, and Tenders, Wood",
+        "id": 1265,
+        "parentId": 1264
+    },
+    {
+        "label": "Woodworking Machine Setters, Operators, and Tenders, Except Sawing",
+        "id": 1266,
+        "parentId": 1264
+    },
+    {
+        "label": "Miscellaneous Woodworkers",
+        "id": 1267,
+        "parentId": 1256
+    },
+    {
+        "label": "Woodworkers, All Other",
+        "id": 1268,
+        "parentId": 1267
+    },
+    {
+        "label": "Plant and System Operators",
+        "id": 1269,
+        "parentId": 1159
+    },
+    {
+        "label": "Power Plant Operators, Distributors, and Dispatchers",
+        "id": 1270,
+        "parentId": 1269
+    },
+    {
+        "label": "Nuclear Power Reactor Operators",
+        "id": 1271,
+        "parentId": 1270
+    },
+    {
+        "label": "Power Distributors and Dispatchers",
+        "id": 1272,
+        "parentId": 1270
+    },
+    {
+        "label": "Power Plant Operators",
+        "id": 1273,
+        "parentId": 1270
+    },
+    {
+        "label": "Stationary Engineers and Boiler Operators",
+        "id": 1274,
+        "parentId": 1269
+    },
+    {
+        "label": "Stationary Engineers and Boiler Operators",
+        "id": 1275,
+        "parentId": 1274
+    },
+    {
+        "label": "Water and Wastewater Treatment Plant and System Operators",
+        "id": 1276,
+        "parentId": 1269
+    },
+    {
+        "label": "Water and Wastewater Treatment Plant and System Operators",
+        "id": 1277,
+        "parentId": 1276
+    },
+    {
+        "label": "Miscellaneous Plant and System Operators",
+        "id": 1278,
+        "parentId": 1269
+    },
+    {
+        "label": "Chemical Plant and System Operators",
+        "id": 1279,
+        "parentId": 1278
+    },
+    {
+        "label": "Gas Plant Operators",
+        "id": 1280,
+        "parentId": 1278
+    },
+    {
+        "label": "Petroleum Pump System Operators, Refinery Operators, and Gaugers",
+        "id": 1281,
+        "parentId": 1278
+    },
+    {
+        "label": "Plant and System Operators, All Other",
+        "id": 1282,
+        "parentId": 1278
+    },
+    {
+        "label": "Other Production Occupations",
+        "id": 1283,
+        "parentId": 1159
+    },
+    {
+        "label": "Chemical Processing Machine Setters, Operators, and Tenders",
+        "id": 1284,
+        "parentId": 1283
+    },
+    {
+        "label": "Chemical Equipment Operators and Tenders",
+        "id": 1285,
+        "parentId": 1284
+    },
+    {
+        "label": "Separating, Filtering, Clarifying, Precipitating, and Still Machine Setters, Operators, and Tenders",
+        "id": 1286,
+        "parentId": 1284
+    },
+    {
+        "label": "Crushing, Grinding, Polishing, Mixing, and Blending Workers",
+        "id": 1287,
+        "parentId": 1283
+    },
+    {
+        "label": "Crushing, Grinding, and Polishing Machine Setters, Operators, and Tenders",
+        "id": 1288,
+        "parentId": 1287
+    },
+    {
+        "label": "Grinding and Polishing Workers, Hand",
+        "id": 1289,
+        "parentId": 1287
+    },
+    {
+        "label": "Mixing and Blending Machine Setters, Operators, and Tenders",
+        "id": 1290,
+        "parentId": 1287
+    },
+    {
+        "label": "Cutting Workers",
+        "id": 1291,
+        "parentId": 1283
+    },
+    {
+        "label": "Cutters and Trimmers, Hand",
+        "id": 1292,
+        "parentId": 1291
+    },
+    {
+        "label": "Cutting and Slicing Machine Setters, Operators, and Tenders",
+        "id": 1293,
+        "parentId": 1291
+    },
+    {
+        "label": "Extruding, Forming, Pressing, and Compacting Machine Setters, Operators, and Tenders",
+        "id": 1294,
+        "parentId": 1283
+    },
+    {
+        "label": "Extruding, Forming, Pressing, and Compacting Machine Setters, Operators, and Tenders",
+        "id": 1295,
+        "parentId": 1294
+    },
+    {
+        "label": "Furnace, Kiln, Oven, Drier, and Kettle Operators and Tenders",
+        "id": 1296,
+        "parentId": 1283
+    },
+    {
+        "label": "Furnace, Kiln, Oven, Drier, and Kettle Operators and Tenders",
+        "id": 1297,
+        "parentId": 1296
+    },
+    {
+        "label": "Inspectors, Testers, Sorters, Samplers, and Weighers",
+        "id": 1298,
+        "parentId": 1283
+    },
+    {
+        "label": "Inspectors, Testers, Sorters, Samplers, and Weighers",
+        "id": 1299,
+        "parentId": 1298
+    },
+    {
+        "label": "Jewelers and Precious Stone and Metal Workers",
+        "id": 1300,
+        "parentId": 1283
+    },
+    {
+        "label": "Jewelers and Precious Stone and Metal Workers",
+        "id": 1301,
+        "parentId": 1300
+    },
+    {
+        "label": "Dental and Ophthalmic Laboratory Technicians and Medical Appliance Technicians",
+        "id": 1302,
+        "parentId": 1283
+    },
+    {
+        "label": "Dental Laboratory Technicians",
+        "id": 1303,
+        "parentId": 1302
+    },
+    {
+        "label": "Medical Appliance Technicians",
+        "id": 1304,
+        "parentId": 1302
+    },
+    {
+        "label": "Ophthalmic Laboratory Technicians",
+        "id": 1305,
+        "parentId": 1302
+    },
+    {
+        "label": "Packaging and Filling Machine Operators and Tenders",
+        "id": 1306,
+        "parentId": 1283
+    },
+    {
+        "label": "Packaging and Filling Machine Operators and Tenders",
+        "id": 1307,
+        "parentId": 1306
+    },
+    {
+        "label": "Painting Workers",
+        "id": 1308,
+        "parentId": 1283
+    },
+    {
+        "label": "Painting, Coating, and Decorating Workers",
+        "id": 1309,
+        "parentId": 1308
+    },
+    {
+        "label": "Coating, Painting, and Spraying Machine Setters, Operators, and Tenders",
+        "id": 1310,
+        "parentId": 1308
+    },
+    {
+        "label": "Semiconductor Processing Technicians",
+        "id": 1311,
+        "parentId": 1283
+    },
+    {
+        "label": "Semiconductor Processing Technicians",
+        "id": 1312,
+        "parentId": 1311
+    },
+    {
+        "label": "Photographic Process Workers and Processing Machine Operators",
+        "id": 1313,
+        "parentId": 1283
+    },
+    {
+        "label": "Photographic Process Workers and Processing Machine Operators",
+        "id": 1314,
+        "parentId": 1313
+    },
+    {
+        "label": "Computer Numerically Controlled Tool Operators and Programmers",
+        "id": 1315,
+        "parentId": 1283
+    },
+    {
+        "label": "Computer Numerically Controlled Tool Operators",
+        "id": 1316,
+        "parentId": 1315
+    },
+    {
+        "label": "Computer Numerically Controlled Tool Programmers",
+        "id": 1317,
+        "parentId": 1315
+    },
+    {
+        "label": "Miscellaneous Production Workers",
+        "id": 1318,
+        "parentId": 1283
+    },
+    {
+        "label": "Adhesive Bonding Machine Operators and Tenders",
+        "id": 1319,
+        "parentId": 1318
+    },
+    {
+        "label": "Cleaning, Washing, and Metal Pickling Equipment Operators and Tenders",
+        "id": 1320,
+        "parentId": 1318
+    },
+    {
+        "label": "Cooling and Freezing Equipment Operators and Tenders",
+        "id": 1321,
+        "parentId": 1318
+    },
+    {
+        "label": "Etchers and Engravers",
+        "id": 1322,
+        "parentId": 1318
+    },
+    {
+        "label": "Molders, Shapers, and Casters, Except Metal and Plastic",
+        "id": 1323,
+        "parentId": 1318
+    },
+    {
+        "label": "Paper Goods Machine Setters, Operators, and Tenders",
+        "id": 1324,
+        "parentId": 1318
+    },
+    {
+        "label": "Tire Builders",
+        "id": 1325,
+        "parentId": 1318
+    },
+    {
+        "label": "Helpers--Production Workers",
+        "id": 1326,
+        "parentId": 1318
+    },
+    {
+        "label": "Production Workers, All Other",
+        "id": 1327,
+        "parentId": 1318
+    },
+    {
+        "label": "Transportation and Material Moving Occupations",
+        "id": 1328
+    },
+    {
+        "label": "Supervisors of Transportation and Material Moving Workers",
+        "id": 1329,
+        "parentId": 1328
+    },
+    {
+        "label": "First-Line Supervisors of Transportation and Material Moving Workers",
+        "id": 1330,
+        "parentId": 1329
+    },
+    {
+        "label": "Aircraft Cargo Handling Supervisors",
+        "id": 1331,
+        "parentId": 1330
+    },
+    {
+        "label": "First-Line Supervisors of Helpers, Laborers, and Material Movers, Hand",
+        "id": 1332,
+        "parentId": 1330
+    },
+    {
+        "label": "First-Line Supervisors of Material-Moving Machine and Vehicle Operators",
+        "id": 1333,
+        "parentId": 1330
+    },
+    {
+        "label": "First-Line Supervisors of Passenger Attendants",
+        "id": 1334,
+        "parentId": 1330
+    },
+    {
+        "label": "First-Line Supervisors of Transportation Workers, All Other",
+        "id": 1335,
+        "parentId": 1330
+    },
+    {
+        "label": "Air Transportation Workers",
+        "id": 1336,
+        "parentId": 1328
+    },
+    {
+        "label": "Aircraft Pilots and Flight Engineers",
+        "id": 1337,
+        "parentId": 1336
+    },
+    {
+        "label": "Airline Pilots, Copilots, and Flight Engineers",
+        "id": 1338,
+        "parentId": 1337
+    },
+    {
+        "label": "Commercial Pilots",
+        "id": 1339,
+        "parentId": 1337
+    },
+    {
+        "label": "Air Traffic Controllers and Airfield Operations Specialists",
+        "id": 1340,
+        "parentId": 1336
+    },
+    {
+        "label": "Air Traffic Controllers",
+        "id": 1341,
+        "parentId": 1340
+    },
+    {
+        "label": "Airfield Operations Specialists",
+        "id": 1342,
+        "parentId": 1340
+    },
+    {
+        "label": "Flight Attendants",
+        "id": 1343,
+        "parentId": 1336
+    },
+    {
+        "label": "Flight Attendants",
+        "id": 1344,
+        "parentId": 1343
+    },
+    {
+        "label": "Motor Vehicle Operators",
+        "id": 1345,
+        "parentId": 1328
+    },
+    {
+        "label": "Ambulance Drivers and Attendants, Except Emergency Medical Technicians",
+        "id": 1346,
+        "parentId": 1345
+    },
+    {
+        "label": "Ambulance Drivers and Attendants, Except Emergency Medical Technicians",
+        "id": 1347,
+        "parentId": 1346
+    },
+    {
+        "label": "Driver/Sales Workers and Truck Drivers",
+        "id": 1348,
+        "parentId": 1345
+    },
+    {
+        "label": "Driver/Sales Workers",
+        "id": 1349,
+        "parentId": 1348
+    },
+    {
+        "label": "Heavy and Tractor-Trailer Truck Drivers",
+        "id": 1350,
+        "parentId": 1348
+    },
+    {
+        "label": "Light Truck Drivers",
+        "id": 1351,
+        "parentId": 1348
+    },
+    {
+        "label": "Passenger Vehicle Drivers",
+        "id": 1352,
+        "parentId": 1345
+    },
+    {
+        "label": "Bus Drivers, School",
+        "id": 1353,
+        "parentId": 1352
+    },
+    {
+        "label": "Bus Drivers, Transit and Intercity",
+        "id": 1354,
+        "parentId": 1352
+    },
+    {
+        "label": "Shuttle Drivers and Chauffeurs",
+        "id": 1355,
+        "parentId": 1352
+    },
+    {
+        "label": "Taxi Drivers",
+        "id": 1356,
+        "parentId": 1352
+    },
+    {
+        "label": "Miscellaneous Motor Vehicle Operators",
+        "id": 1357,
+        "parentId": 1345
+    },
+    {
+        "label": "Motor Vehicle Operators, All Other",
+        "id": 1358,
+        "parentId": 1357
+    },
+    {
+        "label": "Rail Transportation Workers",
+        "id": 1359,
+        "parentId": 1328
+    },
+    {
+        "label": "Locomotive Engineers and Operators",
+        "id": 1360,
+        "parentId": 1359
+    },
+    {
+        "label": "Locomotive Engineers",
+        "id": 1361,
+        "parentId": 1360
+    },
+    {
+        "label": "Rail Yard Engineers, Dinkey Operators, and Hostlers",
+        "id": 1362,
+        "parentId": 1360
+    },
+    {
+        "label": "Railroad Brake, Signal, and Switch Operators and Locomotive Firers",
+        "id": 1363,
+        "parentId": 1359
+    },
+    {
+        "label": "Railroad Brake, Signal, and Switch Operators and Locomotive Firers",
+        "id": 1364,
+        "parentId": 1363
+    },
+    {
+        "label": "Railroad Conductors and Yardmasters",
+        "id": 1365,
+        "parentId": 1359
+    },
+    {
+        "label": "Railroad Conductors and Yardmasters",
+        "id": 1366,
+        "parentId": 1365
+    },
+    {
+        "label": "Subway and Streetcar Operators",
+        "id": 1367,
+        "parentId": 1359
+    },
+    {
+        "label": "Subway and Streetcar Operators",
+        "id": 1368,
+        "parentId": 1367
+    },
+    {
+        "label": "Miscellaneous Rail Transportation Workers",
+        "id": 1369,
+        "parentId": 1359
+    },
+    {
+        "label": "Rail Transportation Workers, All Other",
+        "id": 1370,
+        "parentId": 1369
+    },
+    {
+        "label": "Water Transportation Workers",
+        "id": 1371,
+        "parentId": 1328
+    },
+    {
+        "label": "Sailors and Marine Oilers",
+        "id": 1372,
+        "parentId": 1371
+    },
+    {
+        "label": "Sailors and Marine Oilers",
+        "id": 1373,
+        "parentId": 1372
+    },
+    {
+        "label": "Ship and Boat Captains and Operators",
+        "id": 1374,
+        "parentId": 1371
+    },
+    {
+        "label": "Captains, Mates, and Pilots of Water Vessels",
+        "id": 1375,
+        "parentId": 1374
+    },
+    {
+        "label": "Motorboat Operators",
+        "id": 1376,
+        "parentId": 1374
+    },
+    {
+        "label": "Ship Engineers",
+        "id": 1377,
+        "parentId": 1371
+    },
+    {
+        "label": "Ship Engineers",
+        "id": 1378,
+        "parentId": 1377
+    },
+    {
+        "label": "Other Transportation Workers",
+        "id": 1379,
+        "parentId": 1328
+    },
+    {
+        "label": "Bridge and Lock Tenders",
+        "id": 1380,
+        "parentId": 1379
+    },
+    {
+        "label": "Bridge and Lock Tenders",
+        "id": 1381,
+        "parentId": 1380
+    },
+    {
+        "label": "Parking Attendants",
+        "id": 1382,
+        "parentId": 1379
+    },
+    {
+        "label": "Parking Attendants",
+        "id": 1383,
+        "parentId": 1382
+    },
+    {
+        "label": "Transportation Service Attendants",
+        "id": 1384,
+        "parentId": 1379
+    },
+    {
+        "label": "Automotive and Watercraft Service Attendants",
+        "id": 1385,
+        "parentId": 1384
+    },
+    {
+        "label": "Aircraft Service Attendants",
+        "id": 1386,
+        "parentId": 1384
+    },
+    {
+        "label": "Traffic Technicians",
+        "id": 1387,
+        "parentId": 1379
+    },
+    {
+        "label": "Traffic Technicians",
+        "id": 1388,
+        "parentId": 1387
+    },
+    {
+        "label": "Transportation Inspectors",
+        "id": 1389,
+        "parentId": 1379
+    },
+    {
+        "label": "Transportation Inspectors",
+        "id": 1390,
+        "parentId": 1389
+    },
+    {
+        "label": "Passenger Attendants",
+        "id": 1391,
+        "parentId": 1379
+    },
+    {
+        "label": "Passenger Attendants",
+        "id": 1392,
+        "parentId": 1391
+    },
+    {
+        "label": "Miscellaneous Transportation Workers",
+        "id": 1393,
+        "parentId": 1379
+    },
+    {
+        "label": "Transportation Workers, All Other",
+        "id": 1394,
+        "parentId": 1393
+    },
+    {
+        "label": "Material Moving Workers",
+        "id": 1395,
+        "parentId": 1328
+    },
+    {
+        "label": "Conveyor Operators and Tenders",
+        "id": 1396,
+        "parentId": 1395
+    },
+    {
+        "label": "Conveyor Operators and Tenders",
+        "id": 1397,
+        "parentId": 1396
+    },
+    {
+        "label": "Crane and Tower Operators",
+        "id": 1398,
+        "parentId": 1395
+    },
+    {
+        "label": "Crane and Tower Operators",
+        "id": 1399,
+        "parentId": 1398
+    },
+    {
+        "label": "Dredge Operators",
+        "id": 1400,
+        "parentId": 1395
+    },
+    {
+        "label": "Dredge Operators",
+        "id": 1401,
+        "parentId": 1400
+    },
+    {
+        "label": "Hoist and Winch Operators",
+        "id": 1402,
+        "parentId": 1395
+    },
+    {
+        "label": "Hoist and Winch Operators",
+        "id": 1403,
+        "parentId": 1402
+    },
+    {
+        "label": "Industrial Truck and Tractor Operators",
+        "id": 1404,
+        "parentId": 1395
+    },
+    {
+        "label": "Industrial Truck and Tractor Operators",
+        "id": 1405,
+        "parentId": 1404
+    },
+    {
+        "label": "Laborers and Material Movers",
+        "id": 1406,
+        "parentId": 1395
+    },
+    {
+        "label": "Cleaners of Vehicles and Equipment",
+        "id": 1407,
+        "parentId": 1406
+    },
+    {
+        "label": "Laborers and Freight, Stock, and Material Movers, Hand",
+        "id": 1408,
+        "parentId": 1406
+    },
+    {
+        "label": "Machine Feeders and Offbearers",
+        "id": 1409,
+        "parentId": 1406
+    },
+    {
+        "label": "Packers and Packagers, Hand",
+        "id": 1410,
+        "parentId": 1406
+    },
+    {
+        "label": "Stockers and Order Fillers",
+        "id": 1411,
+        "parentId": 1406
+    },
+    {
+        "label": "Pumping Station Operators",
+        "id": 1412,
+        "parentId": 1395
+    },
+    {
+        "label": "Gas Compressor and Gas Pumping Station Operators",
+        "id": 1413,
+        "parentId": 1412
+    },
+    {
+        "label": "Pump Operators, Except Wellhead Pumpers",
+        "id": 1414,
+        "parentId": 1412
+    },
+    {
+        "label": "Wellhead Pumpers",
+        "id": 1415,
+        "parentId": 1412
+    },
+    {
+        "label": "Refuse and Recyclable Material Collectors",
+        "id": 1416,
+        "parentId": 1395
+    },
+    {
+        "label": "Refuse and Recyclable Material Collectors",
+        "id": 1417,
+        "parentId": 1416
+    },
+    {
+        "label": "Tank Car, Truck, and Ship Loaders",
+        "id": 1418,
+        "parentId": 1395
+    },
+    {
+        "label": "Tank Car, Truck, and Ship Loaders",
+        "id": 1419,
+        "parentId": 1418
+    },
+    {
+        "label": "Miscellaneous Material Moving Workers",
+        "id": 1420,
+        "parentId": 1395
+    },
+    {
+        "label": "Material Moving Workers, All Other",
+        "id": 1421,
+        "parentId": 1420
+    },
+    {
+        "label": "Military Specific Occupations",
+        "id": 1422
+    },
+    {
+        "label": "Military Officer Special and Tactical Operations Leaders",
+        "id": 1423,
+        "parentId": 1422
+    },
+    {
+        "label": "Military Officer Special and Tactical Operations Leaders",
+        "id": 1424,
+        "parentId": 1423
+    },
+    {
+        "label": "Air Crew Officers",
+        "id": 1425,
+        "parentId": 1424
+    },
+    {
+        "label": "Aircraft Launch and Recovery Officers",
+        "id": 1426,
+        "parentId": 1424
+    },
+    {
+        "label": "Armored Assault Vehicle Officers",
+        "id": 1427,
+        "parentId": 1424
+    },
+    {
+        "label": "Artillery and Missile Officers",
+        "id": 1428,
+        "parentId": 1424
+    },
+    {
+        "label": "Command and Control Center Officers",
+        "id": 1429,
+        "parentId": 1424
+    },
+    {
+        "label": "Infantry Officers",
+        "id": 1430,
+        "parentId": 1424
+    },
+    {
+        "label": "Special Forces Officers",
+        "id": 1431,
+        "parentId": 1424
+    },
+    {
+        "label": "Military Officer Special and Tactical Operations Leaders, All Other",
+        "id": 1432,
+        "parentId": 1424
+    },
+    {
+        "label": "First-Line Enlisted Military Supervisors",
+        "id": 1433,
+        "parentId": 1422
+    },
+    {
+        "label": "First-Line Enlisted Military Supervisors",
+        "id": 1434,
+        "parentId": 1433
+    },
+    {
+        "label": "First-Line Supervisors of Air Crew Members",
+        "id": 1435,
+        "parentId": 1434
+    },
+    {
+        "label": "First-Line Supervisors of Weapons Specialists/Crew Members",
+        "id": 1436,
+        "parentId": 1434
+    },
+    {
+        "label": "First-Line Supervisors of All Other Tactical Operations Specialists",
+        "id": 1437,
+        "parentId": 1434
+    },
+    {
+        "label": "Military Enlisted Tactical Operations and Air/Weapons Specialists and Crew Members",
+        "id": 1438,
+        "parentId": 1422
+    },
+    {
+        "label": "Military Enlisted Tactical Operations and Air/Weapons Specialists and Crew Members",
+        "id": 1439,
+        "parentId": 1438
+    },
+    {
+        "label": "Air Crew Members",
+        "id": 1440,
+        "parentId": 1439
+    },
+    {
+        "label": "Aircraft Launch and Recovery Specialists",
+        "id": 1441,
+        "parentId": 1439
+    },
+    {
+        "label": "Armored Assault Vehicle Crew Members",
+        "id": 1442,
+        "parentId": 1439
+    },
+    {
+        "label": "Artillery and Missile Crew Members",
+        "id": 1443,
+        "parentId": 1439
+    },
+    {
+        "label": "Command and Control Center Specialists",
+        "id": 1444,
+        "parentId": 1439
+    },
+    {
+        "label": "Infantry",
+        "id": 1445,
+        "parentId": 1439
+    },
+    {
+        "label": "Special Forces",
+        "id": 1446,
+        "parentId": 1439
+    },
+    {
+        "label": "Military Enlisted Tactical Operations and Air/Weapons Specialists and Crew Members, All Other",
+        "id": 1447,
+        "parentId": 1439
+    }
+]
