@@ -2,12 +2,17 @@
     "operationName": "LaunchTextProjectMutation",
     "variables": {
       "input": {
+        "projectCreationId" : "random-string",
         "name": "Test Project",
         "documentSettings": {
+          "textLabelMaxTokenLength": 999999,
+          "allTokensMustBeLabeled": false,
+          "allowMultiLabels": false,
+          "allowArcDrawing": false,
           "kind": "ROW_BASED",
           "autoScrollWhenLabeling": true,
           "displayedRows": 1,
-          "mediaDisplayStrategy": "THUMBNAIL"
+          "mediaDisplayStrategy": "FULL"
         },
         "assignees": [
           {
@@ -41,7 +46,7 @@
                         }
                     ]
                   },
-                  "name": "Google Taxonomy",
+                  "name": "Google Taxonomy 3X",
                   "label": "Please fill Google Taxonomy",
                   "required": false
                 },

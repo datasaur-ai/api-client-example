@@ -22,7 +22,7 @@ token = oauth.fetch_token(token_url= baseUrl + '/api/oauth/token', client_id=cli
         client_secret=client_secret)
 
 # Read options for Hierarchical Dropdown's Answer Set 
-with open('google-taxonomy-options.json', 'r') as file:
+with open('google-taxonomy-full-options.json', 'r') as file:
     optionsString = file.read()
     options = json.loads(optionsString)
 
