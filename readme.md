@@ -28,3 +28,8 @@ python3 create_project_doc.py https://datasaur.ai <client_id> <client_secret> <t
 python3 create_project_row.py https://datasaur.ai <client_id> <client_secret> <team_id> <path_to_file>
 python3 create_project_row.py https://datasaur.ai <client_id> <client_secret> <team_id> ./file.csv
 ```
+
+## Create Token Based Labeling
+```
+python3 create_project_token.py https://datasaur.ai <client_id> <client_secret> <team_id> <path_to_file>
+```
