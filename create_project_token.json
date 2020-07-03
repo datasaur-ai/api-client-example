@@ -10,10 +10,7 @@
               "allowMultiLabels": true,
               "autoScrollWhenLabeling": true,
               "textLabelMaxTokenLength": 999999,
-              "kind": "TOKEN_BASED",
-              "displayedRows": -1,
-              "mediaDisplayStrategy": "THUMBNAIL",
-              "sentenceSeparator": "."
+              "kind": "TOKEN_BASED"
           },
           "assignees": [
             {
@@ -28,7 +25,7 @@
                   "settings": {}
               }
           ],
-          "labelSetId": "789"
+          "labelSetId": ""
       }
   },
   "query": "mutation LaunchTextProjectMutation($input: LaunchTextProjectInput!) {\n  launchTextProject(input: $input) {\n    id\n    rootDocumentId\n    settings {\n      consensus\n      enableEditLabelSet\n      enableEditSentence\n      __typename\n    }\n    __typename\n  }\n}\n"

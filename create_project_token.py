@@ -26,12 +26,12 @@ headers = {
   'Content-Type': 'application/json'
 }
 
-# Read options for Hierarchical Dropdown's Answer Set 
+# Read Create Label Set Request
 with open('create_label_set.json', 'r') as file:
     labelSetString = file.read()
 
+# Create Label Set
 response = requests.request("POST", url, headers=headers, data = labelSetString)
-print(response);
 labelSetJsonResponse = json.loads(response.text.encode('utf8'))
 labelSetId = labelSetJsonResponse["data"]["createLabelSet"]["id"]
 
