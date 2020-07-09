@@ -35,8 +35,8 @@ for x in range(documentSize):
   idx = x + 1
   if x == 0:
     document = {
-      "name": "SampleJobPost.txt",
-      "fileName": "SampleJobPost.txt",
+      "name": "littleprince.txt",
+      "fileName": "littleprince.txt",
       "fileUrl": "https://vulcan-prod.s3.amazonaws.com/files/gitbook/littleprince.txt",
       "docFileOptions": {
         "customHeaderColumns": [
@@ -59,8 +59,8 @@ for x in range(documentSize):
     }
   else:
     document = {
-      "name": "SampleJobPost" + str(idx) + ".txt",
-      "fileName": "SampleJobPost" + str(idx) + ".txt",
+      "name": "littleprince" + str(idx) + ".txt",
+      "fileName": "littleprince" + str(idx) + ".txt",
       "fileUrl": "https://vulcan-prod.s3.amazonaws.com/files/gitbook/littleprince.txt",
       "docFileOptions": {
         "customHeaderColumns": [
@@ -72,7 +72,6 @@ for x in range(documentSize):
   operations["variables"]["input"]["documents"].append(document)
 
 payload = json.dumps(operations)
-# print(payload)
 headers = {
   'Authorization': 'Bearer ' + token['access_token'],
   'Content-Type': 'application/json'

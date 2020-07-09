@@ -37,11 +37,11 @@ files = []
 for x in range(documentSize):
   idx = x + 1
   fileMapping[idx] = ["variables.input.documents." + str(x) + ".file"]
-  files.append((str(idx), open('./SampleJobPost.txt', 'rb')))
+  files.append((str(idx), open('./littleprince.txt', 'rb')))
   if x == 0:
     document = {
-      "name": "SampleJobPost.txt",
-      "fileName": "SampleJobPost.txt",
+      "name": "littleprince.txt",
+      "fileName": "littleprince.txt",
       "docFileOptions": {
         "customHeaderColumns": [
           "Document"
@@ -63,8 +63,8 @@ for x in range(documentSize):
     }
   else:
     document = {
-      "name": "SampleJobPost" + str(idx) + ".txt",
-      "fileName": "SampleJobPost"+ str(idx) + ".txt",
+      "name": "littleprince" + str(idx) + ".txt",
+      "fileName": "littleprince"+ str(idx) + ".txt",
       "docFileOptions": {
         "customHeaderColumns": [
           "Document"
@@ -84,5 +84,6 @@ first_time = datetime.datetime.now()
 response = requests.request("POST", url, headers=headers, data = payload, files = files)
 later_time = datetime.datetime.now()
 difference = later_time - first_time
-print(response.text.encode('utf8'))
+jsonResponse = json.loads(response.text.encode('utf8'))
+print(json.dumps(jsonResponse, indent=1))
 print("elapsed time " + str(difference.total_seconds()))

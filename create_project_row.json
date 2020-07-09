@@ -2,13 +2,8 @@
     "operationName": "LaunchTextProjectMutation",
     "variables": {
       "input": {
-        "projectCreationId" : "random-string",
         "name": "Test Project",
         "documentSettings": {
-          "textLabelMaxTokenLength": 999999,
-          "allTokensMustBeLabeled": false,
-          "allowMultiLabels": false,
-          "allowArcDrawing": false,
           "kind": "ROW_BASED",
           "autoScrollWhenLabeling": true,
           "displayedRows": 1,
@@ -21,35 +16,16 @@
         ],
         "projectSettings": {
           "consensus": 1,
-          "enableEditLabelSet": true,
-          "enableEditSentence": true
+          "enableEditLabelSet": false,
+          "enableEditSentence": false
         },
         "documents": [
           {
-            "name": "file.csv",
+            "name": "name",
             "file": null,
-            "fileName": "file.csv",
+            "fileName": "name.csv",
             "settings": {
               "questions": [
-                {
-                  "type": "HIERARCHICAL_DROPDOWN",
-                  "config": {
-                    "multiple": false,
-                    "options": [
-                        {
-                            "id" : "1",
-                            "label" : "Yes"
-                        },
-                        {
-                            "id" : "2",
-                            "label" : "No"
-                        }
-                    ]
-                  },
-                  "name": "Google Taxonomy 3X",
-                  "label": "Please fill Google Taxonomy",
-                  "required": false
-                },
                 {
                   "type": "DROPDOWN",
                   "config": {
@@ -76,6 +52,10 @@
               ]
             },
             "docFileOptions": {
+              "customHeaderColumns": [
+                "Book Cover 1",
+                "Book Cover 2"
+              ],
               "firstRowAsHeader": true
             }
           }

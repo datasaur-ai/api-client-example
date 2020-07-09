@@ -26,7 +26,7 @@ python3 create_project_doc.py https://datasaur.ai <client_id> <client_secret> <t
 ## Create Row Based Labeling
 ```
 python3 create_project_row.py https://datasaur.ai <client_id> <client_secret> <team_id> <path_to_file>
-python3 create_project_row.py https://datasaur.ai <client_id> <client_secret> <team_id> ./file.csv
+python3 create_project_row.py https://datasaur.ai <client_id> <client_secret> <team_id> ./sample-files/row-based/bookcover-multiplefiles
 ```
 
 ## Create Token Based Labeling

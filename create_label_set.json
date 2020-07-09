@@ -7,14 +7,14 @@
                   "id": "qgvxaa-svCwj18KIcoCBu",
                   "parentId": null,
                   "desc": null,
-                  "color": null,
+                  "color": "red",
                   "tagName": "PER"
               },
               {
                 "id": "qgvxbb-svCwj18KIcoCBu",
                 "parentId": null,
                 "desc": null,
-                "color": null,
+                "color": "green",
                 "tagName": "GEO"
             },
             {

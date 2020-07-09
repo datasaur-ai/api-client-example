@@ -1,0 +1,25 @@
+[
+    {
+        "type": "DROPDOWN",
+        "config": {
+            "multiple": true,
+            "options": [
+                {
+                    "id": "1",
+                    "label": "Red"
+                },
+                {
+                    "id": "2",
+                    "label": "Black"
+                },
+                {
+                    "id": "3",
+                    "label": "White"
+                }
+            ]
+        },
+        "name": "Color",
+        "label": "What color is it?",
+        "required": false
+    }
+]

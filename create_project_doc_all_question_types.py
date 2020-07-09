@@ -36,8 +36,8 @@ for x in range(documentSize):
   if x == 0:
     document = {
       "teamId": teamId,
-      "name": "SampleJobPost.txt",
-      "fileName": "SampleJobPost.txt",
+      "name": "littleprince.txt",
+      "fileName": "littleprince.txt",
       "fileUrl": "https://vulcan-prod.s3.amazonaws.com/files/gitbook/littleprince.txt",
       "docFileOptions": {
         "customHeaderColumns": [
@@ -73,8 +73,8 @@ for x in range(documentSize):
   else:
     document = {
       "teamId": "1",
-      "name": "SampleJobPost" + str(idx) + ".txt",
-      "fileName": "SampleJobPost" + str(idx) + ".txt",
+      "name": "littleprince" + str(idx) + ".txt",
+      "fileName": "littleprince" + str(idx) + ".txt",
       "fileUrl": "https://vulcan-prod.s3.amazonaws.com/files/gitbook/littleprince.txt",
       "docFileOptions": {
         "customHeaderColumns": [

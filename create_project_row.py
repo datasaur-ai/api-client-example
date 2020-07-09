@@ -1,6 +1,8 @@
 import requests
 from oauthlib.oauth2 import BackendApplicationClient
 from requests_oauthlib import OAuth2Session
+from os import listdir
+from os.path import isfile, join
 import os
 import json
 import sys
@@ -12,7 +14,7 @@ baseUrl = sys.argv[1]
 client_id = sys.argv[2]
 client_secret = sys.argv[3]
 teamId = sys.argv[4]
-csvFile = sys.argv[5]
+folderPath = sys.argv[5]
 url = baseUrl + "/graphql"
 
 # Retrieving access token, you could store the access token instead of creating it every single time you creating the project.
@@ -21,10 +23,10 @@ oauth = OAuth2Session(client=client)
 token = oauth.fetch_token(token_url= baseUrl + '/api/oauth/token', client_id=client_id,
         client_secret=client_secret)
 
-# Read options for Hierarchical Dropdown's Answer Set 
-with open('google-taxonomy-full-options.json', 'r') as file:
-    optionsString = file.read()
-    options = json.loads(optionsString)
+# Read question from external file
+with open('row-based-questions.json', 'r') as file:
+    questionsString = file.read()
+    questions = json.loads(questionsString)
 
 # Read Json payload from external file to make it more convenient
 with open('create_project_row.json', 'r') as file:
@@ -33,15 +35,44 @@ with open('create_project_row.json', 'r') as file:
 
 # Inject teamId
 operations["variables"]["input"]["teamId"] = str(teamId)
-# Inject Options into first question (take a look at create_project_row.json, I put hierarchical dropdown question as a first one)
-operations["variables"]["input"]["documents"][0]["settings"]["questions"][0]["config"]["options"] = options
+documents = []
+onlyfiles = [f for f in listdir(folderPath) if isfile(join(folderPath, f))]
 
-files = [
-  ('1', open(csvFile,'rb'))
-]
+files = []
+fileMap = {}
+# fileMap example
+# '{"1":["variables.input.documents.0.file"]}'
+
+idx = 1
+for file in onlyfiles:
+  documents.append({
+    "name": file,
+    "fileName": file
+  })
+  files.append((str(idx), open(folderPath + '/' + file, 'rb')))
+  fileMap[str(idx)] = ['variables.input.documents.' + str(idx - 1) + '.file']
+  idx = idx + 1
+
+# Inject question from row-based-questions.json only for first document
+operations["variables"]["input"]["documents"] = documents
+operations["variables"]["input"]["documents"][0] = {
+  "name": operations["variables"]["input"]["documents"][0]["name"],
+  "fileName": operations["variables"]["input"]["documents"][0]["fileName"],
+  "settings": {
+    "questions": questions
+  },
+  "docFileOptions": {
+    "customHeaderColumns": [
+      "Book Cover 1",
+      "Book Cover 2"
+    ]
+    # "firstRowAsHeader": true
+  }
+}
 
 # For uploading files, you could see https://datasaurai.gitbook.io/datasaur/datasaur-apis/create-new-project/references-1
-payload = {'operations': json.dumps(operations), 'map': '{"1":["variables.input.documents.0.file"]}'}
+payload = {'operations': json.dumps(operations), 'map': json.dumps(fileMap)}
+
 
 headers = {
   'Authorization': 'Bearer ' + token['access_token']
