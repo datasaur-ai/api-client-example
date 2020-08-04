@@ -23,18 +23,29 @@ oauth = OAuth2Session(client=client)
 token = oauth.fetch_token(token_url= baseUrl + '/api/oauth/token', client_id=client_id,
         client_secret=client_secret)
 
-# Read question from external file
-with open('row-based-questions.json', 'r') as file:
-    questionsString = file.read()
-    questions = json.loads(questionsString)
+headers = {
+  'Authorization': 'Bearer ' + token['access_token'],
+  'Content-Type': 'application/json'
+}
+
+# Read Create Label Set Request
+with open('create_label_set.json', 'r') as file:
+    labelSetString = file.read()
+
+# Create Label Set
+response = requests.request("POST", url, headers=headers, data = labelSetString)
+labelSetJsonResponse = json.loads(response.text.encode('utf8'))
+labelSetId = labelSetJsonResponse["data"]["createLabelSet"]["id"]
 
 # Read Json payload from external file to make it more convenient
-with open('create_project_row.json', 'r') as file:
+with open('create_project_token.json', 'r') as file:
     operationsString = file.read()
     operations = json.loads(operationsString)
 
 # Inject teamId
 operations["variables"]["input"]["teamId"] = str(teamId)
+operations["variables"]["input"]["labelSetId"] = str(labelSetId)
+
 documents = []
 onlyfiles = [f for f in listdir(folderPath) if isfile(join(folderPath, f))]
 
@@ -45,16 +56,9 @@ fileMap = {}
 
 idx = 1
 for file in onlyfiles:
-  # Inject question from row-based-questions.json only for every document
   documents.append({
     "name": file,
-    "fileName": file,
-    "settings": {
-      "questions": questions
-    },
-    "docFileOptions": {
-      "firstRowAsHeader": True
-    }
+    "fileName": file
   })
   files.append((str(idx), open(folderPath + '/' + file, 'rb')))
   fileMap[str(idx)] = ['variables.input.documents.' + str(idx - 1) + '.file']
@@ -62,16 +66,15 @@ for file in onlyfiles:
 
 operations["variables"]["input"]["documents"] = documents
 
-# For uploading files, you could see https://datasaurai.gitbook.io/datasaur/datasaur-apis/create-new-project/references-1
-payload = {'operations': json.dumps(operations), 'map': json.dumps(fileMap)}
 
+# For uploading files, you could see https://datasaurai.gitbook.io/datasaur/datasaur-apis/create-new-project/references-1
+createProjectPayload = {'operations': json.dumps(operations), 'map': json.dumps(fileMap)}
 headers = {
   'Authorization': 'Bearer ' + token['access_token']
 }
-
 # Call Datasaur API
 first_time = datetime.datetime.now()
-response = requests.request("POST", url, headers=headers, data = payload, files = files)
+response = requests.request("POST", url, headers=headers, data = createProjectPayload, files = files)
 later_time = datetime.datetime.now()
 difference = later_time - first_time
 jsonResponse = json.loads(response.text.encode('utf8'))

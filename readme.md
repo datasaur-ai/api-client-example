@@ -32,4 +32,5 @@ python3 create_project_row.py https://datasaur.ai <client_id> <client_secret> <t
 ## Create Token Based Labeling
 ```
 python3 create_project_token.py https://datasaur.ai <client_id> <client_secret> <team_id> <path_to_file>
+python3 create_project_token_multiple_files.py https://datasaur.ai <client_id> <client_secret> <team_id> ./sample-files/token-based/multiple-files
 ```
