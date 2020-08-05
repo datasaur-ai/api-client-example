@@ -38,6 +38,10 @@ labelSetJsonResponse = json.loads(response.text.encode('utf8'))
 labelSetId = labelSetJsonResponse["data"]["createLabelSet"]["id"]
 
 # Read Json payload from external file to make it more convenient
+#
+# -------------------- IMPORTANT --------------------------
+# Please change assignee in create_project_token.json file
+# -------------------- IMPORTANT --------------------------
 with open('create_project_token.json', 'r') as file:
     operationsString = file.read()
     operations = json.loads(operationsString)
@@ -47,7 +51,7 @@ operations["variables"]["input"]["teamId"] = str(teamId)
 operations["variables"]["input"]["labelSetId"] = str(labelSetId)
 
 documents = []
-onlyfiles = [f for f in listdir(folderPath) if isfile(join(folderPath, f))]
+onlyfiles = [f for f in listdir(folderPath) if not f.startswith('.') and isfile(join(folderPath, f))]
 
 files = []
 fileMap = {}
@@ -65,6 +69,7 @@ for file in onlyfiles:
   idx = idx + 1
 
 operations["variables"]["input"]["documents"] = documents
+operations["variables"]["input"]["name"] = "NER Project with " + str(idx - 1) + " files"
 
 
 # For uploading files, you could see https://datasaurai.gitbook.io/datasaur/datasaur-apis/create-new-project/references-1
@@ -77,6 +82,8 @@ first_time = datetime.datetime.now()
 response = requests.request("POST", url, headers=headers, data = createProjectPayload, files = files)
 later_time = datetime.datetime.now()
 difference = later_time - first_time
-jsonResponse = json.loads(response.text.encode('utf8'))
-print(json.dumps(jsonResponse, indent=1))
 print("elapsed time " + str(difference.total_seconds()))
+print(response)
+if 'json' in response.headers['content-type']:
+  jsonResponse = json.loads(response.text.encode('utf8'))
+  print(json.dumps(jsonResponse, indent=1))

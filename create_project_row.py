@@ -36,7 +36,7 @@ with open('create_project_row.json', 'r') as file:
 # Inject teamId
 operations["variables"]["input"]["teamId"] = str(teamId)
 documents = []
-onlyfiles = [f for f in listdir(folderPath) if isfile(join(folderPath, f))]
+onlyfiles = [f for f in listdir(folderPath) if not f.startswith('.') and isfile(join(folderPath, f))]
 
 files = []
 fileMap = {}
@@ -48,19 +48,34 @@ for file in onlyfiles:
   # Inject question from row-based-questions.json only for every document
   documents.append({
     "name": file,
-    "fileName": file,
-    "settings": {
-      "questions": questions
-    },
-    "docFileOptions": {
-      "firstRowAsHeader": True
-    }
+    "fileName": file
+    # "settings": {
+    #   "questions": questions
+    # },
+    # "docFileOptions": {
+    #   "customHeaderColumns": ["Book Cover 1", "Book Cover 2"]
+    #   # "firstRowAsHeader": True
+    # }
   })
   files.append((str(idx), open(folderPath + '/' + file, 'rb')))
   fileMap[str(idx)] = ['variables.input.documents.' + str(idx - 1) + '.file']
   idx = idx + 1
 
 operations["variables"]["input"]["documents"] = documents
+operations["variables"]["input"]["documents"][0] = {
+  "name": operations["variables"]["input"]["documents"][0]["name"],
+  "fileName": operations["variables"]["input"]["documents"][0]["fileName"],
+  "settings": {
+    "questions": questions
+  },
+  "docFileOptions": {
+    # "customHeaderColumns": [
+    #   "Book Cover 1",
+    #   "Book Cover 2"
+    # ]
+    "firstRowAsHeader": True
+  }
+}
 
 # For uploading files, you could see https://datasaurai.gitbook.io/datasaur/datasaur-apis/create-new-project/references-1
 payload = {'operations': json.dumps(operations), 'map': json.dumps(fileMap)}
