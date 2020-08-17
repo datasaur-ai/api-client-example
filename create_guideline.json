@@ -1,0 +1,10 @@
+{
+    "operationName": "CreateGuideline",
+    "variables": {
+        "input": {
+            "name": "Labeling Guideline",
+            "content": ""
+        }
+    },
+    "query": "mutation CreateGuideline($input: GuidelineInput!) {  createGuideline(input: $input) {    id    name    content    __typename  }}"
+}

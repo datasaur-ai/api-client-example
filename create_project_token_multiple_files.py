@@ -37,6 +37,20 @@ response = requests.request("POST", url, headers=headers, data = labelSetString)
 labelSetJsonResponse = json.loads(response.text.encode('utf8'))
 labelSetId = labelSetJsonResponse["data"]["createLabelSet"]["id"]
 
+# Read create_guideline.json file
+with open('create_guideline.json', 'r') as file:
+    guidelineString = file.read()
+
+with open('./sample-files/guideline.md', 'r') as file:
+    guidelineContent = file.read()
+
+# Create Guideline
+createGuidelineOperation = json.loads(guidelineString)
+createGuidelineOperation["variables"]["input"]["content"] = guidelineContent
+response = requests.request("POST", url, headers=headers, data = json.dumps(createGuidelineOperation))
+guidelineJsonResponse = json.loads(response.text.encode('utf8'))
+guidelineId = guidelineJsonResponse["data"]["createGuideline"]["id"]
+
 # Read Json payload from external file to make it more convenient
 #
 # -------------------- IMPORTANT --------------------------
@@ -62,7 +76,10 @@ idx = 1
 for file in onlyfiles:
   documents.append({
     "name": file,
-    "fileName": file
+    "fileName": file,
+    "settings": {
+      "guidelineID": str(guidelineId),
+    },
   })
   files.append((str(idx), open(folderPath + '/' + file, 'rb')))
   fileMap[str(idx)] = ['variables.input.documents.' + str(idx - 1) + '.file']
@@ -70,7 +87,6 @@ for file in onlyfiles:
 
 operations["variables"]["input"]["documents"] = documents
 operations["variables"]["input"]["name"] = "NER Project with " + str(idx - 1) + " files"
-
 
 # For uploading files, you could see https://datasaurai.gitbook.io/datasaur/datasaur-apis/create-new-project/references-1
 createProjectPayload = {'operations': json.dumps(operations), 'map': json.dumps(fileMap)}
@@ -83,7 +99,6 @@ response = requests.request("POST", url, headers=headers, data = createProjectPa
 later_time = datetime.datetime.now()
 difference = later_time - first_time
 print("elapsed time " + str(difference.total_seconds()))
-print(response)
 if 'json' in response.headers['content-type']:
   jsonResponse = json.loads(response.text.encode('utf8'))
   print(json.dumps(jsonResponse, indent=1))

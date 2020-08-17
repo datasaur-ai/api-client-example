@@ -1,31 +1,31 @@
 {
-  "operationName": "CreateLabelSetMutation",
-  "variables": {
-      "input": {
-          "tagItems": [
-              {
-                  "id": "qgvxaa-svCwj18KIcoCBu",
-                  "parentId": null,
-                  "desc": null,
-                  "color": "red",
-                  "tagName": "PER"
-              },
-              {
-                "id": "qgvxbb-svCwj18KIcoCBu",
-                "parentId": null,
-                "desc": null,
-                "color": "green",
-                "tagName": "GEO"
-            },
-            {
-              "id": "qgvxMd-svCwj18KIcoCBu",
-              "parentId": null,
-              "desc": null,
-              "color": null,
-              "tagName": "GPE"
-          }
-          ]
-      }
-  },
-  "query": "mutation CreateLabelSetMutation($input: CreateLabelSetInput!) {\n  createLabelSet(input: $input) {\n    ...LabelSetFragment\n    __typename\n  }\n}\n\nfragment LabelSetFragment on LabelSet {\n  id\n  name\n  tagItems {\n    ...TagItemFragment\n    __typename\n  }\n  lastUsedBy {\n    name\n    __typename\n  }\n  __typename\n}\n\nfragment TagItemFragment on TagItem {\n  id\n  parentId\n  color\n  desc\n  tagName\n  __typename\n}\n"
+    "operationName": "CreateLabelSetMutation",
+    "variables": {
+        "input": {
+            "tagItems": [
+                {
+                    "id": "qgvxaa-svCwj18KIcoCBu",
+                    "parentId": null,
+                    "desc": null,
+                    "color": "red",
+                    "tagName": "PER"
+                },
+                {
+                    "id": "qgvxbb-svCwj18KIcoCBu",
+                    "parentId": null,
+                    "desc": null,
+                    "color": "green",
+                    "tagName": "GEO"
+                },
+                {
+                    "id": "qgvxMd-svCwj18KIcoCBu",
+                    "parentId": null,
+                    "desc": null,
+                    "color": null,
+                    "tagName": "GPE"
+                }
+            ]
+        }
+    },
+    "query": "mutation CreateLabelSetMutation($input: CreateLabelSetInput!) {\n  createLabelSet(input: $input) {\n    ...LabelSetFragment\n    __typename\n  }\n}\n\nfragment LabelSetFragment on LabelSet {\n  id\n  name\n  tagItems {\n    ...TagItemFragment\n    __typename\n  }\n  lastUsedBy {\n    name\n    __typename\n  }\n  __typename\n}\n\nfragment TagItemFragment on TagItem {\n  id\n  parentId\n  color\n  desc\n  tagName\n  __typename\n}\n"
 }

@@ -26,7 +26,7 @@ headers = {
   'Content-Type': 'application/json'
 }
 
-# Read Create Label Set Request
+# Read create_label_set.json file
 with open('create_label_set.json', 'r') as file:
     labelSetString = file.read()
 
@@ -35,6 +35,20 @@ response = requests.request("POST", url, headers=headers, data = labelSetString)
 labelSetJsonResponse = json.loads(response.text.encode('utf8'))
 labelSetId = labelSetJsonResponse["data"]["createLabelSet"]["id"]
 
+# Read create_guideline.json file
+with open('create_guideline.json', 'r') as file:
+    guidelineString = file.read()
+
+with open('./sample-files/guideline.md', 'r') as file:
+    guidelineContent = file.read()
+
+# Create Guideline
+createGuidelineOperation = json.loads(guidelineString)
+createGuidelineOperation["variables"]["input"]["content"] = guidelineContent
+response = requests.request("POST", url, headers=headers, data = json.dumps(createGuidelineOperation))
+guidelineJsonResponse = json.loads(response.text.encode('utf8'))
+guidelineId = guidelineJsonResponse["data"]["createGuideline"]["id"]
+
 # Read Json payload from external file to make it more convenient
 with open('create_project_token.json', 'r') as file:
     operationsString = file.read()
@@ -42,6 +56,7 @@ with open('create_project_token.json', 'r') as file:
 
 # Inject teamId
 operations["variables"]["input"]["teamId"] = str(teamId)
+operations["variables"]["input"]["documents"][0]["settings"]["guidelineID"] = str(guidelineId)
 operations["variables"]["input"]["labelSetId"] = str(labelSetId)
 
 
