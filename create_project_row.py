@@ -23,10 +23,29 @@ oauth = OAuth2Session(client=client)
 token = oauth.fetch_token(token_url= baseUrl + '/api/oauth/token', client_id=client_id,
         client_secret=client_secret)
 
+headersForLabelingGuideline = {
+  'Authorization': 'Bearer ' + token['access_token'],
+  'Content-Type': 'application/json'
+}
+
 # Read question from external file
 with open('row-based-questions.json', 'r') as file:
     questionsString = file.read()
     questions = json.loads(questionsString)
+
+# Read create_guideline.json file
+with open('create_guideline.json', 'r') as file:
+    guidelineString = file.read()
+
+with open('./sample-files/guideline.md', 'r') as file:
+    guidelineContent = file.read()
+
+# Create Guideline
+createGuidelineOperation = json.loads(guidelineString)
+createGuidelineOperation["variables"]["input"]["content"] = guidelineContent
+response = requests.request("POST", url, headers=headersForLabelingGuideline, data = json.dumps(createGuidelineOperation))
+guidelineJsonResponse = json.loads(response.text.encode('utf8'))
+guidelineId = guidelineJsonResponse["data"]["createGuideline"]["id"]
 
 # Read Json payload from external file to make it more convenient
 with open('create_project_row.json', 'r') as file:
@@ -48,10 +67,7 @@ for file in onlyfiles:
   # Inject question from row-based-questions.json only for every document
   documents.append({
     "name": file,
-    "fileName": file
-    # "settings": {
-    #   "questions": questions
-    # },
+    "fileName": file,
     # "docFileOptions": {
     #   "customHeaderColumns": ["Book Cover 1", "Book Cover 2"]
     #   # "firstRowAsHeader": True
@@ -66,7 +82,8 @@ operations["variables"]["input"]["documents"][0] = {
   "name": operations["variables"]["input"]["documents"][0]["name"],
   "fileName": operations["variables"]["input"]["documents"][0]["fileName"],
   "settings": {
-    "questions": questions
+    "questions": questions,
+    "guidelineID": str(guidelineId),
   },
   "docFileOptions": {
     # "customHeaderColumns": [
@@ -77,13 +94,13 @@ operations["variables"]["input"]["documents"][0] = {
   }
 }
 
-# For uploading files, you could see https://datasaurai.gitbook.io/datasaur/datasaur-apis/create-new-project/references-1
-payload = {'operations': json.dumps(operations), 'map': json.dumps(fileMap)}
 
 headers = {
-  'Authorization': 'Bearer ' + token['access_token']
+  'Authorization': 'Bearer ' + token['access_token'],
 }
 
+# For uploading files, you could see https://datasaurai.gitbook.io/datasaur/datasaur-apis/create-new-project/references-1
+payload = {'operations': json.dumps(operations), 'map': json.dumps(fileMap)}
 # Call Datasaur API
 first_time = datetime.datetime.now()
 response = requests.request("POST", url, headers=headers, data = payload, files = files)
