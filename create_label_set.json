@@ -2,6 +2,7 @@
     "operationName": "CreateLabelSetMutation",
     "variables": {
         "input": {
+            "name": "Put your new label set name here",
             "tagItems": [
                 {
                     "id": "qgvxaa-svCwj18KIcoCBu",
