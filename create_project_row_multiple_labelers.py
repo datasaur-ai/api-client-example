@@ -90,7 +90,8 @@ operations["variables"]["input"]["documents"][0] = {
     #   "Book Cover 1",
     #   "Book Cover 2"
     # ]
-    "firstRowAsHeader": True
+    # set this as true if your CSV has header at the first row
+    "firstRowAsHeader": False 
   }
 }
 
