@@ -4,7 +4,7 @@
         "input": {
             "fileName": "NER-Project_output_Jun_15_2020",
             "format": "iob",
-            "projectId": 507,
+            "projectId": "yourRrojectID",
             "role": "LABELER",
             "method": "EMAIL"
         }
