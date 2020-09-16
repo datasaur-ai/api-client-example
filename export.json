@@ -6,8 +6,8 @@
             "format": "iob",
             "projectId": "yourRrojectID",
             "role": "LABELER",
-            "method": "EMAIL"
+            "method": "FILE_STORAGE"
         }
     },
-    "query": "query ExportTextProjectQuery ($input: ExportTextProjectInput!) { result: exportTextProject(input: $input) { redirect queued __typename }}"
+    "query": "query ExportTextProjectQuery ($input: ExportTextProjectInput!) { result: exportTextProject(input: $input) { redirect fileUrl fileUrlExpiredAt queued __typename }}"
 }
