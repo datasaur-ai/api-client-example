@@ -10,7 +10,8 @@ API Documentation can be found [here](https://datasaurai.gitbook.io/datasaur/dat
 
 ## Export Project
 ```
-python3 export.py https://datasaur.ai <client_id> <client_secret>
+python3 export.py https://datasaur.ai <client_id> <client_secret> <project_id> <export_format> <output_dir>
+python3 export.py https://datasaur.ai <client_id> <client_secret> <project_id> conll_2003 ./output
 ```
 
 ## Create Doc Based Labeling by Using External Files

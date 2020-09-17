@@ -2,10 +2,10 @@
     "operationName": "ExportTextProjectQuery",
     "variables": {
         "input": {
-            "fileName": "NER-Project_output_Jun_15_2020",
-            "format": "iob",
-            "projectId": "yourRrojectID",
-            "role": "LABELER",
+            "fileName": "datasaur",
+            "format": "",
+            "projectId": "",
+            "role": "REVIEWER",
             "method": "FILE_STORAGE"
         }
     },
