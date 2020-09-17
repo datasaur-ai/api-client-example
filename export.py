@@ -6,6 +6,7 @@ import os
 import json
 import sys
 import re
+import time
 
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 
@@ -46,6 +47,7 @@ if 'json' in response.headers['content-type']:
     os.makedirs(outputDir, exist_ok=True)
   
     while True:
+      time.sleep(1)
       fileResponse = requests.request("GET", fileUrl)
       if fileResponse.status_code == 200:
         fileResponseUrl = urlparse(fileUrl)
