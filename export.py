@@ -13,8 +13,9 @@ baseUrl = sys.argv[1]
 client_id = sys.argv[2]
 client_secret = sys.argv[3]
 projectId = sys.argv[4]
-exportFormat = sys.argv[5]
-outputDir = sys.argv[6]
+exportFileName = sys.argv[5]
+exportFormat = sys.argv[6]
+outputDir = sys.argv[7]
 url = baseUrl + "/graphql"
 
 client = BackendApplicationClient(client_id=client_id)
@@ -26,6 +27,7 @@ with open('export.json', 'r') as file:
     payloadString = file.read()
     payload = json.loads(payloadString)
   
+payload["variables"]["input"]["fileName"] = exportFileName
 payload["variables"]["input"]["projectId"] = projectId
 payload["variables"]["input"]["format"] = exportFormat
 
