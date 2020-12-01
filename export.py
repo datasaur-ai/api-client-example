@@ -29,7 +29,7 @@ with open('export.json', 'r') as file:
     payload = json.loads(payloadString)
   
 payload["variables"]["input"]["fileName"] = exportFileName
-payload["variables"]["input"]["projectId"] = projectId
+payload["variables"]["input"]["projectIds"] = [ projectId ]
 payload["variables"]["input"]["format"] = exportFormat
 
 headers = {

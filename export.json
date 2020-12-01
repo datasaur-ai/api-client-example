@@ -4,7 +4,7 @@
         "input": {
             "fileName": "datasaur",
             "format": "",
-            "projectId": "",
+            "projectIds": [""],
             "role": "REVIEWER",
             "method": "FILE_STORAGE"
         }
