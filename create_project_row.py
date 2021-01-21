@@ -68,10 +68,21 @@ for file in onlyfiles:
   documents.append({
     "name": file,
     "fileName": file,
-    # "docFileOptions": {
-    #   "customHeaderColumns": ["Book Cover 1", "Book Cover 2"]
-    #   # "firstRowAsHeader": True
-    # }
+    "docFileOptions": {
+      # "customHeaderColumns": [
+      #    {
+      #         "name": "Book Cover 1",
+      #         "displayed": True,
+      #         "labelerRestricted": False
+      #     },
+      #     {
+      #         "name": "Book Cover 2",
+      #         "displayed": True,
+      #         "labelerRestricted": False
+      #     }
+      #   ],
+      # "firstRowAsHeader": True
+    }
   })
   files.append((str(idx), open(folderPath + '/' + file, 'rb')))
   fileMap[str(idx)] = ['variables.input.documents.' + str(idx - 1) + '.file']
@@ -87,9 +98,17 @@ operations["variables"]["input"]["documents"][0] = {
   },
   "docFileOptions": {
     # "customHeaderColumns": [
-    #   "Book Cover 1",
-    #   "Book Cover 2"
-    # ]
+      #    {
+      #         "name": "Book Cover 1",
+      #         "displayed": True,
+      #         "labelerRestricted": False
+      #     },
+      #     {
+      #         "name": "Book Cover 2",
+      #         "displayed": True,
+      #         "labelerRestricted": False
+      #     }
+      #   ],
     "firstRowAsHeader": True
   }
 }

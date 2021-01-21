@@ -29,7 +29,7 @@ with open('create_project_doc.json', 'r') as file:
     operations = json.loads(operationsString)
 
 operations["variables"]["input"]["teamId"] = str(teamId)
-
+# externalImportableUrl will allow datasaur to download the files from specified url
 
 for x in range(documentSize):
   idx = x + 1
@@ -37,7 +37,7 @@ for x in range(documentSize):
     document = {
       "name": "littleprince.txt",
       "fileName": "littleprince.txt",
-      "fileUrl": "https://vulcan-prod.s3.amazonaws.com/files/gitbook/littleprince.txt",
+      "externalImportableUrl": "https://vulcan-prod.s3.amazonaws.com/files/gitbook/littleprince.txt",
       "docFileOptions": {
         "customHeaderColumns": [
           {
@@ -65,7 +65,7 @@ for x in range(documentSize):
     document = {
       "name": "littleprince" + str(idx) + ".txt",
       "fileName": "littleprince" + str(idx) + ".txt",
-      "fileUrl": "https://vulcan-prod.s3.amazonaws.com/files/gitbook/littleprince.txt",
+      "externalImportableUrl": "https://vulcan-prod.s3.amazonaws.com/files/gitbook/littleprince.txt",
       "docFileOptions": {
         "customHeaderColumns": [
           {

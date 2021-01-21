@@ -44,7 +44,11 @@ for x in range(documentSize):
       "fileName": "littleprince.txt",
       "docFileOptions": {
         "customHeaderColumns": [
-          "Document"
+          {
+           "name": "Document",
+           "displayed": True,
+           "labelerRestricted": False,
+          }
         ],
         "firstRowAsHeader": True
       },
@@ -67,7 +71,11 @@ for x in range(documentSize):
       "fileName": "littleprince"+ str(idx) + ".txt",
       "docFileOptions": {
         "customHeaderColumns": [
-          "Document"
+          {
+           "name": "Document",
+           "displayed": True,
+           "labelerRestricted": False,
+          }
         ],
         "firstRowAsHeader": True
       },

@@ -41,7 +41,11 @@ for x in range(documentSize):
       "fileUrl": "https://vulcan-prod.s3.amazonaws.com/files/gitbook/littleprince.txt",
       "docFileOptions": {
         "customHeaderColumns": [
-          "Document"
+          {
+           "name": "Document",
+           "displayed": True,
+           "labelerRestricted": False,
+          }
         ],
         "firstRowAsHeader": True
       },
@@ -78,7 +82,11 @@ for x in range(documentSize):
       "fileUrl": "https://vulcan-prod.s3.amazonaws.com/files/gitbook/littleprince.txt",
       "docFileOptions": {
         "customHeaderColumns": [
-          "Document"
+          {
+           "name": "Document",
+           "displayed": True,
+           "labelerRestricted": False,
+          }
         ],
         "firstRowAsHeader": True
       },

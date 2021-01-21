@@ -53,8 +53,16 @@
             },
             "docFileOptions": {
               "customHeaderColumns": [
-                "Book Cover 1",
-                "Book Cover 2"
+                {
+                  "name": "Book Cover 1",
+                  "displayed": true,
+                  "labelerRestricted": false
+              },
+              {
+                  "name": "Book Cover 2",
+                  "displayed": true,
+                  "labelerRestricted": false
+              }
               ],
               "firstRowAsHeader": true
             }
