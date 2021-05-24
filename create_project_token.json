@@ -25,7 +25,7 @@
                   "settings": {}
               }
           ],
-          "labelSetId": ""
+          "labelSetIDs": []
       }
   },
   "query": "mutation LaunchTextProjectMutation($input: LaunchTextProjectInput!) {\n  launchTextProject(input: $input) {\n    id\n    rootDocumentId\n    settings {\n      consensus\n      enableEditLabelSet\n      enableEditSentence\n      __typename\n    }\n    __typename\n  }\n}\n"

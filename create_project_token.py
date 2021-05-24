@@ -33,7 +33,7 @@ with open('create_label_set.json', 'r') as file:
 # Create Label Set
 response = requests.request("POST", url, headers=headers, data = labelSetString)
 labelSetJsonResponse = json.loads(response.text.encode('utf8'))
-labelSetId = labelSetJsonResponse["data"]["createLabelSet"]["id"]
+labelSetIds = [labelSetJsonResponse["data"]["createLabelSet"]["id"]]
 
 # Read create_guideline.json file
 with open('create_guideline.json', 'r') as file:
@@ -57,7 +57,7 @@ with open('create_project_token.json', 'r') as file:
 # Inject teamId
 operations["variables"]["input"]["teamId"] = str(teamId)
 operations["variables"]["input"]["documents"][0]["settings"]["guidelineID"] = str(guidelineId)
-operations["variables"]["input"]["labelSetId"] = str(labelSetId)
+operations["variables"]["input"]["labelSetIDs"] = labelSetIds
 
 
 files = [
