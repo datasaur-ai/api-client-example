@@ -33,20 +33,6 @@ with open('row-based-questions.json', 'r') as file:
     questionsString = file.read()
     questions = json.loads(questionsString)
 
-# Read create_guideline.json file
-with open('create_guideline.json', 'r') as file:
-    guidelineString = file.read()
-
-with open('./sample-files/guideline.md', 'r') as file:
-    guidelineContent = file.read()
-
-# Create Guideline
-createGuidelineOperation = json.loads(guidelineString)
-createGuidelineOperation["variables"]["input"]["content"] = guidelineContent
-response = requests.request("POST", url, headers=headersForLabelingGuideline, data = json.dumps(createGuidelineOperation))
-guidelineJsonResponse = json.loads(response.text.encode('utf8'))
-guidelineId = guidelineJsonResponse["data"]["createGuideline"]["id"]
-
 # Read Json payload from external file to make it more convenient
 with open('create_project_row.json', 'r') as file:
     operationsString = file.read()
@@ -94,7 +80,6 @@ operations["variables"]["input"]["documents"][0] = {
   "fileName": operations["variables"]["input"]["documents"][0]["fileName"],
   "settings": {
     "questions": questions,
-    "guidelineID": str(guidelineId),
   },
   "docFileOptions": {
     # "customHeaderColumns": [
