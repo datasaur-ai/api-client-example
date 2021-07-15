@@ -35,6 +35,12 @@ for filepath in glob.iglob('documents/*.txt'):
     payload_map[str(iterator)] = ["variables.input.documents." + str(iterator) + ".file"]
     documents.append(document)
     iterator += 1
+
+# Use documents.settings and documents.docFileOptions from operations file
+if (len(operations["variables"]["input"]["documents"]) > 0 and len(documents) > 0):
+    documents[0]["settings"] = operations["variables"]["input"]["documents"][0]["settings"]
+    documents[0]["docFileOptions"] = operations["variables"]["input"]["documents"][0]["docFileOptions"]
+
 operations["variables"]["input"]["documents"] = documents
 
 # Retrieving access token, you could store the access token instead of creating it every single time you call datasaur api.
