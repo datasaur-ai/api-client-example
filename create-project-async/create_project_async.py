@@ -49,7 +49,6 @@ access_token = get_access_token(BASE_URL, CLIENT_ID, CLIENT_SECRET)
 # Call Datasaur API
 headers = {'Authorization': 'Bearer ' + access_token}
 data = {'operations': json.dumps(operations), 'map': json.dumps(payload_map)}
-print(data)
 response = requests.request("POST", URL, headers=headers, data=data, files=files)
 jsonResponse = json.loads(response.text.encode('utf8'))
 print(json.dumps(jsonResponse, indent=1))
