@@ -1,19 +1,23 @@
 # Datasaur API Client Sample
 
-## Pre-requisite
-```
-pip3 install -r requirements.txt
-```
-
 ## API Documentation
 API Documentation can be found [here](https://datasaurai.gitbook.io/advanced/apis-docs).
 
+## Pre-requisite
+```
+# install dependencies
+pip3 install -r requirements.txt
+
+# create .env file and fill it with appropriate values
+cp .env.example .env
+```
+
 ## Create Project
 ```
-python3 create_project_async.py https://datasaur.ai <client_id> <client_secret> <team_id>
+python3 create_project_async.py
 ```
 
 ## Get Job Status
 ```
-python3 get_job_status.py https://datasaur.ai <client_id> <client_secret> <job_id>
+python3 get_job_status.py <job_id>
 ```
