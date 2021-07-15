@@ -1,3 +1,4 @@
 .DS_Store
 readme.txt
 output/
+__pycache__
