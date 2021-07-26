@@ -9,7 +9,7 @@ API Documentation can be found [here](https://datasaurai.gitbook.io/advanced/api
 pip3 install -r requirements.txt
 
 # create .env file and fill it with appropriate values
-cp .env.example .env
+cp env.example .env
 ```
 
 ## Create Project
