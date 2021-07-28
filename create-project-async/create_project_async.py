@@ -1,7 +1,6 @@
 import requests
 import os
 import json
-import sys
 import glob
 from dotenv import load_dotenv
 from helper import get_access_token, get_operations
