@@ -13,6 +13,9 @@ BASE_URL = os.getenv('BASE_URL')
 CLIENT_ID = os.getenv('CLIENT_ID')
 CLIENT_SECRET = os.getenv('CLIENT_SECRET')
 TEAM_ID = os.getenv('TEAM_ID')
+
+if len(sys.argv) < 2:
+    raise SystemExit('job_id required')
 JOB_ID = sys.argv[1]
 URL = BASE_URL + "/graphql"
 CHECK_JOB_INTERVAL_SECONDS = 30
@@ -31,26 +34,25 @@ headers = {'Authorization': 'Bearer ' + access_token, 'Content-Type': 'applicati
 while True:
     response = requests.request("POST", URL, headers=headers, data=data)
     if 'json' in response.headers['content-type']:
-        json_response = json.loads(response.text.encode('utf8'))
-        if response.status_code == 200:
-            job = json_response['data']['job']
-            if job is None:
-                print('job not found')
+        print(response)
+        raise SystemExit(response.text.encode('utf8'))
+
+    json_response = json.loads(response.text.encode('utf8'))
+    if response.status_code == 200:
+        job = json_response['data']['job']
+        if job is None:
+            print('job not found')
+            break
+        else:
+            print(json.dumps(job, indent=1))
+            if job['status'] == "DELIVERED":
+                break
+            elif job['status'] == "FAILED":
+                print(json.dumps(job['errors']))
                 break
             else:
-                print(json.dumps(job, indent=1))
-                if job['status'] == "DELIVERED":
-                    break
-                elif job['status'] == "FAILED":
-                    print(json.dumps(job['errors']))
-                    break
-                else:
-                    print('getting job status..')
-                    time.sleep(CHECK_JOB_INTERVAL_SECONDS)
-        else:
-            print(response['errors'])
-            break
+                print('getting job status..')
+                time.sleep(CHECK_JOB_INTERVAL_SECONDS)
     else:
-        print(response)
-        print(response.text.encode('utf8'))
+        print(response['errors'])
         break
