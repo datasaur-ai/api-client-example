@@ -48,8 +48,9 @@ while True:
                     print('getting job status..')
                     time.sleep(CHECK_JOB_INTERVAL_SECONDS)
         else:
-            print(json_response['errors'])
+            print(response['errors'])
             break
     else:
-        print('invalid response headers')
+        print(response)
+        print(response.text.encode('utf8'))
         break

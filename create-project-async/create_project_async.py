@@ -52,7 +52,14 @@ headers = {'Authorization': 'Bearer ' + access_token}
 data = {'operations': json.dumps(operations), 'map': json.dumps(payload_map)}
 response = requests.request("POST", URL, headers=headers, data=data, files=files)
 if 'json' in response.headers['content-type']:
-    jsonResponse = json.loads(response.text.encode('utf8'))
-    print(json.dumps(jsonResponse, indent=1))
+    json_response = json.loads(response.text.encode('utf8'))
+    if 'errors' in json_response:
+        print(json.dumps(json_response['errors'], indent=1))
+    else:
+        job = json_response['data']['launchTextProjectAsync']['job']
+        print(json.dumps(job, indent=1))
+        print('Check job status using script bellow')
+        print(f'python3 get_job_status.py { job["id"] }')
 else:
-    print('invalid response headers')
+    print(response)
+    print(response.text.encode('utf8'))
