@@ -26,7 +26,7 @@ files = []
 
 # Set files in documents folder as input.documents
 iterator = 0
-for filepath in glob.iglob('documents/*.txt'):
+for filepath in glob.iglob('documents/*'):
     file = (str(iterator), open(filepath, 'rb'))
     files.append(file)
     document = {
