@@ -51,5 +51,8 @@ access_token = get_access_token(BASE_URL, CLIENT_ID, CLIENT_SECRET)
 headers = {'Authorization': 'Bearer ' + access_token}
 data = {'operations': json.dumps(operations), 'map': json.dumps(payload_map)}
 response = requests.request("POST", URL, headers=headers, data=data, files=files)
-jsonResponse = json.loads(response.text.encode('utf8'))
-print(json.dumps(jsonResponse, indent=1))
+if 'json' in response.headers['content-type']:
+    jsonResponse = json.loads(response.text.encode('utf8'))
+    print(json.dumps(jsonResponse, indent=1))
+else:
+    print('invalid response headers')

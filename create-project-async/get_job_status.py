@@ -30,22 +30,26 @@ data = json.dumps(operations)
 headers = {'Authorization': 'Bearer ' + access_token, 'Content-Type': 'application/json'}
 while True:
     response = requests.request("POST", URL, headers=headers, data=data)
-    json_response = json.loads(response.text.encode('utf8'))
-    if response.status_code == 200:
-        job = json_response['data']['job']
-        if job is None:
-            print('job not found')
-            break
-        else:
-            print(json.dumps(job, indent=1))
-            if job['status'] == "DELIVERED":
-                break
-            elif job['status'] == "FAILED":
-                print(json.dumps(job['errors']))
+    if 'json' in response.headers['content-type']:
+        json_response = json.loads(response.text.encode('utf8'))
+        if response.status_code == 200:
+            job = json_response['data']['job']
+            if job is None:
+                print('job not found')
                 break
             else:
-                print('getting job status..')
-                time.sleep(CHECK_JOB_INTERVAL_SECONDS)
+                print(json.dumps(job, indent=1))
+                if job['status'] == "DELIVERED":
+                    break
+                elif job['status'] == "FAILED":
+                    print(json.dumps(job['errors']))
+                    break
+                else:
+                    print('getting job status..')
+                    time.sleep(CHECK_JOB_INTERVAL_SECONDS)
+        else:
+            print(json_response['errors'])
+            break
     else:
-        print(json_response['errors'])
+        print('invalid response headers')
         break
