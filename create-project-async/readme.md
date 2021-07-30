@@ -5,9 +5,6 @@
 ```
 # install dependencies
 pip install -r src/requirements.txt
-
-# create .env file and fill it with appropriate values
-cp env.example .env
 ```
 
 ## Create Project
