@@ -6,7 +6,7 @@ API Documentation can be found [here](https://datasaurai.gitbook.io/advanced/api
 ## Pre-requisite
 ```
 # install dependencies
-pip3 install -r requirements.txt
+pip install -r src/requirements.txt
 
 # create .env file and fill it with appropriate values
 cp env.example .env
@@ -14,10 +14,18 @@ cp env.example .env
 
 ## Create Project
 ```
-python3 create_project_async.py
+python datasaur_api.py create_project \
+  --base_url=BASE_URL \
+  --client_id=CLIENT_ID \
+  --client_secret=CLIENT_SECRET \
+  --team_id=team_id
 ```
 
 ## Get Job Status
 ```
-python3 get_job_status.py <job_id>
+python datasaur_api.py get_job_status \
+  --base_url=BASE_URL \
+  --client_id=CLIENT_ID \
+  --client_secret=CLIENT_SECRET \
+  --job_id=JOB_ID
 ```
