@@ -1,0 +1,4 @@
+{
+  "python.analysis.extraPaths": ["./create-project-async"],
+  "editor.formatOnSave": true
+}
