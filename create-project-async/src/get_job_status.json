@@ -1,0 +1,5 @@
+{
+  "operationName": "GetJob",
+  "variables": { "input": "" },
+  "query": "query GetJob($input: String!) { job: getJob(jobId: $input) { ...JobFragment __typename }} fragment JobFragment on Job { id status progress errors { id stack args __typename } resultId __typename}"
+}
