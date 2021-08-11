@@ -1,10 +1,10 @@
-# Datasaur API Client Sample
+# API Client Sample
 
 ## Pre-requisite
 
 ```
 # install dependencies
-pip install -r src/requirements.txt
+python -m pip install -r src/requirements.txt
 ```
 
 ## Create Project
