@@ -9,7 +9,7 @@ def create_project(base_url, client_id, client_secret, team_id):
         Project.create(
             base_url, client_id, client_secret,
             team_id=str(team_id),
-            operations_path='create_project.json', documents_path='documents')
+            operations_path='project_configuration.json', documents_path='documents')
     except Exception as e:
         raise SystemExit(e)
 
