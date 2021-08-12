@@ -10,7 +10,7 @@ python -m pip install -r src/requirements.txt
 ## Create Project
 
 ```
-python datasaur_api.py create_project \
+python api_client.py create_project \
   --base_url BASE_URL \
   --client_id CLIENT_ID \
   --client_secret CLIENT_SECRET \
@@ -20,7 +20,7 @@ python datasaur_api.py create_project \
 ## Get Job Status
 
 ```
-python datasaur_api.py get_job_status \
+python api_client.py get_job_status \
   --base_url BASE_URL \
   --client_id CLIENT_ID \
   --client_secret CLIENT_SECRET \
