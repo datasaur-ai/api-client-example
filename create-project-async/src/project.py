@@ -50,7 +50,7 @@ class Project():
                 job = json_response['data']['launchTextProjectAsync']['job']
                 print(json.dumps(job, indent=1))
                 print('Check job status using command bellow')
-                get_job_status_command = f"python datasaur_api.py get_job_status --base_url={base_url} --client_id={client_id} --client_secret={client_secret} --job_id={job['id']}"
+                get_job_status_command = f"python datasaur_api.py get_job_status --base_url {base_url} --client_id {client_id} --client_secret {client_secret} --job_id {job['id']}"
                 print(get_job_status_command)
         else:
             print(response)
