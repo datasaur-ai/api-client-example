@@ -16,7 +16,7 @@ python3 export.py https://datasaur.ai <client_id> <client_secret> <project_id> d
 
 ## Create Doc Based Labeling by Using External Files
 ```
-python3 create_project_doc_file_url.py https://datasaur.ai <client_id> <client_secret> <team_id> 
+python3 create_project_doc_file_url.py https://datasaur.ai <client_id> <client_secret> <team_id> <document count>
 ```
 
 ## Create Doc Based Labeling by Uploading Files (Simulation Only)
