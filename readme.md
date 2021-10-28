@@ -6,7 +6,7 @@ pip3 install -r requirements.txt
 ```
 
 ## API Documentation
-API Documentation can be found [here](https://datasaurai.gitbook.io/datasaur/datasaur-apis).
+API Documentation can be found [here](https://datasaurai.gitbook.io/datasaur/advanced/apis-docs).
 
 ## Export Project
 ```
