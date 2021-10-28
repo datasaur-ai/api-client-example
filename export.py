@@ -8,7 +8,7 @@ from urllib.parse import urlparse
 from oauthlib.oauth2 import BackendApplicationClient
 from requests_oauthlib import OAuth2Session
 
-POOLING_INVERVAL_IN_MS = 500
+POOLING_INVERVAL = 0.5  # 0.5s
 
 
 def export_project(base_url, client_id, client_secret, project_id, export_file_name, export_format, output_dir):
@@ -45,7 +45,7 @@ def poll_export_delivery_status(url, access_token, export_id):
     operations = get_operations('get_export_delivery_status.json')
     operations["variables"]["exportId"] = export_id
     while True:
-        time.sleep(POOLING_INVERVAL_IN_MS)
+        time.sleep(POOLING_INVERVAL)
         response = post_request(url, access_token, operations)
         if 'json' in response.headers['content-type']:
             json_response = json.loads(response.text.encode('utf8'))
