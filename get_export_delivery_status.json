@@ -3,5 +3,5 @@
   "variables": {
     "exportId": "EXPORT_ID"
   },
-  "query": "query GetExportDeliveryStatus($exportId: ID!) {\n  exportDeliveryStatus: getExportDeliveryStatus(exportId: $exportId) {\n    deliveryStatus\n    __typename\n  }\n}\n"
+  "query": "query GetExportDeliveryStatus($exportId: ID!) { exportDeliveryStatus: getExportDeliveryStatus(exportId: $exportId) { deliveryStatus __typename }}"
 }
