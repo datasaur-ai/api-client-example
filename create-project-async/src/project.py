@@ -29,13 +29,16 @@ class Project():
             payload_map[str(iterator)] = [
                 "variables.input.documents." + str(iterator) + ".file"]
             documents.append(document)
-            iterator += 1
+
+        # do not copy these properties from operations file, we already set them above
+        manual_keys = ["filename", "file"]
 
         # apply other settings from operations file
         for iterator, op_doc in enumerate(operations["variables"]["input"]["documents"]):
             op_doc: dict
             for key in op_doc.keys():
-                documents[iterator][key] = op_doc.get(key, None)
+                if not (key in manual_keys):
+                    documents[iterator][key] = op_doc.get(key, None)
 
         operations["variables"]["input"]["documents"] = documents
 
@@ -52,7 +55,7 @@ class Project():
                 job = json_response['data']['launchTextProjectAsync']['job']
                 print(json.dumps(job, indent=1))
                 print('Check job status using command bellow')
-                get_job_status_command = f"python datasaur_api.py get_job_status --base_url {base_url} --client_id {client_id} --client_secret {client_secret} --job_id {job['id']}"
+                get_job_status_command = f"python api_client.py get_job_status --base_url {base_url} --client_id {client_id} --client_secret {client_secret} --job_id {job['id']}"
                 print(get_job_status_command)
         else:
             print(response)
