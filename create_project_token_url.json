@@ -17,7 +17,12 @@
           "email": "ivan@datasaur.ai"
         }
       ],
-      "documents": [],
+      "documents": [
+        {
+          "fileName": "sherlockholmes.txt",
+          "externalImportableUrl": "https://raw.githubusercontent.com/datasaur-ai/api-client-example/master/sample-files/token-based/sherlockholmes.txt"
+        }
+      ],
       "labelSetIDs": []
     }
   },
