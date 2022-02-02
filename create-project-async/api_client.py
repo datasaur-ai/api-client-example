@@ -1,6 +1,7 @@
 import fire
 from os import environ
 from src.project import Project
+from src.export import Export
 from src.job import Job
 
 def create_project(base_url, client_id, client_secret, team_id):
@@ -9,6 +10,12 @@ def create_project(base_url, client_id, client_secret, team_id):
             base_url, client_id, client_secret,
             team_id=str(team_id),
             operations_path='project_configuration.json', documents_path='documents')
+    except Exception as e:
+        raise SystemExit(e)
+
+def export_single_project(base_url, client_id, client_secret, project_id, export_file_name, export_format, output_dir):
+    try:
+        Export.export(base_url, client_id, client_secret, project_id, export_file_name, export_format, output_dir)        
     except Exception as e:
         raise SystemExit(e)
 

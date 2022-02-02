@@ -1,6 +1,7 @@
 from oauthlib.oauth2 import BackendApplicationClient
 from requests_oauthlib import OAuth2Session
 import json
+import requests
 import os
 
 def get_access_token(base_url, client_id, client_secret):
@@ -15,3 +16,7 @@ def get_access_token(base_url, client_id, client_secret):
 def get_operations(file_name):
     with open(file_name, 'r') as file:
         return json.loads(file.read())
+
+def post_request(url, access_token, operations, verify):
+    headers = {'Authorization': 'Bearer ' + access_token, 'Content-Type': 'application/json'}
+    return requests.request("POST", url, headers=headers, data=json.dumps(operations), verify=verify)

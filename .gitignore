@@ -4,3 +4,4 @@ output/
 __pycache__
 .env
 create-project-async/documents
+create-project-async/output/

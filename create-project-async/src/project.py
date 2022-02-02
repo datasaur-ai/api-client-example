@@ -23,7 +23,7 @@ class Project():
             file = (str(iterator), open(filepath, 'rb'))
             files.append(file)
             document = {
-                "fileName": os.path.basename(filepath),
+                "fileName": os.path.basename(filepath) + '.txt',
                 "file": None,
             }
             if "customScriptId" in operations["variables"]["input"]["documentSettings"]:

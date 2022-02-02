@@ -9,5 +9,5 @@
       "method": "FILE_STORAGE"
     }
   },
-  "query": "query ExportTextProjectQuery ($input: ExportTextProjectInput!) { result: exportTextProject(input: $input) { redirect fileUrl fileUrlExpiredAt queued exportId {   id   stack   args   __typename } __typename }}"
+  "query": "query ExportTextProjectQuery ($input: ExportTextProjectInput!) { result: exportTextProject(input: $input) { redirect fileUrl fileUrlExpiredAt queued exportId __typename }}"
 }

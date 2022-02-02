@@ -17,6 +17,19 @@ python api_client.py create_project \
   --team_id TEAM_ID
 ```
 
+## Export Single Project
+
+```
+python api_client.py export_single_project \
+  --base_url BASE_URL \
+  --client_id CLIENT_ID \
+  --client_secret CLIENT_SECRET \
+  --project_id projectId \
+  --export_file_name datasaur \
+  --export_format JSON_ADVANCED \
+  --output_dir ./outputs
+```
+
 ## Get Job Status
 
 ```
