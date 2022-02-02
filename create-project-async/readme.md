@@ -30,6 +30,19 @@ python api_client.py export_single_project \
   --output_dir ./outputs
 ```
 
+## Export Multiple Projects
+
+```
+python api_client.py export_projects \
+  --base_url BASE_URL \
+  --client_id CLIENT_ID \
+  --client_secret CLIENT_SECRET \
+  --team_id teamId \
+  --project_status  "[\"COMPLETE\", \"REVIEW_READY\", \"IN_REVIEW\"]" \
+  --export_format JSON_ADVANCED \
+  --output_dir ./outputs
+```
+
 ## Get Job Status
 
 ```
