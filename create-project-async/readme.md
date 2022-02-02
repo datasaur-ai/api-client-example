@@ -1,6 +1,6 @@
 # API Client Sample
 
-## Pre-requisite
+## Pre-requisites
 
 ```
 # install dependencies
@@ -26,3 +26,7 @@ python api_client.py get_job_status \
   --client_secret CLIENT_SECRET \
   --job_id JOB_ID
 ```
+
+## Troubleshooting
+
+- In case you get "certificate verify failed error", check server certificate or run this command in terminal to ignore SSL verification `export VERIFY_SSL=0`

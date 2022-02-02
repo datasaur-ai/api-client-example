@@ -1,0 +1,7 @@
+{
+  "operationName": "GetExportDeliveryStatus",
+  "variables": {
+    "exportId": "EXPORT_ID"
+  },
+  "query": "query GetExportDeliveryStatus($exportId: ID!) { exportDeliveryStatus: getExportDeliveryStatus(exportId: $exportId) { deliveryStatus __typename }}"
+}

@@ -1,0 +1,13 @@
+{
+  "operationName": "ExportTextProjectQuery",
+  "variables": {
+    "input": {
+      "fileName": "datasaur",
+      "format": "",
+      "projectIds": [""],
+      "role": "REVIEWER",
+      "method": "FILE_STORAGE"
+    }
+  },
+  "query": "query ExportTextProjectQuery ($input: ExportTextProjectInput!) { result: exportTextProject(input: $input) { redirect fileUrl fileUrlExpiredAt queued exportId {   id   stack   args   __typename } __typename }}"
+}

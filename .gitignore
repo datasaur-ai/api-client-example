@@ -3,3 +3,4 @@ readme.txt
 output/
 __pycache__
 .env
+create-project-async/documents

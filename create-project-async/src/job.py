@@ -1,6 +1,7 @@
 import requests
 import json
 import time
+import os
 from src.helper import get_access_token, get_operations
 
 CHECK_JOB_INTERVAL_SECONDS = 5
@@ -9,6 +10,7 @@ CHECK_JOB_INTERVAL_SECONDS = 5
 class Job():
     @staticmethod
     def get_status(base_url, client_id, client_secret, job_id, operations_path):
+        verify = os.environ['VERIFY_SSL'] == '1'
         url = f'{base_url}/graphql'
         access_token = get_access_token(base_url, client_id, client_secret)
         operations = get_operations(operations_path)
@@ -16,7 +18,7 @@ class Job():
         data = json.dumps(operations)
         headers = {'Authorization': 'Bearer ' + access_token, 'Content-Type': 'application/json'}
         while True:
-            response = requests.request("POST", url, headers=headers, data=data)
+            response = requests.request("POST", url, headers=headers, data=data, verify=verify)
             if response.status_code != 200 or not ('json' in response.headers['content-type']):
                 print(response.text.encode('utf8'))
                 return
