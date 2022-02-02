@@ -1,0 +1,32 @@
+{
+  "operationName": "LaunchTextProjectAsyncMutation",
+  "variables": {
+    "input": {
+      "teamId": "IGNORE THIS",
+      "name": "<FILL THE PROJECT NAME>",
+      "type": "CUSTOM",
+      "projectSettings": {
+        "consensus": 1,
+        "enableEditLabelSet": false,
+        "enableEditSentence": true,
+        "hideLabelerNamesDuringReview": false,
+        "hideRejectedLabelsDuringReview": false,
+        "hideLabelsFromInactiveLabelSetDuringReview": false,
+        "hideOriginalSentencesDuringReview": true
+      },
+      "documentSettings": {
+        "kind": "TOKEN_BASED",
+        "customScriptId": "<FILL WITH CUSTOM SCRIPT ID>",
+        "allowCharacterBasedLabeling": false,
+        "allowArcDrawing": true,
+        "allowMultiLabels": true,
+        "allTokensMustBeLabeled": false,
+        "textLabelMaxTokenLength": 999999,
+        "sentenceSeparator": "\n"
+      },
+      "documents": [],
+      "documentAssignments": []
+    }
+  },
+  "query": "mutation LaunchTextProjectAsyncMutation($input: LaunchTextProjectInput!) { launchTextProjectAsync(input: $input) { job { ...JobFragment __typename } name __typename }}fragment JobFragment on Job { id status progress errors { id stack args __typename } resultId __typename}"
+}
