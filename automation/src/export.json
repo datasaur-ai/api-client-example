@@ -6,7 +6,13 @@
       "format": "",
       "projectIds": [""],
       "role": "REVIEWER",
-      "method": "FILE_STORAGE"
+      "method": "FILE_STORAGE",
+      "includedCommentType": [
+        "COMMENT",
+        "SPAN_LABEL",
+        "ARROW_LABEL",
+        "SPAN_TEXT"
+      ]
     }
   },
   "query": "query ExportTextProjectQuery ($input: ExportTextProjectInput!) { result: exportTextProject(input: $input) { redirect fileUrl fileUrlExpiredAt queued exportId __typename }}"

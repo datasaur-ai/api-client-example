@@ -2,8 +2,8 @@
   "operationName": "LaunchTextProjectAsyncMutation",
   "variables": {
     "input": {
-      "teamId": "IGNORE THIS",
-      "name": "<FILL THE PROJECT NAME>",
+      "teamId": "teamID",
+      "name": "<PROJECT_NAME>",
       "type": "CUSTOM",
       "projectSettings": {
         "consensus": 1,
@@ -16,7 +16,7 @@
       },
       "documentSettings": {
         "kind": "TOKEN_BASED",
-        "customScriptId": "<FILL WITH CUSTOM SCRIPT ID>",
+        "customScriptId": "<CUSTOM_SCRIPT_ID>",
         "allowCharacterBasedLabeling": false,
         "allowArcDrawing": true,
         "allowMultiLabels": true,

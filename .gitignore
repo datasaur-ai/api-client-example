@@ -3,5 +3,6 @@ readme.txt
 output/
 __pycache__
 .env
-create-project-async/documents
-create-project-async/output/
+automation/env
+automation/documents
+automation/output

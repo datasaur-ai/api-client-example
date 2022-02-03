@@ -46,6 +46,7 @@ class Project():
         operations["variables"]["input"]["documents"] = documents
 
         # Call Datasaur API
+        # See this link for further reference on uploading file with GraphQL https://github.com/jaydenseric/graphql-multipart-request-spec#file-list
         headers = {'Authorization': 'Bearer ' + access_token}
         data = {'operations': json.dumps(operations), 'map': json.dumps(payload_map)}
         response = requests.request(
