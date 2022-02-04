@@ -5,7 +5,8 @@ import time
 import glob
 from typing import List
 from urllib.parse import urlparse
-from src.helper import get_access_token, get_operations, get_projects, post_request
+from google.cloud import storage
+from src.helper import get_access_token, get_operations, get_projects, get_bucket_path_information, post_request
 
 POOLING_INVERVAL = 0.5  # 0.5s
 
@@ -48,16 +49,36 @@ class Export():
         if len(json_response["data"]["result"]["fileUrl"]) > 0:
             export_id = json_response["data"]["result"]["exportId"]
             Export.poll_export_delivery_status(url, access_token, export_id)
-
             file_url = json_response["data"]["result"]["fileUrl"]
-            file_response = requests.request("GET", file_url)
-            os.makedirs(output_dir, exist_ok=True)
-            file_response_url = urlparse(file_url)
-            file_name = os.path.basename(file_response_url.path)
+            Export.store_file(output_dir, file_url)
+            
+    @staticmethod
+    def download_file(file_url):
+        file_response = requests.request("GET", file_url)
+        print("Success downloading the file:" + file_url)
+        return file_response.content;
+
+    @staticmethod
+    def store_file(output_dir, file_url):
+        content = Export.download_file(file_url)
+        file_response_url = urlparse(file_url)
+        file_name = os.path.basename(file_response_url.path)
+        bucket_path_information = get_bucket_path_information(output_dir)
+        if bucket_path_information is None:
+            # store locally
+            os.makedirs(output_dir, exist_ok=True)            
             output_file = output_dir + '/' + file_name
-            open(output_file, 'wb').write(file_response.content)
-            print("Success downloading the file. Output file:" + output_file)
-        
+            open(output_file, 'wb').write(content)
+            print("Successfully write the file to local filesystem. Output file:" + output_file)
+        else:
+            storage_client = storage.Client()
+            bucket_name = bucket_path_information["bucket_name"]
+            path = bucket_path_information["path"]
+            bucket = storage_client.bucket(bucket_name)
+            output_file_path = path + '/' + file_name
+            blob = bucket.blob(output_file_path)
+            blob.upload_from_string(content)
+            print('Successfuly write the file to gcs. Bucket:' + bucket_name + ' path: ' + output_file_path.strip(' /'))
 
     @staticmethod
     def poll_export_delivery_status(url, access_token, export_id):

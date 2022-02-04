@@ -2,9 +2,17 @@
 
 ## Pre-requisites
 
+- python
+- pip
+- google application credentials, follow this https://cloud.google.com/storage/docs/reference/libraries#more_examples
+
+## Setup
+
 ```
 # install dependencies
 python -m pip install -r src/requirements.txt
+cp .env.example .env
+# adjust .env with GOOGLE_APPLICATION_CREDENTIALS
 ```
 
 ## Create Project
@@ -19,6 +27,8 @@ python api_client.py create_project \
 
 ## Export Single Project
 
+### Store the exported project locally
+
 ```
 python api_client.py export_single_project \
   --base_url BASE_URL \
@@ -30,7 +40,22 @@ python api_client.py export_single_project \
   --output_dir ./outputs
 ```
 
+### Store the exported project in Google Cloud Storage
+
+```
+python api_client.py export_single_project \
+  --base_url BASE_URL \
+  --client_id CLIENT_ID \
+  --client_secret CLIENT_SECRET \
+  --project_id projectId \
+  --export_file_name datasaur \
+  --export_format JSON_ADVANCED \
+  --output_dir gs://bucket-name/folder
+```
+
 ## Export Multiple Projects
+
+### Store the exported projects locally
 
 ```
 python api_client.py export_projects \
@@ -41,6 +66,19 @@ python api_client.py export_projects \
   --project_status  "[\"COMPLETE\", \"REVIEW_READY\", \"IN_REVIEW\"]" \
   --export_format JSON_ADVANCED \
   --output_dir ./outputs
+```
+
+### Store the exported projects in Google Cloud Storage
+
+```
+python api_client.py export_projects \
+  --base_url BASE_URL \
+  --client_id CLIENT_ID \
+  --client_secret CLIENT_SECRET \
+  --team_id teamId \
+  --project_status  "[\"COMPLETE\", \"REVIEW_READY\", \"IN_REVIEW\"]" \
+  --export_format JSON_ADVANCED \
+  --output_dir gs://bucket-name/folder
 ```
 
 ## Get Job Status

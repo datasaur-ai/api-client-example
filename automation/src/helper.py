@@ -4,6 +4,8 @@ import json
 import requests
 import os
 import copy
+from cloudpathlib import CloudPath
+
 
 
 def get_access_token(base_url, client_id, client_secret):
@@ -58,3 +60,13 @@ def get_projects(url, access_token, team_id, parameters, verify):
         operations["variables"]["input"]["filter"]["statuses"] = parameters['statuses']
 
     return request_all_pages(url, access_token, operations, verify)
+
+def get_bucket_path_information(path):
+    if path.startswith('gs://'):
+        cloud_path = CloudPath(path)
+        return {
+            "bucket_name":  cloud_path.bucket,
+            "path": cloud_path.name if (len(cloud_path.parents) > 0) else "",
+        }
+    else:
+        return None

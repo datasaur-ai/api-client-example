@@ -4,6 +4,7 @@ from src.project import Project
 from src.export import Export
 from src.job import Job
 from typing import List
+from dotenv import load_dotenv
 
 def create_project(base_url, client_id, client_secret, team_id):
     try:
@@ -37,4 +38,5 @@ def get_job_status(base_url, client_id, client_secret, job_id):
 
 if __name__ == '__main__':
     environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+    load_dotenv()
     fire.Fire()
