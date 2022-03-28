@@ -1,10 +1,8 @@
 {
-    "operationName": "CreateGuideline",
-    "variables": {
-        "input": {
-            "name": "Labeling Guideline",
-            "content": ""
-        }
-    },
-    "query": "mutation CreateGuideline($input: GuidelineInput!) {  createGuideline(input: $input) {    id    name    content    __typename  }}"
+  "operationName": "CreateGuideline",
+  "variables": {
+    "name": "Labeling guideline",
+    "content": "Please label with your heart"
+  },
+  "query": "mutation CreateGuideline($name: String!, $content: String!, $teamId: ID) {  createGuideline(name: $name, content: $content, teamId: $teamId) {    id    name    content    __typename  }}"
 }
