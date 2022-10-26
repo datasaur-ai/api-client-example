@@ -3,3 +3,6 @@ readme.txt
 output/
 __pycache__
 .env
+automation/env
+automation/documents
+automation/output
