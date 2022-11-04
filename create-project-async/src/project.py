@@ -1,5 +1,6 @@
 import glob
 import json
+import os
 
 import requests
 from src.helper import get_access_token, get_operations
@@ -10,6 +11,11 @@ class Project:
     def create(
         base_url, client_id, client_secret, team_id, operations_path, documents_path
     ):
+        if os.path.isfile(documents_path):
+            print('received a file for documents_path, processing as list of documents...')
+            return Project.__handle_document_list(base_url, client_id, client_secret, team_id, operations_path, documents_path)
+        
+
         url = f"{base_url}/graphql"
         access_token = get_access_token(base_url, client_id, client_secret)
         operations = get_operations(operations_path)
@@ -52,7 +58,7 @@ class Project:
         Project.__process_graphql_response(response, base_url, client_id, client_secret)
 
     @staticmethod
-    def create_project_external_url(
+    def __handle_document_list(
         base_url,
         client_id,
         client_secret,
@@ -60,7 +66,7 @@ class Project:
         operations_path,
         documents_list_path,
     ):
-        url = f"{base_url}/graphql"
+        graphql_url = f"{base_url}/graphql"
         access_token = get_access_token(base_url, client_id, client_secret)
         operations = get_operations(operations_path)
         # Set input.teamId
@@ -72,14 +78,14 @@ class Project:
             documents_list = json.load(reader)
 
         for d in documents_list:
-            url = d.get("url", None) or d.get("externalImportableUrl")
-            filename = (
+            file_url = d.get("url", None) or d.get("externalImportableUrl")
+            file_name = (
                 d.get("fileName", None) or d.get("filename", None) or d.get("name")
             )
             documents.append(
                 {
-                    "externalImportableUrl": url,
-                    "fileName": filename,
+                    "externalImportableUrl": file_url,
+                    "fileName": file_name,
                     "file": None,
                 }
             )
@@ -96,7 +102,7 @@ class Project:
             "variables": json.dumps(operations["variables"]),
             "operations": json.dumps(operations),
         }
-        response = Project.__call_graphql(url=url, headers=headers, data=data)
+        response = Project.__call_graphql(url=graphql_url, headers=headers, data=data)
         Project.__process_graphql_response(response, base_url, client_id, client_secret)
 
     @staticmethod
@@ -116,5 +122,5 @@ class Project:
                 get_job_status_command = f"python api_client.py get_job_status --base_url {base_url} --client_id {client_id} --client_secret {client_secret} --job_id {job['id']}"
                 print(get_job_status_command)
         else:
-            print(response)
             print(response.text.encode("utf8"))
+            print(response)

@@ -8,7 +8,7 @@ python -m pip install -r src/requirements.txt
 ```
 
 ## Create Project
-
+With local files, documents located under `document/` folder 
 ```
 python api_client.py create_project \
   --base_url BASE_URL \
@@ -27,13 +27,14 @@ python api_client.py get_job_status \
   --job_id JOB_ID
 ```
 
-## Create Project with External Importable URLs
-
+## Create Project with List of URLs
+With remote files, provide a JSON file to `documents_path`
+Example file available under `documents-example.json`
 ```
-python api_client.py create_project_external_url \
+python api_client.py create_project \
   --base_url BASE_URL \
   --client_id CLIENT_ID \
   --client_secret CLIENT_SECRET \
   --team_id TEAM_ID
-  --documents_list_path PATH_TO_DOCUMENTS_JSON
+  --documents_path PATH_TO_DOCUMENTS_JSON
 ```

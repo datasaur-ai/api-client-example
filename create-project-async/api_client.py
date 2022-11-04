@@ -4,7 +4,7 @@ from src.project import Project
 from src.job import Job
 
 
-def create_project(base_url, client_id, client_secret, team_id):
+def create_project(base_url, client_id, client_secret, team_id, documents_path="documents"):
     try:
         Project.create(
             base_url,
@@ -12,7 +12,7 @@ def create_project(base_url, client_id, client_secret, team_id):
             client_secret,
             team_id=str(team_id),
             operations_path="project_configuration.json",
-            documents_path="documents",
+            documents_path=documents_path
         )
     except Exception as e:
         raise SystemExit(e)
@@ -26,22 +26,6 @@ def get_job_status(base_url, client_id, client_secret, job_id):
             client_secret,
             job_id=str(job_id),
             operations_path="src/get_job_status.json",
-        )
-    except Exception as e:
-        raise SystemExit(e)
-
-
-def create_project_external_url(
-    base_url, client_id, client_secret, team_id, documents_list_path
-):
-    try:
-        Project.create_project_external_url(
-            base_url,
-            client_id,
-            client_secret,
-            team_id=str(team_id),
-            operations_path="project_configuration.json",
-            documents_list_path=documents_list_path,
         )
     except Exception as e:
         raise SystemExit(e)
