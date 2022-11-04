@@ -7,21 +7,46 @@ from src.job import Job
 def create_project(base_url, client_id, client_secret, team_id):
     try:
         Project.create(
-            base_url, client_id, client_secret,
+            base_url,
+            client_id,
+            client_secret,
             team_id=str(team_id),
-            operations_path='project_configuration.json', documents_path='documents')
+            operations_path="project_configuration.json",
+            documents_path="documents",
+        )
     except Exception as e:
         raise SystemExit(e)
 
 
 def get_job_status(base_url, client_id, client_secret, job_id):
     try:
-        Job.get_status(base_url, client_id, client_secret, job_id=str(
-            job_id), operations_path='src/get_job_status.json')
+        Job.get_status(
+            base_url,
+            client_id,
+            client_secret,
+            job_id=str(job_id),
+            operations_path="src/get_job_status.json",
+        )
     except Exception as e:
         raise SystemExit(e)
 
 
-if __name__ == '__main__':
-    environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+def create_project_external_url(
+    base_url, client_id, client_secret, team_id, documents_list_path
+):
+    try:
+        Project.create_project_external_url(
+            base_url,
+            client_id,
+            client_secret,
+            team_id=str(team_id),
+            operations_path="project_configuration.json",
+            documents_list_path=documents_list_path,
+        )
+    except Exception as e:
+        raise SystemExit(e)
+
+
+if __name__ == "__main__":
+    environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
     fire.Fire()
