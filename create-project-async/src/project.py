@@ -9,6 +9,7 @@ from src.helper import get_access_token, get_operations
 
 EXTERNAL_OBJECT_STORAGE_FILE_KEY = "externalObjectStorageFileKey"
 EXTERNAL_IMPORTABLE_URL = "externalImportableUrl"
+EXTERNAL_OBJECT_STORAGE_ID = "externalObjectStorageId"
 
 
 class Project:
@@ -85,7 +86,7 @@ class Project:
         # Set input.teamId
         operations["variables"]["input"]["teamId"] = team_id
         has_eos_id = operations["variables"]["input"].get(
-            EXTERNAL_OBJECT_STORAGE_FILE_KEY, False
+            EXTERNAL_OBJECT_STORAGE_ID, False
         )
 
         documents = []
@@ -105,12 +106,12 @@ class Project:
 
             if has_eos_id and file_key is None:
                 raise InvalidOptions(
-                    f"externalObjectStorageId needs {EXTERNAL_OBJECT_STORAGE_FILE_KEY} in documents array"
+                    f"{EXTERNAL_OBJECT_STORAGE_ID} needs {EXTERNAL_OBJECT_STORAGE_FILE_KEY} in documents array"
                 )
 
             if file_key and not file_url and not has_eos_id:
                 raise InvalidOptions(
-                    f"externalObjectStorageId is not provided, but document ${json.dumps(d)} only have {EXTERNAL_OBJECT_STORAGE_FILE_KEY}"
+                    f"{EXTERNAL_OBJECT_STORAGE_ID} is not provided, but document ${json.dumps(d)} only have {EXTERNAL_OBJECT_STORAGE_FILE_KEY}"
                 )
 
             documents.append(
