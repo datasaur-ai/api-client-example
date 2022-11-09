@@ -3,6 +3,7 @@ import json
 import os
 
 import requests
+from src.exceptions.invalid_options import InvalidOptions
 from src.helper import get_access_token, get_operations
 
 
@@ -71,9 +72,10 @@ class Project:
         operations = get_operations(operations_path)
         # Set input.teamId
         operations["variables"]["input"]["teamId"] = team_id
+        has_eos_id = operations["variables"]["input"].get("externalObjectStorageId", False)
 
         documents = []
-        manual_keys = ["file", "fileName", "externalImportableUrl"]
+        manual_keys = ["file", "fileName", "externalImportableUrl", "externalObjectStorageFileKey"]
         with open(documents_list_path) as reader:
             documents_list = json.load(reader)
 
@@ -82,11 +84,17 @@ class Project:
             file_name = (
                 d.get("fileName", None) or d.get("filename", None) or d.get("name")
             )
+            file_key = d.get("externalObjectStorageFileKey", None)
+
+            if has_eos_id and file_key is None:
+                raise InvalidOptions("externalObjectStorageId needs externalObjectStorageKey in documents array")
+
             documents.append(
                 {
                     "externalImportableUrl": file_url,
                     "fileName": file_name,
                     "file": None,
+                    "externalObjectStorageFileKey": file_key
                 }
             )
 
