@@ -80,14 +80,17 @@ class Project:
             documents_list = json.load(reader)
 
         for d in documents_list:
-            file_url = d.get("url", None) or d.get("externalImportableUrl")
+            file_url = d.get("url", None) or d.get("externalImportableUrl", None)
             file_name = (
-                d.get("fileName", None) or d.get("filename", None) or d.get("name")
+                d.get("fileName", None) or d.get("filename", None)
             )
             file_key = d.get("externalObjectStorageFileKey", None)
 
             if has_eos_id and file_key is None:
                 raise InvalidOptions("externalObjectStorageId needs externalObjectStorageKey in documents array")
+            
+            if file_key and not file_url and not has_eos_id:
+                raise InvalidOptions("externalObjectStorageId is not provided, but document only have externalObjectStorageKey")
 
             documents.append(
                 {
