@@ -3,7 +3,13 @@ import json
 import os
 
 import requests
+from src.exceptions.invalid_options import InvalidOptions
 from src.helper import get_access_token, get_operations
+
+
+EXTERNAL_OBJECT_STORAGE_FILE_KEY = "externalObjectStorageFileKey"
+EXTERNAL_IMPORTABLE_URL = "externalImportableUrl"
+EXTERNAL_OBJECT_STORAGE_ID = "externalObjectStorageId"
 
 
 class Project:
@@ -12,9 +18,17 @@ class Project:
         base_url, client_id, client_secret, team_id, operations_path, documents_path
     ):
         if os.path.isfile(documents_path):
-            print('received a file for documents_path, processing as list of documents...')
-            return Project.__handle_document_list(base_url, client_id, client_secret, team_id, operations_path, documents_path)
-        
+            print(
+                "received a file for documents_path, processing as list of documents..."
+            )
+            return Project.__handle_document_list(
+                base_url,
+                client_id,
+                client_secret,
+                team_id,
+                operations_path,
+                documents_path,
+            )
 
         url = f"{base_url}/graphql"
         access_token = get_access_token(base_url, client_id, client_secret)
@@ -71,22 +85,41 @@ class Project:
         operations = get_operations(operations_path)
         # Set input.teamId
         operations["variables"]["input"]["teamId"] = team_id
+        has_eos_id = operations["variables"]["input"].get(
+            EXTERNAL_OBJECT_STORAGE_ID, False
+        )
 
         documents = []
-        manual_keys = ["file", "fileName", "externalImportableUrl"]
+        manual_keys = [
+            "file",
+            "fileName",
+            EXTERNAL_IMPORTABLE_URL,
+            EXTERNAL_OBJECT_STORAGE_FILE_KEY,
+        ]
         with open(documents_list_path) as reader:
             documents_list = json.load(reader)
 
         for d in documents_list:
-            file_url = d.get("url", None) or d.get("externalImportableUrl")
-            file_name = (
-                d.get("fileName", None) or d.get("filename", None) or d.get("name")
-            )
+            file_url = d.get("url", None) or d.get(EXTERNAL_IMPORTABLE_URL, None)
+            file_name = d.get("fileName", None) or d.get("filename", None)
+            file_key = d.get(EXTERNAL_OBJECT_STORAGE_FILE_KEY, None)
+
+            if has_eos_id and file_key is None:
+                raise InvalidOptions(
+                    f"{EXTERNAL_OBJECT_STORAGE_ID} needs {EXTERNAL_OBJECT_STORAGE_FILE_KEY} in documents array"
+                )
+
+            if file_key and not file_url and not has_eos_id:
+                raise InvalidOptions(
+                    f"{EXTERNAL_OBJECT_STORAGE_ID} is not provided, but document ${json.dumps(d)} only have {EXTERNAL_OBJECT_STORAGE_FILE_KEY}"
+                )
+
             documents.append(
                 {
-                    "externalImportableUrl": file_url,
+                    EXTERNAL_IMPORTABLE_URL: file_url,
                     "fileName": file_name,
                     "file": None,
+                    EXTERNAL_OBJECT_STORAGE_FILE_KEY: file_key,
                 }
             )
 

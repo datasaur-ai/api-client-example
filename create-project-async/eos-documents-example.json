@@ -1,0 +1,10 @@
+[
+  {
+    "externalObjectStorageFileKey": "path/to/transcription.txt",
+    "fileName": "one.txt"
+  },
+  {
+    "externalObjectStorageFileKey": "path/to/document.pdf",
+    "fileName": "one.pdf"
+  }
+]
