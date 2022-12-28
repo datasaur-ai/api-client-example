@@ -1,102 +1,104 @@
 {
-    "operationName": "LaunchTextProjectMutation",
-    "variables": {
-        "input": {
-            "name": "Test Project with multiple labeler and cross assignments",
-            "documentSettings": {
-                "kind": "ROW_BASED",
-                "autoScrollWhenLabeling": true,
-                "displayedRows": 1,
-                "mediaDisplayStrategy": "FULL"
-            },
-            "assignees": [
-                {
-                    "email": "labeler-A@datasaur.ai",
-                    "documentNames": [
-                        "file-1.csv",
-                        "file-3.csv"
-                    ]
-                },
-                {
-                    "email": "labeler-B@datasaur.ai",
-                    "documentNames": [
-                        "file-1.csv",
-                        "file-2.csv"
-                    ]
-                },
-                {
-                    "email": "labeler-C@datasaur.ai",
-                    "documentNames": [
-                        "file-2.csv",
-                        "file-3.csv"
-                    ]
-                }
-            ],
-            "projectSettings": {
-                "consensus": 1,
-                "enableEditLabelSet": false,
-                "enableEditSentence": false
-            },
-            "documents": [
-                {
-                    "name": "file-1.csv",
-                    "file": null,
-                    "fileName": "file-1.csv",
-                    "settings": {
-                        "questions": [
-                            {
-                                "type": "DROPDOWN",
-                                "config": {
-                                    "multiple": true,
-                                    "options": [
-                                        {
-                                            "id": "1",
-                                            "label": "Red"
-                                        },
-                                        {
-                                            "id": "2",
-                                            "label": "Black"
-                                        },
-                                        {
-                                            "id": "3",
-                                            "label": "White"
-                                        }
-                                    ]
-                                },
-                                "name": "Color",
-                                "label": "What color is it?",
-                                "required": false
-                            }
-                        ]
-                    },
-                    "docFileOptions": {
-                        "customHeaderColumns": [
-                            {
-                                "name": "Book Cover 1",
-                                "displayed": true,
-                                "labelerRestricted": false
-                            },
-                            {
-                                "name": "Book Cover 2",
-                                "displayed": true,
-                                "labelerRestricted": false
-                            }
-                        ],
-                        "firstRowAsHeader": true
-                    }
-                },
-                {
-                    "name": "file-2.csv",
-                    "file": null,
-                    "fileName": "file-2.csv"
-                },
-                {
-                    "name": "file-3.csv",
-                    "file": null,
-                    "fileName": "file-3.csv"
-                }
-            ]
+  "operationName": "LaunchTextProjectMutation",
+  "variables": {
+    "input": {
+      "name": "Test Project with multiple labeler and cross assignments",
+      "kinds": [
+        "ROW_BASED"
+      ],
+      "documentSettings": {
+        "autoScrollWhenLabeling": true,
+        "displayedRows": 1,
+        "mediaDisplayStrategy": "FULL"
+      },
+      "assignees": [
+        {
+          "email": "labeler-A@datasaur.ai",
+          "documentNames": [
+            "file-1.csv",
+            "file-3.csv"
+          ]
+        },
+        {
+          "email": "labeler-B@datasaur.ai",
+          "documentNames": [
+            "file-1.csv",
+            "file-2.csv"
+          ]
+        },
+        {
+          "email": "labeler-C@datasaur.ai",
+          "documentNames": [
+            "file-2.csv",
+            "file-3.csv"
+          ]
         }
-    },
-    "query": "mutation LaunchTextProjectMutation($input: LaunchTextProjectInput!) {  launchTextProject(input: $input) {    id    rootDocumentId    settings {      consensus      enableEditLabelSet      enableEditSentence      __typename    }    __typename  }}"
+      ],
+      "projectSettings": {
+        "consensus": 1,
+        "enableEditLabelSet": false,
+        "enableEditSentence": false
+      },
+      "documents": [
+        {
+          "name": "file-1.csv",
+          "file": null,
+          "fileName": "file-1.csv",
+          "settings": {
+            "questions": [
+              {
+                "type": "DROPDOWN",
+                "config": {
+                  "multiple": true,
+                  "options": [
+                    {
+                      "id": "1",
+                      "label": "Red"
+                    },
+                    {
+                      "id": "2",
+                      "label": "Black"
+                    },
+                    {
+                      "id": "3",
+                      "label": "White"
+                    }
+                  ]
+                },
+                "name": "Color",
+                "label": "What color is it?",
+                "required": false
+              }
+            ]
+          },
+          "docFileOptions": {
+            "customHeaderColumns": [
+              {
+                "name": "Book Cover 1",
+                "displayed": true,
+                "labelerRestricted": false
+              },
+              {
+                "name": "Book Cover 2",
+                "displayed": true,
+                "labelerRestricted": false
+              }
+            ],
+            "firstRowAsHeader": true
+          }
+        },
+        {
+          "name": "file-2.csv",
+          "file": null,
+          "fileName": "file-2.csv"
+        },
+        {
+          "name": "file-3.csv",
+          "file": null,
+          "fileName": "file-3.csv"
+        }
+      ]
+    }
+  },
+  "query": "mutation LaunchTextProjectMutation($input: LaunchTextProjectInput!) {  launchTextProject(input: $input) {    id    rootDocumentId    settings {      consensus      enableEditLabelSet      enableEditSentence      __typename    }    __typename  }}"
 }

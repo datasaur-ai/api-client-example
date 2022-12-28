@@ -1,74 +1,76 @@
 {
-    "operationName": "LaunchTextProjectMutation",
-    "variables": {
-      "input": {
-        "name": "Test Project",
-        "documentSettings": {
-          "kind": "ROW_BASED",
-          "autoScrollWhenLabeling": true,
-          "displayedRows": 1,
-          "mediaDisplayStrategy": "FULL"
-        },
-        "assignees": [
-          {
-            "email": "ivan@datasaur.ai"
-          }
-        ],
-        "projectSettings": {
-          "consensus": 1,
-          "enableEditLabelSet": false,
-          "enableEditSentence": false
-        },
-        "documents": [
-          {
-            "name": "name",
-            "file": null,
-            "fileName": "name.csv",
-            "settings": {
-              "questions": [
-                {
-                  "type": "DROPDOWN",
-                  "config": {
-                    "multiple": true,
-                    "options": [
-                        {
-                            "id" : "1",
-                            "label" : "Red"
-                        },
-                        {
-                            "id" : "2",
-                            "label" : "Black"
-                        },
-                        {
-                            "id" : "3",
-                            "label" : "White"
-                        }
-                    ]
-                  },
-                  "name": "Color",
-                  "label": "What color is it?",
-                  "required": false
-                }
-              ]
-            },
-            "docFileOptions": {
-              "customHeaderColumns": [
-                {
-                  "name": "Book Cover 1",
-                  "displayed": true,
-                  "labelerRestricted": false
+  "operationName": "LaunchTextProjectMutation",
+  "variables": {
+    "input": {
+      "name": "Test Project",
+      "kinds": [
+        "ROW_BASED"
+      ],
+      "documentSettings": {
+        "autoScrollWhenLabeling": true,
+        "displayedRows": 1,
+        "mediaDisplayStrategy": "FULL"
+      },
+      "assignees": [
+        {
+          "email": "ivan@datasaur.ai"
+        }
+      ],
+      "projectSettings": {
+        "consensus": 1,
+        "enableEditLabelSet": false,
+        "enableEditSentence": false
+      },
+      "documents": [
+        {
+          "name": "name",
+          "file": null,
+          "fileName": "name.csv",
+          "settings": {
+            "questions": [
+              {
+                "type": "DROPDOWN",
+                "config": {
+                  "multiple": true,
+                  "options": [
+                    {
+                      "id": "1",
+                      "label": "Red"
+                    },
+                    {
+                      "id": "2",
+                      "label": "Black"
+                    },
+                    {
+                      "id": "3",
+                      "label": "White"
+                    }
+                  ]
+                },
+                "name": "Color",
+                "label": "What color is it?",
+                "required": false
+              }
+            ]
+          },
+          "docFileOptions": {
+            "customHeaderColumns": [
+              {
+                "name": "Book Cover 1",
+                "displayed": true,
+                "labelerRestricted": false
               },
               {
-                  "name": "Book Cover 2",
-                  "displayed": true,
-                  "labelerRestricted": false
+                "name": "Book Cover 2",
+                "displayed": true,
+                "labelerRestricted": false
               }
-              ],
-              "firstRowAsHeader": true
-            }
+            ],
+            "firstRowAsHeader": true
           }
-        ]
-      }
-    },
-    "query": "mutation LaunchTextProjectMutation($input: LaunchTextProjectInput!) {  launchTextProject(input: $input) {    id    rootDocumentId    settings {      consensus      enableEditLabelSet      enableEditSentence      __typename    }    __typename  }}"
-  }
+        }
+      ]
+    }
+  },
+  "query": "mutation LaunchTextProjectMutation($input: LaunchTextProjectInput!) {  launchTextProject(input: $input) {    id    rootDocumentId    settings {      consensus      enableEditLabelSet      enableEditSentence      __typename    }    __typename  }}"
+}

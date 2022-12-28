@@ -4,13 +4,15 @@
     "input": {
       "teamId": 1,
       "name": "the little prince",
+      "kinds": [
+        "TOKEN_BASED"
+      ],
       "documentSettings": {
         "allTokensMustBeLabeled": false,
         "allowArcDrawing": false,
         "allowMultiLabels": false,
         "autoScrollWhenLabeling": true,
-        "textLabelMaxTokenLength": 999999,
-        "kind": "TOKEN_BASED"
+        "textLabelMaxTokenLength": 999999
       },
       "assignees": [
         {
