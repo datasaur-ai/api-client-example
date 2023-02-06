@@ -35,8 +35,10 @@ def update_project_tags(base_url, client_id, client_secret, team_id, method):
     if method == "PUT":
         project_global_tags = [tag for tag in project_tags if tag.get("globalTag")]
         tag_ids_to_be_applied = [tag["id"] for tag in project_global_tags]
-    else:
+    elif method == "PATCH":
         tag_ids_to_be_applied = [tag["id"] for tag in project_tags]
+    else:
+        return "Invalid Method"
 
     # apply tags to project
     for tag_name in tags_to_be_applied:
