@@ -48,3 +48,12 @@ python3 create_project_token_multiple_files.py https://datasaur.ai <client_id> <
 # using remote URL (you need to specify the files in create_project_token_url.json)
 python3 create_project_token_url.py https://datasaur.ai <client_id> <client_secret> <team_id>
 ```
+
+## Get Projects
+
+Get projects query returns a paginated response. The input variables for the pagination can be configured directly in `get_projects.json`.
+Refer to https://docs.datasaur.ai/#definition-GetProjectsFilterInput for available filters.
+
+```
+python get_projects.py https://datasaur.ai <client_id> <client_secret>
+```

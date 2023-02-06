@@ -1,13 +1,12 @@
 {
     "operationName": "GetTagsQuery",
     "variables": {
-      "input": {
-        "teamId": "",
-        "filter": {
-            "includeGlobalTag": true
+        "input": {
+            "teamId": "",
+            "filter": {
+                "includeGlobalTag": true
+            }
         }
-      }
     },
     "query": "query GetTagsQuery($input: GetTagsInput!) { result: getTags(input: $input) { ...TagFragment __typename } } fragment TagFragment on Tag { id name globalTag __typename }"
-  }
-  
+}
