@@ -57,3 +57,18 @@ Refer to https://docs.datasaur.ai/#definition-GetProjectsFilterInput for availab
 ```
 python get_projects.py https://datasaur.ai <client_id> <client_secret>
 ```
+
+## Update Tags
+
+Tag names and project id can be specified from update_project_tags.json.
+
+Two available methods: PUT and PATCH. PUT method will replace all of the project tags with the input, just like PUT method on REST API. PATCH method will only add new tags to a project. See the example below.
+
+- Project A has Tag1.
+- PUT ["Tag2"]: Project A will have only Tag2.
+- PATCH ["Tag2"]: Project A will have Tag1 and Tag2.
+
+```
+python get_projects.py https://datasaur.ai <client_id> <client_secret> <team_id> <method>
+python get_projects.py https://datasaur.ai <client_id> <client_secret> <team_id> PUT
+```
