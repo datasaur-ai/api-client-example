@@ -1,0 +1,10 @@
+{
+    "operationName": "CreateTagMutation",
+    "variables": {
+        "input": {
+            "teamId": "",
+            "name": ""
+        }
+    },
+    "query": "mutation CreateTagMutation($input: CreateTagInput!) { createTag(input: $input) { ...TagFragment } } fragment TagFragment on Tag { id name }"
+}
