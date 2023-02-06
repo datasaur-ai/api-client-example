@@ -1,4 +1,3 @@
-import asyncio
 import fire
 import json
 import os
@@ -52,7 +51,7 @@ def update_project_tags(base_url, client_id, client_secret, team_id, method):
     operations["variables"]["input"]["tagIds"] = tag_ids_to_be_applied
     del operations["variables"]["input"]["tags"]
 
-    response = asyncio.run(post_request(url, access_token, operations))
+    response = post_request(url, access_token, operations)
     if "json" in response.headers["content-type"]:
         json_response = json.loads(response.text.encode("utf8"))
         result = json_response["data"]["result"]
@@ -66,7 +65,7 @@ def create_tag(url, access_token, team_id, tag_name):
     operations["variables"]["input"]["teamId"] = team_id
     operations["variables"]["input"]["name"] = tag_name
 
-    response = asyncio.run(post_request(url, access_token, operations))
+    response = post_request(url, access_token, operations)
     if "json" in response.headers["content-type"]:
         json_response = json.loads(response.text.encode("utf8"))
         result = json_response["data"]["createTag"]
@@ -79,7 +78,7 @@ def get_single_project(url, access_token, project_id):
     operations = get_operations("get_single_project.json")
     operations["variables"]["input"]["projectId"] = project_id
 
-    response = asyncio.run(post_request(url, access_token, operations))
+    response = post_request(url, access_token, operations)
     if "json" in response.headers["content-type"]:
         json_response = json.loads(response.text.encode("utf8"))
         result = json_response["data"]["result"]

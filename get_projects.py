@@ -1,4 +1,3 @@
-import asyncio
 import fire
 import json
 import os
@@ -30,7 +29,7 @@ def get_projects(base_url, client_id, client_secret):
         filter_tag_ids.append(tag_item["id"])
     operations["variables"]["input"]["filter"]["tags"] = filter_tag_ids
 
-    response = asyncio.run(post_request(url, access_token, operations))
+    response = post_request(url, access_token, operations)
     if "json" in response.headers["content-type"]:
         json_response = json.loads(response.text.encode("utf8"))
         result = json_response["data"]["result"]["nodes"]

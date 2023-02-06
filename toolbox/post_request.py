@@ -2,7 +2,7 @@ import json
 import requests
 
 
-async def post_request(url, access_token, operations):
+def post_request(url, access_token, operations):
     headers = {
         "Authorization": "Bearer " + access_token,
         "Content-Type": "application/json",
