@@ -69,6 +69,6 @@ Two available methods: PUT and PATCH. PUT method will replace all of the project
 - PATCH ["Tag2"]: Project A will have Tag1 and Tag2.
 
 ```
-python get_projects.py https://app.datasaur.ai <client_id> <client_secret> <team_id> <method>
-python get_projects.py https://app.datasaur.ai <client_id> <client_secret> <team_id> PUT
+python update_project_tags.py https://app.datasaur.ai <client_id> <client_secret> <team_id> <method>
+python update_project_tags.py https://app.datasaur.ai <client_id> <client_secret> <team_id> PUT
 ```
