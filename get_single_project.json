@@ -1,0 +1,9 @@
+{
+    "operationName": "GetProjectQuery",
+    "variables": {
+        "input": {
+            "projectId": ""
+        }
+    },
+    "query": "query GetProjectQuery($input: GetProjectInput!) { result: getProject(input: $input) { id name tags { id name globalTag } } }"
+}

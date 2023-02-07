@@ -1,0 +1,18 @@
+{
+  "operationName": "GetProjectsQuery",
+  "variables": {
+    "input": {
+      "cursor": "",
+      "filter": {
+        "teamId": "1",
+        "tags": ["TAG_NAME"]
+      },
+      "sort": [],
+      "page": {
+        "skip": 0,
+        "take": 100
+      }
+    }
+  },
+  "query": "query GetProjectsQuery($input: GetProjectsPaginatedInput!) { result: getProjects(input: $input) { nodes { id name tags { id name } __typename status } pageInfo { nextCursor prevCursor __typename } } }"
+}

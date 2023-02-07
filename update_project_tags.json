@@ -1,0 +1,10 @@
+{
+    "operationName": "UpdateProjectTags",
+    "variables": {
+        "input": {
+            "tags": ["GGEZ"],
+            "projectId": "TMIFJc3eO1e"
+        }
+    },
+    "query": "mutation UpdateProjectTags($input: UpdateProjectInput!) { result: updateProject(input: $input) { id tags { id name } } }"
+}
