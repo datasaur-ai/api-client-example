@@ -1,8 +1,0 @@
-{
-  "operationName": "CreateGuideline",
-  "variables": {
-    "name": "Labeling guideline",
-    "content": "Please label with your heart"
-  },
-  "query": "mutation CreateGuideline($name: String!, $content: String!, $teamId: ID) {  createGuideline(name: $name, content: $content, teamId: $teamId) {    id    name    content    __typename  }}"
-}
