@@ -24,7 +24,7 @@ This repository focuses on examples in Python and only covers common use cases, 
 
 - The detailed explanation can be accessed [here](https://datasaurai.gitbook.io/datasaur/advanced/apis-docs/create-new-project).
 - Note that the process is asynchronous.
-- This is a multipart request because it needs to handle a list of files that will be used when creating the project.
+- This is an HTTP POST multipart request because it needs to handle a list of files that will be used when creating the project.
 - Reference: `/create-project-async` and follow the README.
 
 ### Export Project
