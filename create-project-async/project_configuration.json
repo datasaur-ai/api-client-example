@@ -1,38 +1,119 @@
 {
-  "operationName": "LaunchTextProjectAsyncMutation",
-  "variables": {
-    "input": {
-      "documentSettings": {
-        "allTokensMustBeLabeled": false,
-        "allowArcDrawing": false,
-        "allowCharacterBasedLabeling": false,
-        "allowMultiLabels": true,
-        "textLabelMaxTokenLength": 999999,
-        "sentenceSeparator": "\n",
-        "tokenizer": "WINK",
-        "displayedRows": -1,
-        "kind": "TOKEN_BASED",
-        "mediaDisplayStrategy": "THUMBNAIL",
-        "viewer": "TOKEN",
-        "viewerConfig": {},
-        "firstRowAsHeader": false,
-        "enableTabularMarkdownParsing": false
-      },
-      "name": "Example Project Name",
-      "purpose": "LABELING",
-      "documentAssignments": [],
-      "splitDocumentOption": null,
-      "projectSettings": {
-        "enableEditLabelSet": true,
-        "enableEditSentence": true,
-        "hideLabelerNamesDuringReview": false,
-        "hideRejectedLabelsDuringReview": true,
-        "hideLabelsFromInactiveLabelSetDuringReview": false,
-        "consensus": 1
-      },
-      "teamId": "",
-      "documents": []
-    }
-  },
-  "query": "mutation LaunchTextProjectAsyncMutation($input: LaunchTextProjectInput!) { launchTextProjectAsync(input: $input) { job { ...JobFragment __typename } name __typename }}fragment JobFragment on Job { id status progress errors { id stack args __typename } resultId __typename}"
+    "operationName": "LaunchTextProjectAsyncMutation",
+    "variables": {
+        "input": {
+            "documentSettings": {
+                "sentenceSeparator": "\n",
+                "displayedRows": -1,
+                "mediaDisplayStrategy": "THUMBNAIL",
+                "viewer": "TOKEN",
+                "viewerConfig": {},
+                "firstRowAsHeader": true,
+                "enableTabularMarkdownParsing": false,
+                "enableAnonymization": false,
+                "anonymizationEntityTypes": [
+                    "PERSON",
+                    "DATE_TIME",
+                    "EMAIL_ADDRESS",
+                    "PHONE_NUMBER",
+                    "ORGANIZATION",
+                    "LOCATION",
+                    "DOMAIN_NAME",
+                    "IP_ADDRESS",
+                    "US_PASSPORT",
+                    "CREDIT_CARD",
+                    "US_SSN",
+                    "US_ITIN",
+                    "US_BANK_NUMBER",
+                    "US_DRIVER_LICENSE",
+                    "IBAN_CODE"
+                ],
+                "anonymizationMaskingMethod": "ASTERISK",
+                "anonymizationRegExps": []
+            },
+            "name": "coso-HOrR",
+            "projectCreationId": "V0HSJgYtH36reri9mQVhE",
+            "purpose": "LABELER_TEST",
+            "kinds": [
+                "ROW_BASED"
+            ],
+            "documentAssignments": [
+                {
+                    "teamMemberId": "6038",
+                    "documents": [
+                        {
+                            "fileName": "coso.tsv",
+                            "part": 0
+                        }
+                    ],
+                    "role": "LABELER_AND_REVIEWER"
+                }
+            ],
+            "splitDocumentOption": null,
+            "projectSettings": {
+                "autoMarkDocumentAsComplete": false,
+                "enableEditLabelSet": true,
+                "hideLabelerNamesDuringReview": false,
+                "hideLabelsFromInactiveLabelSetDuringReview": false,
+                "hideOriginalSentencesDuringReview": true,
+                "hideRejectedLabelsDuringReview": true,
+                "shouldConfirmUnusedLabelSetItems": false,
+                "conflictResolution": {
+                    "mode": "PEER_REVIEW",
+                    "consensus": 1
+                },
+                "enableReviewerEditSentence": true,
+                "enableEditSentence": true
+            },
+            "teamId": "455",
+            "documents": [
+                {
+                    "fileName": "coso.tsv",
+                    "file": {
+                        "path": "./datasaur-api-client/create-project-async/documents/coso.tsv"
+                    },
+                    "name": "coso.tsv",
+                    "settings": {
+                        "questions": [
+                            {
+                                "type": "DROPDOWN",
+                                "config": {
+                                    "multiple": false,
+                                    "options": [
+                                        {
+                                            "id": "1",
+                                            "label": "coso"
+                                        },
+                                        {
+                                            "id": "2",
+                                            "label": "not coso"
+                                        }
+                                    ]
+                                },
+                                "name": "Q1",
+                                "label": "Does this post reflect coso opinion?",
+                                "required": false
+                            }
+                        ]
+                    },
+                    "docFileOptions": {
+                        "customHeaderColumns": [
+                            {
+                                "displayed": true,
+                                "labelerRestricted": false,
+                                "name": "id"
+                            },
+                            {
+                                "displayed": true,
+                                "labelerRestricted": false,
+                                "name": "text"
+                            }
+                        ],
+                        "firstRowAsHeader": true
+                    }
+                }
+            ]
+        }
+    },
+    "query": "mutation LaunchTextProjectAsyncMutation($input: LaunchTextProjectInput!) { launchTextProjectAsync(input: $input) { job { ...JobFragment __typename } name __typename }}fragment JobFragment on Job { id status progress errors { id stack args __typename } resultId __typename}"
 }

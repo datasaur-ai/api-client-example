@@ -1,5 +1,7 @@
 import json
 import yaml
+import string
+import random
 import time
 from fire import Fire
 
@@ -14,10 +16,17 @@ source_path = "path/to/source/file.txt"
 destination_path = "path/to/destination/file.txt"
 
 
-def get_project_name(CONFIG):
-    cohort_name = CONFIG["cohort_name"].replace(" ", "-")
-    # project_name = f"{cohort_name}-0000"
-    project_name = f"{cohort_name}-XXXX"
+def random_string():
+    characters = string.ascii_letters + string.digits
+    random_chars = random.choices(characters, k=4)
+    random_string = "".join(random_chars)
+    return random_string
+
+
+def get_project_name(cohort_name):
+    cohort_name = cohort_name.replace(" ", "-")
+    project_name = f"{cohort_name}-{random_string()}"
+    logger.info(f"PROJECT NAME: {project_name}")
     return project_name
 
 
@@ -28,20 +37,29 @@ def read_config_file(path):
     return res
 
 
-def main(document_path: str, project_configuration_path: str, global_config_path: str):
+def main(
+    document_path: str,
+    project_template: str,
+    positive_label: str,
+    negative_label: str,
+    cohort_name: str = "none",
+):
     # Read the JSON file
-    with open(project_configuration_path, "r") as file:
+    with open(project_template, "r") as file:
         data = json.load(file)
 
-    # Read CONFIG
-    CONFIG = read_config_file(global_config_path)
+    # # Read CONFIG
+    # CONFIG = read_config_file(global_config_path)
+    logger.info(f"COHORT NAME: {cohort_name}")
+    logger.info(f"POSITIVE LABEL: {positive_label}")
+    logger.info(f"NEGATIVE LABEL: {negative_label}")
 
     new_document_path = f'./datasaur-api-client/create-project-async/documents/{document_path.split("/")[-1]}'
     # Move the file
     shutil.move(document_path, new_document_path)
 
     # Update the values for the specified keys
-    data["variables"]["input"]["name"] = get_project_name(CONFIG)
+    data["variables"]["input"]["name"] = get_project_name(cohort_name)
     data["variables"]["input"]["documents"][0]["fileName"] = new_document_path.split(
         "/"
     )[-1]
@@ -53,16 +71,16 @@ def main(document_path: str, project_configuration_path: str, global_config_path
     data["variables"]["input"]["documents"][0]["file"]["path"] = new_document_path
     data["variables"]["input"]["documents"][0]["settings"]["questions"][0][
         "label"
-    ] = f"Does this post reflect {CONFIG['positive_label']} opinion?"
+    ] = f"Does this post reflect {positive_label} opinion?"
     data["variables"]["input"]["documents"][0]["settings"]["questions"][0]["config"][
         "options"
-    ][0]["label"] = CONFIG["positive_label"]
+    ][0]["label"] = positive_label
     data["variables"]["input"]["documents"][0]["settings"]["questions"][0]["config"][
         "options"
-    ][0]["label"] = CONFIG["negative_label"]
+    ][1]["label"] = negative_label
     # Write the updated data back to the JSON file
     with open(
-        "/root/datasaur-api-client/create-project-async/project_configuratioTEST.json",
+        "./datasaur-api-client/create-project-async/project_configuration.json",
         "w",
     ) as file:
         # with open(project_configuration_path, 'w') as file:
