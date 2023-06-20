@@ -3,16 +3,23 @@ from os import environ
 from src.project import Project
 from src.job import Job
 
+## 
 
-def create_project(base_url, client_id, client_secret, team_id, documents_path="documents"):
+def create_project(
+    base_url,
+    client_id,
+    client_secret,
+    team_id,
+    documents_path="./datasaur-api-client/create-project-async/documents",
+):
     try:
         Project.create(
             base_url,
             client_id,
             client_secret,
             team_id=str(team_id),
-            operations_path="project_configuration.json",
-            documents_path=documents_path
+            operations_path="./datasaur-api-client/create-project-async/project_configuration.json",
+            documents_path=documents_path,
         )
     except Exception as e:
         raise SystemExit(e)
