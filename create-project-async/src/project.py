@@ -2,158 +2,80 @@ import glob
 import json
 import os
 
-import requests
-from src.exceptions.invalid_options import InvalidOptions
+from requests import post
 from src.helper import get_access_token, get_operations
 
 
-EXTERNAL_OBJECT_STORAGE_FILE_KEY = "externalObjectStorageFileKey"
-EXTERNAL_IMPORTABLE_URL = "externalImportableUrl"
-EXTERNAL_OBJECT_STORAGE_ID = "externalObjectStorageId"
-
-
 class Project:
-    @staticmethod
-    def create(
-        base_url, client_id, client_secret, team_id, operations_path, documents_path
-    ):
-        if os.path.isfile(documents_path):
-            print(
-                "received a file for documents_path, processing as list of documents..."
-            )
-            return Project.__handle_document_list(
-                base_url,
-                client_id,
-                client_secret,
-                team_id,
-                operations_path,
-                documents_path,
-            )
+    def __init__(self, base_url: str, id:str, secret:str):
+        self.base_url = base_url
+        self.graphql_url = f"{base_url}/graphql"
+        self.proxy_url = f"{base_url}/api/static/proxy/upload"
+        self.client_id = id
+        self.client_secret = secret
+        self.headers = None
 
-        url = f"{base_url}/graphql"
-        access_token = get_access_token(base_url, client_id, client_secret)
+    def create(self, team_id, operations_path, documents_path):
+        if (os.path.isfile(documents_path)):
+            raise NotImplementedError("createProject with a list of documents is not yet implemented")
+
+        access_token = get_access_token(self.base_url, self.client_id, self.client_secret)
+        self.headers = self.__add_headers(key='Authorization', value=f"Bearer {access_token}")
         operations = get_operations(operations_path)
-        # Set input.teamId
+
+        operations["variables"]["input"]["documents"] = []
         operations["variables"]["input"]["teamId"] = team_id
 
-        payload_map = {}
-        documents = []
-        files = []
-
-        # Set files in documents folder as input.documents
-        for iterator, filepath in enumerate(glob.iglob(f"{documents_path}/*")):
-            current_file = (str(iterator), open(filepath, "rb"))
-            files.append(current_file)
-            document = {"fileName": filepath[10:], "file": None}
-            payload_map[str(iterator)] = [
-                "variables.input.documents." + str(iterator) + ".file"
-            ]
-            documents.append(document)
-
-        # do not copy these properties from operations file, we already set them above
-        manual_keys = ["filename", "file"]
-
-        # apply other settings from operations file
-        for iterator, op_doc in enumerate(
-            operations["variables"]["input"]["documents"]
-        ):
-            op_doc: dict
-            for key in op_doc.keys():
-                if key not in manual_keys:
-                    documents[iterator][key] = op_doc.get(key, None)
-
-        operations["variables"]["input"]["documents"] = documents
-
-        headers = {"Authorization": "Bearer " + access_token}
-        data = {"operations": json.dumps(operations), "map": json.dumps(payload_map)}
-        response = Project.__call_graphql(
-            url=url, headers=headers, data=data, files=files
-        )
-        Project.__process_graphql_response(response, base_url, client_id, client_secret)
-
-    @staticmethod
-    def __handle_document_list(
-        base_url,
-        client_id,
-        client_secret,
-        team_id,
-        operations_path,
-        documents_list_path,
-    ):
-        graphql_url = f"{base_url}/graphql"
-        access_token = get_access_token(base_url, client_id, client_secret)
-        operations = get_operations(operations_path)
-        # Set input.teamId
-        operations["variables"]["input"]["teamId"] = team_id
-        has_eos_id = operations["variables"]["input"].get(
-            EXTERNAL_OBJECT_STORAGE_ID, False
-        )
-
-        documents = []
-        manual_keys = [
-            "file",
-            "fileName",
-            EXTERNAL_IMPORTABLE_URL,
-            EXTERNAL_OBJECT_STORAGE_FILE_KEY,
-        ]
-        with open(documents_list_path) as reader:
-            documents_list = json.load(reader)
-
-        for d in documents_list:
-            file_url = d.get("url", None) or d.get(EXTERNAL_IMPORTABLE_URL, None)
-            file_name = d.get("fileName", None) or d.get("filename", None)
-            file_key = d.get(EXTERNAL_OBJECT_STORAGE_FILE_KEY, None)
-
-            if has_eos_id and file_key is None:
-                raise InvalidOptions(
-                    f"{EXTERNAL_OBJECT_STORAGE_ID} needs {EXTERNAL_OBJECT_STORAGE_FILE_KEY} in documents array"
-                )
-
-            if file_key and not file_url and not has_eos_id:
-                raise InvalidOptions(
-                    f"{EXTERNAL_OBJECT_STORAGE_ID} is not provided, but document ${json.dumps(d)} only have {EXTERNAL_OBJECT_STORAGE_FILE_KEY}"
-                )
-
-            documents.append(
-                {
-                    EXTERNAL_IMPORTABLE_URL: file_url,
-                    "fileName": file_name,
-                    "file": None,
-                    EXTERNAL_OBJECT_STORAGE_FILE_KEY: file_key,
+        for filepath in glob.iglob(f"{documents_path}/*"):
+            upload_response = self.__upload_file(filepath=filepath)
+            documents = {
+                "document": {
+                    "name": filepath.split('/')[-1],
+                    "objectKey": upload_response["objectKey"]
                 }
-            )
+            }
+            operations["variables"]["input"]["documents"].append(documents)
 
-        for index, op_doc in enumerate(operations["variables"]["input"]["documents"]):
-            for key in op_doc.keys():
-                if key not in manual_keys:
-                    documents[index][key] = op_doc.get(key, None)
+        graphql_response = self.__call_graphql(
+            data={
+                "query": operations["query"],
+                "variables": json.dumps(operations["variables"]),
+                "operationName": operations.get("operationName", "Datasaur API client - createProject")
+            }
+        )
+        self.__process_graphql_response(graphql_response)
+  
+    def __upload_file(self, filepath):
+        with post(
+        url=self.proxy_url,
+        headers=self.headers,
+        files=[('file', open(filepath, 'rb'))]
+        ) as response: 
+            response.raise_for_status()
+            return response.json()
 
-        operations["variables"]["input"]["documents"] = documents
-        headers = {"Authorization": "Bearer " + access_token}
-        data = {
-            "query": operations["query"],
-            "variables": json.dumps(operations["variables"]),
-            "operations": json.dumps(operations),
-        }
-        response = Project.__call_graphql(url=graphql_url, headers=headers, data=data)
-        Project.__process_graphql_response(response, base_url, client_id, client_secret)
+    def __call_graphql(self, data):
+        return post(url=self.graphql_url, headers=self.headers, data=data)
 
-    @staticmethod
-    def __call_graphql(url: str, headers: dict, data: dict, files=None):
-        return requests.request("POST", url, headers=headers, data=data, files=files)
-
-    @staticmethod
-    def __process_graphql_response(response, base_url, client_id, client_secret):
+    def __process_graphql_response(self, response):
         if "json" in response.headers["content-type"]:
-            json_response = json.loads(response.text.encode("utf8"))
+            json_response: dict = json.loads(response.text.encode("utf8"))
             if "errors" in json_response:
                 print(json.dumps(json_response["errors"], indent=1))
             else:
-                job = json_response["data"]["launchTextProjectAsync"]["job"]
+                job = json_response["data"]["result"]["job"]
                 print(json.dumps(job, indent=1))
                 print("Check job status using command bellow")
-                get_job_status_command = f"python api_client.py get_job_status --base_url {base_url} --client_id {client_id} --client_secret {client_secret} --job_id {job['id']}"
+                get_job_status_command = f"python api_client.py get_job_status --base_url {self.base_url} --client_id {self.client_id} --client_secret {self.client_secret} --job_id {job['id']}"
                 print(get_job_status_command)
         else:
             print(response.text.encode("utf8"))
             print(response)
+    
+    def __add_headers(self, key, value):
+        if self.headers is None:
+            self.headers = {key: value} 
+        else:
+            self.headers[key] = value
+
+        return self.headers
