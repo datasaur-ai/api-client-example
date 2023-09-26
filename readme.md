@@ -26,6 +26,7 @@ This repository focuses on examples in Python and only covers common use cases, 
 - Note that the process is asynchronous.
 - This is an HTTP POST multipart request because it needs to handle a list of files that will be used when creating the project.
 - Reference: `/create-project-async` and follow the README.
+- This is the v2 script, which uses the `createProject` mutation. For the v1 script, please navigate to the Releases / Tag page or checkout the `v1` branch.
 
 ### Export Project
 

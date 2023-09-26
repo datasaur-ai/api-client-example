@@ -11,7 +11,7 @@ python -m pip install -r src/requirements.txt
 
 This version uses the new [`createProject`](https://docs.datasaur.ai/#mutation-createProject) mutation over the existing [`launchTextProjectAsync`](https://docs.datasaur.ai/#mutation-launchTextProjectAsync). We are planning to deprecate the launchTextProjectAsync mutation in the future.
 
-> For v1 version of the script, please navigate to the Releases / Tag page or checkout the v1 branch
+> For v1 version of the script, please navigate to the Releases / Tag page or checkout the `v1` branch.
 
 In this new mutation, we no longer support uploading files directly to the GraphQL mutation, and instead you must upload the files ahead of time, either to Datasaur-owned storage bucket via a separate POST endpoint `/api/static/proxy/upload`, or to your own storage bucket. The script currently only supports the first method.
 
