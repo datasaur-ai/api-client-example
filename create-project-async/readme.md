@@ -7,7 +7,13 @@
 python -m pip install -r src/requirements.txt
 ```
 
-## Create Project
+## Create Project (v2)
+
+This version uses the new [`createProject`](https://docs.datasaur.ai/#mutation-createProject) mutation over the existing [`launchTextProjectAsync`](https://docs.datasaur.ai/#mutation-launchTextProjectAsync). We are planning to deprecate the launchTextProjectAsync mutation in the future.
+
+> For v1 version of the script, please navigate to the Releases / Tag page or checkout the `v1` branch.
+
+In this new mutation, we no longer support uploading files directly to the GraphQL mutation, and instead you must upload the files ahead of time, either to Datasaur-owned storage bucket via a separate POST endpoint `/api/static/proxy/upload`, or to your own storage bucket. The script currently only supports the first method.
 
 ### With Local Files
 
@@ -21,44 +27,6 @@ python api_client.py create_project \
   --client_secret CLIENT_SECRET \
   --team_id TEAM_ID
 ```
-
-### With Remote Files
-
-```
-python api_client.py create_project \
-  --base_url BASE_URL \
-  --client_id CLIENT_ID \
-  --client_secret CLIENT_SECRET \
-  --team_id TEAM_ID \
-  --documents_path PATH_TO_DOCUMENTS_JSON
-```
-
-Provide a JSON file with `--documents_path`.  
-Example file available under `documents-example.json`.
-
-```json
-[
-  {
-    "url": "<publicly accessible link to the file>",
-    "fileName": "<a unique filename>"
-  }
-]
-```
-
-If your team already have [External Object Storage](https://datasaurai.gitbook.io/datasaur/basics/workforce-management/external-object-storage) integration configured, the list of documents can be simplified. You can skip generating the URLs to each file, and just provide the path to the file instead.
-
-Example file available under `eos-documents-example.json`
-
-```json
-[
-  {
-    "externalObjectStorageFileKey": "path/to/file.txt",
-    "fileName": "<a unique filename>"
-  }
-]
-```
-
-The value of `fileName` does not have to match the actual file's name.
 
 ## Get Job Status
 
