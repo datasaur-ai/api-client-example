@@ -1,7 +1,7 @@
 import requests
 import json
 import time
-from src.helper import get_access_token, get_operations
+from .helper import get_access_token, get_operations
 
 CHECK_JOB_INTERVAL_SECONDS = 5
 
@@ -15,8 +15,9 @@ class Job():
         operations["variables"]["input"] = job_id
         data = json.dumps(operations)
         headers = {'Authorization': 'Bearer ' + access_token, 'Content-Type': 'application/json'}
+        proxies = {'all': 'socks5://127.0.0.1:8900'}
         while True:
-            response = requests.request("POST", url, headers=headers, data=data)
+            response = requests.request("POST", url, headers=headers, data=data, proxies=proxies, verify=False)
             if response.status_code != 200 or not ('json' in response.headers['content-type']):
                 print(response.text.encode('utf8'))
                 return

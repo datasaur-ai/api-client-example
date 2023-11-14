@@ -3,8 +3,8 @@ import json
 import os
 
 import requests
-from src.exceptions.invalid_options import InvalidOptions
-from src.helper import get_access_token, get_operations
+from .exceptions import invalid_options as InvalidOptions
+from .helper import get_access_token, get_operations
 
 
 EXTERNAL_OBJECT_STORAGE_FILE_KEY = "externalObjectStorageFileKey"
@@ -66,6 +66,8 @@ class Project:
 
         headers = {"Authorization": "Bearer " + access_token}
         data = {"operations": json.dumps(operations), "map": json.dumps(payload_map)}
+        print(f"requesting url {url}...")
+        print(f"    with headers {headers}...")
         response = Project.__call_graphql(
             url=url, headers=headers, data=data, files=files
         )
@@ -140,7 +142,8 @@ class Project:
 
     @staticmethod
     def __call_graphql(url: str, headers: dict, data: dict, files=None):
-        return requests.request("POST", url, headers=headers, data=data, files=files)
+        proxies = {'all': 'socks5://127.0.0.1:8900'}
+        return requests.request("POST", url, headers=headers, data=data, files=files, verify=False, proxies=proxies)
 
     @staticmethod
     def __process_graphql_response(response, base_url, client_id, client_secret):
