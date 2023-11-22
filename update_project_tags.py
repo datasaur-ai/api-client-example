@@ -84,17 +84,17 @@ def remove_project_tags(base_url, client_id, client_secret, project_id, tags_to_
     operations["variables"]["input"]["projectId"] = project_id
 
     project_tags = get_single_project(url, access_token, project_id)["tags"]
-    tags_to_be_applied = []
+    tags_to_be_preserved = []
     for tag in project_tags:
         if tag["name"] not in tags_to_be_removed or tag["globalTag"] == True:
-            tags_to_be_applied.append(tag)
+            tags_to_be_preserved.append(tag)
     
-    if len(project_tags) == len(tags_to_be_applied):
+    if len(project_tags) == len(tags_to_be_preserved):
         return
     
-    tag_ids_to_be_applied = [tag["id"] for tag in tags_to_be_applied]
+    tag_ids_to_be_preserved = [tag["id"] for tag in tags_to_be_preserved]
 
-    operations["variables"]["input"]["tagIds"] = tag_ids_to_be_applied
+    operations["variables"]["input"]["tagIds"] = tag_ids_to_be_preserved
     del operations["variables"]["input"]["tags"]
 
     response = post_request(url, access_token, operations)
