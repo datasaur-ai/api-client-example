@@ -76,6 +76,36 @@ def create_tag(url, access_token, team_id, tag_name):
         print(response)
 
 
+def remove_project_tags(base_url, client_id, client_secret, project_id, tags_to_be_removed):
+    url = base_url + "/graphql"
+    access_token = get_access_token(base_url, client_id, client_secret)
+    operations = get_operations("update_project_tags.json")
+
+    operations["variables"]["input"]["projectId"] = project_id
+
+    project_tags = get_single_project(url, access_token, project_id)["tags"]
+    tags_to_be_applied = []
+    for tag in project_tags:
+        if tag["name"] not in tags_to_be_removed or tag["globalTag"] == True:
+            tags_to_be_applied.append(tag)
+    
+    if len(project_tags) == len(tags_to_be_applied):
+        return
+    
+    tag_ids_to_be_applied = [tag["id"] for tag in tags_to_be_applied]
+
+    operations["variables"]["input"]["tagIds"] = tag_ids_to_be_applied
+    del operations["variables"]["input"]["tags"]
+
+    response = post_request(url, access_token, operations)
+    if "json" in response.headers["content-type"]:
+        json_response = json.loads(response.text.encode("utf8"))
+        result = json_response["data"]["result"]
+        return result
+    else:
+        return response
+
+
 def get_single_project(url, access_token, project_id):
     operations = get_operations("get_single_project.json")
     operations["variables"]["input"]["projectId"] = project_id
