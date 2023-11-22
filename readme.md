@@ -54,3 +54,15 @@ This repository focuses on examples in Python and only covers common use cases, 
   - PUT ["Tag2"]: Project A will only have Tag2.
   - PATCH ["Tag2"]: Project will have both Tag1 and Tag2.
 - Syntax: `python update_project_tags.py <server_url> <client_id> <client_secret> <team_id> <method>`
+
+
+### Combining Multiple Operations
+
+We can combine multiple operations to simplify a complex, multi-step process. In this example, we export multiple projects with a specific tag and subsequently remove that tag after the export.
+- Included operations:
+  - [Get Projects](#get-projects)
+  - [Export Project](#export-project)
+  - [Update Project Tags](#update-project-tags)
+- Please set the input variables, especialy `teamId` and `tags` in `get_projects.json` 
+- The output filename will have `projectId` in it
+- Syntax: `python export_projects_and_remove_tag.py <server_url> <client_id> <client_secret> <filename> <export_format> <output_dir>`
