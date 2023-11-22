@@ -35,10 +35,7 @@ def export_project(base_url, client_id, client_secret, project_id, export_file_n
             file_response_url = urlparse(file_url)
             file_name = os.path.basename(file_response_url.path)
             output_file = output_dir + '/' + file_name
-            with open(output_file, 'wb') as output:
-                output.write(file_response.content)
-                output.close()
-
+            open(output_file, 'wb').write(file_response.content)
             return "Success downloading the file. Output file:" + output_file
     else:
         return response
