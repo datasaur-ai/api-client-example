@@ -3,6 +3,8 @@ import json
 import os
 import time
 
+from get_single_project import get_single_project
+
 from toolbox.get_access_token import get_access_token
 from toolbox.get_operations import get_operations
 from toolbox.get_team_tags import get_team_tags
@@ -71,19 +73,6 @@ def create_tag(url, access_token, team_id, tag_name):
     if "json" in response.headers["content-type"]:
         json_response = json.loads(response.text.encode("utf8"))
         result = json_response["data"]["createTag"]
-        return result
-    else:
-        print(response)
-
-
-def get_single_project(url, access_token, project_id):
-    operations = get_operations("get_single_project.json")
-    operations["variables"]["input"]["projectId"] = project_id
-
-    response = post_request(url, access_token, operations)
-    if "json" in response.headers["content-type"]:
-        json_response = json.loads(response.text.encode("utf8"))
-        result = json_response["data"]["result"]
         return result
     else:
         print(response)
