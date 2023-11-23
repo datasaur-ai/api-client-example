@@ -1,9 +1,9 @@
 import fire
 import os
 
-from get_projects import get_projects
 from export import export_project
-from update_project_tags import remove_project_tags
+from get_projects import get_projects
+from remove_project_tags import remove_project_tags
 
 from toolbox.get_operations import get_operations
 

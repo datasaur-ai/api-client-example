@@ -62,7 +62,7 @@ We can combine multiple operations to simplify a complex, multi-step process. In
 - Included operations:
   - [Get Projects](#get-projects)
   - [Export Project](#export-project)
-  - [Update Project Tags](#update-project-tags)
+  - [Remove Project Tags](remove_project_tags.py)
 - Please set the input variables, especialy `teamId` and `tags` in `get_projects.json` 
 - The output filename will have `projectId` in it
 - Syntax: `python export_projects_and_remove_tag.py <api_url> <client_id> <client_secret> <filename> <export_format> <output_dir>`

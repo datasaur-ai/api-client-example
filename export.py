@@ -40,6 +40,7 @@ def export_project(base_url, client_id, client_secret, project_id, export_file_n
     else:
         return response
 
+
 def poll_export_delivery_status(url, access_token, export_id):
     operations = get_operations('get_export_delivery_status.json')
     operations["variables"]["exportId"] = export_id
