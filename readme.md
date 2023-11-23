@@ -7,7 +7,7 @@ This repository focuses on examples in Python and only covers common use cases, 
 1. `pip3` CLI installed
 2. Clone this repository and go to the root folder.
 3. Run `pip3 install -r  requirements.txt`.
-4. [Genereate OAuth credentials](https://datasaurai.gitbook.io/datasaur/api/credentials).
+4. [Generate OAuth credentials](https://datasaurai.gitbook.io/datasaur/api/credentials).
 
 ## API Documentation
 
@@ -53,7 +53,7 @@ This repository focuses on examples in Python and only covers common use cases, 
 - For example, Project A has Tag1.
   - PUT ["Tag2"]: Project A will only have Tag2.
   - PATCH ["Tag2"]: Project will have both Tag1 and Tag2.
-- Syntax: `python update_project_tags.py <server_url> <client_id> <client_secret> <team_id> <method>`
+- Syntax: `python update_project_tags.py <api_url> <client_id> <client_secret> <team_id> <method>`
 
 
 ### Combining Multiple Operations
@@ -65,4 +65,4 @@ We can combine multiple operations to simplify a complex, multi-step process. In
   - [Update Project Tags](#update-project-tags)
 - Please set the input variables, especialy `teamId` and `tags` in `get_projects.json` 
 - The output filename will have `projectId` in it
-- Syntax: `python export_projects_and_remove_tag.py <server_url> <client_id> <client_secret> <filename> <export_format> <output_dir>`
+- Syntax: `python export_projects_and_remove_tag.py <api_url> <client_id> <client_secret> <filename> <export_format> <output_dir>`
