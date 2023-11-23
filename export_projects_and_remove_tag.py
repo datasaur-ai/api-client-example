@@ -9,6 +9,13 @@ from toolbox.get_operations import get_operations
 
 
 def export_projects_and_remove_tag(base_url, client_id, client_secret, export_file_name, export_format, output_dir):
+    """Export projects with a specific tag and subsequently remove the tag from the exported projects
+
+    Processes:
+    1. Get projects by tag
+    2. Export the selected projects
+    3. Remove tag from those projects
+    """
     operations = get_operations("get_projects.json")
     tags = operations["variables"]["input"]["filter"]["tags"]
 
