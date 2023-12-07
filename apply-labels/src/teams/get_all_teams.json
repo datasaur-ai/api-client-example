@@ -1,0 +1,4 @@
+{
+  "operationName": "GetAllTeamsQuery",
+  "query": "query GetAllTeamsQuery { teams: getAllTeams { id name } }"
+}
