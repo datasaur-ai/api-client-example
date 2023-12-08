@@ -1,9 +1,11 @@
+from termcolor import colored
 import requests
 
 
 def call_graphql(url: str, headers: dict[str, str], data, verbose=False):
     if verbose:
-        print(f"{url=} {headers=} {data=}")
+        print(colored(f"{url=} {headers=}", "green"))
+        print(colored(f"{data=}", "green"))
 
     response = requests.post(url, headers=headers, data=data)
 

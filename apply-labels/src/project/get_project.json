@@ -1,0 +1,4 @@
+{
+  "operationName": "GetProjectQuery",
+  "query": "query GetProjectQuery($team_id: ID!, $project_id: ID!) {\n  result: getProject(input: {teamId: $team_id, projectId: $project_id}) {\n    id\n    assignees {\n      documents {\n        fileName\n      }\n    }\n    labelerCabinets {\n      ...CabinetFragment\n    }\n    reviewCabinet {\n      ...CabinetFragment\n    }\n  }\n}\n\nfragment CabinetFragment on Cabinet {\n  id\n  owner {\n    ...CabinetOwnerFragment\n  }\n}\n\nfragment CabinetOwnerFragment on User {\n  id\n  email\n  displayName\n}\n"
+}
