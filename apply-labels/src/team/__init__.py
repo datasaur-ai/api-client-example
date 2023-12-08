@@ -7,5 +7,5 @@ class Team:
         self.client = client
 
     def fetch(self):
-        team_query = get_operations("src/teams/get_all_teams.json")
+        team_query = get_operations("src/team/get_all_teams.json")
         return self.client.call_graphql(team_query)

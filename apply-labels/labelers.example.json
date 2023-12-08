@@ -1,0 +1,16 @@
+{
+  "labelers": [
+    {
+      "email": "labeler@email.tld", // registered email in datasaur
+      "client_id": "<client_id>", // oauth credentials
+      "client_secret": "<client_secret>",
+      "documents": ["data/labeler-1"]
+    },
+    {
+      "email": "labeler2@email.tld",
+      "client_id": "<client_id>",
+      "client_secret": "<client_secret>",
+      "documents": ["data/labeler-2"]
+    }
+  ]
+}
