@@ -4,9 +4,9 @@ import fire
 from dotenv import load_dotenv
 from pyjson5 import load as json5_load
 
-from src.project import Project
-from src.helpers import GraphQLClient, read_config
 from src.entrypoint import check_login_and_teams
+from src.helpers import GraphQLClient, read_config
+from src.project import Project
 
 load_dotenv()
 

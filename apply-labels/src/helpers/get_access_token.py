@@ -1,6 +1,6 @@
-from termcolor import colored
 from oauthlib.oauth2 import BackendApplicationClient
 from requests_oauthlib import OAuth2Session
+from termcolor import colored
 
 
 def get_access_token(

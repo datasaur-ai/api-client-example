@@ -1,5 +1,5 @@
-from .get_access_token import get_access_token
 from .call_graphql import call_graphql
+from .get_access_token import get_access_token
 
 
 class GraphQLClient:

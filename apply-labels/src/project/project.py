@@ -1,5 +1,6 @@
-from src.helpers import GraphQLClient, get_operations
 from json import dumps
+
+from src.helpers import GraphQLClient, get_operations
 
 
 class Project:
