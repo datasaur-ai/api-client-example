@@ -20,30 +20,30 @@ def create_users(base_url, client_id, client_secret, input_file_path="./sample-f
         access_token = get_access_token(base_url, client_id, client_secret)
 
         with open(input_file_path, newline='') as input_file:
-            users = csv.reader(input_file, delimiter=',')
+            users = list(csv.reader(input_file, delimiter=','))
 
-            with open(output_file_path, 'w') as output_file:
-                writer = csv.writer(output_file)
+        with open(output_file_path, 'w') as output_file:
+            writer = csv.writer(output_file)
 
-                for user in users:
-                    new_user = {
-                        "email": user[0],
-                        "name": user[1],
-                        "password": user[2],
-                        "emailVerified": email_verified
-                    }
-                    response = post_request(api_url, access_token, new_user)
+            for user in users:
+                new_user = {
+                    "email": user[0],
+                    "name": user[1],
+                    "password": user[2],
+                    "emailVerified": email_verified
+                }
+                response = post_request(api_url, access_token, new_user)
 
-                    if "json" in response.headers["content-type"]:
-                        json_response = response.json()
-                        if response.status_code == 200:
-                            user_id = json_response["data"]["id"]
-                            writer.writerow([user_id, new_user["email"], new_user["name"], new_user["password"]])
-                            pprint.pprint(json_response)
-                        else:
-                            raise Exception("{email} ERROR: {message}".format(email=new_user["email"], message=json_response["message"]))
+                if "json" in response.headers["content-type"]:
+                    json_response = response.json()
+                    if response.status_code == 200:
+                        user_id = json_response["data"]["id"]
+                        writer.writerow([user_id, new_user["email"], new_user["name"], new_user["password"]])
+                        pprint.pprint(json_response)
                     else:
-                        raise Exception("{email} ERROR: {status_code}".format(email=new_user["email"], status_code=response.status_code))
+                        raise Exception("{email} ERROR: {message}".format(email=new_user["email"], message=json_response["message"]))
+                else:
+                    raise Exception("{email} ERROR: {status_code}".format(email=new_user["email"], status_code=response.status_code))
     except Exception as e:
         raise SystemExit(e)
 
