@@ -1,9 +1,7 @@
 from pprint import pprint
 
-from pyjson5 import load as json5_load
 
 from .helpers import GraphQLClient, read_config
-from .project import Project
 from .team import Team
 
 

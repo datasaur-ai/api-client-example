@@ -2,7 +2,7 @@ from json import dumps
 from typing import Any
 
 from src.helpers import GraphQLClient, OAuthCredentials, get_operations
-from src.jobs.jobs import Jobs
+from src.jobs import Jobs
 
 
 def replicate_cabinet(client: GraphQLClient, project, labelers: list[dict]):
