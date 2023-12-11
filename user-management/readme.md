@@ -1,6 +1,6 @@
 # User Management API Client Sample
 
-This directory contains scripts for user management tasks.
+This directory contains scripts for user management tasks. These scripts require helper functions from the `toolbox` directory.
 
 ## Prerequisites
 
@@ -20,7 +20,7 @@ Before using the User Management API Client Sample, ensure the following prerequ
 ## Usage Limitations
 
 - This script is specifically designed for self-hosted environments.
-- Superadmin privileges are required to execute this script.
+- Superadmin privileges are required to execute this script. Please refer to your installation documents or contact Datasaur support for specific steps on how-to set the privileges to your account.
 
 ## Usage
 

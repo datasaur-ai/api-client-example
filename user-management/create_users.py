@@ -4,10 +4,12 @@ import json
 import os
 import sys
 
+# This code is necessary for the script to access essential functions from the toolbox directory
 current_dir = os.path.dirname(os.path.realpath(__file__))
 parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
 
+# Importing required helper functions from the toolbox directory
 from toolbox.get_access_token import get_access_token
 from toolbox.post_request import post_request
 
