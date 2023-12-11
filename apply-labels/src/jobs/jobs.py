@@ -31,6 +31,14 @@ class Jobs:
                 print(f"{failed_jobs=}")
                 raise Exception("Some job failed")
 
-            print(f"{ids_to_query_next=}")
+            if self.client.verbose:
+                delivered_jobs = [
+                    job
+                    for job in response["data"]["result"]
+                    if job["status"] == "DELIVERED"
+                ]
+                print(f"{delivered_jobs=}")
+                print(f"{ids_to_query_next=}")
+
             if (len(ids_to_query_next)) > 0:
                 sleep(randint(1, 3))

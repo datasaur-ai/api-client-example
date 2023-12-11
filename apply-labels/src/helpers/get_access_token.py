@@ -10,7 +10,7 @@ def get_access_token(
     verbose=False,
 ):
     if verbose:
-        print(colored(f"Getting access token for {client_id}", "green"))
+        print(colored(f"Getting access token for {client_id}", "grey"))
     client = BackendApplicationClient(client_id=client_id)
     oauth = OAuth2Session(client=client)
     token = oauth.fetch_token(
@@ -20,5 +20,5 @@ def get_access_token(
     )
 
     if verbose:
-        print(colored(f"{token=}", "green"))
+        print(colored(f"{token=}", "grey"))
     return token["access_token"]

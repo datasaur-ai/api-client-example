@@ -8,13 +8,13 @@ from src.project import Project
 load_dotenv()
 
 
-def apply_labels(
+def apply_row_answers(
     team_id: str,
     project_id: str,
     labelers_file="labelers.json",
-    i_base_url: str | None = None,
-    i_client_id: str | None = None,
-    i_client_secret: str | None = None,
+    base_url: str | None = None,
+    client_id: str | None = None,
+    client_secret: str | None = None,
     verbose: bool = False,
 ):
     """
@@ -24,7 +24,7 @@ def apply_labels(
 
     Uses BASSE_URL, CLIENT_ID, and CLIENT_SECRET from .env by default.
     """
-    config = read_config(i_base_url, i_client_id, i_client_secret)
+    config = read_config(base_url, client_id, client_secret)
     client = GraphQLClient(
         base_url=config["base_url"],
         client_id=config["client_id"],
@@ -34,7 +34,7 @@ def apply_labels(
 
     data = load_jsonc(labelers_file)
 
-    Project(client=client).apply_labels(
+    Project(client=client).apply_row_answers(
         team_id=team_id,
         project_id=project_id,
         labelers=data["labelers"],
@@ -45,6 +45,6 @@ if __name__ == "__main__":
     fire.Fire(
         {
             "check_teams": check_login_and_teams,
-            "apply_labels": apply_labels,
+            "apply_row_answers": apply_row_answers,
         }
     )
