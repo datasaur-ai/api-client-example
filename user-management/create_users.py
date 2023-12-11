@@ -20,8 +20,9 @@ def create_users(base_url, client_id, client_secret, input_file_path="./sample-f
         access_token = get_access_token(base_url, client_id, client_secret)
 
         with open(input_file_path, newline='') as input_file:
+            users = csv.reader(input_file, delimiter=',')
+
             with open(output_file_path, 'w') as output_file:
-                users = csv.reader(input_file, delimiter=',')
                 writer = csv.writer(output_file)
 
                 for user in users:
