@@ -31,9 +31,13 @@ def create_users(base_url, client_id, client_secret, input_file_path="./sample-f
                 response = post_request(api_url, access_token, new_user)
 
                 if "json" in response.headers["content-type"]:
-                    pprint.pprint(response.json())
+                    json_response = response.json()
+                    if response.status_code == 200:
+                        pprint.pprint(json_response)
+                    else:
+                        raise Exception("{email} ERROR: {message}".format(email=new_user["email"], message=json_response["message"]))
                 else:
-                    print(response)
+                    raise Exception("{email} ERROR: {status_code}".format(email=new_user["email"], status_code=response.status_code))
     except Exception as e:
         raise SystemExit(e)
 
