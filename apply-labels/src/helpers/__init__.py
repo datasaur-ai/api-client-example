@@ -1,4 +1,5 @@
 from os import getenv
+from os import path as ospath
 
 from .get_operations import *
 from .graphql_client import *
@@ -19,3 +20,9 @@ def read_config(base_url, client_id, client_secret):
         client_id=client_id,
         client_secret=client_secret,
     )
+
+
+def inspect_filepath(filepath: str):
+    head, tail = ospath.split(filepath)
+    filename, extension = ospath.splitext(tail)
+    return (head, tail, dict(filename=filename, extension=extension))
