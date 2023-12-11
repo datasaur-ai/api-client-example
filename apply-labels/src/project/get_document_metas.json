@@ -1,0 +1,7 @@
+{
+  "operationName": "GetDocumentMetasByCabinetIdQuery",
+  "variables": {
+    "cabinetId": "<string>"
+  },
+  "query": "query GetDocumentMetasByCabinetIdQuery($cabinetId: ID!) { result: getDocumentMetasByCabinetId(cabinetId: $cabinetId) { ...DocumentMetaFragment } } fragment DocumentMetaFragment on DocumentMeta { id cabinetId name labelerRestricted displayed width rowQuestionIndex } "
+}

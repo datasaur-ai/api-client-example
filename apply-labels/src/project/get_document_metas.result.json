@@ -1,0 +1,78 @@
+{
+  "data": {
+    "result": [
+      {
+        "id": 0,
+        "cabinetId": 15,
+        "name": "Column 1",
+        "labelerRestricted": false,
+        "displayed": true,
+        "width": null,
+        "rowQuestionIndex": null
+      },
+      {
+        "id": 1,
+        "cabinetId": 15,
+        "name": "Column 2",
+        "labelerRestricted": false,
+        "displayed": true,
+        "width": null,
+        "rowQuestionIndex": null
+      },
+      {
+        "id": 2,
+        "cabinetId": 15,
+        "name": "Column 3",
+        "labelerRestricted": false,
+        "displayed": true,
+        "width": null,
+        "rowQuestionIndex": null
+      },
+      {
+        "id": 3,
+        "cabinetId": 15,
+        "name": "Column 4",
+        "labelerRestricted": false,
+        "displayed": true,
+        "width": null,
+        "rowQuestionIndex": null
+      },
+      {
+        "id": 4,
+        "cabinetId": 15,
+        "name": "Question-label-1",
+        "labelerRestricted": false,
+        "displayed": true,
+        "width": null,
+        "rowQuestionIndex": 0
+      },
+      {
+        "id": 5,
+        "cabinetId": 15,
+        "name": "Question-label-3",
+        "labelerRestricted": false,
+        "displayed": true,
+        "width": null,
+        "rowQuestionIndex": 1
+      },
+      {
+        "id": 6,
+        "cabinetId": 15,
+        "name": "Question-label-2",
+        "labelerRestricted": false,
+        "displayed": true,
+        "width": null,
+        "rowQuestionIndex": 2
+      },
+      {
+        "id": 7,
+        "cabinetId": 15,
+        "name": "dropdown for checking",
+        "labelerRestricted": false,
+        "displayed": true,
+        "width": null,
+        "rowQuestionIndex": 3
+      }
+    ]
+  }
+}

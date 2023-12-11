@@ -3,5 +3,5 @@
   "variables": {
     "jobIds": []
   },
-  "query": "query GetJobs($jobIds: [String!]!) {\n  result: getJobs(jobIds: $jobIds) {\n    ...JobFragment\n    __typename\n  }\n}\n\nfragment JobFragment on Job {\n  id\n  status\n  progress\n  errors {\n    id\n    stack\n    args\n    __typename\n  }\n  resultId\n  createdAt\n  updatedAt\n  result\n  __typename\n}\n"
+  "query": "query GetJobs($jobIds: [String!]!) { result: getJobs(jobIds: $jobIds) { ...JobFragment } } fragment JobFragment on Job { id status progress errors { id stack args } resultId createdAt updatedAt result } "
 }

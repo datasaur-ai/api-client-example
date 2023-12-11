@@ -1,0 +1,7 @@
+{
+  "operationName": "GetProjectRowQuestionSetQuery",
+  "variables": {
+    "projectId": "<project_id>"
+  },
+  "query": "query GetProjectRowQuestionSetQuery($projectId: ID!) { result: getProjectRowQuestionSet(projectId: $projectId) { ...ProjectQuestionSetFragment  }}fragment ProjectQuestionSetFragment on ProjectQuestionSet { questions { ...QuestionFragmentWithInternalId  } signature }fragment QuestionFragmentWithInternalId on Question { internalId ...QuestionFragment config { ...QuestionConfigFragment questions { internalId ...QuestionFragment config { ...QuestionConfigFragment questions { internalId ...QuestionFragment config { ...QuestionConfigFragment questions { internalId ...QuestionFragment  }  }  }  }  }  } }fragment QuestionFragment on Question { id config { ...QuestionConfigFragment  } label required type bindToColumn activationConditionLogic }fragment QuestionConfigFragment on QuestionConfig { defaultValue format multiple multiline theme gradientColors min max minLength maxLength pattern step hint hideScaleLabel options { ...QuestionConfigOptionsFragment  } leafOptionsOnly }fragment QuestionConfigOptionsFragment on QuestionConfigOptions { id questionId parentId label }"
+}

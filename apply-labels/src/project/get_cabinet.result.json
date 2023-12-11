@@ -1,0 +1,19 @@
+{
+  "data": {
+      "cabinet": {
+          "id": "15",
+          "status": "IN_PROGRESS",
+          "documents": [
+              {
+                  "id": "60c497e2-1cde-40d9-92fb-053f8eb1a14e",
+                  "cabinetId": "15",
+                  "fileName": "file.csv",
+                  "ownerId": "<user id>",
+                  "documentType": "DOCUMENT / REVIEW",
+                  "signature": "b2e2cdabe41fe01f2d1f22d3753c793cf36f3fb2d952d07cca7b4f79e3fb5557"
+              }
+          ],
+          "role": "LABELER / REVIEWER"
+      }
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "data": {
+    "result": {
+      "questions": [
+        {
+          "internalId": "7",
+          "id": 0,
+          "config": {
+            "defaultValue": null,
+            "format": null,
+            "multiple": false,
+            "multiline": false,
+            "theme": null,
+            "gradientColors": null,
+            "min": null,
+            "max": null,
+            "minLength": null,
+            "maxLength": null,
+            "pattern": null,
+            "step": null,
+            "hint": null,
+            "hideScaleLabel": null,
+            "options": null,
+            "leafOptionsOnly": false,
+            "questions": []
+          },
+          "label": "Question-label-1",
+          "required": false,
+          "type": "TEXT",
+          "bindToColumn": null,
+          "activationConditionLogic": null
+        },
+        {
+          "internalId": "8",
+          "id": 1,
+          "config": {
+            "defaultValue": null,
+            "format": null,
+            "multiple": false,
+            "multiline": false,
+            "theme": null,
+            "gradientColors": null,
+            "min": null,
+            "max": null,
+            "minLength": null,
+            "maxLength": null,
+            "pattern": null,
+            "step": null,
+            "hint": null,
+            "hideScaleLabel": null,
+            "options": null,
+            "leafOptionsOnly": false,
+            "questions": []
+          },
+          "label": "Question-label-3",
+          "required": false,
+          "type": "TEXT",
+          "bindToColumn": null,
+          "activationConditionLogic": null
+        },
+        {
+          "internalId": "9",
+          "id": 2,
+          "config": {
+            "defaultValue": null,
+            "format": null,
+            "multiple": false,
+            "multiline": false,
+            "theme": null,
+            "gradientColors": null,
+            "min": null,
+            "max": null,
+            "minLength": null,
+            "maxLength": null,
+            "pattern": null,
+            "step": null,
+            "hint": null,
+            "hideScaleLabel": null,
+            "options": null,
+            "leafOptionsOnly": false,
+            "questions": []
+          },
+          "label": "Question-label-2",
+          "required": false,
+          "type": "TEXT",
+          "bindToColumn": null,
+          "activationConditionLogic": null
+        },
+        {
+          "internalId": "10",
+          "id": 3,
+          "config": {
+            "defaultValue": null,
+            "format": null,
+            "multiple": false,
+            "multiline": false,
+            "theme": null,
+            "gradientColors": null,
+            "min": null,
+            "max": null,
+            "minLength": null,
+            "maxLength": null,
+            "pattern": null,
+            "step": null,
+            "hint": null,
+            "hideScaleLabel": null,
+            "options": [
+              {
+                "id": "1",
+                "questionId": "3",
+                "parentId": null,
+                "label": "true"
+              },
+              {
+                "id": "2",
+                "questionId": "3",
+                "parentId": null,
+                "label": "false"
+              },
+              {
+                "id": "3",
+                "questionId": "3",
+                "parentId": null,
+                "label": "0"
+              },
+              {
+                "id": "4",
+                "questionId": "3",
+                "parentId": null,
+                "label": "1"
+              }
+            ],
+            "leafOptionsOnly": false,
+            "questions": []
+          },
+          "label": "dropdown for checking",
+          "required": false,
+          "type": "DROPDOWN",
+          "bindToColumn": null,
+          "activationConditionLogic": null
+        }
+      ],
+      "signature": "709e84448a130fff77804f0a84413bf4b7bb92e7b14502015390f29566b0ab5a"
+    }
+  }
+}

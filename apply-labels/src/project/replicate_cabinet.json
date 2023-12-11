@@ -4,5 +4,5 @@
     "projectId": "<string>",
     "role": "LABELER"
   },
-  "query": "query ReplicateCabinetQuery($projectId: ID!, $role: Role!) {\n  result: replicateCabinet(projectId: $projectId, role: $role) {\n    ...JobFragment\n    __typename\n  }\n}\n\nfragment JobFragment on Job {\n  id\n  status\n  progress\n  errors {\n    id\n    stack\n    args\n    __typename\n  }\n  resultId\n  createdAt\n  updatedAt\n  result\n  __typename\n}\n"
+  "query": "query ReplicateCabinetQuery($projectId: ID!, $role: Role!) { result: replicateCabinet(projectId: $projectId, role: $role) { ...JobFragment } } fragment JobFragment on Job { id status progress errors { id stack args } resultId createdAt updatedAt result } "
 }

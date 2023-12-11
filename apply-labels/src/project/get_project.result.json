@@ -4,6 +4,7 @@
             "id": "MDViMzM4ZWI",
             "assignees": [
                 {
+                    "role": "LABELER / REVIEWER / LABELER_AND_REVIEWER",
                     "teamMember": {
                         "user": {
                             "id": "1",
@@ -35,6 +36,9 @@
                     "email": "ivan@datasaur.local",
                     "displayName": "Ivan"
                 }
+            },
+            "workspaceSettings": {
+                "kinds": ["ROW_BASED"]
             }
         }
     }
