@@ -31,5 +31,3 @@ class Project:
             raise Exception(
                 f"Project {project_id} is not assigned to {not_assigned}. Please assign the project to them first."
             )
-
-        print(assigned_user_emails)
