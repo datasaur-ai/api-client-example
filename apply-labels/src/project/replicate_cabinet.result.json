@@ -1,0 +1,15 @@
+{
+  "data": {
+    "result": {
+      "id": "CabinetReplicationJobQueue:d9163a074313f23baef734bc7425a8a4235d2ccee7160cb0ecb2465f87bb920c",
+      "status": "QUEUED",
+      "progress": 0,
+      "errors": [],
+      "resultId": null,
+      "createdAt": "2023-12-11T04:18:56.059Z",
+      "updatedAt": "2023-12-11T04:18:56.059Z",
+      "result": null,
+      "__typename": "Job"
+    }
+  }
+}

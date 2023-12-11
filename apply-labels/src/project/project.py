@@ -1,11 +1,29 @@
 from json import dumps
 
-from src.helpers import GraphQLClient, get_operations
+from src.helpers import GraphQLClient, get_operations, loggable
+
+from .replicate_cabinet import replicate_cabinet
 
 
 class Project:
     def __init__(self, client: GraphQLClient) -> None:
         self.client = client
+
+    def apply_labels(
+        self, team_id: str, project_id: str, labelers: list[dict[str, str]]
+    ):
+        emails = [l["email"] for l in labelers]
+        project = self.fetch_and_validate(
+            team_id=team_id, project_id=project_id, labelers=emails
+        )
+        self.replicate_cabinet(project=project, labelers=labelers)
+
+    @loggable
+    def fetch_and_validate(self, team_id: str, project_id: str, labelers: list[str]):
+        fetch_result = self.fetch(team_id=team_id, project_id=project_id)
+        project = fetch_result["data"]["result"]
+        self.__validate(project=project, labelers=labelers)
+        return project
 
     def fetch(self, team_id: str, project_id: str):
         operation = get_operations("src/project/get_project.json")
@@ -13,10 +31,7 @@ class Project:
         operation["variables"] = variables
         return self.client.call_graphql(data=operation)
 
-    def validate(self, team_id: str, project_id: str, labelers: list[str]):
-        fetch_result = self.fetch(team_id=team_id, project_id=project_id)
-        project = fetch_result["data"]["result"]
-
+    def __validate(self, project, labelers):
         assigned_user_emails = [
             assignee["teamMember"]["user"]["email"] for assignee in project["assignees"]
         ]
@@ -29,5 +44,9 @@ class Project:
 
         if len(not_assigned) > 0:
             raise Exception(
-                f"Project {project_id} is not assigned to {not_assigned}. Please assign the project to them first."
+                f"Project {project['id']} is not assigned to {not_assigned}. Please assign the project to them first."
             )
+
+    @loggable
+    def replicate_cabinet(self, project, labelers):
+        replicate_cabinet(project=project, labelers=labelers, client=self.client)
