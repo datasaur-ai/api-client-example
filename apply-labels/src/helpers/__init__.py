@@ -2,6 +2,8 @@ from os import getenv
 
 from .get_operations import *
 from .graphql_client import *
+from .load_jsonc import *
+from .loggable import *
 
 
 def read_config(base_url, client_id, client_secret):
