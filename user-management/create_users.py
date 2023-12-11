@@ -1,7 +1,7 @@
 import csv
 import fire
-import json
 import os
+import pprint
 import sys
 
 # This code is necessary for the script to access essential functions from the toolbox directory
@@ -31,8 +31,7 @@ def create_users(base_url, client_id, client_secret, input_file_path="./sample-f
                 response = post_request(api_url, access_token, new_user)
 
                 if "json" in response.headers["content-type"]:
-                    json_response = json.loads(response.text.encode("utf8"))
-                    print(json_response)
+                    pprint.pprint(response.json())
                 else:
                     print(response)
     except Exception as e:
