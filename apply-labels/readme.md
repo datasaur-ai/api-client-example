@@ -1,30 +1,70 @@
 # Apply labels as labeler from file.
 
-This folder focuses on workflows for row-labeling, where labelers' have applied labels externally and you need to import them to Datasaur for analytics purposes. 
+This folder focuses on workflows for row-labeling, where labelers' have applied labels externally and you need to want to import them to Datasaur and view the [analytics](https://docs.datasaur.ai/workspace-management/analytics).
 
 ## Table of contents
 
 - [Table of contents](#table-of-contents)
 - [Prerequisites](#prerequisites)
 - [Quickstart](#quickstart)
-- [How it works](#how-it-works)
+- [Commands](#commands)
+  - [apply\_row\_answers](#apply_row_answers)
+    - [Usage](#usage)
+    - [Parameters](#parameters)
+    - [How it Works](#how-it-works)
+  - [check\_teams](#check_teams)
+    - [Usage](#usage-1)
 
 ## Prerequisites
 
-- A Datasaur workspace with OAuth credentials enabled. 
+- A Datasaur account, able to create / have access to a workspace and able to generate OAuth credentials. 
+    - Please refer to the root [readme](../readme.md#prerequisites) to generate your OAuth Credentials 
 - Python 3 (3.10 recommended), with `pip` installed.
+    - Run `pip install -r requirements.txt` or `pip install -r dev-requirments.txt`. Dev requirements is really only needed if you are modifying the code and want consistent formatting with `black`.
 
 ## Quickstart
 
-1. `pip install -r requirements.txt` or `pip install -r dev-requirments.txt`. Dev requirements is really only needed if you want consistent formatting with `black`.
-2. Setup a Datasaur workspace and generate admin OAuth credentials. Save the client id and secret in the `.env` file. We have provided an example `.env.example` you can copy. 
-3. Create and invite the labeler accounts you will be applying labels as. For each one, generate OAuth credentials and save the client id and secret. This time, in the .env file, but in a `labelers.json` file. We have provided an example `labelers.json.example` you can refer to. We'll be using the [pyjson5](https://pypi.org/project/pyjson5/) library to parse this file, so you can use comments inside. 
-4. Execute the script. It is configured to read the admin credentials from the `.env` file, and the labeler credentials from the `labelers.json` file.
+1. Ensure you have your Datasaur account ready, and that it can create / have access to a team workspace. **This will be your admin account.**
+2. Setup a Datasaur workspace and generate OAuth credentials from the admin account. For convenience, you can store the client id and secret as environment variables. The script will look for a `.env` file. We have provided a `.env.example` you can refer to. 
+3. Create and invite the labeler accounts you will be applying labels as. For each one, generate OAuth credentials and save the client id and secret. This time, not in the `.env` file, but in a `labelers.json` file. We have provided an example `labelers.json.example` you can refer to. We'll be using the [pyjson5](https://pypi.org/project/pyjson5/) library to parse this file, so you can use comments inside.
+    - For your convenience, you could set-up multiple labeler accounts just for this workflow using the script from [`user_management`](../user-management/readme.md) folder.  
+    **We recommend creating new accounts instead of using existing accounts as you'd be storing and using those OAuth credentials to apply the labels.**
+4. Execute the script. It is configured to read the admin credentials from the `.env` file, and the labeler credentials from the specified json file.  
+    Please refer to the `apply_row_answers` section below for detailed explanation. 
+    ```console
+    python apply_labels.py apply_row_answers --team_id TEAM_ID --project_id PROJECT_ID [--labelers_file labelers.json] [--verbose]
+    ```
+
+## Commands
+
+### apply_row_answers
+
+This function queries a project's assignment and cabinet detail, then replicates the cabinet to each assigned member (if it doesn't exist), and opens and applies row answers to each document in the cabinet for each assignee.
+
+#### Usage
+
 ```console
-python apply_labels.py apply_row_answers --team_id TEAM_ID --project_id PROJECT_ID [--labelers_file labelers.json] [--verbose]
+python apply_labels.py apply_row_answer --team_id <team-id> --project_id <project-id> --labelers_file <path to json file>
 ```
 
-## How it works
+Replace `<team-id>`, `<project-id>`, and `<path to json file>` with your actual values.
+
+#### Parameters
+
+Command parameters: 
+- `team_id` (str): The ID of the team.
+- `project_id` (str): The ID of the project.
+- `labelers_file` (str, optional): The path to the JSON file that contains the labelers. Defaults to "labelers.json".
+- `verbose` (bool, optional): Whether to output verbose messages. Defaults to False.
+
+
+OAuth credentials - You can set these as environment variables, in `.env` file, or pass them as command line arguments.
+- `base_url` (str | None, optional): The base URL. Defaults to None. Env: `BASE_URL`
+- `client_id`(str | None, optional): Admin's client ID. Defaults to None. Env: `CLIENT_ID`
+- `client_secret` (str | None, optional): Admin's client secret. Defaults to None. Env: `CLIENT_SECRET`
+
+
+#### How it Works
 
 The script uses Datasaur's GraphQL API to apply the labels / answers.  
 For this specific sample, we are using the [`updateMultiRowAnswers`](https://api-docs.datasaur.ai/#mutation-updateMultiRowAnswers) mutation to apply row-answers to the project. 
@@ -41,3 +81,17 @@ Here's a step-by-step overview of what the script does, given a team_id and a pr
     - Any columns present in the file, but not present as a question in the project will be skipped silently. Run the command with the --verbose flag to see a log entry.
 5. Row-answers application. The script will then apply the answers to the project.  
 
+### check_teams
+
+#### Usage
+
+```console
+python apply_labels.py check_teams
+```
+
+This function will attempt to authenticate with the Datasaur API using the credentials provided in the `.env` file. It will then fetch all the teams the admin has access to, and prints out the detail.
+
+You can also check a labeler's credential by passing them in as command line arguments:
+```console
+python apply_labels.py check_teams --client_id <client-id> --client_secret <client-secret>
+```

@@ -20,7 +20,7 @@ def apply_row_answers(
     """
     The script will query the project's assignment and cabinet detail, then:
     1. Replicate cabinet to each assigned member, if not exist
-    2. Open and apply cabinet for each assignee.
+    2. Open and apply labels to each document in the cabinet for each assignee.
 
     Uses BASSE_URL, CLIENT_ID, and CLIENT_SECRET from .env by default.
     """
