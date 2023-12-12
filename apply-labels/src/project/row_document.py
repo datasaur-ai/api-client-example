@@ -7,6 +7,8 @@ from termcolor import colored
 from src.helpers import GraphQLClient, get_operations, inspect_filepath
 from src.helpers.loggable import loggable, loggable_with_args
 
+CHUNK_SIZE = 100
+
 
 class RowProjectDocument:
     def __init__(
@@ -50,17 +52,39 @@ class RowProjectDocument:
     @loggable_with_args
     def apply_answer_per_document(self, doc_id: str, filepath: str, labeler_email: str):
         valid_data = self.validate_columns(filepath)
-        return self.__apply_answer_per_document(doc_id, valid_data, self.question_set)
+        return self.__apply_answer_per_document_in_batches(
+            doc_id, valid_data, self.question_set
+        )
+
+    def __apply_answer_per_document_in_batches(
+        self, doc_id: str, valid_data: list[list[str]], question_set: tuple[str, list]
+    ):
+        _, data = valid_data[0], valid_data[1:]
+
+        # python 3.12 have itertools.batched, but it's very new
+        # manual batching for now
+        batched_data = [
+            data[i : i + CHUNK_SIZE] for i in range(0, len(data), CHUNK_SIZE)
+        ]
+
+        for i, batch in enumerate(batched_data):
+            self.__apply_answer_per_document(
+                doc_id=doc_id,
+                batch_data=batch,
+                question_set=question_set,
+                starting_index=i * CHUNK_SIZE,
+            )
 
     def __apply_answer_per_document(
         self,
         doc_id: str,
-        valid_data: list[list[str]],
+        batch_data: list[list[str]],
         question_set: tuple[str, list],
+        starting_index=0,
     ):
         signature, questions = question_set
         row_answers = []
-        for line_index, row in enumerate(valid_data[1:]):
+        for line_index, row in enumerate(batch_data):
             answer = {}
             for q in questions:
                 try:
@@ -68,7 +92,7 @@ class RowProjectDocument:
                 except IndexError:
                     # index error here means the prelabeled file does not have the answer for this question
                     pass
-            row_answers.append({"line": line_index, "answers": answer})
+            row_answers.append({"line": line_index + starting_index, "answers": answer})
 
         return self.call_graphql(
             document_id=doc_id, row_answers=row_answers, signature=signature
@@ -122,10 +146,13 @@ class RowProjectDocument:
 
 
 def header_in_metas_and_is_question(header: str, metas: list[dict[str, Any]], verbose):
+    should_warn = True
     for meta in metas:
         if meta["name"] == header and meta["rowQuestionIndex"] is not None:
             return True
+        if meta["name"] == header:
+            should_warn = False
 
-    if verbose:
+    if verbose and should_warn:
         print(colored(f"header {header} not found in metas", "yellow"))
     return False
