@@ -75,3 +75,36 @@ Example CSV file content (located at [`sample-files/create_users_output.csv`](sa
 2,user2@email.com,UserName2,UserPa$$w0rd2
 ...
 ```
+
+### Accept Team Invitations
+
+This script facilitates the acceptance of users to teams by sending API requests to the specified endpoint. The script reads data from a CSV file, allowing you to process multiple team invitations at once.
+
+```bash
+python accept_team_invitations.py accept_team_invitations \
+    --base_url <BASE_URL> \
+    --input_file_path <INPUT_FILE_PATH>
+```
+
+**Options**
+
+- `base_url` **(required)**: The base URL of the API endpoint.
+- `input_file_path` **(required)**: Path to the CSV file containing user data. Default is "./sample-files/accept_team_invitations_input.csv".
+
+#### Input File Format
+
+The CSV file should contain the following data, each representing an invitation for a user to join a team. Each invitation comprises:
+
+1. **Invited User's Client ID**: The client ID owned by the user being invited for authentication.
+2. **Invited User's Client Secret**: The client secret owned by the user being invited for authentication.
+3. **Team ID**: The ID of the team for which the invitation will be accepted.
+
+Example CSV file content (located at [`sample-files/accept_team_invitations_input.csv`](sample-files/accept_team_invitations_input.csv)):
+
+```csv
+abcd1234-9afb-4d51-b9a2-db2aae188a86,1234abcd-849b-4d0a-bf8e-02ee530e1532,1
+efgh5678-337a-48e3-a980-e67cc2919e4e,5678efgh-d25c-4b5d-be58-5f97209ee7ee,2
+...
+```
+
+**Note:** You can automatically retrieve the Client ID and Client Secret for newly created users by utilizing the [Create Bulk Users](#create-bulk-users) script.
