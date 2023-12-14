@@ -1,3 +1,4 @@
+import logging
 import os
 from csv import reader
 from json import dumps
@@ -39,7 +40,7 @@ class RowProjectDocument:
             ]
 
             if len(matching_documents) == 0:
-                print(f"document {json_document} not found in cabinet")
+                logging.info(f"document {json_document} not found in cabinet")
                 continue
 
             doc = matching_documents[0]
@@ -53,7 +54,7 @@ class RowProjectDocument:
     @loggable_with_args
     def apply_answer_per_document(self, doc_id: str, filepath: str, labeler_email: str):
         valid_data = self.validate_columns(filepath)
-        print(
+        logging.info(
             f"applying answer for labeler: {labeler_email}, document: {doc_id} from {filepath}"
         )
         return self.__apply_answer_per_document_in_batches(
@@ -71,7 +72,9 @@ class RowProjectDocument:
             data[i : i + CHUNK_SIZE] for i in range(0, len(data), CHUNK_SIZE)
         ]
 
-        print(f"total rows in file: {len(valid_data)}, batched to {len(batched_data)}")
+        logging.debug(
+            f"total rows in file: {len(valid_data)}, batched to {len(batched_data)}"
+        )
 
         for i, batch in enumerate(batched_data):
             self.__apply_answer_per_document(
@@ -135,9 +138,7 @@ class RowProjectDocument:
         valid_columns = [
             index
             for index, header in enumerate(headers)
-            if header_in_metas_and_is_question(
-                header, self.metas, verbose=self.client.verbose
-            )
+            if header_in_metas_and_is_question(header, self.metas)
         ]
 
         if len(valid_columns) == 0:
@@ -151,7 +152,7 @@ class RowProjectDocument:
         return valid_data
 
 
-def header_in_metas_and_is_question(header: str, metas: list[dict[str, Any]], verbose):
+def header_in_metas_and_is_question(header: str, metas: list[dict[str, Any]]):
     should_warn = True
     for meta in metas:
         if meta["name"] == header and meta["rowQuestionIndex"] is not None:
@@ -159,6 +160,6 @@ def header_in_metas_and_is_question(header: str, metas: list[dict[str, Any]], ve
         if meta["name"] == header:
             should_warn = False
 
-    if verbose and should_warn:
-        print(colored(f"header {header} not found in metas", "yellow"))
+    if should_warn:
+        logging.warn(colored(f"header {header} not found in metas", "yellow"))
     return False

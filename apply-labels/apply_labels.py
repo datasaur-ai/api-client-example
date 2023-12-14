@@ -1,3 +1,7 @@
+import logging
+import traceback
+from operator import le
+
 import fire
 from dotenv import load_dotenv
 
@@ -24,13 +28,16 @@ def apply_row_answers(
 
     Uses BASE_URL, CLIENT_ID, and CLIENT_SECRET from .env by default.
     """
+    if verbose:
+        logging.basicConfig(level=logging.DEBUG)
+    else:
+        logging.basicConfig(level=logging.INFO)
     try:
         config = read_config(base_url, client_id, client_secret)
         client = GraphQLClient(
             base_url=config["base_url"],
             client_id=config["client_id"],
             client_secret=config["client_secret"],
-            verbose=verbose,
         )
 
         data = load_jsonc(labelers_file)
@@ -41,6 +48,8 @@ def apply_row_answers(
             labelers=data["labelers"],
         )
     except Exception as e:
+        logging.error(e)
+        traceback.print_exc()
         SystemExit(e)
 
 

@@ -1,16 +1,17 @@
+import logging
+
 import requests
 from termcolor import colored
 
 
-def call_graphql(url: str, headers: dict[str, str], data, verbose=False):
+def call_graphql(url: str, headers: dict[str, str], data):
     operation_name = data.get("operationName", None)
     decorated_url = f"{url}?operationName={operation_name}"
-    if verbose:
-        print(colored(f"url={decorated_url}", "grey"))
-        if operation_name is not None:
-            print(colored(f"{operation_name=}", "grey"))
-        else:
-            print(colored(f"{data=}", "grey"))
+    logging.debug(colored(f"url={decorated_url}", "grey"))
+    if operation_name is not None:
+        logging.debug(colored(f"{operation_name=}", "grey"))
+    else:
+        logging.debug(colored(f"{data=}", "grey"))
 
     response = requests.post(decorated_url, headers=headers, data=data)
 

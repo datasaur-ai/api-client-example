@@ -1,9 +1,7 @@
 from collections import namedtuple
 from json import dumps
-from pprint import pp, pprint
-from tabnanny import verbose
 
-from src.helpers import GraphQLClient, get_operations, inspect_filepath, loggable
+from src.helpers import GraphQLClient, get_operations, loggable
 
 from .cabinet import Cabinet
 from .row_document import RowProjectDocument
@@ -35,7 +33,6 @@ class Project:
             base_url=self.client.url,
             client_id=labeler["client_id"],
             client_secret=labeler["client_secret"],
-            verbose=self.client.verbose,
         )
         return RowProjectDocument(
             client=labeler_client,

@@ -1,3 +1,4 @@
+import logging
 from json import dumps
 from typing import Any
 
@@ -37,13 +38,11 @@ class Cabinet:
                         client_secret=labeler["client_secret"],
                     ),
                 )
-                if self.client.verbose:
-                    print(f"Replicate cabinet for {labeler['email']}")
-                    print(f"{response=}")
+                logging.debug(f"Replicate cabinet for {labeler['email']}")
+                logging.debug(f"{response=}")
                 ongoing_replication.append(response["data"]["result"]["id"])
             else:
-                if self.client.verbose:
-                    print(f"Cabinet for {labeler['email']} already exists")
+                logging.debug(f"Cabinet for {labeler['email']} already exists")
 
         if len(ongoing_replication) > 0:
             Jobs(self.client).poll_and_wait(ongoing_replication, call_as=None)

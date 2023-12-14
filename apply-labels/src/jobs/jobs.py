@@ -1,3 +1,4 @@
+import logging
 from json import dumps
 from random import randint
 from time import sleep
@@ -28,17 +29,16 @@ class Jobs:
             ]
 
             if (len(failed_jobs)) > 0:
-                print(f"{failed_jobs=}")
+                logging.warning(f"{failed_jobs=}")
                 raise Exception("Some job failed")
 
-            if self.client.verbose:
-                delivered_jobs = [
-                    job
-                    for job in response["data"]["result"]
-                    if job["status"] == "DELIVERED"
-                ]
-                print(f"{delivered_jobs=}")
-                print(f"{ids_to_query_next=}")
+            delivered_jobs = [
+                job
+                for job in response["data"]["result"]
+                if job["status"] == "DELIVERED"
+            ]
+            logging.log(10, f"{delivered_jobs=}")
+            logging.log(10, f"{ids_to_query_next=}")
 
             if (len(ids_to_query_next)) > 0:
                 sleep(randint(1, 3))

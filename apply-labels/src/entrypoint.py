@@ -18,7 +18,6 @@ def check_login_and_teams(
         base_url=config["base_url"],
         client_id=config["client_id"],
         client_secret=config["client_secret"],
-        verbose=verbose,
     )
     teams = Team(base_url=config["base_url"], client=client).fetch()
 
