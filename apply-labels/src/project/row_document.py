@@ -1,3 +1,4 @@
+import os
 from csv import reader
 from json import dumps
 from typing import Any
@@ -5,9 +6,9 @@ from typing import Any
 from termcolor import colored
 
 from src.helpers import GraphQLClient, get_operations, inspect_filepath
-from src.helpers.loggable import loggable, loggable_with_args
+from src.helpers.loggable import loggable_with_args
 
-CHUNK_SIZE = 100
+CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", 100))
 
 
 class RowProjectDocument:

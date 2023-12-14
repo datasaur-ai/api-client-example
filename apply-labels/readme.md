@@ -1,6 +1,6 @@
 # Apply labels as labeler from file.
 
-This folder focuses on workflows for row-labeling, where labelers' have applied labels externally and you need to want to import them to Datasaur and view the [analytics](https://docs.datasaur.ai/workspace-management/analytics).
+This folder focuses on workflows for row-labeling, where labelers' have applied labels externally and you want to import them to Datasaur and view the [analytics](https://docs.datasaur.ai/workspace-management/analytics).
 
 ## Table of contents
 
@@ -12,6 +12,7 @@ This folder focuses on workflows for row-labeling, where labelers' have applied 
     - [Usage](#usage)
     - [Parameters](#parameters)
     - [How it Works](#how-it-works)
+    - [Limitations](#limitations)
   - [check\_teams](#check_teams)
     - [Usage](#usage-1)
 
@@ -80,7 +81,13 @@ Here's a step-by-step overview of what the script does, given a team_id and a pr
     - The script will error-out here if there are no valid columns / data detected. 
     - Any columns present in the file, but not present as a question in the project will be skipped silently. Run the command with the `--verbose` flag to see a log entry.
 5. Applying row-answers. The script will then apply the answers to the project.
-    Answer application is done in batches of 100 rows at a time.
+    Answer application is done in batches of 100 rows at a time. This can be configured via the `.env` file as well.
+
+#### Limitations
+
+There are a couple of limitations to this script:
+- It relies on files's name to associate the documents in Datasaur and the row-answer file here. As such, projects created with [our split file feature](https://docs.datasaur.ai/nlp-projects/creating-a-project/split-files) will not work, as the splitted file will have the same name. A workaround for working with large files would be to split them manually before creating the projects in Datasaur. 
+- Minimal script-side validation. The script assumes that the row-answer file and the associated document contains the same number of rows. Answer values provided in the file are also passed as graphql input without validation.
 
 ### check_teams
 
