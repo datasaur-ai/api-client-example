@@ -1,3 +1,4 @@
+import logging
 from pprint import pprint
 
 from .helpers import GraphQLClient, read_config
@@ -13,6 +14,11 @@ def check_login_and_teams(
     """
     Login using admin's CLIENT_ID and CLIENT_SECRET, then queries all team visible from the admin's account.
     """
+    if verbose:
+        logging.basicConfig(level=logging.DEBUG)
+    else:
+        logging.basicConfig(level=logging.INFO)
+
     config = read_config(base_url, client_id, client_secret)
     client = GraphQLClient(
         base_url=config["base_url"],

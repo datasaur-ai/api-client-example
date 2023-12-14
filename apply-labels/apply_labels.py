@@ -32,6 +32,7 @@ def apply_row_answers(
         logging.basicConfig(level=logging.DEBUG)
     else:
         logging.basicConfig(level=logging.INFO)
+
     try:
         config = read_config(base_url, client_id, client_secret)
         client = GraphQLClient(
