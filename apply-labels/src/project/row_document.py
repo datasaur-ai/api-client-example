@@ -53,6 +53,9 @@ class RowProjectDocument:
     @loggable_with_args
     def apply_answer_per_document(self, doc_id: str, filepath: str, labeler_email: str):
         valid_data = self.validate_columns(filepath)
+        print(
+            f"applying answer for labeler: {labeler_email}, document: {doc_id} from {filepath}"
+        )
         return self.__apply_answer_per_document_in_batches(
             doc_id, valid_data, self.question_set
         )
@@ -67,6 +70,8 @@ class RowProjectDocument:
         batched_data = [
             data[i : i + CHUNK_SIZE] for i in range(0, len(data), CHUNK_SIZE)
         ]
+
+        print(f"total rows in file: {len(valid_data)}, batched to {len(batched_data)}")
 
         for i, batch in enumerate(batched_data):
             self.__apply_answer_per_document(

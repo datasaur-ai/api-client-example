@@ -22,23 +22,26 @@ def apply_row_answers(
     1. Replicate cabinet to each assigned member, if not exist
     2. Open and apply labels to each document in the cabinet for each assignee.
 
-    Uses BASSE_URL, CLIENT_ID, and CLIENT_SECRET from .env by default.
+    Uses BASE_URL, CLIENT_ID, and CLIENT_SECRET from .env by default.
     """
-    config = read_config(base_url, client_id, client_secret)
-    client = GraphQLClient(
-        base_url=config["base_url"],
-        client_id=config["client_id"],
-        client_secret=config["client_secret"],
-        verbose=verbose,
-    )
+    try:
+        config = read_config(base_url, client_id, client_secret)
+        client = GraphQLClient(
+            base_url=config["base_url"],
+            client_id=config["client_id"],
+            client_secret=config["client_secret"],
+            verbose=verbose,
+        )
 
-    data = load_jsonc(labelers_file)
+        data = load_jsonc(labelers_file)
 
-    Project(client=client).apply_row_answers(
-        team_id=team_id,
-        project_id=project_id,
-        labelers=data["labelers"],
-    )
+        Project(client=client).apply_row_answers(
+            team_id=team_id,
+            project_id=project_id,
+            labelers=data["labelers"],
+        )
+    except Exception as e:
+        SystemExit(e)
 
 
 if __name__ == "__main__":
