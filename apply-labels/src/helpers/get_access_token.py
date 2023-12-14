@@ -21,4 +21,4 @@ def get_access_token(
 
     if verbose:
         print(colored(f"{token=}", "grey"))
-    return token["access_token"]
+    return token
