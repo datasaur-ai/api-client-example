@@ -10,7 +10,7 @@ def get_access_token(
     client_secret: str,
     base_url="https://app.datasaur.ai",
 ):
-    logging.log(10, colored(f"Getting access token for {client_id}", "grey"))
+    logging.debug(colored(f"Getting access token for {client_id}", "grey"))
     client = BackendApplicationClient(client_id=client_id)
     oauth = OAuth2Session(client=client)
     token = oauth.fetch_token(
@@ -19,5 +19,5 @@ def get_access_token(
         client_secret=client_secret,
     )
 
-    logging.log(10, colored(f"{token=}", "grey"))
+    logging.debug(colored(f"{token=}", "grey"))
     return token

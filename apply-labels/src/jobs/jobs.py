@@ -37,8 +37,8 @@ class Jobs:
                 for job in response["data"]["result"]
                 if job["status"] == "DELIVERED"
             ]
-            logging.log(10, f"{delivered_jobs=}")
-            logging.log(10, f"{ids_to_query_next=}")
+            logging.debug(f"{delivered_jobs=}")
+            logging.debug(f"{ids_to_query_next=}")
 
             if (len(ids_to_query_next)) > 0:
                 sleep(randint(1, 3))
