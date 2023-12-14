@@ -35,7 +35,8 @@ python create_users.py create_users \
     --client_secret <CLIENT_SECRET> \
     --input_file_path <INPUT_FILE_PATH> \
     --output_file_path <OUTPUT_FILE_PATH> \
-    --email_verified <EMAIL_VERIFIED>
+    --email_verified <EMAIL_VERIFIED> \
+    --generate_credentials <GENERATE_CREDENTIALS>
 ```
 
 **Options**
@@ -46,6 +47,7 @@ python create_users.py create_users \
 - `input_file_path` **(required)**: Path to the CSV file containing user data. Default is "./sample-files/create_users_input.csv".
 - `output_file_path` **(required)**: Path to the CSV file where the output data will be written. Default is "./output-files/create_users_output.csv".
 - `email_verified` **(optional)**: Flag indicating whether user emails are verified. Default is 0.
+- `generate_credentials` **(optional)**: Flag indicating whether the user's credentials will be generated. Default is 0.
 
 #### Input File Format
 
@@ -67,11 +69,13 @@ user2@email.com,UserName2,UserPa$$w0rd2
 
 The output file format is same with the input file format, but it have additional datas:
 1. **User's ID:** The ID of the created user.
+1. **User's Client ID (optional):** The client ID of the created user for authentication.
+1. **User's Client Secret (optional):** The client secret of the created user for authentication.
 
 Example CSV file content (located at [`sample-files/create_users_output.csv`](sample-files/create_users_output.csv)):
 
 ```csv
-1,user1@email.com,UserName1,UserPa$$w0rd1
-2,user2@email.com,UserName2,UserPa$$w0rd2
+1,user1@email.com,UserName1,UserPa$$w0rd1,clientId1,clientSecret1
+2,user2@email.com,UserName2,UserPa$$w0rd2,clientId2,clientSecret2
 ...
 ```
