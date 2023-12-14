@@ -2,7 +2,7 @@
   "operationName": "GetTeamDetailQuery",
   "variables": {
     "input": {
-      "id": "123"
+      "id": "<team_id>"
     }
   },
   "query": "query GetTeamDetailQuery($input: GetTeamDetailInput) { getTeamDetail(input: $input) { id logoURL membersScalar name setting { allowedAdminExportMethods allowedLabelerExportMethods allowedOCRProviders allowedASRProviders allowedReviewerExportMethods commentNotificationType customAPICreationLimit defaultCustomTextExtractionAPIId defaultExternalObjectStorageId enableActions enableAssistedLabeling enableDemo enableDataProgramming enableLabelingFunctionMultipleLabel enableDatasaurAssistRowBased enableDatasaurPredictiveRowBased enableWipeData enableExportTeamOverview allowedExtraAutoLabelProviders enableLLMProject } owner { id username name email package profilePicture allowedActions displayName teamPackage emailVerified totpAuthEnabled companyName } isExpired expiredAt } }"

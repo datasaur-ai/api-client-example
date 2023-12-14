@@ -36,14 +36,14 @@ def accept_team_invitations(base_url, input_file_path="./sample-files/accept_tea
             if "json" in response.headers["content-type"]:
                 json_response = response.json()
                 if response.status_code == 200 and "errors" not in json_response:
-                    print("accepted user to team {team_id} ({team_name})".format(team_id=team_id, team_name=json_response["data"]["getTeamDetail"]["name"]))
+                    print("accepted user {client_id} to team {team_id} ({team_name})".format(client_id=client_id, team_id=team_id, team_name=json_response["data"]["getTeamDetail"]["name"]))
                 else:
                     error_messages = []
                     for error in json_response["errors"]:
                         error_messages.append(error["message"])
-                    raise Exception("team {team_id} ERROR: {message}".format(team_id=team_id, message=",".join(error_messages)))
+                    raise Exception("user {client_id} ERROR: {message}".format(client_id=client_id, message=",".join(error_messages)))
             else:
-                raise Exception("team {team_id} ERROR: {status_code})".format(team_id=team_id, status_code=response.status_code))
+                raise Exception("user {client_id} ERROR: {status_code})".format(client_id=client_id, status_code=response.status_code))
     except Exception as e:
         raise SystemExit(e)
 
