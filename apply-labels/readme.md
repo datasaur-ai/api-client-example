@@ -44,7 +44,7 @@ This function queries a project's assignment and cabinet detail, then replicates
 #### Usage
 
 ```console
-python apply_labels.py apply_row_answer --team_id <team-id> --project_id <project-id> --labelers_file <path to json file>
+python apply_labels.py apply_row_answers --team_id <team-id> --project_id <project-id> --labelers_file <path to json file>
 ```
 
 Replace `<team-id>`, `<project-id>`, and `<path to json file>` with your actual values.
