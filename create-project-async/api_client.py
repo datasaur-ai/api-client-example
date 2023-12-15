@@ -5,6 +5,7 @@ from src.job import Job
 
 
 def create_project(base_url, client_id, client_secret, team_id, documents_path="documents"):
+    print("Creating project...")
     try:
         Project.create(
             base_url,

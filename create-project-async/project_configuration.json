@@ -24,7 +24,7 @@
       "splitDocumentOption": null,
       "projectSettings": {
         "enableEditLabelSet": true,
-        "enableEditSentence": true,
+        "enableEditSentence": false,
         "hideLabelerNamesDuringReview": false,
         "hideRejectedLabelsDuringReview": true,
         "hideLabelsFromInactiveLabelSetDuringReview": false,
