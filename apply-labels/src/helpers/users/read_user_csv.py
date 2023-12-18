@@ -1,7 +1,7 @@
 import csv
 import logging
 
-from .models import User
+from src.models import User
 
 
 def read_users_csv(csv_path: str):

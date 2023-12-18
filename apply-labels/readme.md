@@ -48,17 +48,19 @@ This function queries a project's assignment and cabinet detail, then replicates
 #### Usage
 
 ```console
-python apply_labels.py apply_row_answers --team_id <team-id> --project_id <project-id> --labelers_file [path to json file] --users_csv [path to csv file]
+python apply_labels.py apply_row_answers --team_id <team-id> --project_id <project-id> --labelers_file [path to json file] --users_csv [path to csv file] 
 ```
 
-Replace `<team-id>`, `<project-id>`, and `<path to json file>` with your actual values.
+Replace `<team-id>`, and `<project-id>` with your actual values.  
+`[path to json file]` and `[path to csv file]` are optional. Please refer to the parameters section below for more details.
+
 
 #### Parameters
 
 Command parameters: 
 - `team_id` (str): The ID of the team.
 - `project_id` (str): The ID of the project.
-- `labelers_file` (str, optional): The path to the JSON file that contains the labelers. Defaults to "labelers.json".
+- `labelers_file` (str, optional): Path to the JSON file that contains the labelers. Defaults to "labelers.json".
 - `users_csv` (str, optional): Path to a CSV file containing users info. See user_management readme for structure. If omitted, script will only read from labelers_file.
 - `verbose` (bool, optional): Whether to output verbose messages. Defaults to False.
 
@@ -102,7 +104,7 @@ python apply_labels.py convert_to_json --users_csv <filepath> --labelers_file <f
 ```
 
 - `users_csv` (str): The path to the CSV file containing the users' information. This should be the output you get after running the command from the [`user_management`](../user-management/readme.md) folder.
-- labelers_file (str): Path to a JSON file we'll write.  
+- `labelers_file` (str): Path to a JSON file we'll write.  
     If the file exists, the script will populate the client_id & client_secret of the users that don't have them yet, and add missing users to the JSON file with empty documents assignment.  
     If it doesn't exist, the script will create the file and populate it with the users' information.
 

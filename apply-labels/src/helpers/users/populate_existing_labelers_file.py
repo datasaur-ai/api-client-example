@@ -1,11 +1,11 @@
-import csv
 import json
 import logging
 
 from pyjson5 import load as json5_load
 
-from .check_file_exist import check_file_exist
-from .models import LabelerAssignment, User
+from src.models import LabelerAssignment
+
+from ..check_file_exist import check_file_exist
 from .read_user_csv import read_users_csv
 
 

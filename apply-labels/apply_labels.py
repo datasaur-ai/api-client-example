@@ -52,7 +52,7 @@ def apply_row_answers(
             logging.info(
                 f"mapping users from {users_csv} to labelers file: {labelers_file}"
             )
-            create_labelers_file(users_csv, labelers_file)
+            populate_existing_labelers_file(users_csv, labelers_file)
 
         data = load_jsonc(labelers_file)
 
@@ -68,11 +68,8 @@ def apply_row_answers(
 
 
 def convert_to_json(users_csv: str, labelers_file: str):
-    if os.path.isfile(labelers_file):
-        # labelers_file exists, so we do not overwrite it
-        populate_existing_labelers_file(
-            users_csv=users_csv, labelers_file=labelers_file
-        )
+    if os.path.exists(labelers_file):
+        populate_existing_labelers_file(users_csv, labelers_file)
     else:
         create_labelers_file(users_csv, labelers_file)
 

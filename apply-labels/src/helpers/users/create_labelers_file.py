@@ -1,7 +1,8 @@
 import json
 
-from .check_file_exist import check_file_exist
-from .models import LabelerAssignment
+from src.models import LabelerAssignment
+
+from ..check_file_exist import check_file_exist
 from .read_user_csv import read_users_csv
 
 
