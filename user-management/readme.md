@@ -35,7 +35,8 @@ python create_users.py create_users \
     --client_secret <CLIENT_SECRET> \
     --input_file_path <INPUT_FILE_PATH> \
     --output_file_path <OUTPUT_FILE_PATH> \
-    --email_verified <EMAIL_VERIFIED>
+    --email_verified <EMAIL_VERIFIED> \
+    --generate_credentials <GENERATE_CREDENTIALS>
 ```
 
 **Options**
@@ -46,6 +47,7 @@ python create_users.py create_users \
 - `input_file_path` **(required)**: Path to the CSV file containing user data. Default is "./sample-files/create_users_input.csv".
 - `output_file_path` **(required)**: Path to the CSV file where the output data will be written. Default is "./output-files/create_users_output.csv".
 - `email_verified` **(optional)**: Flag indicating whether user emails are verified. Default is 0.
+- `generate_credentials` **(optional)**: Flag indicating whether the user's credentials will be generated. Default is 0.
 
 #### Input File Format
 
@@ -67,11 +69,46 @@ user2@email.com,UserName2,UserPa$$w0rd2
 
 The output file format is same with the input file format, but it have additional datas:
 1. **User's ID:** The ID of the created user.
+1. **User's Client ID (optional):** The client ID of the created user for authentication.
+1. **User's Client Secret (optional):** The client secret of the created user for authentication.
 
 Example CSV file content (located at [`sample-files/create_users_output.csv`](sample-files/create_users_output.csv)):
 
 ```csv
-1,user1@email.com,UserName1,UserPa$$w0rd1
-2,user2@email.com,UserName2,UserPa$$w0rd2
+1,user1@email.com,UserName1,UserPa$$w0rd1,clientId1,clientSecret1
+2,user2@email.com,UserName2,UserPa$$w0rd2,clientId2,clientSecret2
 ...
 ```
+
+### Accept Team Invitations
+
+This script facilitates the acceptance of users to teams by sending API requests to the specified endpoint. The script reads data from a CSV file, allowing you to process multiple team invitations at once.
+
+```bash
+python accept_team_invitations.py accept_team_invitations \
+    --base_url <BASE_URL> \
+    --input_file_path <INPUT_FILE_PATH>
+```
+
+**Options**
+
+- `base_url` **(required)**: The base URL of the API endpoint.
+- `input_file_path` **(required)**: Path to the CSV file containing user data. Default is "./sample-files/accept_team_invitations_input.csv".
+
+#### Input File Format
+
+The CSV file should contain the following data, each representing an invitation for a user to join a team. Each invitation comprises:
+
+1. **Invited User's Client ID**: The client ID owned by the user being invited for authentication.
+2. **Invited User's Client Secret**: The client secret owned by the user being invited for authentication.
+3. **Team ID**: The ID of the team for which the invitation will be accepted.
+
+Example CSV file content (located at [`sample-files/accept_team_invitations_input.csv`](sample-files/accept_team_invitations_input.csv)):
+
+```csv
+abcd1234-9afb-4d51-b9a2-db2aae188a86,1234abcd-849b-4d0a-bf8e-02ee530e1532,1
+efgh5678-337a-48e3-a980-e67cc2919e4e,5678efgh-d25c-4b5d-be58-5f97209ee7ee,2
+...
+```
+
+**Note:** You can automatically retrieve the Client ID and Client Secret for newly created users by utilizing the [Create Bulk Users](#create-bulk-users) script.
