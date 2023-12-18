@@ -1,6 +1,6 @@
 # Apply labels as labeler from file.
 
-This folder focuses on workflows for row-labeling, where labelers' have applied labels externally and you want to import them to Datasaur and view the [analytics](https://docs.datasaur.ai/workspace-management/analytics).
+This folder focuses on workflows for row-labeling, where labelers' have applied labels externally and you want to import them to Datasaur and view the [IAA](https://docs.datasaur.ai/workspace-management/analytics/inter-annotator-agreement).
 
 ## Table of contents
 
