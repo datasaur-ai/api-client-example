@@ -61,7 +61,7 @@ Command parameters:
 - `team_id` (str): The ID of the team.
 - `project_id` (str): The ID of the project.
 - `labelers_file` (str, optional): Path to the JSON file that contains the labelers. Defaults to "labelers.json".
-- `users_csv` (str, optional): Path to a CSV file containing users info. See user_management readme for structure. If omitted, script will only read from labelers_file.
+- `users_csv` (str, optional): Path to a CSV file containing users info. See [user_management readme](../user-management/readme.md) for structure. If omitted, script will only read from labelers_file.
 - `verbose` (bool, optional): Whether to output verbose messages. Defaults to False.
 
 
@@ -80,6 +80,8 @@ There are some checks and validations, such as assignment and column header chec
 
 Here's a step-by-step overview of what the script does, given a team_id and a project_id:
 1. Read the config. If you provide no OAuth credentials, it will read from the `.env` file. 
+    - Check for `labelers_file` and `users_csv`.  
+    If you provide a `users_csv`, the script will then attempt to populate the `labelers_file` with the users' credential from the CSV file. The script will then re-write the `labelers_file` with the credentials included. 
 2. Fetch the project by team & project id, using admin's OAuth credentials. 
 3. Project-level validation. Here it will check that each labeler in the `labelers_file` is actually assigned to the project. 
 4. Cabinet replication. Here, the script will simulate opening the project as each labeler for the first time. This will create a cabinet - essentially a copy of the project - for each labeler.
