@@ -14,7 +14,7 @@ from toolbox.get_access_token import get_access_token
 from toolbox.post_request import post_request
 
 
-def create_users(base_url, client_id, client_secret, input_file_path="./sample-files/create_users_input.csv", output_file_path="./sample-files/create_users_output.csv", email_verified=0):
+def create_users(base_url, client_id, client_secret, input_file_path="./sample-files/create_users_input.csv", output_file_path="./sample-files/create_users_output.csv", email_verified=0, generate_credentials=0):
     try:
         api_url = base_url + "/api/v1/users"
         access_token = get_access_token(base_url, client_id, client_secret)
@@ -30,15 +30,26 @@ def create_users(base_url, client_id, client_secret, input_file_path="./sample-f
                     "email": user[0],
                     "name": user[1],
                     "password": user[2],
-                    "emailVerified": email_verified
+                    "emailVerified": email_verified,
+                    "generateCredentials": generate_credentials
                 }
                 response = post_request(api_url, access_token, new_user)
 
                 if "json" in response.headers["content-type"]:
                     json_response = response.json()
                     if response.status_code == 200:
-                        user_id = json_response["data"]["id"]
-                        writer.writerow([user_id, new_user["email"], new_user["name"], new_user["password"]])
+                        output_data = [
+                            json_response["data"]["id"],
+                            new_user["email"],
+                            new_user["name"],
+                            new_user["password"]
+                        ]
+                        if generate_credentials:
+                            output_data.extend([
+                                json_response["data"]["clientId"],
+                                json_response["data"]["clientSecret"]
+                            ])
+                        writer.writerow(output_data)
                         pprint.pprint(json_response)
                     else:
                         raise Exception("{email} ERROR: {message}".format(email=new_user["email"], message=json_response["message"]))
