@@ -13,8 +13,10 @@ This folder focuses on workflows for row-labeling, where labelers' have applied 
     - [Parameters](#parameters)
     - [How it Works](#how-it-works)
     - [Limitations](#limitations)
-  - [check\_teams](#check_teams)
+  - [convert\_to\_json](#convert_to_json)
     - [Usage](#usage-1)
+  - [check\_teams](#check_teams)
+    - [Usage](#usage-2)
 
 ## Prerequisites
 
@@ -30,6 +32,7 @@ This folder focuses on workflows for row-labeling, where labelers' have applied 
 3. Create and invite the labeler accounts you will be applying labels as. For each one, generate OAuth credentials and save the client id and secret. This time, not in the `.env` file, but in a `labelers.json` file. We have provided an example `labelers.json.example` you can refer to. We'll be using the [pyjson5](https://pypi.org/project/pyjson5/) library to parse this file, so you can use comments inside.
     - For your convenience, you could set-up multiple labeler accounts just for this workflow using the script from [`user_management`](../user-management/readme.md) folder.  
     **We recommend creating new accounts instead of using existing accounts as you'd be storing and using those OAuth credentials to apply the labels.**
+    - Please check the convert_to_json commands for a quick way to convert the CSV result to a JSON file.
 4. Execute the script. It is configured to read the admin credentials from the `.env` file, and the labeler credentials from the specified json file.  
     Please refer to the `apply_row_answers` section below for detailed explanation. 
     ```console
@@ -45,7 +48,7 @@ This function queries a project's assignment and cabinet detail, then replicates
 #### Usage
 
 ```console
-python apply_labels.py apply_row_answers --team_id <team-id> --project_id <project-id> --labelers_file <path to json file>
+python apply_labels.py apply_row_answers --team_id <team-id> --project_id <project-id> --labelers_file [path to json file] --users_csv [path to csv file]
 ```
 
 Replace `<team-id>`, `<project-id>`, and `<path to json file>` with your actual values.
@@ -56,6 +59,7 @@ Command parameters:
 - `team_id` (str): The ID of the team.
 - `project_id` (str): The ID of the project.
 - `labelers_file` (str, optional): The path to the JSON file that contains the labelers. Defaults to "labelers.json".
+- `users_csv` (str, optional): Path to a CSV file containing users info. See user_management readme for structure. If omitted, script will only read from labelers_file.
 - `verbose` (bool, optional): Whether to output verbose messages. Defaults to False.
 
 
@@ -88,6 +92,19 @@ Here's a step-by-step overview of what the script does, given a team_id and a pr
 There are a couple of limitations to this script:
 - It relies on files's name to associate the documents in Datasaur and the row-answer file here. As such, projects created with [our split file feature](https://docs.datasaur.ai/nlp-projects/creating-a-project/split-files) will not work, as the splitted file will have the same name. A workaround for working with large files would be to split them manually before creating the projects in Datasaur. 
 - Minimal script-side validation. The script assumes that the row-answer file and the associated document contains the same number of rows. Answer values provided in the file are also passed as graphql input without validation.
+
+### convert_to_json
+
+#### Usage
+
+```console
+python apply_labels.py convert_to_json --users_csv <filepath> --labelers_file <filepath>
+```
+
+- `users_csv` (str): The path to the CSV file containing the users' information. This should be the output you get after running the command from the [`user_management`](../user-management/readme.md) folder.
+- labelers_file (str): Path to a JSON file we'll write.  
+    If the file exists, the script will populate the client_id & client_secret of the users that don't have them yet, and add missing users to the JSON file with empty documents assignment.  
+    If it doesn't exist, the script will create the file and populate it with the users' information.
 
 ### check_teams
 
