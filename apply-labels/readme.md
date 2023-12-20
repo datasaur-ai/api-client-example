@@ -51,7 +51,7 @@ This function queries a project's assignment and cabinet detail, then replicates
 python apply_labels.py apply_row_answers --team_id <team-id> --project_id <project-id> --labelers_file [path to json file] --users_csv [path to csv file] 
 ```
 
-Replace `<team-id>`, and `<project-id>` with your actual values.  
+Replace `<team-id>`, and `<project-id>` with your actual values. These values are available in the URL. You can refer to [this page](https://docs.datasaur.ai/api/get-data#values-from-app-path) for more details.  
 `[path to json file]` and `[path to csv file]` are optional. Please refer to the parameters section below for more details.
 
 
@@ -59,7 +59,7 @@ Replace `<team-id>`, and `<project-id>` with your actual values.
 
 Command parameters: 
 - `team_id` (str): The ID of the team.
-- `project_id` (str): The ID of the project.
+- `project_id` (str): The ID of the project. The project's ID is also visible in the URL. 
 - `labelers_file` (str, optional): Path to the JSON file that contains the labelers. Defaults to "labelers.json".
 - `users_csv` (str, optional): Path to a CSV file containing users info. See [user_management readme](../user-management/readme.md) for structure. If omitted, script will only read from labelers_file.
 - `verbose` (bool, optional): Whether to output verbose messages. Defaults to False.
