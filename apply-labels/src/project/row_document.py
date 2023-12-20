@@ -32,6 +32,7 @@ class RowProjectDocument:
         answer_files = [
             os.path.join(labeler["documents"], f)
             for f in os.listdir(labeler["documents"])
+            if (os.path.isfile(os.path.join(labeler["documents"], f)))
         ]
         json_documents, cabinet_documents = self._prepare_documents(
             answer_files=answer_files, cabinet=self.cabinet
