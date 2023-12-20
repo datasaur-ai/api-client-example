@@ -17,7 +17,7 @@ def create_labelers_file(csv_path: str, labelers_file: str):
                 client_id=user.client_id,
                 client_secret=user.client_secret,
                 email=user.email,
-                documents=[],
+                documents="",
             )
         )
 

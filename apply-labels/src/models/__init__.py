@@ -14,4 +14,4 @@ class LabelerAssignment:
     client_id: str
     client_secret: str
     email: str
-    documents: list[str]
+    documents: str

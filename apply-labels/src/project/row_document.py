@@ -7,7 +7,7 @@ from typing import Any
 from termcolor import colored
 
 from src.helpers import GraphQLClient, get_operations, inspect_filepath
-from src.helpers.loggable import loggable_with_args
+from src.helpers.loggable import loggable_debug, loggable_with_args
 
 CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", 100))
 
@@ -29,8 +29,12 @@ class RowProjectDocument:
         self,
         labeler: dict[str, Any],
     ):
+        answer_files = [
+            os.path.join(labeler["documents"], f)
+            for f in os.listdir(labeler["documents"])
+        ]
         json_documents, cabinet_documents = self._prepare_documents(
-            answer_files=labeler["documents"], cabinet=self.cabinet
+            answer_files=answer_files, cabinet=self.cabinet
         )
 
         for json_document in json_documents:
@@ -40,7 +44,9 @@ class RowProjectDocument:
             ]
 
             if len(matching_documents) == 0:
-                logging.info(f"document {json_document} not found in cabinet")
+                logging.info(
+                    f"document {filename} not found in cabinet for user {labeler['email']}"
+                )
                 continue
 
             doc = matching_documents[0]
@@ -72,11 +78,12 @@ class RowProjectDocument:
             data[i : i + CHUNK_SIZE] for i in range(0, len(data), CHUNK_SIZE)
         ]
 
-        logging.debug(
+        logging.info(
             f"total rows in file: {len(valid_data)}, batched to {len(batched_data)}"
         )
 
         for i, batch in enumerate(batched_data):
+            logging.debug(f"applying batch {i + 1} of {len(batched_data)}")
             self.__apply_answer_per_document(
                 doc_id=doc_id,
                 batch_data=batch,
@@ -84,6 +91,7 @@ class RowProjectDocument:
                 starting_index=i * CHUNK_SIZE,
             )
 
+    @loggable_debug
     def __apply_answer_per_document(
         self,
         doc_id: str,
@@ -156,9 +164,13 @@ def header_in_metas_and_is_question(header: str, metas: list[dict[str, Any]]):
     should_warn = True
     for meta in metas:
         if meta["name"] == header and meta["rowQuestionIndex"] is not None:
+            # header is found and it is a question
             return True
+
         if meta["name"] == header:
+            # header is found, but it is a data header
             should_warn = False
+            break
 
     if should_warn:
         logging.warn(colored(f"header {header} not found in metas", "yellow"))

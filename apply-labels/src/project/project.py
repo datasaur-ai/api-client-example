@@ -1,3 +1,4 @@
+import logging
 from collections import namedtuple
 from json import dumps
 
@@ -16,11 +17,15 @@ class Project:
     ):
         emails = [l["email"] for l in labelers]
         project = self.fetch_and_validate(
-            team_id=team_id, project_id=project_id, labelers=emails, kinds=["ROW_BASED"]
+            team_id=team_id,
+            project_id=project_id,
+            labeler_emails=emails,
+            kinds=["ROW_BASED"],
         )
         self.replicate_cabinet(project=project, labelers=labelers)
 
         for labeler in labelers:
+            logging.debug(f"applying row answers for {labeler['email']}")
             self.apply_row_answer_for_labeler(project, labeler)
 
     def apply_row_answer_for_labeler(self, project, labeler):
@@ -56,11 +61,11 @@ class Project:
 
     @loggable
     def fetch_and_validate(
-        self, team_id: str, project_id: str, labelers: list[str], kinds: list[str]
+        self, team_id: str, project_id: str, labeler_emails: list[str], kinds: list[str]
     ):
         fetch_result = self.fetch(team_id=team_id, project_id=project_id)
         project = fetch_result["data"]["result"]
-        self.__validate(project=project, labelers=labelers, kinds=kinds)
+        self.__validate(project=project, labeler_emails=labeler_emails, kinds=kinds)
         return project
 
     def fetch(self, team_id: str, project_id: str):
@@ -69,7 +74,7 @@ class Project:
         operation["variables"] = variables
         return self.client.call_graphql(data=operation)
 
-    def __validate(self, project, labelers, kinds):
+    def __validate(self, project, labeler_emails: list[str], kinds: list[str]):
         for k in kinds:
             assert k in project["workspaceSettings"]["kinds"]
 
@@ -82,7 +87,7 @@ class Project:
 
         not_assigned = []
 
-        for labeler in labelers:
+        for labeler in labeler_emails:
             if labeler not in assigned_user_emails:
                 not_assigned.append(labeler)
 

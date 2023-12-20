@@ -61,6 +61,7 @@ def apply_row_answers(
             project_id=project_id,
             labelers=data["labelers"],
         )
+        logging.info("apply_row_answers completed")
     except Exception as e:
         logging.error(e)
         traceback.print_exc()

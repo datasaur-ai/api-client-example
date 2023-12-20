@@ -21,8 +21,8 @@ def populate_existing_labelers_file(users_csv: str, labelers_file: str):
     labelers_data: dict[str, LabelerAssignment] = dict()
     for labeler_json in json_data["labelers"]:
         labeler = LabelerAssignment(
-            client_id=labeler_json["client_id"],
-            client_secret=labeler_json["client_secret"],
+            client_id=labeler_json.get("client_id", None),
+            client_secret=labeler_json.get("client_secret", None),
             email=labeler_json["email"],
             documents=labeler_json["documents"],
         )
@@ -42,7 +42,7 @@ def populate_existing_labelers_file(users_csv: str, labelers_file: str):
                 client_id=user.client_id,
                 client_secret=user.client_secret,
                 email=user.email,
-                documents=[],
+                documents="",
             )
             labelers_data[user_email] = labeler
 
