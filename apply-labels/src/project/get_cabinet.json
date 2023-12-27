@@ -1,0 +1,8 @@
+{
+  "operationName": "GetCabinetQuery",
+  "variables": {
+    "role": "LABELER",
+    "projectId": "<string>"
+  },
+  "query": "query GetCabinetQuery($projectId: ID!, $role: Role!) { result: getCabinet(projectId: $projectId, role: $role) { ...CabinetFragment  } } fragment CabinetFragment on Cabinet { ...BasicCabinetFragment documents lastOpenedDocumentId role  } fragment BasicCabinetFragment on Cabinet { id status  }"
+}

@@ -1,0 +1,18 @@
+{
+  "operationName": "UpdateMultiRowAnswersMutation",
+  "variables": {
+    "input": {
+      "textDocumentId": "<string>",
+      "rowAnswers": [
+        {
+          "line": "<number>",
+          "answers": {
+            "Q<question id>": "<string>"
+          }
+        }
+      ]
+    },
+    "questionSetSignature": "<string>"
+  },
+  "query": "mutation UpdateMultiRowAnswersMutation($input: UpdateMultiRowAnswersInput!, $questionSetSignature: String!) { result: updateMultiRowAnswers( input: $input questionSetSignature: $questionSetSignature ) { document { currentSentenceCursor lastLabeledLine id lastSavedAt statistic { ...StatisticFragment } } previousAnswers { ...RowAnswerFragment } updatedAnswers { ...RowAnswerFragment } } } fragment RowAnswerFragment on RowAnswer { documentId line answers metadata { ...AnswerMetadataFragment } updatedAt } fragment AnswerMetadataFragment on AnswerMetadata { path labeledBy } fragment StatisticFragment on TextDocumentStatistic { documentId labelerStatistic { ...LabelerStatisticFragment } numberOfChunks numberOfSentences numberOfTokens numberOfEntitiesLabeled numberOfNonDocumentEntitiesLabeled touchedSentences nonDisplayedLines } fragment LabelerStatisticFragment on LabelerStatistic { userId numberOfAcceptedLabels numberOfRejectedLabels } "
+}

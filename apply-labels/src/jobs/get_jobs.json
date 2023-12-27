@@ -1,0 +1,7 @@
+{
+  "operationName": "GetJobs",
+  "variables": {
+    "jobIds": []
+  },
+  "query": "query GetJobs($jobIds: [String!]!) { result: getJobs(jobIds: $jobIds) { ...JobFragment } } fragment JobFragment on Job { id status progress errors { id stack args } resultId createdAt updatedAt result } "
+}

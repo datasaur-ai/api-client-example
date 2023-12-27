@@ -1,0 +1,8 @@
+{
+  "operationName": "GetProjectQuery",
+  "variables": {
+    "project_id": "<string>",
+    "team_id": "<string>"
+  },
+  "query": "query GetProjectQuery($team_id: ID!, $project_id: ID!) { result: getProject(input: {teamId: $team_id, projectId: $project_id}) { id assignees { role teamMember { user { ...CabinetOwnerFragment } } documents { fileName } } labelerCabinets { ...CabinetFragment } reviewCabinet { ...CabinetFragment } workspaceSettings { kinds } } } fragment CabinetFragment on Cabinet { id owner { ...CabinetOwnerFragment } } fragment CabinetOwnerFragment on User { id email displayName}"
+}

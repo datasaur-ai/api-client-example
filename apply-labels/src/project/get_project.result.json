@@ -1,0 +1,45 @@
+{
+    "data": {
+        "result": {
+            "id": "MDViMzM4ZWI",
+            "assignees": [
+                {
+                    "role": "LABELER / REVIEWER / LABELER_AND_REVIEWER",
+                    "teamMember": {
+                        "user": {
+                            "id": "1",
+                            "email": "ivan@datasaur.local",
+                            "displayName": "Ivan"
+                        }
+                    },
+                    "documents": [
+                        {
+                            "fileName": "data-1.csv"
+                        }
+                    ]
+                }
+            ],
+            "labelerCabinets": [
+                {
+                    "id": "6",
+                    "owner": {
+                        "id": "1",
+                        "email": "ivan@datasaur.local",
+                        "displayName": "Ivan"
+                    }
+                }
+            ],
+            "reviewCabinet": {
+                "id": "4",
+                "owner": {
+                    "id": "1",
+                    "email": "ivan@datasaur.local",
+                    "displayName": "Ivan"
+                }
+            },
+            "workspaceSettings": {
+                "kinds": ["ROW_BASED"]
+            }
+        }
+    }
+}

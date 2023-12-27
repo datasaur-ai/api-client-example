@@ -1,0 +1,8 @@
+{
+  "operationName": "ReplicateCabinetQuery",
+  "variables": {
+    "projectId": "<string>",
+    "role": "LABELER"
+  },
+  "query": "query ReplicateCabinetQuery($projectId: ID!, $role: Role!) { result: replicateCabinet(projectId: $projectId, role: $role) { ...JobFragment } } fragment JobFragment on Job { id status progress errors { id stack args } resultId createdAt updatedAt result } "
+}
