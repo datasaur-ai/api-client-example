@@ -3,81 +3,89 @@ from itertools import combinations
 import json
 from src.exceptions.invalid_options import InvalidOptions
 
+class AssignmentRole:
+  LABELER = "LABELER"
+  REVIEWER = "REVIEWER"
+  HYBRID = "LABELER_AND_REVIEWER"
+
 class PortionedAssignment:
     def __init__(self, old_assignments: list[dict], multi_pass_prefix: str, single_pass_prefix: str, multi_pass_labeler_count: int):
-        self.old_assignments = old_assignments if old_assignments else []
+        self.original_assignments = old_assignments if old_assignments else []
         self.multi_pass_prefix = multi_pass_prefix
         self.single_pass_prefix = single_pass_prefix
         self.multi_pass_labeler_count = multi_pass_labeler_count
 
+        # maps teamMemberId to AssignmentRole
+        self.original_role_map: dict[str, str] = {}
+        for assignment in self.original_assignments:
+            team_member_id = assignment["teamMemberId"];
+            role = assignment["role"]
+            self.original_role_map[team_member_id] = role
+
 
     def create_new_assignments_by_documents(self, documents_path):
-        if (len(self.old_assignments) == 0):
-            return self.old_assignments
+        if (len(self.original_assignments) == 0):
+            return self.original_assignments
 
-
-        multi_pass_documents = []
-        single_pass_documents = []
+        multi_pass_file_names = []
+        single_pass_file_names = []
 
         for filepath in glob.iglob(f"{documents_path}/*"):
-            filename = filepath.split('/')[-1]
-            if filename.startswith(self.multi_pass_prefix):
-                multi_pass_documents.append(filename);
+            file_name = filepath.split('/')[-1]
+            if file_name.startswith(self.multi_pass_prefix):
+                multi_pass_file_names.append(file_name);
 
-            if filename.startswith(self.single_pass_prefix):
-                single_pass_documents.append(filename);
+            if file_name.startswith(self.single_pass_prefix):
+                single_pass_file_names.append(file_name);
 
 
-        if (len(multi_pass_documents) == 0 and len(single_pass_documents) == 0):
+        if (len(multi_pass_file_names) == 0 and len(single_pass_file_names) == 0):
             raise InvalidOptions(f'No valid multi-pass and single-pass files found. Please check the contents inside {documents_path} and make sure the file names have the correct prefixes')
 
-        return self.distribute_assignments(multi_pass_documents=multi_pass_documents, single_pass_documents=single_pass_documents)
+        return self.distribute_assignments(multi_pass_file_names=multi_pass_file_names, single_pass_file_names=single_pass_file_names)
 
-    def distribute_assignments(self, multi_pass_documents: list[str], single_pass_documents: list[str]):
-        if (self.old_assignments == None):
-            return self.old_assignments
+    def distribute_assignments(self, multi_pass_file_names: list[str], single_pass_file_names: list[str]):
+        if (self.original_assignments == None):
+            return self.original_assignments
 
         labeler_team_member_ids = []
         reviewer_team_member_ids = []
 
-        for assignment in self.old_assignments:
+        for assignment in self.original_assignments:
             team_member_id = assignment["teamMemberId"]
             role = assignment["role"]
 
-            if (role == "REVIEWER"):
+            if (role == AssignmentRole.REVIEWER):
                 reviewer_team_member_ids.append(team_member_id)
             else:
                 labeler_team_member_ids.append(team_member_id)
 
         labeler_assignments = self.distribute_labeler_assignments(
             team_member_ids=labeler_team_member_ids,
-            multi_pass_documents=multi_pass_documents,
-            single_pass_documents=single_pass_documents)
+            multi_pass_file_names=multi_pass_file_names,
+            single_pass_file_names=single_pass_file_names)
 
         reviewer_assignments = self.distribute_reviewer_assignments(
             team_member_ids=reviewer_team_member_ids,
-            multi_pass_documents=multi_pass_documents,
-            single_pass_documents=single_pass_documents)
+            multi_pass_file_names=multi_pass_file_names,
+            single_pass_file_names=single_pass_file_names)
 
         return labeler_assignments + reviewer_assignments
 
 
-    def distribute_labeler_assignments(self, team_member_ids: list[str], multi_pass_documents: list[str], single_pass_documents: list[str]):
-        if len(team_member_ids) < self.multi_pass_labeler_count:
-            raise InvalidOptions('multi_pass_labeler_count value must not exceed the number of assignments with LABELER role.')
-
+    def distribute_labeler_assignments(self, team_member_ids: list[str], multi_pass_file_names: list[str], single_pass_file_names: list[str]):
         # maps teamMemberId to list of file names (initially empty)
         assignment_map: dict[str, list[str]] = {str(id): [] for id in team_member_ids}
 
         # assign single pass labelers
-        for i, file_name in enumerate(single_pass_documents):
+        for i, file_name in enumerate(single_pass_file_names):
             team_member_id = team_member_ids[i % len(team_member_ids)]
             assignment_map[team_member_id].append(file_name)
 
         # assign multi pass labelers
         team_member_id_combinations = list(combinations(team_member_ids, self.multi_pass_labeler_count))
         num_combinations = len(team_member_id_combinations)
-        for i, file_name in enumerate(multi_pass_documents):
+        for i, file_name in enumerate(multi_pass_file_names):
             combination = team_member_id_combinations[i % num_combinations]
             for team_member_id in combination:
                 assignment_map[team_member_id].append(file_name)
@@ -86,22 +94,23 @@ class PortionedAssignment:
         assignments: list[dict] = []
         for team_member_id in assignment_map.keys():
             file_names = assignment_map.get(team_member_id)
+            role = self.original_role_map.get(team_member_id)
             if file_names:
-                assignments.append(self.create_assignment(team_member_id=team_member_id, file_names=file_names))
+                assignments.append(self.create_assignment(team_member_id=team_member_id, file_names=file_names, role=role))
 
         return assignments
 
 
-    def distribute_reviewer_assignments(self, team_member_ids: list[str], multi_pass_documents: list[str], single_pass_documents: list[str]):
+    def distribute_reviewer_assignments(self, team_member_ids: list[str], multi_pass_file_names: list[str], single_pass_file_names: list[str]):
         assignments: list[dict] = []
-        documents = multi_pass_documents + single_pass_documents
+        file_names = multi_pass_file_names + single_pass_file_names
         for team_member_id in team_member_ids:
-            assignments.append(self.create_assignment(team_member_id, documents))
+            assignments.append(self.create_assignment(team_member_id=team_member_id, file_names=file_names, role="REVIEWER"))
 
         return assignments
 
 
-    def create_assignment(self, team_member_id: str, file_names: list[str]):
+    def create_assignment(self, team_member_id: str, file_names: list[str], role: str | None):
         documents = []
         for file_name in file_names:
             documents.append({
@@ -111,7 +120,8 @@ class PortionedAssignment:
 
         return {
             "teamMemberId": team_member_id,
-            "documents": documents
+            "documents": documents,
+            "role": role,
         }
 
     @staticmethod
