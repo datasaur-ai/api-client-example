@@ -3,7 +3,7 @@ from itertools import combinations
 from src.exceptions.invalid_options import InvalidOptions
 
 class PortionedAssignment:
-    def __init__(self, old_assignments: list[dict], multi_pass_prefix: str, single_pass_prefix: str, multi_pass_labeler_count: int):
+    def __init__(self, old_assignments: list[dict] | None, multi_pass_prefix: str, single_pass_prefix: str, multi_pass_labeler_count: int):
         self.old_assignments = old_assignments
         self.multi_pass_prefix = multi_pass_prefix
         self.single_pass_prefix = single_pass_prefix
@@ -61,6 +61,9 @@ class PortionedAssignment:
 
 
     def distribute_labeler_assignments(self, team_member_ids: list[str], multi_pass_documents: list[str], single_pass_documents: list[str]):
+        if len(team_member_ids) < self.multi_pass_labeler_count:
+            raise InvalidOptions('multi_pass_labeler_count value must not exceed the number of assignments with LABELER role.')
+
         # maps teamMemberId to list of file names
         assignment_map: dict[str, list[str]] = {str(id): [] for id in team_member_ids}
 
