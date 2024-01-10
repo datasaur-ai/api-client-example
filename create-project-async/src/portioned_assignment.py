@@ -1,18 +1,20 @@
 import glob
 from itertools import combinations
+import json
 from src.exceptions.invalid_options import InvalidOptions
 
 class PortionedAssignment:
-    def __init__(self, old_assignments: list[dict] | None, multi_pass_prefix: str, single_pass_prefix: str, multi_pass_labeler_count: int):
-        self.old_assignments = old_assignments
+    def __init__(self, old_assignments: list[dict], multi_pass_prefix: str, single_pass_prefix: str, multi_pass_labeler_count: int):
+        self.old_assignments = old_assignments if old_assignments else []
         self.multi_pass_prefix = multi_pass_prefix
         self.single_pass_prefix = single_pass_prefix
         self.multi_pass_labeler_count = multi_pass_labeler_count
 
 
     def create_new_assignments_by_documents(self, documents_path):
-        if (self.old_assignments == None):
+        if (len(self.old_assignments) == 0):
             return self.old_assignments
+
 
         multi_pass_documents = []
         single_pass_documents = []
@@ -27,7 +29,7 @@ class PortionedAssignment:
 
 
         if (len(multi_pass_documents) == 0 and len(single_pass_documents) == 0):
-            return self.old_assignments
+            raise InvalidOptions(f'No valid multi-pass and single-pass files found. Please check the contents inside {documents_path} and make sure the file names have the correct prefixes')
 
         return self.distribute_assignments(multi_pass_documents=multi_pass_documents, single_pass_documents=single_pass_documents)
 
@@ -64,7 +66,7 @@ class PortionedAssignment:
         if len(team_member_ids) < self.multi_pass_labeler_count:
             raise InvalidOptions('multi_pass_labeler_count value must not exceed the number of assignments with LABELER role.')
 
-        # maps teamMemberId to list of file names
+        # maps teamMemberId to list of file names (initially empty)
         assignment_map: dict[str, list[str]] = {str(id): [] for id in team_member_ids}
 
         # assign single pass labelers
@@ -75,7 +77,6 @@ class PortionedAssignment:
         # assign multi pass labelers
         team_member_id_combinations = list(combinations(team_member_ids, self.multi_pass_labeler_count))
         num_combinations = len(team_member_id_combinations)
-
         for i, file_name in enumerate(multi_pass_documents):
             combination = team_member_id_combinations[i % num_combinations]
             for team_member_id in combination:
@@ -101,10 +102,12 @@ class PortionedAssignment:
 
 
     def create_assignment(self, team_member_id: str, file_names: list[str]):
-        documents = map(lambda file_name: {
-            "fileName": file_name,
-            "part": 0
-        }, file_names)
+        documents = []
+        for file_name in file_names:
+            documents.append({
+                "fileName": file_name,
+                "part": 0
+            })
 
         return {
             "teamMemberId": team_member_id,
