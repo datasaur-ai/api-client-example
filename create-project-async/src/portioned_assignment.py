@@ -15,7 +15,7 @@ class PortionedAssignment:
         self.single_pass_prefix = single_pass_prefix
         self.multi_pass_labeler_count = multi_pass_labeler_count
 
-        # maps teamMemberId to AssignmentRole
+        # maps teamMemberId to original assignment role
         self.original_role_map: dict[str, str] = {}
         for assignment in self.original_assignments:
             team_member_id = assignment["teamMemberId"];
@@ -27,9 +27,9 @@ class PortionedAssignment:
         if (len(self.original_assignments) == 0):
             return self.original_assignments
 
+        # splits single-pass and multi-pass files
         multi_pass_file_names = []
         single_pass_file_names = []
-
         for filepath in glob.iglob(f"{documents_path}/*"):
             file_name = filepath.split('/')[-1]
             if file_name.startswith(self.multi_pass_prefix):
@@ -45,12 +45,10 @@ class PortionedAssignment:
         return self.distribute_assignments(multi_pass_file_names=multi_pass_file_names, single_pass_file_names=single_pass_file_names)
 
     def distribute_assignments(self, multi_pass_file_names: list[str], single_pass_file_names: list[str]):
-        if (self.original_assignments == None):
-            return self.original_assignments
-
+        # split reviewer and labeler assignees
+        # labeler assignees include `LABELER_AND_REVIEWER` role
         labeler_team_member_ids = []
         reviewer_team_member_ids = []
-
         for assignment in self.original_assignments:
             team_member_id = assignment["teamMemberId"]
             role = assignment["role"]
@@ -104,6 +102,7 @@ class PortionedAssignment:
     def distribute_reviewer_assignments(self, team_member_ids: list[str], multi_pass_file_names: list[str], single_pass_file_names: list[str]):
         assignments: list[dict] = []
         file_names = multi_pass_file_names + single_pass_file_names
+        # REVIEWER role assignees get all the documents
         for team_member_id in team_member_ids:
             assignments.append(self.create_assignment(team_member_id=team_member_id, file_names=file_names, role="REVIEWER"))
 
