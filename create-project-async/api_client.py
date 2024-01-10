@@ -1,16 +1,19 @@
 from os import environ
 
 import fire
+from src.helper import get_operations
 from src.job import Job
+from src.portioned_assignment import PortionedAssignment
 from src.project import Project
 
 
 def create_project(base_url, client_id, client_secret, team_id, documents_path="documents", operations_path="create_project.json"):
     try:
+        operations = get_operations(operations_path)
         Project(base_url=base_url, id=client_id, secret=client_secret).create(
             team_id=team_id,
             documents_path=documents_path,
-            operations_path=operations_path,
+            operations=operations,
         )
     except Exception as e:
         raise SystemExit(e)
