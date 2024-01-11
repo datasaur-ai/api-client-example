@@ -72,7 +72,22 @@ class PortionedAssignment:
 
 
     def distribute_labeler_assignments(self, team_member_ids: list[str], multi_pass_file_names: list[str], single_pass_file_names: list[str]):
-        # maps teamMemberId to list of file names (initially empty)
+        # maps teamMemberId to list of file names
+        assignment_map = self.create_assignment_map(team_member_ids=team_member_ids, multi_pass_file_names=multi_pass_file_names, single_pass_file_names=single_pass_file_names)
+
+        # convert assignment_map to list of assignments
+        assignments: list[dict] = []
+        for team_member_id in assignment_map.keys():
+            file_names = assignment_map.get(team_member_id)
+            role = self.original_role_map.get(team_member_id)
+            if file_names:
+                assignments.append(self.create_assignment(team_member_id=team_member_id, file_names=file_names, role=role))
+
+        return assignments
+
+
+    def create_assignment_map(self, team_member_ids: list[str], multi_pass_file_names: list[str], single_pass_file_names: list[str]):
+        # initialize empty file names
         assignment_map: dict[str, list[str]] = {str(id): [] for id in team_member_ids}
 
         # assign single pass labelers
@@ -89,15 +104,7 @@ class PortionedAssignment:
             for team_member_id in team_member_ids:
                 assignment_map[team_member_id].append(file_name)
 
-        # convert assignment_map to list of assignments
-        assignments: list[dict] = []
-        for team_member_id in assignment_map.keys():
-            file_names = assignment_map.get(team_member_id)
-            role = self.original_role_map.get(team_member_id)
-            if file_names:
-                assignments.append(self.create_assignment(team_member_id=team_member_id, file_names=file_names, role=role))
-
-        return assignments
+        return assignment_map
 
 
     def distribute_reviewer_assignments(self, team_member_ids: list[str], multi_pass_file_names: list[str], single_pass_file_names: list[str]):
