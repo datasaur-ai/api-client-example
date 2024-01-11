@@ -40,7 +40,7 @@ The portioning is determined by prefixes in the file names.
     - The expected prefix can be overridden by providing the `single_pass_prefix` argument
 - Multi-pass
   - These files are assigned to several labelers
-  - The number of labelers assigned to multi-pass files can be configured with the `multi_pass_labeler_count` argument
+  - The number of labelers assigned to each multi-pass files can be configured with the `multi_pass_labeler_count` argument
   - The name of single-pass files should be prefixed by `multi-`
     - The expected prefix can be overridden by providing the `multi_pass_prefix` argument
 
@@ -54,6 +54,114 @@ The assignee's role determines how the files will be distributed and accessed
   - The files will be distribtued the same way like Labeler assignees
   - When opening the project in labeler mode, the assignee will only have access to the assigned files
   - When opening the project in reviewer mode, the assignee will have access to every files
+
+<details>
+<summary>Example use case</summary>
+
+Considering the following case:
+
+- `multi_pass_labeler_count` arg is set to the default `2`
+- Say there are 10 documents inside the `documents/` folder, divided into 2 multi-pass and 8 single-pass files.
+
+  ```
+  single-sample-1.txt
+  single-sample-2.txt
+  single-sample-3.txt
+  single-sample-4.txt
+  single-sample-5.txt
+  single-sample-6.txt
+  single-sample-7.txt
+  single-sample-8.txt
+  multi-sample-1.txt
+  multi-sample-2.txt
+  multi-sample-3.txt
+  ```
+
+- In the `create_project.json`, the assignments are the following:
+
+  - 3 labelers (`teamMemberId 1, 2, 3`)
+  - 2 reviewers (`teamMemberId 4, 5`)
+
+  ```json
+  {
+    "operationName": "CreateProjectMutation",
+    "variables": {
+      "input": {
+        ...
+        "documentAssignments": [
+          {
+            "teamMemberId": "1",
+            "documents": [
+              ...
+            ],
+            "role": "LABELER"
+          },
+          {
+            "teamMemberId": "2",
+            "documents": [
+              ...
+            ],
+            "role": "LABELER"
+          },
+          {
+            "teamMemberId": "3",
+            "documents": [
+              ...
+            ],
+            "role": "LABELER"
+          },
+          {
+            "teamMemberId": "4",
+            "documents": [
+              ...
+            ],
+            "role": "REVIEWER"
+          },
+          {
+            "teamMemberId": "5",
+            "documents": [
+              ...
+            ],
+            "role": "REVIEWER"
+          }
+        ],
+        ...
+      }
+    },
+    "query": "..."
+  }
+  ```
+
+The resulting assignment should be like this:
+
+```md
+# Labeler assignees
+
+Single-pass files will be assigned to one labeler each
+
+- single-sample-1.txt -> teamMemberId 1
+- single-sample-2.txt -> teamMemberId 2
+- single-sample-3.txt -> teamMemberId 3
+- single-sample-4.txt -> teamMemberId 1
+- single-sample-5.txt -> teamMemberId 2
+- single-sample-6.txt -> teamMemberId 3
+- single-sample-7.txt -> teamMemberId 1
+- single-sample-8.txt -> teamMemberId 2
+
+Multi-pass files will be assigned to two labelers of different combination
+
+- multi-sample-1.txt -> teamMemberId 1, 2
+- multi-sample-2.txt -> teamMemberId 1, 3
+- multi-sample-3.txt -> teamMemberId 2, 3
+
+# Reviewer assignees
+
+Reviewers will be assigned to all the files
+```
+
+</details>
+
+### Sample CLI command
 
 ```bash
 python api_client.py create_project_portioned_assignment \
