@@ -1,0 +1,72 @@
+{
+  "operationName": "CreateProjectMutation",
+  "variables": {
+    "input": {
+      "name": "ProjectName",
+      "kinds": ["DOCUMENT_BASED"],
+      "purpose": "LABELING",
+      "creationSettings": {
+        "anonymizationConfig": null,
+        "customHeaderColumns": [],
+        "enableTabularMarkdownParsing": false,
+        "fileTransformerId": null,
+        "firstRowAsHeader": false,
+        "sentenceSeparator": "\n",
+        "splitDocumentConfig": null,
+        "tokenizer": "WINK",
+        "transcriptConfig": null,
+        "viewer": {
+          "mode": "TOKEN"
+        }
+      },
+      "documents": [
+        {
+          "document": {
+            "name": "DocumentName",
+            "objectKey": "ObjectKey"
+          },
+          "extras": []
+        }
+      ],
+      "tokenLabelSets": null,
+      "rowQuestions": null,
+      "documentQuestions": [
+        {
+          "type": "TEXT",
+          "config": {},
+          "name": "Q1",
+          "label": "Question 1",
+          "required": false
+        }
+      ],
+      "bboxLabelSets": [],
+      "documentAssignments": null,
+      "projectSettings": {
+        "shouldConfirmUnusedLabelSetItems": false,
+        "autoMarkDocumentAsComplete": false,
+        "conflictResolution": {
+          "mode": "PEER_REVIEW",
+          "consensus": 1
+        },
+        "dynamicReviewMethod": null,
+        "dynamicReviewMemberId": null,
+        "enableEditLabelSet": true,
+        "hideLabelerNamesDuringReview": false,
+        "hideLabelsFromInactiveLabelSetDuringReview": false,
+        "hideOriginalSentencesDuringReview": true,
+        "hideRejectedLabelsDuringReview": true,
+        "labelerProjectCompletionNotification": {
+          "enabled": false,
+          "threshold": 1
+        },
+        "enableReviewerEditSentence": true,
+        "enableEditSentence": true
+      },
+      "kindsDocumentSettings": {
+        "rowBasedSettings": null,
+        "tokenBasedSettings": null
+      }
+    }
+  },
+  "query": "mutation CreateProjectMutation($input: LaunchProjectInput!) { result: createProject(input: $input) { name job { id status progress resultId errors { id stack args } } }}"
+}
