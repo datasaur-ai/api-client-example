@@ -18,6 +18,7 @@ def create_project(base_url, client_id, client_secret, team_id, documents_path="
     except Exception as e:
         raise SystemExit(e)
 
+
 def create_project_portioned_assignment(
     base_url,
     client_id,
@@ -49,6 +50,7 @@ def create_project_portioned_assignment(
         )
     except Exception as e:
         raise SystemExit(e)
+
 
 def get_job_status(base_url, client_id, client_secret, job_id):
     try:

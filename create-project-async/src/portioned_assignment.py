@@ -44,6 +44,7 @@ class PortionedAssignment:
 
         return self.distribute_assignments(multi_pass_file_names=multi_pass_file_names, single_pass_file_names=single_pass_file_names)
 
+
     def distribute_assignments(self, multi_pass_file_names: list[str], single_pass_file_names: list[str]):
         # split reviewer and labeler assignees
         # labeler assignees include `LABELER_AND_REVIEWER` role
@@ -130,6 +131,7 @@ class PortionedAssignment:
             "documents": documents,
             "role": role,
         }
+
 
     @staticmethod
     def validate(operations):
