@@ -17,23 +17,23 @@ class PortionedAssignment:
         self.single_pass_prefix = single_pass_prefix
         self.multi_pass_labeler_count = multi_pass_labeler_count
 
-        # maps teamMemberId to original assignment role
-        self.original_role_map: dict[str, str] = {}
-        for assignment in self.original_assignments:
-            team_member_id = assignment["teamMemberId"];
-            role = assignment["role"]
-            self.original_role_map[team_member_id] = role
-
+        # set some properties related to the assignees
+        self.original_role_map: dict[str, AssignmentRole] = {}
         self.labeler_team_member_ids = []
         self.reviewer_team_member_ids = []
         for assignment in self.original_assignments:
             team_member_id = assignment["teamMemberId"]
-            role = assignment["role"]
+            role: AssignmentRole = assignment["role"]
 
+            # split reviewer and labeler assignees
+            # labeler assignees include `LABELER_AND_REVIEWER` role
             if (role == AssignmentRole.REVIEWER):
                 self.reviewer_team_member_ids.append(team_member_id)
             else:
                 self.labeler_team_member_ids.append(team_member_id)
+
+            # maps teamMemberId to original assignment role
+            self.original_role_map[team_member_id] = role
 
 
     def create_new_assignments_by_documents(self, documents_path):
@@ -111,12 +111,12 @@ class PortionedAssignment:
         file_names = multi_pass_file_names + single_pass_file_names
         # REVIEWER role assignees get all the documents
         for team_member_id in self.reviewer_team_member_ids:
-            assignments.append(self.create_assignment(team_member_id=team_member_id, file_names=file_names, role="REVIEWER"))
+            assignments.append(self.create_assignment(team_member_id=team_member_id, file_names=file_names, role=AssignmentRole.REVIEWER))
 
         return assignments
 
 
-    def create_assignment(self, team_member_id: str, file_names: list[str], role: str | None):
+    def create_assignment(self, team_member_id: str, file_names: list[str], role: AssignmentRole | None):
         documents = []
         for file_name in file_names:
             documents.append({
