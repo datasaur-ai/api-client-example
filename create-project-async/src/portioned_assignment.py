@@ -24,6 +24,17 @@ class PortionedAssignment:
             role = assignment["role"]
             self.original_role_map[team_member_id] = role
 
+        self.labeler_team_member_ids = []
+        self.reviewer_team_member_ids = []
+        for assignment in self.original_assignments:
+            team_member_id = assignment["teamMemberId"]
+            role = assignment["role"]
+
+            if (role == AssignmentRole.REVIEWER):
+                self.reviewer_team_member_ids.append(team_member_id)
+            else:
+                self.labeler_team_member_ids.append(team_member_id)
+
 
     def create_new_assignments_by_documents(self, documents_path):
         if (len(self.original_assignments) == 0):
@@ -48,35 +59,20 @@ class PortionedAssignment:
 
 
     def distribute_assignments(self, multi_pass_file_names: list[str], single_pass_file_names: list[str]):
-        # split reviewer and labeler assignees
-        # labeler assignees include `LABELER_AND_REVIEWER` role
-        labeler_team_member_ids = []
-        reviewer_team_member_ids = []
-        for assignment in self.original_assignments:
-            team_member_id = assignment["teamMemberId"]
-            role = assignment["role"]
-
-            if (role == AssignmentRole.REVIEWER):
-                reviewer_team_member_ids.append(team_member_id)
-            else:
-                labeler_team_member_ids.append(team_member_id)
-
         labeler_assignments = self.distribute_labeler_assignments(
-            team_member_ids=labeler_team_member_ids,
             multi_pass_file_names=multi_pass_file_names,
             single_pass_file_names=single_pass_file_names)
 
         reviewer_assignments = self.distribute_reviewer_assignments(
-            team_member_ids=reviewer_team_member_ids,
             multi_pass_file_names=multi_pass_file_names,
             single_pass_file_names=single_pass_file_names)
 
         return labeler_assignments + reviewer_assignments
 
 
-    def distribute_labeler_assignments(self, team_member_ids: list[str], multi_pass_file_names: list[str], single_pass_file_names: list[str]):
+    def distribute_labeler_assignments(self, multi_pass_file_names: list[str], single_pass_file_names: list[str]):
         # maps teamMemberId to list of file names
-        assignment_map = self.create_assignment_map(team_member_ids=team_member_ids, multi_pass_file_names=multi_pass_file_names, single_pass_file_names=single_pass_file_names)
+        assignment_map = self.create_assignment_map(team_member_ids=self.labeler_team_member_ids, multi_pass_file_names=multi_pass_file_names, single_pass_file_names=single_pass_file_names)
 
         # convert assignment_map to list of assignments
         assignments: list[dict] = []
@@ -110,11 +106,11 @@ class PortionedAssignment:
         return assignment_map
 
 
-    def distribute_reviewer_assignments(self, team_member_ids: list[str], multi_pass_file_names: list[str], single_pass_file_names: list[str]):
+    def distribute_reviewer_assignments(self, multi_pass_file_names: list[str], single_pass_file_names: list[str]):
         assignments: list[dict] = []
         file_names = multi_pass_file_names + single_pass_file_names
         # REVIEWER role assignees get all the documents
-        for team_member_id in team_member_ids:
+        for team_member_id in self.reviewer_team_member_ids:
             assignments.append(self.create_assignment(team_member_id=team_member_id, file_names=file_names, role="REVIEWER"))
 
         return assignments
