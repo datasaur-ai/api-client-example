@@ -1,9 +1,9 @@
 import glob
+from enum import Enum
 from itertools import combinations
-import json
 from src.exceptions.invalid_options import InvalidOptions
 
-class AssignmentRole:
+class AssignmentRole(Enum):
   LABELER = "LABELER"
   REVIEWER = "REVIEWER"
   HYBRID = "LABELER_AND_REVIEWER"
