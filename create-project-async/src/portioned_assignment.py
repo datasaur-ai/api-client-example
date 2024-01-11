@@ -3,14 +3,16 @@ from enum import Enum
 from itertools import cycle, islice
 from src.exceptions.invalid_options import InvalidOptions
 
+
 class AssignmentRole(Enum):
   LABELER = "LABELER"
   REVIEWER = "REVIEWER"
   HYBRID = "LABELER_AND_REVIEWER"
 
+
 class PortionedAssignment:
-    def __init__(self, old_assignments: list[dict], multi_pass_prefix: str, single_pass_prefix: str, multi_pass_labeler_count: int):
-        self.original_assignments = old_assignments if old_assignments else []
+    def __init__(self, original_assignments: list[dict], multi_pass_prefix: str, single_pass_prefix: str, multi_pass_labeler_count: int):
+        self.original_assignments = original_assignments
         self.multi_pass_prefix = multi_pass_prefix
         self.single_pass_prefix = single_pass_prefix
         self.multi_pass_labeler_count = multi_pass_labeler_count
@@ -93,17 +95,17 @@ class PortionedAssignment:
 
         # assign single pass labelers
         for i, file_name in enumerate(single_pass_file_names):
-            team_member_id = team_member_ids[i % len(team_member_ids)]
-            assignment_map[team_member_id].append(file_name)
+            assigned_member_id = team_member_ids[i % len(team_member_ids)]
+            assignment_map[assigned_member_id].append(file_name)
 
         # assign multi pass labelers
         ## sort by priority -> team members with the least assigned document comes first
         sorted_by_assignment_priority = sorted(team_member_ids, key=lambda member_id : len(assignment_map.get(member_id) or []))
         team_member_cycle = cycle(sorted_by_assignment_priority)
         for file_name in multi_pass_file_names:
-            team_member_ids = list(islice(team_member_cycle, self.multi_pass_labeler_count))
-            for team_member_id in team_member_ids:
-                assignment_map[team_member_id].append(file_name)
+            assigned_member_ids = list(islice(team_member_cycle, self.multi_pass_labeler_count))
+            for assigned_member_id in assigned_member_ids:
+                assignment_map[assigned_member_id].append(file_name)
 
         return assignment_map
 

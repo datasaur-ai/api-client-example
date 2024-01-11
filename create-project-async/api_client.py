@@ -35,7 +35,7 @@ def create_project_portioned_assignment(
         PortionedAssignment.validate(operations)
 
         new_assignments = PortionedAssignment(
-            old_assignments=operations["variables"]["input"]["documentAssignments"],
+            original_assignments=operations["variables"]["input"]["documentAssignments"] or [],
             multi_pass_prefix=multi_pass_prefix,
             single_pass_prefix=single_pass_prefix,
             multi_pass_labeler_count=multi_pass_labeler_count
