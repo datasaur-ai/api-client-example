@@ -81,9 +81,11 @@ class PortionedAssignment:
             assignment_map[team_member_id].append(file_name)
 
         # assign multi pass labelers
-        user_cycle = cycle(team_member_ids)
+        ## sort by priority -> team members with the least assigned document comes first
+        sorted_by_assignment_priority = sorted(team_member_ids, key=lambda member_id : len(assignment_map.get(member_id) or []))
+        team_member_cycle = cycle(sorted_by_assignment_priority)
         for file_name in multi_pass_file_names:
-            team_member_ids = list(islice(user_cycle, self.multi_pass_labeler_count))
+            team_member_ids = list(islice(team_member_cycle, self.multi_pass_labeler_count))
             for team_member_id in team_member_ids:
                 assignment_map[team_member_id].append(file_name)
 
