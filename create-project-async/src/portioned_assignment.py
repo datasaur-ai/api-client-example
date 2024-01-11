@@ -18,16 +18,16 @@ class PortionedAssignment:
         self.multi_pass_labeler_count = multi_pass_labeler_count
 
         # set some properties related to the assignees
-        self.original_role_map: dict[str, AssignmentRole] = {}
+        self.original_role_map: dict[str, str] = {}
         self.labeler_team_member_ids = []
         self.reviewer_team_member_ids = []
         for assignment in self.original_assignments:
             team_member_id = assignment["teamMemberId"]
-            role: AssignmentRole = assignment["role"]
+            role: str = assignment["role"]
 
             # split reviewer and labeler assignees
             # labeler assignees include `LABELER_AND_REVIEWER` role
-            if (role == AssignmentRole.REVIEWER):
+            if (role == AssignmentRole.REVIEWER.value):
                 self.reviewer_team_member_ids.append(team_member_id)
             else:
                 self.labeler_team_member_ids.append(team_member_id)
@@ -111,12 +111,12 @@ class PortionedAssignment:
         file_names = multi_pass_file_names + single_pass_file_names
         # REVIEWER role assignees get all the documents
         for team_member_id in self.reviewer_team_member_ids:
-            assignments.append(self.create_assignment(team_member_id=team_member_id, file_names=file_names, role=AssignmentRole.REVIEWER))
+            assignments.append(self.create_assignment(team_member_id=team_member_id, file_names=file_names, role=AssignmentRole.REVIEWER.value))
 
         return assignments
 
 
-    def create_assignment(self, team_member_id: str, file_names: list[str], role: AssignmentRole | None):
+    def create_assignment(self, team_member_id: str, file_names: list[str], role: str | None):
         documents = []
         for file_name in file_names:
             documents.append({
