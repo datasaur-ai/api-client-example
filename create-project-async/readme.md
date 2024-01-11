@@ -55,10 +55,10 @@ The assignee's role determines how the files will be distributed and accessed
   - When opening the project in labeler mode, the assignee will only have access to the assigned files
   - When opening the project in reviewer mode, the assignee will have access to every files
 
-<details>
-<summary>Example use case</summary>
+### Example use case
 
-## Consider the following case
+<details>
+<summary>Expand here</summary>
 
 - `multi_pass_labeler_count` arg is set to the default `2`
 - Say there are 10 documents inside the `documents/` folder, divided into 2 multi-pass and 8 single-pass files.
