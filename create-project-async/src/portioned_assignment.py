@@ -1,4 +1,5 @@
 import glob
+import os
 from enum import Enum
 from itertools import cycle, islice
 from src.exceptions.invalid_options import InvalidOptions
@@ -44,7 +45,7 @@ class PortionedAssignment:
         multi_pass_file_names = []
         single_pass_file_names = []
         for filepath in glob.iglob(f"{documents_path}/*"):
-            file_name = filepath.split('/')[-1]
+            _, file_name = os.path.split(filepath)
             if file_name.startswith(self.multi_pass_prefix):
                 multi_pass_file_names.append(file_name);
 

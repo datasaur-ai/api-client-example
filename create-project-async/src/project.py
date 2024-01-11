@@ -27,9 +27,10 @@ class Project:
 
         for filepath in glob.iglob(f"{documents_path}/*"):
             upload_response = self.__upload_file(filepath=filepath)
+            _, file_name = os.path.split(filepath)
             documents = {
                 "document": {
-                    "name": filepath.split('/')[-1],
+                    "name": file_name,
                     "objectKey": upload_response["objectKey"]
                 }
             }
