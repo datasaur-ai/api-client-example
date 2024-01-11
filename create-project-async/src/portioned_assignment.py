@@ -1,6 +1,6 @@
 import glob
 from enum import Enum
-from itertools import combinations
+from itertools import cycle, islice
 from src.exceptions.invalid_options import InvalidOptions
 
 class AssignmentRole(Enum):
@@ -81,11 +81,10 @@ class PortionedAssignment:
             assignment_map[team_member_id].append(file_name)
 
         # assign multi pass labelers
-        team_member_id_combinations = list(combinations(team_member_ids, self.multi_pass_labeler_count))
-        num_combinations = len(team_member_id_combinations)
-        for i, file_name in enumerate(multi_pass_file_names):
-            combination = team_member_id_combinations[i % num_combinations]
-            for team_member_id in combination:
+        user_cycle = cycle(team_member_ids)
+        for file_name in multi_pass_file_names:
+            team_member_ids = list(islice(user_cycle, self.multi_pass_labeler_count))
+            for team_member_id in team_member_ids:
                 assignment_map[team_member_id].append(file_name)
 
         # convert assignment_map to list of assignments
