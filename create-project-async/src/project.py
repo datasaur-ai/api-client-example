@@ -15,22 +15,22 @@ class Project:
         self.client_secret = secret
         self.headers = None
 
-    def create(self, team_id, operations_path, documents_path):
+    def create(self, team_id, operations, documents_path):
         if (os.path.isfile(documents_path)):
             raise NotImplementedError("createProject with a list of documents is not yet implemented")
 
         access_token = get_access_token(self.base_url, self.client_id, self.client_secret)
         self.headers = self.__add_headers(key='Authorization', value=f"Bearer {access_token}")
-        operations = get_operations(operations_path)
 
         operations["variables"]["input"]["documents"] = []
         operations["variables"]["input"]["teamId"] = team_id
 
         for filepath in glob.iglob(f"{documents_path}/*"):
             upload_response = self.__upload_file(filepath=filepath)
+            _, file_name = os.path.split(filepath)
             documents = {
                 "document": {
-                    "name": filepath.split('/')[-1],
+                    "name": file_name,
                     "objectKey": upload_response["objectKey"]
                 }
             }
@@ -44,13 +44,13 @@ class Project:
             }
         )
         self.__process_graphql_response(graphql_response)
-  
+
     def __upload_file(self, filepath):
         with post(
         url=self.proxy_url,
         headers=self.headers,
         files=[('file', open(filepath, 'rb'))]
-        ) as response: 
+        ) as response:
             response.raise_for_status()
             return response.json()
 
@@ -71,10 +71,10 @@ class Project:
         else:
             print(response.text.encode("utf8"))
             print(response)
-    
+
     def __add_headers(self, key, value):
         if self.headers is None:
-            self.headers = {key: value} 
+            self.headers = {key: value}
         else:
             self.headers[key] = value
 

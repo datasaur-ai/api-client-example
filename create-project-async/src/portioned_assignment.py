@@ -1,0 +1,139 @@
+import glob
+import os
+from enum import Enum
+from itertools import cycle, islice
+from src.exceptions.invalid_options import InvalidOptions
+
+
+class AssignmentRole(Enum):
+  LABELER = "LABELER"
+  REVIEWER = "REVIEWER"
+  HYBRID = "LABELER_AND_REVIEWER"
+
+
+class PortionedAssignment:
+    def __init__(self, original_assignments: list[dict], multi_pass_prefix: str, single_pass_prefix: str, multi_pass_labeler_count: int):
+        self.original_assignments = original_assignments
+        self.multi_pass_prefix = multi_pass_prefix
+        self.single_pass_prefix = single_pass_prefix
+        self.multi_pass_labeler_count = multi_pass_labeler_count
+
+        # set some properties related to the assignees
+        self.original_role_map: dict[str, str] = {}
+        self.labeler_team_member_ids = []
+        self.reviewer_team_member_ids = []
+        for assignment in self.original_assignments:
+            team_member_id = assignment["teamMemberId"]
+            role: str = assignment["role"]
+
+            # split reviewer and labeler assignees
+            # labeler assignees include `LABELER_AND_REVIEWER` role
+            if (role == AssignmentRole.REVIEWER.value):
+                self.reviewer_team_member_ids.append(team_member_id)
+            else:
+                self.labeler_team_member_ids.append(team_member_id)
+
+            # maps teamMemberId to original assignment role
+            self.original_role_map[team_member_id] = role
+
+
+    def create_new_assignments_by_documents(self, documents_path):
+        if (len(self.original_assignments) == 0):
+            return self.original_assignments
+
+        # splits single-pass and multi-pass files
+        multi_pass_file_names = []
+        single_pass_file_names = []
+        for filepath in glob.iglob(f"{documents_path}/*"):
+            _, file_name = os.path.split(filepath)
+            if file_name.startswith(self.multi_pass_prefix):
+                multi_pass_file_names.append(file_name);
+
+            if file_name.startswith(self.single_pass_prefix):
+                single_pass_file_names.append(file_name);
+
+
+        if (len(multi_pass_file_names) == 0 and len(single_pass_file_names) == 0):
+            raise InvalidOptions(f'No valid multi-pass and single-pass files found. Please check the contents inside {documents_path} and make sure the file names have the correct prefixes')
+
+        return self.distribute_assignments(multi_pass_file_names=multi_pass_file_names, single_pass_file_names=single_pass_file_names)
+
+
+    def distribute_assignments(self, multi_pass_file_names: list[str], single_pass_file_names: list[str]):
+        labeler_assignments = self.distribute_labeler_assignments(
+            multi_pass_file_names=multi_pass_file_names,
+            single_pass_file_names=single_pass_file_names)
+
+        reviewer_assignments = self.distribute_reviewer_assignments(
+            multi_pass_file_names=multi_pass_file_names,
+            single_pass_file_names=single_pass_file_names)
+
+        return labeler_assignments + reviewer_assignments
+
+
+    def distribute_labeler_assignments(self, multi_pass_file_names: list[str], single_pass_file_names: list[str]):
+        # maps teamMemberId to list of file names
+        assignment_map = self.create_assignment_map(team_member_ids=self.labeler_team_member_ids, multi_pass_file_names=multi_pass_file_names, single_pass_file_names=single_pass_file_names)
+
+        # convert assignment_map to list of assignments
+        assignments: list[dict] = []
+        for team_member_id in assignment_map.keys():
+            file_names = assignment_map.get(team_member_id)
+            role = self.original_role_map.get(team_member_id)
+            if file_names:
+                assignments.append(self.create_assignment(team_member_id=team_member_id, file_names=file_names, role=role))
+
+        return assignments
+
+
+    def create_assignment_map(self, team_member_ids: list[str], multi_pass_file_names: list[str], single_pass_file_names: list[str]):
+        # initialize empty file names
+        assignment_map: dict[str, list[str]] = {str(id): [] for id in team_member_ids}
+
+        # assign single pass labelers
+        for i, file_name in enumerate(single_pass_file_names):
+            assigned_member_id = team_member_ids[i % len(team_member_ids)]
+            assignment_map[assigned_member_id].append(file_name)
+
+        # assign multi pass labelers
+        ## sort by priority -> team members with the least assigned document comes first
+        sorted_by_assignment_priority = sorted(team_member_ids, key=lambda member_id : len(assignment_map.get(member_id) or []))
+        team_member_cycle = cycle(sorted_by_assignment_priority)
+        for file_name in multi_pass_file_names:
+            assigned_member_ids = list(islice(team_member_cycle, self.multi_pass_labeler_count))
+            for assigned_member_id in assigned_member_ids:
+                assignment_map[assigned_member_id].append(file_name)
+
+        return assignment_map
+
+
+    def distribute_reviewer_assignments(self, multi_pass_file_names: list[str], single_pass_file_names: list[str]):
+        assignments: list[dict] = []
+        file_names = multi_pass_file_names + single_pass_file_names
+        # REVIEWER role assignees get all the documents
+        for team_member_id in self.reviewer_team_member_ids:
+            assignments.append(self.create_assignment(team_member_id=team_member_id, file_names=file_names, role=AssignmentRole.REVIEWER.value))
+
+        return assignments
+
+
+    def create_assignment(self, team_member_id: str, file_names: list[str], role: str | None):
+        documents = []
+        for file_name in file_names:
+            documents.append({
+                "fileName": file_name,
+                "part": 0
+            })
+
+        return {
+            "teamMemberId": team_member_id,
+            "documents": documents,
+            "role": role,
+        }
+
+
+    @staticmethod
+    def validate(operations):
+        split_files_config = operations["variables"]["input"]["creationSettings"]["splitDocumentConfig"]
+        if split_files_config is not None:
+            raise InvalidOptions("Portioned assignments does not support documents splitting.")
