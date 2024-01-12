@@ -58,7 +58,7 @@ The assignee's role determines how the files will be distributed and accessed
 ### Example use case
 
 <details>
-<summary>Expand here</summary>
+<summary>Click here to expand</summary>
 
 - `multi_pass_labeler_count` arg is set to the default `2`
 - Say there are 10 documents inside the `documents/` folder, divided into 2 multi-pass and 8 single-pass files.
