@@ -1,5 +1,4 @@
 import logging
-from collections import namedtuple
 from json import dumps
 
 from src.helpers import GraphQLClient, get_operations, loggable
