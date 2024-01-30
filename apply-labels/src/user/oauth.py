@@ -15,7 +15,7 @@ class UserOAuthCredentials:
         response = self.client.call_rest(
             path=f"{_USER_PREFIX}/oauth",
             method="POST",
-            data={"emails": emails},
+            json_data={"emails": emails},
         )
 
         if response.status_code == HTTPStatus.OK:
@@ -26,8 +26,9 @@ class UserOAuthCredentials:
             {"status": response.status_code, "text": response.text},
         )
 
+    @loggable_debug
     def __check_access(self):
-        response = self.client.call_rest(path=_USER_PREFIX, method="GET", data={})
+        response = self.client.call_rest(path=_USER_PREFIX, method="GET", json_data={})
         if response.status_code == HTTPStatus.OK:
             return True
         else:

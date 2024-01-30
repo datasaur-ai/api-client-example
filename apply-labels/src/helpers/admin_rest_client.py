@@ -17,7 +17,7 @@ class AdminRESTClient:
         self.token = None
 
     @loggable_with_args
-    def call_rest(self, path: str, data, method="POST"):
+    def call_rest(self, path: str, json_data, method="POST"):
         if self.__should_set_self_token():
             self.token = get_access_token(self.client_id, self.client_secret, self.url)
 
@@ -29,7 +29,7 @@ class AdminRESTClient:
         return requests.request(
             method=method,
             url=urljoin(self.url, path),
-            data=data,
+            json=json_data,
             headers=headers,
         )
 
