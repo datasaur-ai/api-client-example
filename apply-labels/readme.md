@@ -29,10 +29,16 @@ This folder focuses on workflows for row-labeling, where labelers' have applied 
 
 1. Ensure you have your Datasaur account ready, and that it can create / have access to a team workspace. **This will be your admin account.**
 2. Setup a Datasaur workspace and generate OAuth credentials from the admin account. For convenience, you can store the client id and secret as environment variables. The script will look for a `.env` file. We have provided a `.env.example` you can refer to. 
-3. Create and invite the labeler accounts you will be applying labels as. For each one, generate OAuth credentials and save the client id and secret. This time, not in the `.env` file, but in a `labelers.json` file. We have provided an example `labelers.json.example` you can refer to. We'll be using the [pyjson5](https://pypi.org/project/pyjson5/) library to parse this file, so you can use comments inside.
-    - For your convenience, you could set-up multiple labeler accounts just for this workflow using the script from [`user_management`](../user-management/readme.md) folder.  
-    **We recommend creating new accounts instead of using existing accounts as you'd be storing and using those OAuth credentials to apply the labels.**
-    - Please check the convert_to_json commands for a quick way to convert the CSV result to a JSON file.
+3. Setup the labeler accounts. There are two possible approaches: 
+    1. Using new, dedicated 'robot' accounts only for this workflow. This is suitable if you are doing a one-time migration from another platform, aggregating labels from multiple sources, or if you are reviewing inference results from models.
+       - You'd setup the `labelers.json` file with the OAuth credentials of each labeler.
+       - For your convenience, you could set-up multiple labeler accounts just for this workflow using the script from [`user_management`](../user-management/readme.md) folder.  
+       **We recommend creating new accounts instead of using existing accounts as you'd be storing and using those OAuth credentials to apply the labels.**
+       - Please check the convert_to_json commands for a quick way to convert the CSV result to a JSON file.  
+    2. Using existing accounts and generating OAuth Credentials on-the-fly. This is only available for self-hosted installation schemes. In this mode you don't need to provide labelers' credentials, just the `email` and `documents`. The credentials will be generated at the beginning of the script.  
+        - As this requires a super-admin enabled account, it is only available for self-hosted installation schemes.
+        - The script must be run with a super-admin enabled account, as it will attempt to regenerate the credentials using that account's OAuth credentials.
+        - Consequently, if this admin account is also to be assigned to the project, you need to provide the `client_id` and `client_secret` in the `labelers.json` file so that it does not get replaced. 
 4. Execute the script. It is configured to read the admin credentials from the `.env` file, and the labeler credentials from the specified json file.  
     Please refer to the `apply_row_answers` section below for detailed explanation. 
     ```console
