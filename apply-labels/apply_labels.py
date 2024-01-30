@@ -54,7 +54,6 @@ def apply_row_answers(
             )
             populate_existing_labelers_file(users_csv, labelers_file)
 
-        # data = load_jsonc(labelers_file)
         data = load_labelers_and_populate_credentials(
             labelers_file=labelers_file, config=config
         )
