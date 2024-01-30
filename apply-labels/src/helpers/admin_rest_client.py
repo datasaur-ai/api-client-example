@@ -1,9 +1,10 @@
 import time
 from urllib.parse import urljoin
-import requests
-from requests_oauthlib import OAuth2
 
-from helpers import get_access_token
+import requests
+
+from .get_access_token import get_access_token
+from .loggable import loggable_with_args
 
 
 class AdminRESTClient:
@@ -15,6 +16,7 @@ class AdminRESTClient:
         self.client_secret = admin_client_secret
         self.token = None
 
+    @loggable_with_args
     def call_rest(self, path: str, data, method="POST"):
         if self.__should_set_self_token():
             self.token = get_access_token(self.client_id, self.client_secret, self.url)
