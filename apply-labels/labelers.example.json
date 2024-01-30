@@ -8,9 +8,9 @@
     },
     {
       "email": "labeler2@email.tld",
-      "client_id": "<client_id>",
-      "client_secret": "<client_secret>",
       "documents": "data/labeler-2/"
+      // or, if you are running from a super-admin enabled account, 
+      // you can skip the client_id and client_secret part
     }
   ]
 }
