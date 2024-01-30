@@ -1,9 +1,13 @@
 import logging
-from src.helpers.rest_client import AdminRESTClient
-from src.helpers import load_jsonc
-from user.oauth import UserOAuthCredentials
+
+from src.user.oauth import UserOAuthCredentials
+
+from ..admin_rest_client import AdminRESTClient
+from ..load_jsonc import load_jsonc
+from ..loggable import loggable_with_args
 
 
+@loggable_with_args
 def load_labelers_and_populate_credentials(labelers_file: str, config: dict):
     data_from_file = load_jsonc(labelers_file)
     labeler_with_credentials = []
@@ -16,7 +20,9 @@ def load_labelers_and_populate_credentials(labelers_file: str, config: dict):
     labelers_need_credentials = []
 
     for labeler in data_from_file["labelers"]:
-        if (labeler["client_id"] is None) or (labeler["client_secret"] is None):
+        if (labeler.get("client_id", None) is None) or (
+            labeler.get("client_secret", None) is None
+        ):
             logging.warning(
                 f"missing client_id or client_secret for {labeler['email']}, generating new credential for them"
             )
@@ -29,24 +35,27 @@ def load_labelers_and_populate_credentials(labelers_file: str, config: dict):
             emails=[labeler["email"] for labeler in labelers_need_credentials]
         )
 
-        map_of_credentials = {
+        credentials_by_email = {
             credential["email"]: {
-                "client_id": credential["client_id"],
-                "client_secret": credential["client_secret"],
+                "client_id": credential["clientId"],
+                "client_secret": credential["clientSecret"],
             }
             for credential in credentials
         }
 
         for labeler in labelers_need_credentials:
             try:
-                labeler["client_id"] = map_of_credentials[labeler["email"]]["client_id"]
-                labeler["client_secret"] = map_of_credentials[labeler["email"]][
+                labeler["client_id"] = credentials_by_email[labeler["email"]][
+                    "client_id"
+                ]
+                labeler["client_secret"] = credentials_by_email[labeler["email"]][
                     "client_secret"
                 ]
                 labeler_with_credentials.append(labeler)
             except Exception as e:
                 logging.error(
-                    f"failed to generate credential for {labeler['email']}, {e}"
+                    f"failed to generate credential for {labeler['email']}, omitting them from the list of labelers",
+                    e,
                 )
 
     return labeler_with_credentials

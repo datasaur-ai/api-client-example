@@ -1,6 +1,8 @@
 from http import HTTPStatus
-from pprint import pprint
-from src.helpers.rest_client import AdminRESTClient
+
+from src.helpers import AdminRESTClient, loggable_debug
+
+_USER_PREFIX = "/api/v1/users"
 
 
 class UserOAuthCredentials:
@@ -8,15 +10,16 @@ class UserOAuthCredentials:
         self.client = admin_client
         self.__check_access()
 
+    @loggable_debug
     def generate_oauth_credentials(self, emails: list[str]):
         response = self.client.call_rest(
-            path="/api/v1/users/oauth",
+            path=f"{_USER_PREFIX}/oauth",
             method="POST",
             data={"emails": emails},
         )
 
         if response.status_code == HTTPStatus.OK:
-            return response.json()
+            return response.json()["data"]
 
         raise Exception(
             "failed to generate OAuth credentials",
@@ -24,8 +27,11 @@ class UserOAuthCredentials:
         )
 
     def __check_access(self):
-        try:
-            self.client.call_rest(path="/api/v1/users", method="GET", data={})
-        except Exception as e:
-            pprint(e)
-            raise e
+        response = self.client.call_rest(path=_USER_PREFIX, method="GET", data={})
+        if response.status_code == HTTPStatus.OK:
+            return True
+        else:
+            raise Exception(
+                f"unable to access {_USER_PREFIX}, ensure your credentials in .env is from a super-admin user",
+                {"status": response.status_code, "text": response.text},
+            )

@@ -4,14 +4,12 @@ import traceback
 
 import fire
 from dotenv import load_dotenv
-from helpers.users.load_labelers_and_populate_credentials import (
-    load_labelers_and_populate_credentials,
-)
 
 from src.entrypoint import check_login_and_teams
 from src.helpers import (
     GraphQLClient,
     create_labelers_file,
+    load_labelers_and_populate_credentials,
     populate_existing_labelers_file,
     read_config,
 )
