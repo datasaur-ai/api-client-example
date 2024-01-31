@@ -1,4 +1,5 @@
 import logging
+from os import getenv
 
 from oauthlib.oauth2 import BackendApplicationClient
 from requests_oauthlib import OAuth2Session
@@ -17,6 +18,7 @@ def get_access_token(
         token_url=f"{base_url}/api/oauth/token",
         client_id=client_id,
         client_secret=client_secret,
+        verify=False if getenv("DISABLE_SSL_VERIFICATION") else True,
     )
 
     logging.debug(colored(f"{token=}", "grey"))

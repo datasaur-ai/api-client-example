@@ -38,7 +38,7 @@ class GraphQLClient:
         assert token is not None
         headers = {
             "Authorization": f"Bearer {token}",
-            "User-Agent": "api-client/apply-labels",
+            "User-Agent": "api-client/apply-labels GraphQLClient",
         }
         return call_graphql(f"{self.url}/graphql", headers, data=data)
 

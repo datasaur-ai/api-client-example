@@ -1,5 +1,4 @@
 import logging
-from collections import namedtuple
 from json import dumps
 
 from src.helpers import GraphQLClient, get_operations, loggable
@@ -23,7 +22,6 @@ class Project:
             kinds=["ROW_BASED"],
         )
         self.replicate_cabinet(project=project, labelers=labelers)
-
         for labeler in labelers:
             logging.debug(f"applying row answers for {labeler['email']}")
             self.apply_row_answer_for_labeler(project, labeler)

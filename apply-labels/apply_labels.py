@@ -9,7 +9,7 @@ from src.entrypoint import check_login_and_teams
 from src.helpers import (
     GraphQLClient,
     create_labelers_file,
-    load_jsonc,
+    load_labelers_and_populate_credentials,
     populate_existing_labelers_file,
     read_config,
 )
@@ -54,18 +54,20 @@ def apply_row_answers(
             )
             populate_existing_labelers_file(users_csv, labelers_file)
 
-        data = load_jsonc(labelers_file)
+        data = load_labelers_and_populate_credentials(
+            labelers_file=labelers_file, config=config
+        )
 
         Project(client=client).apply_row_answers(
             team_id=team_id,
             project_id=project_id,
-            labelers=data["labelers"],
+            labelers=data,
         )
         logging.info("apply_row_answers completed")
     except Exception as e:
         logging.error(e)
         traceback.print_exc()
-        SystemExit(e)
+        raise SystemExit(e)
 
 
 def convert_to_json(users_csv: str, labelers_file: str):
