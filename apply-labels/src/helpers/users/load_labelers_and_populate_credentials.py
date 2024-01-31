@@ -20,9 +20,9 @@ def load_labelers_and_populate_credentials(labelers_file: str, config: dict):
     labelers_need_credentials = []
 
     for labeler in data_from_file["labelers"]:
-        if (labeler.get("client_id", None) is None) or (
-            labeler.get("client_secret", None) is None
-        ):
+        labeler_client_id = labeler.get("client_id", None)
+        labeler_client_secret = labeler.get("client_secret", None)
+        if is_none_or_empty(labeler_client_id, labeler_client_secret):
             logging.warning(
                 f"missing client_id or client_secret for {labeler['email']}, generating new credential for them"
             )
@@ -59,3 +59,7 @@ def load_labelers_and_populate_credentials(labelers_file: str, config: dict):
                 )
 
     return labeler_with_credentials
+
+
+def is_none_or_empty(*args):
+    return any(arg is None or arg == "" for arg in args)
