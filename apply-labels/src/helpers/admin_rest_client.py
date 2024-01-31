@@ -1,4 +1,5 @@
 import time
+from os import getenv
 from urllib.parse import urljoin
 
 import requests
@@ -31,6 +32,7 @@ class AdminRESTClient:
             url=urljoin(self.url, path),
             json=json_data,
             headers=headers,
+            verify=False if getenv("DISABLE_SSL_VERIFICATION") else True,
         )
 
     def __should_set_self_token(self) -> bool:
