@@ -1,6 +1,5 @@
 import logging
 from json import dumps
-from time import sleep
 
 from src.helpers import GraphQLClient, get_operations, loggable
 
@@ -33,7 +32,6 @@ class Project:
             client=self.client,
             project=project,
         ).fetch(labeler=labeler)
-        sleep(5)
         labeler_client = GraphQLClient(
             base_url=self.client.url,
             client_id=labeler["client_id"],

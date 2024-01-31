@@ -2,6 +2,7 @@ import logging
 import os
 from csv import reader
 from json import dumps
+from time import sleep
 from typing import Any
 
 from termcolor import colored
@@ -91,6 +92,7 @@ class RowProjectDocument:
                 question_set=question_set,
                 starting_index=i * CHUNK_SIZE,
             )
+            sleep(0.5)
 
     @loggable_debug
     def __apply_answer_per_document(
