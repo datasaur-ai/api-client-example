@@ -7,6 +7,7 @@ This folder focuses on workflows for row-labeling, where labelers' have applied 
 - [Table of contents](#table-of-contents)
 - [Prerequisites](#prerequisites)
 - [Quickstart](#quickstart)
+- [Setting-up the project](#setting-up-the-project)
 - [Commands](#commands)
   - [apply\_row\_answers](#apply_row_answers)
     - [Usage](#usage)
@@ -29,21 +30,38 @@ This folder focuses on workflows for row-labeling, where labelers' have applied 
 
 1. Ensure you have your Datasaur account ready, and that it can create / have access to a team workspace. **This will be your admin account.**
 2. Setup a Datasaur workspace and generate OAuth credentials from the admin account. For convenience, you can store the client id and secret as environment variables. The script will look for a `.env` file. We have provided a `.env.example` you can refer to. 
-3. Setup the labeler accounts. There are two possible approaches: 
+3. Setup your project and labelers' labeling data. For reference, we have provided a sample data under the `data/` folder. This will be explained in more details in the [next section](#setting-up-the-project). 
+4. Setup the labeler accounts. There are two possible approaches: 
     1. Using new, dedicated 'robot' accounts only for this workflow. This is suitable if you are doing a one-time migration from another platform, aggregating labels from multiple sources, or if you are reviewing inference results from models.
        - You'd setup the `labelers.json` file with the OAuth credentials of each labeler.
        - For your convenience, you could set-up multiple labeler accounts just for this workflow using the script from [`user_management`](../user-management/readme.md) folder.  
        **We recommend creating new accounts instead of using existing accounts as you'd be storing and using those OAuth credentials to apply the labels.**
        - Please check the convert_to_json commands for a quick way to convert the CSV result to a JSON file.  
-    2. Using existing accounts and generating OAuth Credentials on-the-fly. This is only available for self-hosted installation schemes. In this mode you don't need to provide labelers' credentials, just the `email` and `documents`. The credentials will be generated at the beginning of the script.  
+    2. Using existing accounts and generating OAuth Credentials on-the-fly. This is only available for self-hosted installation schemes. 
+        - Setup the `labelers.json` file. You can omit the  `client_id` and `client_secret` key.
         - As this requires a super-admin enabled account, it is only available for self-hosted installation schemes.
         - The script must be run with a super-admin enabled account, as it will attempt to regenerate the credentials using that account's OAuth credentials.
-        - Consequently, if this admin account is also to be assigned to the project, you need to provide the `client_id` and `client_secret` in the `labelers.json` file so that it does not get replaced. 
-4. Execute the script. It is configured to read the admin credentials from the `.env` file, and the labeler credentials from the specified json file.  
+        - Consequently, if this admin account is also to be assigned to the project, you need to provide the `client_id` and `client_secret` in the `labelers.json` file so that it does not get replaced.  
+5. Execute the script. It is configured to read the admin credentials from the `.env` file, and the labeler credentials from the specified json file.  
     Please refer to the `apply_row_answers` section below for detailed explanation. 
     ```console
     python apply_labels.py apply_row_answers --team_id TEAM_ID --project_id PROJECT_ID [--labelers_file labelers.json] [--verbose]
     ```
+
+## Setting-up the project
+
+1. Create a row-based project using *only the data columns*. Any columns that are supposed to be answered by labelers should be configured as questions instead. 
+    - Configure the questions accordingly. Provide them with unique labels, and take note of them. 
+    - Assign the project to the labelers.
+    - Please see `data/reference` for an example of a project data file.  
+2. Prepare the labelers' labeled data. This file should represent what labelers / models have answered. 
+    - Each document should have their own folder. Their work should be stored in CSV files inside that folder. `labelers.json` should point to these folder. 
+    - See `data/labeler-1` and `data/labeler-2` for an example. 
+    - The first row of the files will be considered as headers. 
+    - The script will use these headers to match the column to the question in the project. Any extra columns will raised as a warning, but it won't fail the script. 
+    - Each file in these folder should match with the documents you have uploaded to Datasaur when creating the project. 
+
+Once the project is created, and the labeling data is prepared, you can continue configuring the script. 
 
 ## Commands
 
@@ -113,7 +131,7 @@ python apply_labels.py convert_to_json --users_csv <filepath> --labelers_file <f
 ```
 
 - `users_csv` (str): The path to the CSV file containing the users' information. This should be the output you get after running the command from the [`user_management`](../user-management/readme.md) folder.
-- `labelers_file` (str): Path to a JSON file we'll write.  
+- `labelers_file` (str): Path to a JSON file the script will write.  
     If the file exists, the script will populate the client_id & client_secret of the users that don't have them yet, and add missing users to the JSON file with empty documents assignment.  
     If it doesn't exist, the script will create the file and populate it with the users' information.  
 
