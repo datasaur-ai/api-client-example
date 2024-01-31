@@ -1,5 +1,6 @@
 import logging
 from json import dumps
+from time import sleep
 
 from src.helpers import GraphQLClient, get_operations, loggable
 
@@ -22,7 +23,6 @@ class Project:
             kinds=["ROW_BASED"],
         )
         self.replicate_cabinet(project=project, labelers=labelers)
-
         for labeler in labelers:
             logging.debug(f"applying row answers for {labeler['email']}")
             self.apply_row_answer_for_labeler(project, labeler)
@@ -33,6 +33,7 @@ class Project:
             client=self.client,
             project=project,
         ).fetch(labeler=labeler)
+        sleep(5)
         labeler_client = GraphQLClient(
             base_url=self.client.url,
             client_id=labeler["client_id"],
