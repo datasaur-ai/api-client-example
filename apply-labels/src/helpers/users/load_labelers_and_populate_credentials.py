@@ -10,15 +10,15 @@ from ..loggable import loggable_with_args
 @loggable_with_args
 def load_labelers_and_populate_credentials(labelers_file: str, config: dict):
     data_from_file = load_jsonc(labelers_file)
-    labeler_with_credentials = []
+
     rest_client = AdminRESTClient(
         base_url=config["base_url"],
         admin_client_id=config["client_id"],
         admin_client_secret=config["client_secret"],
     )
 
+    labelers_with_credentials = []
     labelers_need_credentials = []
-
     for labeler in data_from_file["labelers"]:
         labeler_client_id = labeler.get("client_id", None)
         labeler_client_secret = labeler.get("client_secret", None)
@@ -28,7 +28,7 @@ def load_labelers_and_populate_credentials(labelers_file: str, config: dict):
             )
             labelers_need_credentials.append(labeler)
         else:
-            labeler_with_credentials.append(labeler)
+            labelers_with_credentials.append(labeler)
 
     if (len(labelers_need_credentials)) > 0:
         credentials = UserOAuthCredentials(rest_client).generate_oauth_credentials(
@@ -51,14 +51,14 @@ def load_labelers_and_populate_credentials(labelers_file: str, config: dict):
                 labeler["client_secret"] = credentials_by_email[labeler["email"]][
                     "client_secret"
                 ]
-                labeler_with_credentials.append(labeler)
+                labelers_with_credentials.append(labeler)
             except Exception as e:
                 logging.error(
                     f"failed to generate credential for {labeler['email']}, omitting them from the list of labelers",
                     e,
                 )
 
-    return labeler_with_credentials
+    return labelers_with_credentials
 
 
 def is_none_or_empty(*args):
