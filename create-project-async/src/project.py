@@ -26,14 +26,28 @@ class Project:
         operations["variables"]["input"]["documents"] = []
         operations["variables"]["input"]["teamId"] = team_id
 
-        for filepath in glob.iglob(f"{documents_path}/*"):
-            upload_response = self.__upload_file(filepath=filepath)
+        filepaths = list(glob.iglob(f"{documents_path}/*"))
+        sorted_filepaths = self.__sort_possible_extra_files_last(filepaths)
+        mapped_documents = self.__map_documents(sorted_filepaths)
+
+        for key in mapped_documents:
+            upload_document_response = self.__upload_file(filepath=mapped_documents[key]["document"])
             documents = {
                 "document": {
-                    "name": filepath.split('/')[-1],
-                    "objectKey": upload_response["objectKey"]
+                    "name": os.path.basename(mapped_documents[key]["document"]),
+                    "objectKey": upload_document_response["objectKey"]
                 }
             }
+
+            if "extra" in mapped_documents[key]:
+                upload_extra_response = self.__upload_file(filepath=mapped_documents[key]["extra"])
+                documents["extras"] = [
+                    {
+                        "name": os.path.basename(mapped_documents[key]["extra"]),
+                        "objectKey": upload_extra_response["objectKey"]
+                    }
+                ]
+
             operations["variables"]["input"]["documents"].append(documents)
 
         graphql_response = self.__call_graphql(
@@ -79,3 +93,18 @@ class Project:
             self.headers[key] = value
 
         return self.headers
+
+    def __sort_possible_extra_files_last(self, filepaths):
+        # Sort file paths ending with .json or .txt to be at the end
+        filepaths.sort(key=lambda x: (x.endswith('.json') or x.endswith('.txt'), x))
+        return filepaths
+
+    def __map_documents(self, filepaths):
+        mapped_documents = {}
+        for filepath in filepaths: 
+            filename = os.path.basename(filepath).split('.')[0]
+            if filename in mapped_documents: 
+                mapped_documents[filename]["extra"] = filepath
+            else: 
+                mapped_documents[filename] = { "document": filepath }
+        return mapped_documents
