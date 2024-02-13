@@ -80,7 +80,7 @@ class Project:
                 job = json_response["data"]["result"]["job"]
                 print(json.dumps(job, indent=1))
                 print("Check job status using command bellow")
-                get_job_status_command = f"python3 api_client.py get_job_status --base_url {self.base_url} --client_id {self.client_id} --client_secret {self.client_secret} --job_id {job['id']}"
+                get_job_status_command = f"python api_client.py get_job_status --base_url {self.base_url} --client_id {self.client_id} --client_secret {self.client_secret} --job_id {job['id']}"
                 print(get_job_status_command)
         else:
             print(response.text.encode("utf8"))
