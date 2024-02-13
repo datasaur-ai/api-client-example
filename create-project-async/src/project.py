@@ -34,7 +34,7 @@ class Project:
             upload_document_response = self.__upload_file(filepath=mapped_documents[key]["document"])
             documents = {
                 "document": {
-                    "name": mapped_documents[key]["document"].split('/')[-1],
+                    "name": os.path.basename(mapped_documents[key]["document"]),
                     "objectKey": upload_document_response["objectKey"]
                 }
             }
@@ -43,7 +43,7 @@ class Project:
                 upload_extra_response = self.__upload_file(filepath=mapped_documents[key]["extra"])
                 documents["extras"] = [
                     {
-                        "name": mapped_documents[key]["extra"].split('/')[-1],
+                        "name": os.path.basename(mapped_documents[key]["extra"]),
                         "objectKey": upload_extra_response["objectKey"]
                     }
                 ]
@@ -102,7 +102,7 @@ class Project:
     def __map_documents(self, filepaths):
         mapped_documents = {}
         for filepath in filepaths: 
-            filename = filepath.split('/')[-1].split('.')[0]
+            filename = os.path.basename(filepath).split('.')[0]
             if filename in mapped_documents: 
                 mapped_documents[filename]["extra"] = filepath
             else: 
