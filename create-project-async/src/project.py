@@ -26,14 +26,28 @@ class Project:
         operations["variables"]["input"]["documents"] = []
         operations["variables"]["input"]["teamId"] = team_id
 
-        for filepath in glob.iglob(f"{documents_path}/*"):
-            upload_response = self.__upload_file(filepath=filepath)
+        filepaths = list(glob.iglob(f"{documents_path}/*"))
+        sorted_filepaths = self.__sort_possible_extra_files_last(filepaths)
+        mapped_documents = self.__map_documents(sorted_filepaths)
+
+        for key in mapped_documents:
+            upload_document_response = self.__upload_file(filepath=mapped_documents[key]["document"])
             documents = {
                 "document": {
-                    "name": filepath.split('/')[-1],
-                    "objectKey": upload_response["objectKey"]
+                    "name": mapped_documents[key]["document"].split('/')[-1],
+                    "objectKey": upload_document_response["objectKey"]
                 }
             }
+
+            if "extras" in mapped_documents[key]:
+                upload_extras_response = self.__upload_file(filepath=mapped_documents[key]["extras"])
+                documents["extras"] = [
+                    {
+                        "name": mapped_documents[key]["extras"].split('/')[-1],
+                        "objectKey": upload_extras_response["objectKey"]
+                    }
+                ]
+
             operations["variables"]["input"]["documents"].append(documents)
 
         graphql_response = self.__call_graphql(
@@ -66,7 +80,7 @@ class Project:
                 job = json_response["data"]["result"]["job"]
                 print(json.dumps(job, indent=1))
                 print("Check job status using command bellow")
-                get_job_status_command = f"python api_client.py get_job_status --base_url {self.base_url} --client_id {self.client_id} --client_secret {self.client_secret} --job_id {job['id']}"
+                get_job_status_command = f"python3 api_client.py get_job_status --base_url {self.base_url} --client_id {self.client_id} --client_secret {self.client_secret} --job_id {job['id']}"
                 print(get_job_status_command)
         else:
             print(response.text.encode("utf8"))
@@ -79,3 +93,18 @@ class Project:
             self.headers[key] = value
 
         return self.headers
+
+    def __sort_possible_extra_files_last(self, filepaths):
+        # Sort file paths ending with .json or .txt to be at the end
+        filepaths.sort(key=lambda x: (x.endswith('.json') or x.endswith('.txt'), x))
+        return filepaths
+
+    def __map_documents(self, filepaths):
+        mapped_documents = {}
+        for filepath in filepaths: 
+            filename = filepath.split('/')[-1].split('.')[0]
+            if filename in mapped_documents: 
+                mapped_documents[filename]["extras"] = filepath
+            else: 
+                mapped_documents[filename] = { "document": filepath }
+        return mapped_documents
