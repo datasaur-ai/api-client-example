@@ -39,12 +39,12 @@ class Project:
                 }
             }
 
-            if "extras" in mapped_documents[key]:
-                upload_extras_response = self.__upload_file(filepath=mapped_documents[key]["extras"])
+            if "extra" in mapped_documents[key]:
+                upload_extra_response = self.__upload_file(filepath=mapped_documents[key]["extra"])
                 documents["extras"] = [
                     {
-                        "name": mapped_documents[key]["extras"].split('/')[-1],
-                        "objectKey": upload_extras_response["objectKey"]
+                        "name": mapped_documents[key]["extra"].split('/')[-1],
+                        "objectKey": upload_extra_response["objectKey"]
                     }
                 ]
 
@@ -104,7 +104,7 @@ class Project:
         for filepath in filepaths: 
             filename = filepath.split('/')[-1].split('.')[0]
             if filename in mapped_documents: 
-                mapped_documents[filename]["extras"] = filepath
+                mapped_documents[filename]["extra"] = filepath
             else: 
                 mapped_documents[filename] = { "document": filepath }
         return mapped_documents
