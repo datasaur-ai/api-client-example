@@ -9,7 +9,7 @@ python -m pip install -r src/requirements.txt
 
 ## Create Project (v2)
 
-This version uses the new [`createProject`](https://docs.datasaur.ai/#mutation-createProject) mutation over the existing [`launchTextProjectAsync`](https://docs.datasaur.ai/#mutation-launchTextProjectAsync). We are planning to deprecate the launchTextProjectAsync mutation in the future.
+This version uses the new [`createProject`](https://api-docs.datasaur.ai/#mutation-createProject) mutation over the existing [`launchTextProjectAsync`](https://api-docs.datasaur.ai/#mutation-launchTextProjectAsync). We are planning to deprecate the launchTextProjectAsync mutation in the future.
 
 > For v1 version of the script, please navigate to the Releases / Tag page or checkout the `v1` branch.
 
