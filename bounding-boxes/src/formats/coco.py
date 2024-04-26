@@ -3,7 +3,7 @@ from typing import Dict, List
 
 
 @dataclass
-class License:
+class COCOLicense:
     name: str
     id: int
     URL: str
@@ -50,8 +50,19 @@ class COCOAnnotation:
 
 
 @dataclass
+class COCOInfo:
+    contributor: str
+    date_created: str
+    description: str
+    URL: str
+    version: str
+    year: int
+
+
+@dataclass
 class COCO:
-    licenses: List[License]
+    licenses: List[COCOLicense]
+    info: COCOInfo
     categories: List[COCOCategory]
     images: List[COCOImage]
     annotations: List[COCOAnnotation]

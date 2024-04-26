@@ -9,25 +9,24 @@ class GenericIdAndName:
 
 
 @dataclass
-class Point:
+class DSPoint:
     x: float
     y: float
 
 
 @dataclass
-class Shape:
+class DSShape:
     pageIndex: int
-    points: List[Point]
+    points: List[DSPoint]
 
 
 @dataclass
-class BBoxLabel:
-
+class DSBBoxLabel:
     id: str
     bboxLabelClassId: str
     bboxLabelClassName: str
     caption: Optional[str]
-    shapes: List[Shape]
+    shapes: List[DSShape]
     """
     tba
     """
@@ -42,7 +41,7 @@ class BBoxLabel:
 
 
 @dataclass
-class BBoxLabelClassQuestions:
+class DSBBoxLabelClassQuestions:
     """
     tba
     """
@@ -51,7 +50,7 @@ class BBoxLabelClassQuestions:
 
 
 @dataclass
-class BBoxLabelClass(GenericIdAndName):
+class DSBBoxLabelClass(GenericIdAndName):
     id: str
     color: Optional[str]
     captionAllowed: bool
@@ -59,32 +58,32 @@ class BBoxLabelClass(GenericIdAndName):
     """
     tba
     """
-    questions: Optional[List[BBoxLabelClassQuestions]]
+    questions: Optional[List[DSBBoxLabelClassQuestions]]
 
 
 @dataclass
-class BboxLabelSet(GenericIdAndName):
-    classes: List[BBoxLabelClass]
+class DSBboxLabelSet(GenericIdAndName):
+    classes: List[DSBBoxLabelClass]
 
 
 @dataclass
-class Page:
+class DSPage:
     pageIndex: int
     pageHeight: int
     pageWidth: int
 
 
 @dataclass
-class BBoxDatasaurSchemaData:
+class DSBBoxProjectData:
     kinds: List[str]
-    pages: Optional[List[Page]]
-    bboxLabelSets: Optional[List[BboxLabelSet]]
-    bboxLabels: Optional[List[BBoxLabel]]
+    pages: Optional[List[DSPage]]
+    bboxLabelSets: Optional[List[DSBboxLabelSet]]
+    bboxLabels: Optional[List[DSBBoxLabel]]
     document: GenericIdAndName
     project: Optional[GenericIdAndName]
 
 
 @dataclass
 class DatasaurSchema:
-    data: BBoxDatasaurSchemaData
+    data: DSBBoxProjectData
     version: str

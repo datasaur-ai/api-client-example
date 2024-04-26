@@ -5,19 +5,38 @@ from dataclasses import asdict
 from typing import Any, Dict
 from shutil import rmtree
 
-from common.coco import COCO, COCOCategory, COCOImage, License, COCOAnnotation
-from common.datasaur_schema import DatasaurSchema, Shape
+from formats.coco import (
+    COCO,
+    COCOCategory,
+    COCOImage,
+    COCOLicense,
+    COCOAnnotation,
+    COCOInfo,
+)
+from formats.datasaur_schema import DatasaurSchema, DSShape
 from dacite import from_dict
 
 
 def datasaur_schemas_to_coco(
-    schema_objects: list[Any], license: License | None = None
+    schema_objects: list[Any],
+    licenses: list[COCOLicense] | None = None,
+    info: COCOInfo | None = None,
 ) -> COCO:
     """
     schema_objects: a list of dict, the result of json.load-ing the Datasaur Schema json
     """
-    if license is None:
-        license = License(name="dummy-datasaur-license", id=0, URL="")
+    if licenses is None:
+        licenses = [COCOLicense(name="dummy-datasaur-license", id=0, URL="")]
+
+    if info is None:
+        info = COCOInfo(
+            contributor="datasaur.ai",
+            date_created="2024-04-23",
+            description="Description of the dataset",
+            URL="",
+            version="v0.1",
+            year=2024,
+        )
 
     schemas = [from_dict(data=s, data_class=DatasaurSchema) for s in schema_objects]
 
@@ -37,7 +56,8 @@ def datasaur_schemas_to_coco(
     )
 
     return COCO(
-        licenses=[license],
+        info=info,
+        licenses=licenses,
         categories=categories,
         images=images,
         annotations=annotations,
@@ -124,7 +144,7 @@ def coco_images_from_datasaur_schema(id: int, schema: DatasaurSchema) -> COCOIma
     )
 
 
-def shapes_to_bbox(shapes: list[Shape]) -> list[float]:
+def shapes_to_bbox(shapes: list[DSShape]) -> list[float]:
     x_coords = [point.x for shape in shapes for point in shape.points]
     y_coords = [point.y for shape in shapes for point in shape.points]
 
@@ -135,7 +155,7 @@ def shapes_to_bbox(shapes: list[Shape]) -> list[float]:
     return [min(*x_coords), min(*y_coords), x_max - x_min, y_max - y_min]
 
 
-def shapes_to_segmentation(shapes: list[Shape]) -> list[list[float]]:
+def shapes_to_segmentation(shapes: list[DSShape]) -> list[list[float]]:
     retval: list[list[float]] = []
     for shape in shapes:
         segmentation: list[float] = [

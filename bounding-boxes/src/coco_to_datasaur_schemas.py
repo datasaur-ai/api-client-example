@@ -4,17 +4,17 @@ from dataclasses import asdict
 from math import floor
 from typing import Any, List
 
-from common.coco import COCO, COCOAnnotation
-from common.datasaur_schema import (
-    BBoxDatasaurSchemaData,
-    BBoxLabel,
-    BBoxLabelClass,
-    BboxLabelSet,
+from formats.coco import COCO, COCOAnnotation
+from formats.datasaur_schema import (
+    DSBBoxProjectData,
+    DSBBoxLabel,
+    DSBBoxLabelClass,
+    DSBboxLabelSet,
     DatasaurSchema,
     GenericIdAndName,
-    Page,
-    Point,
-    Shape,
+    DSPage,
+    DSPoint,
+    DSShape,
 )
 from common.scrub import scrub
 from dacite import from_dict
@@ -39,7 +39,7 @@ def coco_to_datasaur_schemas(coco_json: Any) -> List[DatasaurSchema]:
                     f"expect segmentation to be a list-of-list of 8 elements, faulty annotation.id={annot.id}",
                 )
 
-    bbox_label_set = BboxLabelSet(
+    bbox_label_set = DSBboxLabelSet(
         id=None,
         name="BBox Label Set",
         classes=bbox_label_classes_from_coco(coco_object),
@@ -59,14 +59,14 @@ def coco_to_datasaur_schemas(coco_json: Any) -> List[DatasaurSchema]:
 
         schema = DatasaurSchema(
             version="1",
-            data=BBoxDatasaurSchemaData(
+            data=DSBBoxProjectData(
                 kinds=["BBOX_BASED"],
                 bboxLabels=bbox_labels,
                 bboxLabelSets=[bbox_label_set],
                 document=GenericIdAndName(name=image.file_name, id=None),
                 project=None,
                 pages=[
-                    Page(
+                    DSPage(
                         pageIndex=0,
                         pageHeight=floor(image.height),
                         pageWidth=floor(image.width),
@@ -99,13 +99,13 @@ def main() -> None:
 
 def bbox_label_classes_from_coco(
     coco_object: COCO,
-) -> List[BBoxLabelClass]:
+) -> List[DSBBoxLabelClass]:
     categories = coco_object.categories
 
     retval = []
     for category in categories:
         retval.append(
-            BBoxLabelClass(
+            DSBBoxLabelClass(
                 id=str(category.id),
                 name=category.name,
                 # since these attributes are nowhere in COCO,
@@ -121,21 +121,21 @@ def bbox_label_classes_from_coco(
     return retval
 
 
-def shape_from_coco_segmentation(segmentation: List[float]) -> Shape:
+def shape_from_coco_segmentation(segmentation: List[float]) -> DSShape:
     if len(segmentation) != 8:
         raise Exception("expect segmentation to be a list-of-list of 8 elements")
 
-    points: List[Point] = []
+    points: List[DSPoint] = []
 
     for i in range(0, 8, 2):
-        points.append(Point(x=segmentation[i], y=segmentation[i + 1]))
+        points.append(DSPoint(x=segmentation[i], y=segmentation[i + 1]))
 
-    return Shape(pageIndex=0, points=points)
+    return DSShape(pageIndex=0, points=points)
 
 
 def bbox_label_from_coco_annotation(
-    annotation: COCOAnnotation, labelset: BboxLabelSet
-) -> BBoxLabel:
+    annotation: COCOAnnotation, labelset: DSBboxLabelSet
+) -> DSBBoxLabel:
     # TODO process once custom attribute is supported
     """
     text = caption
@@ -153,7 +153,7 @@ def bbox_label_from_coco_annotation(
         shape_from_coco_segmentation(segment) for segment in annotation.segmentation
     ]
 
-    return BBoxLabel(
+    return DSBBoxLabel(
         id=str(annotation.id),
         caption=str(attributes.get("text", "")),
         bboxLabelClassId=bbox_label_class.id,
