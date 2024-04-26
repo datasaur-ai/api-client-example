@@ -21,7 +21,7 @@ def datasaur_schemas_to_coco(
     schema_objects: list[Any],
     licenses: list[COCOLicense] | None = None,
     info: COCOInfo | None = None,
-) -> COCO:
+) -> dict:
     """
     schema_objects: a list of dict, the result of json.load-ing the Datasaur Schema json
     """
@@ -55,12 +55,14 @@ def datasaur_schemas_to_coco(
         schemas, categories
     )
 
-    return COCO(
-        info=info,
-        licenses=licenses,
-        categories=categories,
-        images=images,
-        annotations=annotations,
+    return asdict(
+        COCO(
+            info=info,
+            licenses=licenses,
+            categories=categories,
+            images=images,
+            annotations=annotations,
+        )
     )
 
 
@@ -78,8 +80,7 @@ def main() -> None:
     outdir = "./outdir/"
     os.makedirs(outdir, exist_ok=True)
     with open(os.path.join(outdir, "out-coco.json"), "w") as wf:
-        coco_as_dict = asdict(coco)
-        json.dump(coco_as_dict, wf, indent=2)
+        json.dump(coco, wf, indent=2)
 
     # clean-up
     rmtree(temp_destination)

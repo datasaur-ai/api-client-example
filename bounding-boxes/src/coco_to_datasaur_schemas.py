@@ -20,7 +20,7 @@ from common.scrub import scrub
 from dacite import from_dict
 
 
-def coco_to_datasaur_schemas(coco_json: Any) -> List[DatasaurSchema]:
+def coco_to_datasaur_schemas(coco_json: Any) -> List[dict]:
     """
     One COCO JSON contains many images, hence the return value of this function needs to be a list of objects.
 
@@ -46,7 +46,7 @@ def coco_to_datasaur_schemas(coco_json: Any) -> List[DatasaurSchema]:
     )
     images = coco_object.images
 
-    retval: List[DatasaurSchema] = []
+    retval: List[dict] = []
     for image in images:
         annotations_by_images = [
             annot for annot in coco_object.annotations if annot.image_id == image.id
@@ -75,7 +75,7 @@ def coco_to_datasaur_schemas(coco_json: Any) -> List[DatasaurSchema]:
             ),
         )
 
-        retval.append(schema)
+        retval.append(asdict(schema))
 
     return retval
 
@@ -90,11 +90,10 @@ def main() -> None:
     outdir = "./outdir/"
     os.makedirs(outdir, exist_ok=True)
     for schema in schemas:
-        filename = schema.data.document.name.split(".")[0] + ".json"
+        filename = schema["data"]["document"]["name"].split(".")[0] + ".json"
 
         with open(os.path.join(outdir, filename), "w") as f:
-            schema_as_dict = asdict(schema)
-            json.dump(scrub(schema_as_dict), f, indent=2)
+            json.dump(scrub(schema), f, indent=2)
 
 
 def bbox_label_classes_from_coco(

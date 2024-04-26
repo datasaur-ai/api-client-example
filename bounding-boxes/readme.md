@@ -37,7 +37,7 @@ The script uses [`dacite.from_dict`](https://github.com/konradhalas/dacite) to t
 
 ### `coco_to_datasaur_schemas`
 
-Running `python src/coco_to_datasaur_schemas.py` should run the function against a sample `COCO.json` file. The function expect a `dict` representation of a COCO file and will return an array of [`DatasaurSchema`](src/common/datasaur_schema.py) object. 
+Running `python src/coco_to_datasaur_schemas.py` should run the function against a sample `COCO.json` file. The function expect a `dict` representation of a COCO file and will return an array of `DatasaurSchema` also in a `dict` format. 
 
 The function will ignore the following fields as they are not used in Datasaur Schema: 
 - `licenses`
