@@ -1,4 +1,5 @@
 import json
+import os
 from dataclasses import asdict
 from math import floor
 from typing import Any, List
@@ -86,19 +87,14 @@ def main() -> None:
 
     schemas = coco_to_datasaur_schemas(json_data)
 
-    for index, schema in enumerate(schemas):
-        document = schema.data.document
-        filename = (
-            document.name.split(".")[0] + ".json"
-            if document is not None
-            else f"schema_{index}.json"
-        )
+    outdir = "./outdir/"
+    os.makedirs(outdir, exist_ok=True)
+    for schema in schemas:
+        filename = schema.data.document.name.split(".")[0] + ".json"
 
-        with open(filename, "w") as f:
+        with open(os.path.join(outdir, filename), "w") as f:
             schema_as_dict = asdict(schema)
-            json.dump(scrub(schema_as_dict), f)
-
-        break
+            json.dump(scrub(schema_as_dict), f, indent=2)
 
 
 def bbox_label_classes_from_coco(

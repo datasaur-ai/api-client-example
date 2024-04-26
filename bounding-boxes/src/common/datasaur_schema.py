@@ -80,7 +80,7 @@ class BBoxDatasaurSchemaData:
     pages: Optional[List[Page]]
     bboxLabelSets: Optional[List[BboxLabelSet]]
     bboxLabels: Optional[List[BBoxLabel]]
-    document: Optional[GenericIdAndName]
+    document: GenericIdAndName
     project: Optional[GenericIdAndName]
 
 
