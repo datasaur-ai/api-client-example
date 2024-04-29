@@ -23,17 +23,26 @@ def datasaur_schemas_to_coco(
     info: COCOInfo | None = None,
 ) -> dict:
     """
-    schema_objects: a list of dict, the result of json.load-ing the Datasaur Schema json
+    Convert Datasaur schema objects to COCO format.
+
+    Args:
+        schema_objects (list[Any]): A list of dictionaries representing the result of `json.load`-ing the Datasaur Schema JSON.
+        licenses (list[COCOLicense] | None, optional): A list of COCOLicense objects. Defaults to None.
+        info (COCOInfo | None, optional): A COCOInfo object. Defaults to None.
+
+    Returns:
+        dict: A dictionary representing the COCO format.
+
     """
     if licenses is None:
         licenses = [COCOLicense(name="dummy-datasaur-license", id=0, URL="")]
 
     if info is None:
         info = COCOInfo(
-            contributor="datasaur.ai",
+            contributor="Datasaur",
             date_created="2024-04-23",
-            description="Description of the dataset",
-            URL="",
+            description="Exported from Datasaur",
+            URL="https://datasaur.ai",
             version="v0.1",
             year=2024,
         )

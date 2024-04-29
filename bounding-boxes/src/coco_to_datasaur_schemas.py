@@ -22,12 +22,10 @@ from dacite import from_dict
 
 def coco_to_datasaur_schemas(coco_json: Any) -> List[dict]:
     """
-    One COCO JSON contains many images, hence the return value of this function needs to be a list of objects.
-
-    Since the return value is a list of Python dataclass object, we need to use dataclasses.asdict before json.dump-ing it.
-
-    See the main() function for an example usage.
+    Raises:
+        Exception: If the segmentation of an annotation does not have 8 elements.
     """
+
     # convert JSON dict to COCO representation
     coco_object = from_dict(data=coco_json, data_class=COCO)
 
