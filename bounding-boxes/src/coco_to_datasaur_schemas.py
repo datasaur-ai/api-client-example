@@ -1,23 +1,26 @@
 import json
 import os
+import random
+from argparse import ArgumentParser
 from dataclasses import asdict
 from math import floor
 from typing import Any, List
 
+from dacite import from_dict
+
+from common.scrub import scrub
 from formats.coco import COCO, COCOAnnotation
 from formats.datasaur_schema import (
-    DSBBoxProjectData,
+    DatasaurSchema,
     DSBBoxLabel,
     DSBBoxLabelClass,
     DSBboxLabelSet,
-    DatasaurSchema,
-    GenericIdAndName,
+    DSBBoxProjectData,
     DSPage,
     DSPoint,
     DSShape,
+    GenericIdAndName,
 )
-from common.scrub import scrub
-from dacite import from_dict
 
 
 def coco_to_datasaur_schemas(coco_json: Any) -> List[dict]:
@@ -79,13 +82,23 @@ def coco_to_datasaur_schemas(coco_json: Any) -> List[dict]:
 
 
 def main() -> None:
-    sample_coco = "./samples/COCO.json"
+    parser = ArgumentParser(prog="coco_to_datasaur_schemas")
+    parser.add_argument("coco_filepath", type=str, help="Path to COCO JSON file")
+    parser.add_argument(
+        "--outdir",
+        type=str,
+        help="Output directory for Datasaur schemas",
+        default="./outdir/",
+    )
+    args = parser.parse_args()
+
+    sample_coco = os.path.abspath(args.coco_filepath)
     with open(sample_coco) as f:
         json_data = json.load(f)
 
     schemas = coco_to_datasaur_schemas(json_data)
 
-    outdir = "./outdir/"
+    outdir = os.path.abspath(args.outdir)
     os.makedirs(outdir, exist_ok=True)
     for schema in schemas:
         filename = schema["data"]["document"]["name"].split(".")[0] + ".json"
@@ -109,7 +122,7 @@ def bbox_label_classes_from_coco(
                 # set it to the most flexible option, allow caption but don't require it
                 captionAllowed=True,
                 captionRequired=False,
-                color=None,
+                color=generate_random_color_hex(category.name),
                 # TODO support once custom attributes are supported
                 questions=None,
             )
@@ -164,6 +177,12 @@ def bbox_label_from_coco_annotation(
         # TODO: support once custom attributes implemented
         answers=None,
     )
+
+
+def generate_random_color_hex(seed: str) -> str:
+    random.seed(seed)
+    r = lambda: random.randint(0, 255)
+    return "#%02X%02X%02X" % (r(), r(), r())
 
 
 if __name__ == "__main__":
