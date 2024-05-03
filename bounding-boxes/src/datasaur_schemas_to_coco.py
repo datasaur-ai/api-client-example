@@ -6,11 +6,21 @@ from shutil import rmtree
 from typing import Any, Dict
 from zipfile import Path as ZipPath
 from zipfile import ZipFile
+import logging
+
 
 from dacite import from_dict
 
+from common.logger import log as _log
 from formats.coco import COCO, COCOAnnotation, COCOCategory, COCOImage
 from formats.datasaur_schema import DatasaurSchema, DSShape
+
+
+def log(message, level=logging.DEBUG, **kwargs):
+    logger = logging.getLogger(
+        __name__ if __name__ != "__main__" else "datasaur_schemas_to_coco"
+    )
+    return _log(message=message, logger=logger, level=level, **kwargs)
 
 
 def datasaur_schemas_to_coco(
@@ -94,12 +104,14 @@ def main() -> None:
         help="Path to JSON file containing licenses and info data",
         default="samples/license-and-info.json",
     )
-
+    parser.add_argument("--log-level", type=str, default="INFO")
     args = parser.parse_args()
+    logging.basicConfig(level=args.log_level, format="%(message)s")
 
     export_zip = os.path.abspath(args.zip_filepath)
     temp_destination = os.path.abspath("./temp/")
     os.makedirs(temp_destination, exist_ok=True)
+    log("creating temp directory", directory=temp_destination)
 
     outfile = os.path.abspath(args.outfile)
     outdir = os.path.dirname(outfile)
@@ -108,20 +120,24 @@ def main() -> None:
     extracted_files: list[str] = unzip_export_result(
         export_zip=export_zip, dest=temp_destination
     )
+
     schemas = [load_datasaur_schema_file(f) for f in extracted_files]
 
+    log("reading licenses and info file", filepath=args.license_and_info_json)
     license_and_info = json.load(open(os.path.abspath(args.license_and_info_json)))
 
+    log("converting datasaur schemas to COCO format", count=len(schemas))
     coco = datasaur_schemas_to_coco(
         schemas,
         licenses=license_and_info.get("licenses", None),
         info=license_and_info.get("info", None),
     )
 
+    log("writing COCO JSON file", outfile=outfile)
     with open(outfile, "w") as wf:
         json.dump(coco, wf, indent=2)
 
-    # clean-up
+    log("cleaning up temp directory", directory=temp_destination)
     rmtree(temp_destination)
 
 
@@ -207,6 +223,7 @@ def shapes_to_segmentation(shapes: list[DSShape]) -> list[list[float]]:
 
 def unzip_export_result(export_zip: str, dest: str) -> list[str]:
     retval: list[str] = []
+    log("unzipping export result to temp directory", export_zip=export_zip)
     with ZipFile(export_zip, "r") as zf:
         project_dir: str | None = None
         for zippath in ZipPath(zf).iterdir():
@@ -214,8 +231,10 @@ def unzip_export_result(export_zip: str, dest: str) -> list[str]:
                 project_dir = zippath.name
                 break
         if not (project_dir):
+            log("no project dir found in export result", level=logging.ERROR)
             raise Exception("no project dir found")
 
+        log("project_dir", project_dir=project_dir)
         for zip_content in zf.infolist():
             if not zip_content.filename.startswith(os.path.join(project_dir, "REVIEW")):
                 continue

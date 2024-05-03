@@ -3,13 +3,15 @@ import os
 import random
 from argparse import ArgumentParser
 from dataclasses import asdict
+import logging
 from math import floor
 from typing import Any, List
 
-from dacite import from_dict, Config
+from dacite import Config, from_dict
 
+from common.logger import log as _log
 from common.scrub import scrub
-from formats.coco import COCOForInput, COCOAnnotation
+from formats.coco import COCOAnnotation, COCOForInput, COCOCategory
 from formats.datasaur_schema import (
     DatasaurSchema,
     DSBBoxLabel,
@@ -23,6 +25,13 @@ from formats.datasaur_schema import (
 )
 
 
+def log(message, level=logging.DEBUG, **kwargs):
+    logger = logging.getLogger(
+        __name__ if __name__ != "__main__" else "coco_to_datasaur_schemas"
+    )
+    return _log(message=message, logger=logger, level=level, **kwargs)
+
+
 def coco_to_datasaur_schemas(coco_json: Any) -> List[dict]:
     """
     Raises:
@@ -30,20 +39,31 @@ def coco_to_datasaur_schemas(coco_json: Any) -> List[dict]:
     """
 
     # convert JSON dict to COCO representation
-    coco_object = from_dict(data=coco_json, data_class=COCOForInput, config=Config(strict=False, check_types=True))
+    log("converting JSON dict to COCO representation", level=logging.DEBUG)
+    coco_object = from_dict(
+        data=coco_json,
+        data_class=COCOForInput,
+        config=Config(strict=False, check_types=True),
+    )
 
     # validate segmentation first
     for annot in coco_object.annotations:
         for segmentation in annot.segmentation:
             if len(segmentation) != 8:
+                log(
+                    "found faulty annotation",
+                    level=logging.ERROR,
+                    annotation=asdict(annot),
+                )
                 raise Exception(
                     f"expect segmentation to be a list-of-list of 8 elements, faulty annotation.id={annot.id}",
                 )
 
+    log(message="creating BBoxLabelSet from COCO categories", level=logging.DEBUG)
     bbox_label_set = DSBboxLabelSet(
         id=None,
         name="BBox Label Set",
-        classes=bbox_label_classes_from_coco(coco_object),
+        classes=bbox_label_classes_from_coco(coco_object.categories),
     )
     images = coco_object.images
 
@@ -90,16 +110,21 @@ def main() -> None:
         help="Output directory for Datasaur schemas",
         default="./outdir/",
     )
+    parser.add_argument("--log-level", type=str, default="INFO")
     args = parser.parse_args()
+    logging.basicConfig(level=args.log_level, format="%(message)s")
 
-    sample_coco = os.path.abspath(args.coco_filepath)
-    with open(sample_coco) as f:
+    coco_filepath = os.path.abspath(args.coco_filepath)
+    log("reading COCO JSON file", filepath=coco_filepath)
+    with open(coco_filepath) as f:
         json_data = json.load(f)
 
+    log("converting COCO to Datasaur Schema")
     schemas = coco_to_datasaur_schemas(json_data)
 
     outdir = os.path.abspath(args.outdir)
     os.makedirs(outdir, exist_ok=True)
+    log("writing to file", directory=outdir)
     for schema in schemas:
         filename = schema["data"]["document"]["name"].split(".")[0] + ".json"
 
@@ -108,12 +133,11 @@ def main() -> None:
 
 
 def bbox_label_classes_from_coco(
-    coco_object: COCOForInput,
+    coco_categories: List[COCOCategory],
 ) -> List[DSBBoxLabelClass]:
-    categories = coco_object.categories
 
     retval = []
-    for category in categories:
+    for category in coco_categories:
         retval.append(
             DSBBoxLabelClass(
                 id=str(category.id),
