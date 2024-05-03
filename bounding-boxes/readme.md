@@ -60,6 +60,27 @@ Note: The function will ignore the following fields as they are not used in Data
 - `info`
 - `annotation.area`, `annotation.bbox`
 
+Example usage: 
+- as a function
+  ```python
+  coco_json = json.load(file)
+  datasaur_schemas = coco_to_datasaur_schemas(coco_json)
+  ```
+- as a script
+  ```
+  $ python src/coco_to_datasaur_schemas.py -h
+  usage: coco_to_datasaur_schemas [-h] [--outdir OUTDIR] coco_filepath
+
+  positional arguments:
+    coco_filepath    Path to COCO JSON file
+
+  options:
+    -h, --help       show this help message and exit
+    --outdir OUTDIR  Output directory for Datasaur schemas
+
+  $ python src/coco_to_datasaur_schemas.py samples/COCO.json
+  ```
+
 ### `datasaur_schemas_to_coco`
 
 This function transforms a list of Datasaur Schema object, represented as a list of dictionaries, into a single COCO object.
@@ -95,21 +116,38 @@ As `licenses` and `info` parameters are optional, when not provided it will use 
 
 
 Example usage:
-```python
-schemas = [...]
-coco_obj = datasaur_schemas_to_coco(schemas)
+- as a function
+  ```python
+  schemas = [...]
+  coco_obj = datasaur_schemas_to_coco(schemas)
 
-# or provide your own `licenses` and `info`
-coco_obj = datasaur_schemas_to_coco(
-    schemas,
-    licenses=[COCOLicense(name="dummy-license", id=0, URL="")],
-    info=COCOInfo(
-        contributor="contributor",
-        date_created="2024-01-01",
-        description="dataset-description",
-        URL="http://example.com",
-        version="v0.1",
-        year=2024,
-    ),
-)
-```
+  # or provide your own `licenses` and `info`
+  coco_obj = datasaur_schemas_to_coco(
+      schemas,
+      licenses=[COCOLicense(name="dummy-license", id=0, URL="")],
+      info=COCOInfo(
+          contributor="contributor",
+          date_created="2024-01-01",
+          description="dataset-description",
+          URL="http://example.com",
+          version="v0.1",
+          year=2024,
+      ),
+  )
+  ```
+- as a script
+  ```
+  $ python src/datasaur_schemas_to_coco.py -h
+  usage: datasaur_schemas_to_coco [-h] [--outfile OUTFILE] [--license-and-info-json LICENSE_AND_INFO_JSON] zip_filepath
+
+  positional arguments:
+    zip_filepath          Path to Datasaur export ZIP file
+
+  options:
+    -h, --help            show this help message and exit
+    --outfile OUTFILE     Output directory for COCO JSON file
+    --license-and-info-json LICENSE_AND_INFO_JSON
+                          Path to JSON file containing licenses and info data
+  
+  $ python src/datasaur_schemas_to_coco.py samples/bbox-export.zip
+  ```
