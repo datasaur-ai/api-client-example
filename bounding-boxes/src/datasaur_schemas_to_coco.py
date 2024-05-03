@@ -1,26 +1,22 @@
 import json
 import os
-import zipfile
+from argparse import ArgumentParser
 from dataclasses import asdict
-from typing import Any, Dict
 from shutil import rmtree
+from typing import Any, Dict
+from zipfile import Path as ZipPath
+from zipfile import ZipFile
 
-from formats.coco import (
-    COCO,
-    COCOCategory,
-    COCOImage,
-    COCOLicense,
-    COCOAnnotation,
-    COCOInfo,
-)
-from formats.datasaur_schema import DatasaurSchema, DSShape
 from dacite import from_dict
+
+from formats.coco import COCO, COCOAnnotation, COCOCategory, COCOImage
+from formats.datasaur_schema import DatasaurSchema, DSShape
 
 
 def datasaur_schemas_to_coco(
     schema_objects: list[Any],
-    licenses: list[COCOLicense] | None = None,
-    info: COCOInfo | None = None,
+    licenses: list[dict] | None = None,
+    info: dict | None = None,
 ) -> dict:
     """
     Convert Datasaur schema objects to COCO format.
@@ -35,19 +31,25 @@ def datasaur_schemas_to_coco(
 
     """
     if licenses is None:
-        licenses = [COCOLicense(name="dummy-datasaur-license", id=0, URL="")]
+        licenses = [{"name": "dummy-datasaur-license", "id": 0, "url": ""}]
 
     if info is None:
-        info = COCOInfo(
-            contributor="Datasaur",
-            date_created="2024-04-23",
-            description="Exported from Datasaur",
-            URL="https://datasaur.ai",
-            version="v0.1",
-            year=2024,
-        )
+        info = {
+            "contributor": "Datasaur",
+            "date_created": "2024-04-23",
+            "description": "Exported from Datasaur",
+            "url": "https://datasaur.ai",
+            "version": "v0.1",
+            "year": 2024,
+        }
 
-    schemas = [from_dict(data=s, data_class=DatasaurSchema) for s in schema_objects]
+    schemas = [
+        from_dict(
+            data=s,
+            data_class=DatasaurSchema,
+        )
+        for s in schema_objects
+    ]
 
     # assuming all DatasaurSchema are from the same project,
     # there will be the same bboxLabelSet
@@ -76,19 +78,47 @@ def datasaur_schemas_to_coco(
 
 
 def main() -> None:
-    export_zip = "./samples/bbox-export.zip"
-    temp_destination = "./temp/"
+    parser = ArgumentParser(prog="datasaur_schemas_to_coco")
+    parser.add_argument(
+        "zip_filepath", type=str, help="Path to Datasaur export ZIP file"
+    )
+    parser.add_argument(
+        "--outfile",
+        type=str,
+        help="Output directory for COCO JSON file",
+        default="./outdir/coco.json",
+    )
+    parser.add_argument(
+        "--license-and-info-json",
+        type=str,
+        help="Path to JSON file containing licenses and info data",
+        default="samples/license-and-info.json",
+    )
+
+    args = parser.parse_args()
+
+    export_zip = os.path.abspath(args.zip_filepath)
+    temp_destination = os.path.abspath("./temp/")
     os.makedirs(temp_destination, exist_ok=True)
+
+    outfile = os.path.abspath(args.outfile)
+    outdir = os.path.dirname(outfile)
+    os.makedirs(outdir, exist_ok=True)
+
     extracted_files: list[str] = unzip_export_result(
         export_zip=export_zip, dest=temp_destination
     )
-
     schemas = [load_datasaur_schema_file(f) for f in extracted_files]
-    coco = datasaur_schemas_to_coco(schemas)
 
-    outdir = "./outdir/"
-    os.makedirs(outdir, exist_ok=True)
-    with open(os.path.join(outdir, "out-coco.json"), "w") as wf:
+    license_and_info = json.load(open(os.path.abspath(args.license_and_info_json)))
+
+    coco = datasaur_schemas_to_coco(
+        schemas,
+        licenses=license_and_info.get("licenses", None),
+        info=license_and_info.get("info", None),
+    )
+
+    with open(outfile, "w") as wf:
         json.dump(coco, wf, indent=2)
 
     # clean-up
@@ -177,9 +207,9 @@ def shapes_to_segmentation(shapes: list[DSShape]) -> list[list[float]]:
 
 def unzip_export_result(export_zip: str, dest: str) -> list[str]:
     retval: list[str] = []
-    with zipfile.ZipFile(export_zip, "r") as zf:
+    with ZipFile(export_zip, "r") as zf:
         project_dir: str | None = None
-        for zippath in zipfile.Path(zf).iterdir():
+        for zippath in ZipPath(zf).iterdir():
             if zippath.is_dir():
                 project_dir = zippath.name
                 break
