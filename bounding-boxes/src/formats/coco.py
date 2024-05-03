@@ -60,9 +60,13 @@ class COCOInfo:
 
 
 @dataclass
-class COCO:
-    licenses: List[COCOLicense]
-    info: COCOInfo
+class COCOForInput:
     categories: List[COCOCategory]
     images: List[COCOImage]
     annotations: List[COCOAnnotation]
+
+
+@dataclass
+class COCO(COCOForInput):
+    licenses: List[COCOLicense]
+    info: COCOInfo

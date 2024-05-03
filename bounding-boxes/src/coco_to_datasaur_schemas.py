@@ -6,10 +6,10 @@ from dataclasses import asdict
 from math import floor
 from typing import Any, List
 
-from dacite import from_dict
+from dacite import from_dict, Config
 
 from common.scrub import scrub
-from formats.coco import COCO, COCOAnnotation
+from formats.coco import COCOForInput, COCOAnnotation
 from formats.datasaur_schema import (
     DatasaurSchema,
     DSBBoxLabel,
@@ -30,7 +30,7 @@ def coco_to_datasaur_schemas(coco_json: Any) -> List[dict]:
     """
 
     # convert JSON dict to COCO representation
-    coco_object = from_dict(data=coco_json, data_class=COCO)
+    coco_object = from_dict(data=coco_json, data_class=COCOForInput, config=Config(strict=False, check_types=True))
 
     # validate segmentation first
     for annot in coco_object.annotations:
@@ -108,7 +108,7 @@ def main() -> None:
 
 
 def bbox_label_classes_from_coco(
-    coco_object: COCO,
+    coco_object: COCOForInput,
 ) -> List[DSBBoxLabelClass]:
     categories = coco_object.categories
 
