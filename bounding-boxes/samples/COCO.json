@@ -3,14 +3,14 @@
     {
       "name": "DATASAUR",
       "id": 0,
-      "URL": "datasaur.ai"
+      "url": "datasaur.ai"
     }
   ],
   "info": {
     "contributor": "datasaur.ai",
     "date_created": "2024-04-23",
     "description": "Description of the dataset",
-    "URL": "",
+    "url": "",
     "version": "v0.1",
     "year": 2024
   },

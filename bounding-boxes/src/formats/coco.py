@@ -6,7 +6,7 @@ from typing import Dict, List
 class COCOLicense:
     name: str
     id: int
-    URL: str
+    url: str
 
 
 @dataclass
@@ -41,7 +41,7 @@ class COCOAnnotation:
     [x, y, width, height]
     """
     bbox: List[float]
-    area: int
+    area: float
     """
     int, but mainly 0/1
     """
@@ -54,9 +54,9 @@ class COCOInfo:
     contributor: str
     date_created: str
     description: str
-    URL: str
+    url: str
     version: str
-    year: int
+    year: int | str
 
 
 @dataclass

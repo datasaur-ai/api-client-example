@@ -40,7 +40,9 @@ In other words, it will only work for cases where there are 8 values per list in
 pip install -r requirements.txt
 ```
 
-The script uses [`dacite.from_dict`](https://github.com/konradhalas/dacite) to transform the JSON object into a Python dataclass
+The script uses [`dacite.from_dict`](https://github.com/konradhalas/dacite) to transform the JSON object into a Python dataclass.
+
+The script was developed using Python 3.10.13
 
 ## Usage
 
@@ -102,10 +104,10 @@ coco_obj = datasaur_schemas_to_coco(
     schemas,
     licenses=[COCOLicense(name="dummy-license", id=0, URL="")],
     info=COCOInfo(
-        contributor="Datasaur",
-        date_created="2024-04-23",
-        description="Exported from Datasaur",
-        URL="https://datasaur.ai",
+        contributor="contributor",
+        date_created="2024-01-01",
+        description="dataset-description",
+        URL="http://example.com",
         version="v0.1",
         year=2024,
     ),
