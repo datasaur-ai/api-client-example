@@ -9,11 +9,8 @@ from zipfile import ZipFile
 import logging
 
 
-from dacite import from_dict
-
 from common.logger import log as _log
 from formats.coco import COCO, COCOAnnotation, COCOCategory, COCOImage
-from formats.datasaur_schema import DatasaurSchema, DSShape
 
 
 def log(message, level=logging.DEBUG, **kwargs):
@@ -53,13 +50,7 @@ def datasaur_schemas_to_coco(
             "year": 2024,
         }
 
-    schemas = [
-        from_dict(
-            data=s,
-            data_class=DatasaurSchema,
-        )
-        for s in schema_objects
-    ]
+    schemas = [s for s in schema_objects]
 
     # assuming all DatasaurSchema are from the same project,
     # there will be the same bboxLabelSet
@@ -142,24 +133,24 @@ def main() -> None:
 
 
 def coco_annots_from_datasaur_schemas(
-    schemas: list[DatasaurSchema], categories: list[COCOCategory]
+    schemas: list[dict], categories: list[COCOCategory]
 ) -> list[COCOAnnotation]:
 
     name_to_id: Dict[str, int] = {x.name: x.id for x in categories}
     annots: list[COCOAnnotation] = []
     for image_id, schema in enumerate(schemas):
         annot_id = 1
-        if schema.data.bboxLabels is None:
+        if schema["data"]["bboxLabels"] is None:
             continue
 
-        for bbox_label in schema.data.bboxLabels:
+        for bbox_label in schema["data"]["bboxLabels"]:
             annots.append(
                 COCOAnnotation(
                     id=annot_id,
                     image_id=image_id,
-                    category_id=name_to_id[bbox_label.bboxLabelClassName],
-                    segmentation=shapes_to_segmentation(bbox_label.shapes),
-                    bbox=shapes_to_bbox(bbox_label.shapes),
+                    category_id=name_to_id[bbox_label["bboxLabelClassName"]],
+                    segmentation=shapes_to_segmentation(bbox_label["shapes"]),
+                    bbox=shapes_to_bbox(bbox_label["shapes"]),
                     attributes={},
                     area=0,
                     iscrowd=0,
@@ -169,29 +160,32 @@ def coco_annots_from_datasaur_schemas(
     return annots
 
 
-def coco_categories_from_datasaur_schema(schema: DatasaurSchema) -> list[COCOCategory]:
-    if schema.data.bboxLabelSets is None or len(schema.data.bboxLabelSets) < 1:
+def coco_categories_from_datasaur_schema(schema: dict) -> list[COCOCategory]:
+    if (
+        schema["data"]["bboxLabelSets"] is None
+        or len(schema["data"]["bboxLabelSets"]) < 1
+    ):
         return []
 
     retval: list[COCOCategory] = []
 
     # Currently, there can only be 1 bboxLabelSets
-    bbox_label_set = schema.data.bboxLabelSets[0]
-    for i, label_class in enumerate(bbox_label_set.classes, 1):
-        retval.append(COCOCategory(id=i, name=label_class.name, supercategory=""))
+    bbox_label_set = schema["data"]["bboxLabelSets"][0]
+    for i, label_class in enumerate(bbox_label_set["classes"], 1):
+        retval.append(COCOCategory(id=i, name=label_class["name"], supercategory=""))
 
     return retval
 
 
-def coco_images_from_datasaur_schema(id: int, schema: DatasaurSchema) -> COCOImage:
+def coco_images_from_datasaur_schema(id: int, schema: dict) -> COCOImage:
     width, height = 0, 0
-    if schema.data.pages is not None and len(schema.data.pages) >= 1:
-        width = schema.data.pages[0].pageWidth
-        height = schema.data.pages[0].pageHeight
+    if schema["data"]["pages"] is not None and len(schema["data"]["pages"]) >= 1:
+        width = schema["data"]["pages"][0]["pageWidth"]
+        height = schema["data"]["pages"][0]["pageHeight"]
 
     return COCOImage(
         id=id,
-        file_name=schema.data.document.name,
+        file_name=schema["data"]["document"]["name"],
         width=width,
         height=height,
         license=0,
@@ -200,9 +194,9 @@ def coco_images_from_datasaur_schema(id: int, schema: DatasaurSchema) -> COCOIma
     )
 
 
-def shapes_to_bbox(shapes: list[DSShape]) -> list[float]:
-    x_coords = [point.x for shape in shapes for point in shape.points]
-    y_coords = [point.y for shape in shapes for point in shape.points]
+def shapes_to_bbox(shapes: list[dict]) -> list[float]:
+    x_coords = [point["x"] for shape in shapes for point in shape["points"]]
+    y_coords = [point["y"] for shape in shapes for point in shape["points"]]
 
     x_min = min(*x_coords)
     x_max = max(*x_coords)
@@ -211,11 +205,11 @@ def shapes_to_bbox(shapes: list[DSShape]) -> list[float]:
     return [min(*x_coords), min(*y_coords), x_max - x_min, y_max - y_min]
 
 
-def shapes_to_segmentation(shapes: list[DSShape]) -> list[list[float]]:
+def shapes_to_segmentation(shapes: list[dict]) -> list[list[float]]:
     retval: list[list[float]] = []
     for shape in shapes:
         segmentation: list[float] = [
-            dot for point in shape.points for dot in [point.x, point.y]
+            dot for point in shape["points"] for dot in [point["x"], point["y"]]
         ]
         retval.append(segmentation)
     return retval

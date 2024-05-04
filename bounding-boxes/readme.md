@@ -37,13 +37,6 @@ In other words, it will only work for cases where there are 8 values per list in
 ## Prerequisite
 
 The script was developed and tested using Python 3.10.13
-It also uses [`dacite.from_dict`](https://github.com/konradhalas/dacite) to transform the JSON object into a Python dataclass.
-
-To install the required packages, run the following command:
-
-```
-pip install -r requirements.txt
-```
 
 ## Usage
 
@@ -125,15 +118,15 @@ Example usage:
   # or provide your own `licenses` and `info`
   coco_obj = datasaur_schemas_to_coco(
       schemas,
-      licenses=[COCOLicense(name="dummy-license", id=0, URL="")],
-      info=COCOInfo(
-          contributor="contributor",
-          date_created="2024-01-01",
-          description="dataset-description",
-          URL="http://example.com",
-          version="v0.1",
-          year=2024,
-      ),
+      licenses=[{"name": "dummy-license", "id": 0, "url": ""}],
+      info={
+          "contributor": "contributor",
+          "date_created": "2024-01-01",
+          "description": "dataset-description",
+          "url": "http://example.com",
+          "version": "v0.1",
+          "year": 2024,
+      },
   )
   ```
 - as a script
