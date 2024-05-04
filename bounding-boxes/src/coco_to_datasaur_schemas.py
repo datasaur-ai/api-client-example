@@ -1,12 +1,12 @@
 import json
 import os
-import random
 from argparse import ArgumentParser
 from dataclasses import asdict
 import logging
 from math import floor
 from typing import Any, List
 
+from common.random_color import random_color
 from common.logger import log as _log
 from common.scrub import scrub
 from formats.datasaur_schema import (
@@ -137,7 +137,7 @@ def bbox_label_classes_from_coco(
                 # set it to the most flexible option, allow caption but don't require it
                 captionAllowed=True,
                 captionRequired=False,
-                color=generate_random_color_hex(category["name"]),
+                color=random_color(category["name"]),
                 # TODO support once custom attributes are supported
                 questions=None,
             )
@@ -192,12 +192,6 @@ def bbox_label_from_coco_annotation(
         # TODO: support once custom attributes implemented
         answers=None,
     )
-
-
-def generate_random_color_hex(seed: str) -> str:
-    random.seed(seed)
-    r = lambda: random.randint(0, 255)
-    return "#%02X%02X%02X" % (r(), r(), r())
 
 
 if __name__ == "__main__":
