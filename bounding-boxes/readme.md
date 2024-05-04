@@ -36,13 +36,14 @@ In other words, it will only work for cases where there are 8 values per list in
 
 ## Prerequisite
 
+The script was developed and tested using Python 3.10.13
+It also uses [`dacite.from_dict`](https://github.com/konradhalas/dacite) to transform the JSON object into a Python dataclass.
+
+To install the required packages, run the following command:
+
 ```
 pip install -r requirements.txt
 ```
-
-The script uses [`dacite.from_dict`](https://github.com/konradhalas/dacite) to transform the JSON object into a Python dataclass.
-
-The script was developed using Python 3.10.13
 
 ## Usage
 
