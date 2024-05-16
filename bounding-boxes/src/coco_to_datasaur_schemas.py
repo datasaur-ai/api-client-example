@@ -4,7 +4,7 @@ from argparse import ArgumentParser
 from dataclasses import asdict
 import logging
 from math import floor
-from typing import Any, List
+from typing import Any, List, Set
 
 from common.random_color import random_color
 from common.logger import log as _log
@@ -19,6 +19,8 @@ from formats.datasaur_schema import (
     DSPoint,
     DSShape,
     GenericIdAndName,
+    DSBBoxLabelClassQuestions,
+    QuestionConfig,
 )
 
 
@@ -178,6 +180,37 @@ def bbox_label_from_coco_annotation(
         shape_from_coco_segmentation(segment) for segment in annotation["segmentation"]
     ]
 
+    # check if attributes have any other key
+    # if found, add to labelset.classes
+    answers = None
+    if attributes.keys() - {"text"}:
+        answers = {}
+        keys: Set = attributes.keys() - {"text"}
+
+        for key in keys:
+            questions = bbox_label_class.questions
+            if questions is None:
+                questions = []
+            
+            
+            if key not in [q.label for q in questions]:
+                questions.append(
+                    DSBBoxLabelClassQuestions(
+                        id=len(questions),
+                        label=key,
+                        required=False,
+                        type="TEXT",
+                        config=QuestionConfig(multiline=False, multiple=False, options=None),
+                    )
+                )
+
+            question_id = next(
+                q.id for q in questions if q.label == key
+            )
+            answers[str(question_id)] = str(attributes[key])
+
+            bbox_label_class.questions = questions
+
     return DSBBoxLabel(
         id=str(annotation["id"]),
         caption=str(attributes.get("text", "")),
@@ -190,7 +223,7 @@ def bbox_label_from_coco_annotation(
         rejectedByUserId=None,
         status=None,
         # TODO: support once custom attributes implemented
-        answers=None,
+        answers=answers,
     )
 
 

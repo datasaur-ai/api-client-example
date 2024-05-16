@@ -48,9 +48,9 @@ class DropdownOption:
 
 @dataclass
 class QuestionConfig:
-    multiline: bool
-    multiple: bool
-    options: List[DropdownOption]
+    multiline: Optional[bool]
+    multiple: Optional[bool]
+    options: Optional[List[DropdownOption]]
 
 
 @dataclass
