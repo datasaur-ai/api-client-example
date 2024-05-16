@@ -140,10 +140,34 @@ def coco_annots_from_datasaur_schemas(
     annots: list[COCOAnnotation] = []
     for image_id, schema in enumerate(schemas):
         annot_id = 1
+
+        if (
+            schema["data"]["bboxLabelSets"] is None
+            or len(schema["data"]["bboxLabels"]) < 1
+        ):
+            continue
+
+        labelset = schema["data"]["bboxLabelSets"][0]
+        label_id_to_question_info = {
+            label["id"]: {str(q.get("id")): q for q in label.get("questions", {})}
+            for label in labelset["classes"]
+        }
+
         if schema["data"]["bboxLabels"] is None:
             continue
 
         for bbox_label in schema["data"]["bboxLabels"]:
+            answers = bbox_label.get("answers", None)
+            attributes = {}
+            if answers:
+                questions = label_id_to_question_info.get(
+                    bbox_label["bboxLabelClassId"], None
+                )
+
+                for key, value in answers.items():
+                    question_label = questions[key]["label"]
+                    attributes[question_label] = value
+
             annots.append(
                 COCOAnnotation(
                     id=annot_id,
@@ -151,7 +175,7 @@ def coco_annots_from_datasaur_schemas(
                     category_id=name_to_id[bbox_label["bboxLabelClassName"]],
                     segmentation=shapes_to_segmentation(bbox_label["shapes"]),
                     bbox=shapes_to_bbox(bbox_label["shapes"]),
-                    attributes={},
+                    attributes={"text": bbox_label.get("caption", None), **attributes},
                     area=0,
                     iscrowd=0,
                 )

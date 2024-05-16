@@ -41,11 +41,25 @@ class DSBBoxLabel:
 
 
 @dataclass
-class DSBBoxLabelClassQuestions:
-    """
-    tba
-    """
+class DropdownOption:
+    id: str
+    label: str
 
+
+@dataclass
+class QuestionConfig:
+    multiline: bool
+    multiple: bool
+    options: List[DropdownOption]
+
+
+@dataclass
+class DSBBoxLabelClassQuestions:
+    id: int
+    label: str
+    required: bool
+    type: str
+    config: QuestionConfig
     pass
 
 
