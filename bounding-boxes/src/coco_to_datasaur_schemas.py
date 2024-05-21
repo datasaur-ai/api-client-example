@@ -31,7 +31,7 @@ def log(message, level=logging.DEBUG, **kwargs):
     return _log(message=message, logger=logger, level=level, **kwargs)
 
 
-def coco_to_datasaur_schemas(coco_json: Any) -> List[dict]:
+def coco_to_datasaur_schemas(coco_json: Any, custom_labelset: Any | None) -> List[dict]:
     """
     Raises:
         Exception: If the segmentation of an annotation does not have 8 elements.
@@ -54,7 +54,7 @@ def coco_to_datasaur_schemas(coco_json: Any) -> List[dict]:
     bbox_label_set = DSBboxLabelSet(
         id=None,
         name="BBox Label Set",
-        classes=bbox_label_classes_from_coco(coco_json["categories"]),
+        classes=bbox_label_classes_from_coco(coco_json["categories"], custom_labelset),
     )
     images = coco_json["images"]
 
@@ -98,6 +98,11 @@ def main() -> None:
     parser = ArgumentParser(prog="coco_to_datasaur_schemas")
     parser.add_argument("coco_filepath", type=str, help="Path to COCO JSON file")
     parser.add_argument(
+        "--custom_labelset",
+        type=str,
+        help="Path to custom labelset JSON file (useful for specifying DROPDOWN attributes)",
+    )
+    parser.add_argument(
         "--outdir",
         type=str,
         help="Output directory for Datasaur schemas",
@@ -112,8 +117,14 @@ def main() -> None:
     with open(coco_filepath) as f:
         json_data = json.load(f)
 
+    custom_labelset = None
+    if args.custom_labelset:
+        custom_labelset_filepath = os.path.abspath(args.custom_labelset)
+        with open(custom_labelset_filepath) as f:
+            custom_labelset = json.load(f)
+
     log("converting COCO to Datasaur Schema")
-    schemas = coco_to_datasaur_schemas(json_data)
+    schemas = coco_to_datasaur_schemas(json_data, custom_labelset)
 
     outdir = os.path.abspath(args.outdir)
     os.makedirs(outdir, exist_ok=True)
@@ -127,21 +138,43 @@ def main() -> None:
 
 def bbox_label_classes_from_coco(
     coco_categories: List[dict],
+    custom_labelset: Any | None,
 ) -> List[DSBBoxLabelClass]:
+    def defaults(obj: dict | None, key: str, default: Any):
+        return obj[key] if obj and key in obj else default
+
+    custom_classes = custom_labelset["classes"] if custom_labelset else []
 
     retval = []
     for category in coco_categories:
+        # check and use questions from custom class
+        custom_class = next(
+            (item for item in custom_classes if item["name"] == category["name"]), None
+        )
+
+        questions = [
+            DSBBoxLabelClassQuestions(
+                id=q.get("id", index),
+                label=q.get("label", f"Question {index}"),
+                config=QuestionConfig(
+                    multiline=q.get("config", {}).get("multiline", False),
+                    multiple=q.get("config", {}).get("multiple", False),
+                    options=q.get("config", {}).get("options", []),
+                ),
+                required=q.get("required", False),
+                type=q.get("type", "TEXT"),
+            )
+            for index, q in enumerate(defaults(custom_class, "questions", []))
+        ]
+
         retval.append(
             DSBBoxLabelClass(
                 id=str(category["id"]),
                 name=category["name"],
-                # since these attributes are nowhere in COCO,
-                # set it to the most flexible option, allow caption but don't require it
-                captionAllowed=True,
-                captionRequired=False,
-                color=random_color(category["name"]),
-                # TODO support once custom attributes are supported
-                questions=None,
+                captionAllowed=defaults(custom_class, "captionAllowed", True),
+                captionRequired=defaults(custom_class, "captionRequired", False),
+                color=defaults(custom_class, "color", random_color(category["name"])),
+                questions=questions,
             )
         )
 
@@ -191,8 +224,7 @@ def bbox_label_from_coco_annotation(
             questions = bbox_label_class.questions
             if questions is None:
                 questions = []
-            
-            
+
             if key not in [q.label for q in questions]:
                 questions.append(
                     DSBBoxLabelClassQuestions(
@@ -200,13 +232,13 @@ def bbox_label_from_coco_annotation(
                         label=key,
                         required=False,
                         type="TEXT",
-                        config=QuestionConfig(multiline=False, multiple=False, options=None),
+                        config=QuestionConfig(
+                            multiline=False, multiple=False, options=None
+                        ),
                     )
                 )
 
-            question_id = next(
-                q.id for q in questions if q.label == key
-            )
+            question_id = next(q.id for q in questions if q.label == key)
             answers[str(question_id)] = str(attributes[key])
 
             bbox_label_class.questions = questions

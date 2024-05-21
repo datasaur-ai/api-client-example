@@ -19,6 +19,11 @@
       "id": 1,
       "name": "sample_category",
       "supercategory": ""
+    },
+    {
+      "id": 2,
+      "name": "merchant_name",
+      "supercategory": ""
     }
   ],
   "images": [
@@ -44,6 +49,21 @@
       "iscrowd": 0,
       "attributes": {
         "text": "sample text"
+      }
+    },
+    {
+      "id": 2,
+      "image_id": 1,
+      "category_id": 2,
+      "segmentation": [[78, 158, 118, 158, 118, 174, 79, 174]],
+      "bbox": [78, 158, 40, 16],
+      "area": 7938,
+      "iscrowd": 0,
+      "attributes": {
+        "text": "Hokkaido-Ya",
+        "bio_tag": "B",
+        "order_idx": "1",
+        "occluded": false
       }
     }
   ]
