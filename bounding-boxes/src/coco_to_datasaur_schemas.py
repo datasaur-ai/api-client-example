@@ -228,7 +228,7 @@ def bbox_label_from_coco_annotation(
                         required=False,
                         type="TEXT",
                         config=QuestionConfig(
-                            multiline=False, multiple=False, options=None
+                            multiline=False, multiple=False, options=None, defaultValue=None
                         ),
                     )
                 )
