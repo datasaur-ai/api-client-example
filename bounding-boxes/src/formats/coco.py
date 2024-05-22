@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from typing import Dict, List
 
+SUPPORTED_SEGMENTATION_LENGTH = 8
+
 
 @dataclass
 class COCOLicense:
@@ -70,3 +72,8 @@ class COCOForInput:
 class COCO(COCOForInput):
     licenses: List[COCOLicense]
     info: COCOInfo
+
+
+def validate_segmentation(segmentation):
+    if len(segmentation) != SUPPORTED_SEGMENTATION_LENGTH:
+        raise Exception("expect segmentation to be a list-of-list of 8 elements")

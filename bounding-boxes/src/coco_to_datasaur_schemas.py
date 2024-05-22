@@ -1,26 +1,27 @@
 import json
+import logging
 import os
 from argparse import ArgumentParser
 from dataclasses import asdict
-import logging
 from math import floor
 from typing import Any, List, Set
 
-from common.random_color import random_color
-from common.logger import log as _log
-from common.scrub import scrub
 from common.defaults import defaults
+from common.logger import log as _log
+from common.random_color import random_color
+from common.scrub import scrub
+from formats.coco import validate_segmentation
 from formats.datasaur_schema import (
     DatasaurSchema,
     DSBBoxLabel,
     DSBBoxLabelClass,
+    DSBBoxLabelClassQuestions,
     DSBboxLabelSet,
     DSBBoxProjectData,
     DSPage,
     DSPoint,
     DSShape,
     GenericIdAndName,
-    DSBBoxLabelClassQuestions,
     QuestionConfig,
 )
 
@@ -41,15 +42,7 @@ def coco_to_datasaur_schemas(coco_json: Any, custom_labelset: Any | None) -> Lis
     # validate segmentation first
     for annot in coco_json["annotations"]:
         for segmentation in annot["segmentation"]:
-            if len(segmentation) != 8:
-                log(
-                    "found faulty annotation",
-                    level=logging.ERROR,
-                    annotation=annot,
-                )
-                raise Exception(
-                    f"expect segmentation to be a list-of-list of 8 elements, faulty annotation.id={annot.id}",
-                )
+            validate_segmentation(segmentation=segmentation)
 
     log(message="creating BBoxLabelSet from COCO categories", level=logging.DEBUG)
     bbox_label_set = DSBboxLabelSet(
@@ -99,7 +92,7 @@ def main() -> None:
     parser = ArgumentParser(prog="coco_to_datasaur_schemas")
     parser.add_argument("coco_filepath", type=str, help="Path to COCO JSON file")
     parser.add_argument(
-        "--custom_labelset",
+        "--custom-labelset",
         type=str,
         help="Path to custom labelset JSON file (useful for specifying DROPDOWN attributes)",
     )
@@ -181,9 +174,7 @@ def bbox_label_classes_from_coco(
 
 
 def shape_from_coco_segmentation(segmentation: List[float]) -> DSShape:
-    if len(segmentation) != 8:
-        raise Exception("expect segmentation to be a list-of-list of 8 elements")
-
+    validate_segmentation(segmentation=segmentation)
     points: List[DSPoint] = []
 
     for i in range(0, 8, 2):
