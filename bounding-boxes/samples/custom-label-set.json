@@ -11,31 +11,17 @@
           "type": "DROPDOWN",
           "config": {
             "options": [
-              { "id": "B", "label": "B" },
-              { "id": "I", "label": "I" }
+              {
+                "id": "B",
+                "label": "B"
+              },
+              {
+                "id": "I",
+                "label": "I"
+              }
             ],
             "multiple": false,
             "defaultValue": "B"
-          }
-        },
-        {
-          "id": 1,
-          "label": "order_idx",
-          "required": false,
-          "type": "TEXT",
-          "config": {
-            "multiline": false,
-            "multiple": false
-          }
-        },
-        {
-          "id": 2,
-          "label": "occluded",
-          "required": false,
-          "type": "TEXT",
-          "config": {
-            "multiline": false,
-            "multiple": false
           }
         }
       ]
