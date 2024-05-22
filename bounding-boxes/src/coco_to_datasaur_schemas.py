@@ -9,6 +9,7 @@ from typing import Any, List, Set
 from common.random_color import random_color
 from common.logger import log as _log
 from common.scrub import scrub
+from common.defaults import defaults
 from formats.datasaur_schema import (
     DatasaurSchema,
     DSBBoxLabel,
@@ -140,9 +141,6 @@ def bbox_label_classes_from_coco(
     coco_categories: List[dict],
     custom_labelset: Any | None,
 ) -> List[DSBBoxLabelClass]:
-    def defaults(obj: dict | None, key: str, default: Any):
-        return obj[key] if obj and key in obj else default
-
     custom_classes = custom_labelset["classes"] if custom_labelset else []
 
     retval = []
@@ -228,7 +226,10 @@ def bbox_label_from_coco_annotation(
                         required=False,
                         type="TEXT",
                         config=QuestionConfig(
-                            multiline=False, multiple=False, options=None, defaultValue=None
+                            multiline=False,
+                            multiple=False,
+                            options=None,
+                            defaultValue=None,
                         ),
                     )
                 )
