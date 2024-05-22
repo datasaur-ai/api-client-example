@@ -197,12 +197,6 @@ def shape_from_coco_segmentation(segmentation: List[float]) -> DSShape:
 def bbox_label_from_coco_annotation(
     annotation: dict, labelset: DSBboxLabelSet
 ) -> DSBBoxLabel:
-    # TODO process once custom attribute is supported
-    """
-    text = caption
-    occluded = 0?
-    type = TEXT & HW
-    """
     attributes = annotation["attributes"]
 
     stringified_id = str(annotation["category_id"])
@@ -255,7 +249,6 @@ def bbox_label_from_coco_annotation(
         labeledByUserId=None,
         rejectedByUserId=None,
         status=None,
-        # TODO: support once custom attributes implemented
         answers=answers,
     )
 
