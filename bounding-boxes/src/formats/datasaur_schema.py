@@ -45,6 +45,7 @@ class QuestionConfig:
     multiline: Optional[bool]
     multiple: Optional[bool]
     options: Optional[List[dict[str, str]]]
+    defaultValue: Optional[str]
 
 
 @dataclass

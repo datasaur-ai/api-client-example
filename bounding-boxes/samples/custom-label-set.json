@@ -14,7 +14,8 @@
               { "id": "B", "label": "B" },
               { "id": "I", "label": "I" }
             ],
-            "multiple": false
+            "multiple": false,
+            "defaultValue": "B"
           }
         },
         {

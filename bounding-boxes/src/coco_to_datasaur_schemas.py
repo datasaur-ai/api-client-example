@@ -160,6 +160,7 @@ def bbox_label_classes_from_coco(
                     multiline=q.get("config", {}).get("multiline", False),
                     multiple=q.get("config", {}).get("multiple", False),
                     options=q.get("config", {}).get("options", []),
+                    defaultValue=q.get("config", {}).get("defaultValue", None),
                 ),
                 required=q.get("required", False),
                 type=q.get("type", "TEXT"),

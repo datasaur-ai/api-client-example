@@ -45,7 +45,8 @@ The script was developed and tested using Python 3.10.13
 This function transforms a dictionary representation of a COCO file into a list of `DatasaurSchema` dicts.
 
 Parameters: 
-- `coco_json` (Any): A dictionary representation of a COCO file.
+- `coco_json`: A dictionary representation of a COCO file.
+- `custom_labelset`: Optional. A dictionary representation of a Datasaur bounding box label set to provide additional information. Useful to set default value, custom color, or setting a specific attribute as `DROPDOWN` type. See [here](./samples/custom-label-set.json) for an example JSON file.
 
 Running `python src/coco_to_datasaur_schemas.py` should run the function against a sample `COCO.json` file. The function expect a `dict` representation of a COCO file and will return an array of `DatasaurSchema` also in a `dict` format. 
 
@@ -63,14 +64,17 @@ Example usage:
 - as a script
   ```
   $ python src/coco_to_datasaur_schemas.py -h
-  usage: coco_to_datasaur_schemas [-h] [--outdir OUTDIR] coco_filepath
+  usage: coco_to_datasaur_schemas [-h] [--custom_labelset CUSTOM_LABELSET] [--outdir OUTDIR] [--log-level LOG_LEVEL] coco_filepath
 
   positional arguments:
-    coco_filepath    Path to COCO JSON file
+    coco_filepath         Path to COCO JSON file
 
   options:
-    -h, --help       show this help message and exit
-    --outdir OUTDIR  Output directory for Datasaur schemas
+    -h, --help            show this help message and exit
+    --custom_labelset CUSTOM_LABELSET
+                          Path to custom labelset JSON file (useful for specifying DROPDOWN attributes)
+    --outdir OUTDIR       Output directory for Datasaur schemas
+    --log-level LOG_LEVEL
 
   $ python src/coco_to_datasaur_schemas.py samples/COCO.json
   ```
