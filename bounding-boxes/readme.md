@@ -64,14 +64,14 @@ Example usage:
 - as a script
   ```
   $ python src/coco_to_datasaur_schemas.py -h
-  usage: coco_to_datasaur_schemas [-h] [--custom_labelset CUSTOM_LABELSET] [--outdir OUTDIR] [--log-level LOG_LEVEL] coco_filepath
+  usage: coco_to_datasaur_schemas [-h] [--custom-labelset CUSTOM_LABELSET] [--outdir OUTDIR] [--log-level LOG_LEVEL] coco_filepath
 
   positional arguments:
     coco_filepath         Path to COCO JSON file
 
   options:
     -h, --help            show this help message and exit
-    --custom_labelset CUSTOM_LABELSET
+    --custom-labelset CUSTOM_LABELSET
                           Path to custom labelset JSON file (useful for specifying DROPDOWN attributes)
     --outdir OUTDIR       Output directory for Datasaur schemas
     --log-level LOG_LEVEL
