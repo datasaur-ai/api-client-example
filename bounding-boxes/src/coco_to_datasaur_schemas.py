@@ -24,6 +24,7 @@ from formats.datasaur_schema import (
     GenericIdAndName,
     QuestionConfig,
 )
+from formats.bbox_labelset import validate_bbox_labelset
 
 
 def log(message, level=logging.DEBUG, **kwargs):
@@ -116,6 +117,7 @@ def main() -> None:
         custom_labelset_filepath = os.path.abspath(args.custom_labelset)
         with open(custom_labelset_filepath) as f:
             custom_labelset = json.load(f)
+            validate_bbox_labelset(custom_labelset)
 
     log("converting COCO to Datasaur Schema")
     schemas = coco_to_datasaur_schemas(json_data, custom_labelset)
