@@ -10,7 +10,7 @@ from common.defaults import defaults
 from common.logger import log as _log
 from common.random_color import random_color
 from common.scrub import scrub
-from formats.coco import validate_segmentation
+from formats.coco import validate_annotation, validate_segmentation
 from formats.datasaur_schema import (
     DatasaurSchema,
     DSBBoxLabel,
@@ -42,8 +42,7 @@ def coco_to_datasaur_schemas(coco_json: Any, custom_labelset: Any | None) -> Lis
 
     # validate segmentation first
     for annot in coco_json["annotations"]:
-        for segmentation in annot["segmentation"]:
-            validate_segmentation(segmentation=segmentation)
+        validate_annotation(annot)
 
     log(message="creating BBoxLabelSet from COCO categories", level=logging.DEBUG)
     bbox_label_set = DSBboxLabelSet(
@@ -126,7 +125,9 @@ def main() -> None:
     os.makedirs(outdir, exist_ok=True)
     log("writing to file", directory=outdir)
     for schema in schemas:
-        filename = schema["data"]["document"]["name"].split(".")[0] + ".json"
+        image_filepath = schema["data"]["document"]["name"]
+        image_filename = os.path.basename(image_filepath)
+        filename = image_filename.split(".")[0] + ".json"
 
         with open(os.path.join(outdir, filename), "w") as f:
             json.dump(scrub(schema), f, indent=2)
@@ -176,13 +177,33 @@ def bbox_label_classes_from_coco(
 
 
 def shape_from_coco_segmentation(segmentation: List[float]) -> DSShape:
-    validate_segmentation(segmentation=segmentation)
     points: List[DSPoint] = []
 
     for i in range(0, 8, 2):
         points.append(DSPoint(x=segmentation[i], y=segmentation[i + 1]))
 
     return DSShape(pageIndex=0, points=points)
+
+
+def shape_from_coco_annotation(annotation: dict) -> DSShape:
+    segmentations_valid = all(
+        validate_segmentation(segment) for segment in annotation["segmentation"]
+    ) and (len(annotation["segmentation"]) > 1)
+
+    if segmentations_valid:
+        return shape_from_coco_segmentation(annotation["segmentation"])
+
+    log("found some invalid segmentations, using bbox instead", annotation=annotation)
+    x, y, width, height = annotation["bbox"]
+    return DSShape(
+        pageIndex=0,
+        points=[
+            DSPoint(x=x, y=y),
+            DSPoint(x=x + width, y=y),
+            DSPoint(x=x + width, y=y + height),
+            DSPoint(x=x, y=y + height),
+        ],
+    )
 
 
 def bbox_label_from_coco_annotation(
@@ -195,9 +216,7 @@ def bbox_label_from_coco_annotation(
         item for item in labelset.classes if item.id == stringified_id
     )
 
-    bbox_shapes = [
-        shape_from_coco_segmentation(segment) for segment in annotation["segmentation"]
-    ]
+    bbox_shapes = [shape_from_coco_annotation(annotation)]
 
     # check if attributes have any other key
     # if found, add to labelset.classes

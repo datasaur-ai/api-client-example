@@ -74,6 +74,25 @@ class COCO(COCOForInput):
     info: COCOInfo
 
 
+def validate_annotation(annotation):
+    """
+    Ensure that the segmentation of an annotation has 8 elements,
+    or failing that, ensure it has a valid bounding boxes
+    """
+    bbox = annotation["bbox"]
+
+    shoud_throw = len(bbox) != 4
+
+    if shoud_throw:
+        for segmentation in annotation["segmentation"]:
+            if not validate_segmentation(segmentation):
+                raise Exception(
+                    "expect segmentation to be a list-of-list of 8 elements"
+                )
+
+
 def validate_segmentation(segmentation):
     if len(segmentation) != SUPPORTED_SEGMENTATION_LENGTH:
-        raise Exception("expect segmentation to be a list-of-list of 8 elements")
+        return False
+
+    return True
