@@ -6,18 +6,20 @@ TEXT_KEYS = {"defaultValue", "multiline", "multiple"}
 
 
 def validate_bbox_labelset(bbox_labelset: dict):
-    assertKeys(bbox_labelset, LABELSET_KEYS, "top-level object")
-    assert "classes" in bbox_labelset, "classes required"
+    assertKeys(bbox_labelset, LABELSET_KEYS, "labelset object")
+    if "classes" not in bbox_labelset:
+        raise AssertionError("expected classes in labelset")
 
     for index, labelclass in enumerate(bbox_labelset["classes"]):
-        assertKeys(labelclass, CLASS_KEYS, f"labelclass {index}")
-        assert "name" in labelclass, "name required"
+        assertKeys(labelclass, CLASS_KEYS, f"labelclass: {index}")
+        if "name" not in labelclass:
+            raise AssertionError("expected name in labelclass")
 
-        for question in labelclass["questions"]:
+        for question in labelclass.get("questions", []):
             assertExact(
                 question,
                 QUESTION_KEYS,
-                f"question of label {labelclass['name']}",
+                f"question of label: {labelclass['name']}",
             )
 
             if question["type"] == "DROPDOWN":
@@ -27,7 +29,7 @@ def validate_bbox_labelset(bbox_labelset: dict):
                 assertKeys(
                     question["config"],
                     TEXT_KEYS,
-                    f"config of question {question['label']}",
+                    f"config of question: {question['label']}",
                 )
 
 
@@ -37,7 +39,11 @@ def assertDropdownQuestion(question: dict):
         DROPDOWN_KEYS,
         f"config of question {question['label']}",
     )
-    assert isinstance(question["config"]["options"], list)
+
+    if not isinstance(question["config"]["options"], list):
+        raise AssertionError(
+            f"expects options as a list, received {type(question['config']['options'])}"
+        )
 
     for opt in question["config"]["options"]:
         assertKeys(
@@ -52,9 +58,10 @@ def assertKeys(dict: dict, valid_keys: set, identifier: str | None = None):
     Ensure that dict keys are subset of valid_keys
     """
     keys = set(dict.keys())
-    assert keys.issubset(
-        valid_keys
-    ), f"Invalid keys detected in {identifier}: {keys.difference(valid_keys)}"
+    if not keys.issubset(valid_keys):
+        raise AssertionError(
+            f"Invalid keys detected in {identifier}: {keys.difference(valid_keys)}"
+        )
 
 
 def assertExact(dict: dict, valid_keys: set, identifier: str | None = None):
@@ -62,6 +69,11 @@ def assertExact(dict: dict, valid_keys: set, identifier: str | None = None):
     Ensure that dict keys are exactly equal to valid_keys
     """
     keys = set(dict.keys())
-    assert (
-        keys == valid_keys
-    ), f"Invalid keys detected in {identifier}: {keys.difference(valid_keys) or valid_keys.difference(keys)}"
+    if not keys == valid_keys:
+        if keys.issubset(valid_keys):
+            raise AssertionError(
+                f"Missing keys detected in {identifier}: {valid_keys.difference(keys)}"
+            )
+        raise AssertionError(
+            f"Excess keys detected in {identifier}: {keys.difference(valid_keys)}"
+        )

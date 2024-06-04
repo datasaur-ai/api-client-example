@@ -23,8 +23,20 @@
             "multiple": false,
             "defaultValue": "B"
           }
+        },
+        {
+          "id": 1,
+          "label": "label-2",
+          "type": "TEXT",
+          "required": false,
+          "config": {
+            "multiple": false
+          }
         }
       ]
+    },
+    {
+      "name": "plain_label"
     }
   ]
 }
