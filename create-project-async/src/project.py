@@ -7,7 +7,7 @@ from src.helper import get_access_token, get_operations
 
 
 class Project:
-    def __init__(self, base_url: str, id:str, secret:str):
+    def __init__(self, base_url: str, id: str, secret: str):
         self.base_url = base_url
         self.graphql_url = f"{base_url}/graphql"
         self.proxy_url = f"{base_url}/api/static/proxy/upload"
@@ -15,12 +15,18 @@ class Project:
         self.client_secret = secret
         self.headers = None
 
-    def create(self, team_id, operations_path, documents_path):
-        if (os.path.isfile(documents_path)):
-            raise NotImplementedError("createProject with a list of documents is not yet implemented")
+    def create(self, team_id, operations_path, documents_path, name=None):
+        if os.path.isfile(documents_path):
+            raise NotImplementedError(
+                "createProject with a list of documents is not yet implemented"
+            )
 
-        access_token = get_access_token(self.base_url, self.client_id, self.client_secret)
-        self.headers = self.__add_headers(key='Authorization', value=f"Bearer {access_token}")
+        access_token = get_access_token(
+            self.base_url, self.client_id, self.client_secret
+        )
+        self.headers = self.__add_headers(
+            key="Authorization", value=f"Bearer {access_token}"
+        )
         operations = get_operations(operations_path)
 
         operations["variables"]["input"]["documents"] = []
@@ -31,40 +37,50 @@ class Project:
         mapped_documents = self.__map_documents(sorted_filepaths)
 
         for key in mapped_documents:
-            upload_document_response = self.__upload_file(filepath=mapped_documents[key]["document"])
+            upload_document_response = self.__upload_file(
+                filepath=mapped_documents[key]["document"]
+            )
             documents = {
                 "document": {
                     "name": os.path.basename(mapped_documents[key]["document"]),
-                    "objectKey": upload_document_response["objectKey"]
+                    "objectKey": upload_document_response["objectKey"],
                 }
             }
 
             if "extra" in mapped_documents[key]:
-                upload_extra_response = self.__upload_file(filepath=mapped_documents[key]["extra"])
+                upload_extra_response = self.__upload_file(
+                    filepath=mapped_documents[key]["extra"]
+                )
                 documents["extras"] = [
                     {
                         "name": os.path.basename(mapped_documents[key]["extra"]),
-                        "objectKey": upload_extra_response["objectKey"]
+                        "objectKey": upload_extra_response["objectKey"],
                     }
                 ]
 
             operations["variables"]["input"]["documents"].append(documents)
 
+            if name is not None:
+                operations["variables"]["input"]["name"] = name
+
         graphql_response = self.__call_graphql(
             data={
                 "query": operations["query"],
                 "variables": json.dumps(operations["variables"]),
-                "operationName": operations.get("operationName", "Datasaur API client - createProject")
+                "operationName": operations.get(
+                    "operationName", "Datasaur API client - createProject"
+                ),
             }
         )
+
         self.__process_graphql_response(graphql_response)
-  
+
     def __upload_file(self, filepath):
         with post(
-        url=self.proxy_url,
-        headers=self.headers,
-        files=[('file', open(filepath, 'rb'))]
-        ) as response: 
+            url=self.proxy_url,
+            headers=self.headers,
+            files=[("file", open(filepath, "rb"))],
+        ) as response:
             response.raise_for_status()
             return response.json()
 
@@ -85,10 +101,10 @@ class Project:
         else:
             print(response.text.encode("utf8"))
             print(response)
-    
+
     def __add_headers(self, key, value):
         if self.headers is None:
-            self.headers = {key: value} 
+            self.headers = {key: value}
         else:
             self.headers[key] = value
 
@@ -96,15 +112,15 @@ class Project:
 
     def __sort_possible_extra_files_last(self, filepaths):
         # Sort file paths ending with .json or .txt to be at the end
-        filepaths.sort(key=lambda x: (x.endswith('.json') or x.endswith('.txt'), x))
+        filepaths.sort(key=lambda x: (x.endswith(".json") or x.endswith(".txt"), x))
         return filepaths
 
     def __map_documents(self, filepaths):
         mapped_documents = {}
-        for filepath in filepaths: 
-            filename = os.path.basename(filepath).split('.')[0]
-            if filename in mapped_documents: 
+        for filepath in filepaths:
+            filename = os.path.basename(filepath).split(".")[0]
+            if filename in mapped_documents:
                 mapped_documents[filename]["extra"] = filepath
-            else: 
-                mapped_documents[filename] = { "document": filepath }
+            else:
+                mapped_documents[filename] = {"document": filepath}
         return mapped_documents
