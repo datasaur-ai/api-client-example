@@ -34,7 +34,7 @@ def validate_bbox_labelset(bbox_labelset: dict):
 
 
 def assertDropdownQuestion(question: dict):
-    assertExact(
+    assertKeys(
         question["config"],
         DROPDOWN_KEYS,
         f"config of question {question['label']}",

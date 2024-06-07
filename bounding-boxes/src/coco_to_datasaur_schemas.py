@@ -151,9 +151,9 @@ def bbox_label_classes_from_coco(
                 id=q.get("id", index),
                 label=q.get("label", f"Question {index}"),
                 config=QuestionConfig(
-                    multiline=q.get("config", {}).get("multiline", False),
-                    multiple=q.get("config", {}).get("multiple", False),
-                    options=q.get("config", {}).get("options", []),
+                    multiline=q.get("config", {}).get("multiline", None),
+                    multiple=q.get("config", {}).get("multiple", None),
+                    options=q.get("config", {}).get("options", None),
                     defaultValue=q.get("config", {}).get("defaultValue", None),
                 ),
                 required=q.get("required", False),
