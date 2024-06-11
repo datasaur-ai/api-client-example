@@ -34,7 +34,9 @@ def log(message, level=logging.DEBUG, **kwargs):
     return _log(message=message, logger=logger, level=level, **kwargs)
 
 
-def coco_to_datasaur_schemas(coco_json: Any, custom_labelset: Any | None) -> List[dict]:
+def coco_to_datasaur_schemas(
+    coco_json: Any, custom_labelset: Any | None, ignored_attributes: list[str] | None
+) -> List[dict]:
     """
     Raises:
         Exception: If the segmentation of an annotation does not have 8 elements.
@@ -61,7 +63,9 @@ def coco_to_datasaur_schemas(coco_json: Any, custom_labelset: Any | None) -> Lis
         ]
 
         bbox_labels = [
-            bbox_label_from_coco_annotation(annot, bbox_label_set)
+            bbox_label_from_coco_annotation(
+                annot, labelset=bbox_label_set, ignored_attributes=ignored_attributes
+            )
             for annot in annotations_by_images
         ]
 
@@ -103,6 +107,12 @@ def main() -> None:
         default="./outdir/",
     )
     parser.add_argument("--log-level", type=str, default="INFO")
+    parser.add_argument(
+        "--ignored-attributes",
+        type=str,
+        default="occluded",
+        help="Comma separated strings of attribute keys to ignore. Default: occluded",
+    )
     args = parser.parse_args()
     logging.basicConfig(level=args.log_level, format="%(message)s")
 
@@ -118,8 +128,16 @@ def main() -> None:
             custom_labelset = json.load(f)
             validate_bbox_labelset(custom_labelset)
 
+    ignored_attributes = None
+    if args.ignored_attributes:
+        ignored_attributes = args.ignored_attributes.split(",")
+
     log("converting COCO to Datasaur Schema")
-    schemas = coco_to_datasaur_schemas(json_data, custom_labelset)
+    schemas = coco_to_datasaur_schemas(
+        json_data,
+        custom_labelset=custom_labelset,
+        ignored_attributes=ignored_attributes,
+    )
 
     outdir = os.path.abspath(args.outdir)
     os.makedirs(outdir, exist_ok=True)
@@ -207,7 +225,7 @@ def shape_from_coco_annotation(annotation: dict) -> DSShape:
 
 
 def bbox_label_from_coco_annotation(
-    annotation: dict, labelset: DSBboxLabelSet
+    annotation: dict, labelset: DSBboxLabelSet, ignored_attributes: list[str] | None
 ) -> DSBBoxLabel:
     attributes = annotation["attributes"]
 
@@ -221,9 +239,10 @@ def bbox_label_from_coco_annotation(
     # check if attributes have any other key
     # if found, add to labelset.classes
     answers = None
-    if attributes.keys() - {"text"}:
+    ignored_attributes = set([*ignored_attributes, "text"])
+    if attributes.keys() - ignored_attributes:
         answers = {}
-        keys: Set = attributes.keys() - {"text"}
+        keys: Set = attributes.keys() - ignored_attributes
 
         for key in keys:
             questions = bbox_label_class.questions
