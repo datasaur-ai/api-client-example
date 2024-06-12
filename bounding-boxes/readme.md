@@ -49,6 +49,7 @@ Parameters:
 - `custom_labelset`: Optional. A dictionary representation of a Datasaur bounding box label set to provide additional information. Useful to set default value, custom color, or setting a specific attribute as `DROPDOWN` type. See [here](./samples/custom-label-set.json) for an example JSON file.
   > [!IMPORTANT]  
   > You can obtain a custom labelset JSON by copy-pasting from Datasaur's BBox Label Set editor. Please keep in mind that there are some attributes that won't be parsed, such as label's `id` and question's `internalId`, as they will be generated upon creation.
+  > Other than that, the script will also ignore the following TEXT config: `minLength`, `maxLength` and `pattern`
 
 Running `python src/coco_to_datasaur_schemas.py` should run the function against a sample `COCO.json` file. The function expect a `dict` representation of a COCO file and will return an array of `DatasaurSchema` also in a `dict` format. 
 

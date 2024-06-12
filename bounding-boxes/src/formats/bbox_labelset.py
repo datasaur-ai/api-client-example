@@ -2,7 +2,8 @@ LABELSET_KEYS = {"classes", "name", "autoLabelProvider"}
 CLASS_KEYS = {"id", "name", "captionAllowed", "captionRequired", "color", "questions"}
 QUESTION_KEYS = {"id", "label", "required", "type", "config", "internalId"}
 DROPDOWN_KEYS = {"defaultValue", "multiple", "options"}
-TEXT_KEYS = {"defaultValue", "multiline", "multiple"}
+UNUSED_TEXT_KEYS = {"minLength", "pattern", "maxLength"}
+TEXT_KEYS = {"defaultValue", "multiline", "multiple", *UNUSED_TEXT_KEYS}
 OPTION_KEYS = {"id", "label", "parentId"}
 
 
