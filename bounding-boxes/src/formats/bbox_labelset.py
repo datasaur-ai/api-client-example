@@ -1,8 +1,9 @@
 LABELSET_KEYS = {"classes", "name", "autoLabelProvider"}
-CLASS_KEYS = {"name", "captionAllowed", "captionRequired", "color", "questions"}
-QUESTION_KEYS = {"id", "label", "required", "type", "config"}
+CLASS_KEYS = {"id", "name", "captionAllowed", "captionRequired", "color", "questions"}
+QUESTION_KEYS = {"id", "label", "required", "type", "config", "internalId"}
 DROPDOWN_KEYS = {"defaultValue", "multiple", "options"}
 TEXT_KEYS = {"defaultValue", "multiline", "multiple"}
+OPTION_KEYS = {"id", "label", "parentId"}
 
 
 def validate_bbox_labelset(bbox_labelset: dict):
@@ -48,7 +49,7 @@ def assertDropdownQuestion(question: dict):
     for opt in question["config"]["options"]:
         assertKeys(
             opt,
-            {"id", "label", "parentId"},
+            OPTION_KEYS,
             f"options of question {question['label']}",
         )
 
