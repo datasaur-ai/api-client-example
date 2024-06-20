@@ -206,22 +206,27 @@ def shape_from_coco_segmentation(segmentation: List[float]) -> DSShape:
 def shape_from_coco_annotation(annotation: dict) -> DSShape:
     segmentations_valid = all(
         validate_segmentation(segment) for segment in annotation["segmentation"]
-    ) and (len(annotation["segmentation"]) > 1)
+    ) and (len(annotation["segmentation"]) > 0)
 
     if segmentations_valid:
-        return shape_from_coco_segmentation(annotation["segmentation"])
+        return [
+            shape_from_coco_segmentation(segment)
+            for segment in annotation["segmentation"]
+        ]
 
     log("found some invalid segmentations, using bbox instead", annotation=annotation)
     x, y, width, height = annotation["bbox"]
-    return DSShape(
-        pageIndex=0,
-        points=[
-            DSPoint(x=x, y=y),
-            DSPoint(x=x + width, y=y),
-            DSPoint(x=x + width, y=y + height),
-            DSPoint(x=x, y=y + height),
-        ],
-    )
+    return [
+        DSShape(
+            pageIndex=0,
+            points=[
+                DSPoint(x=x, y=y),
+                DSPoint(x=x + width, y=y),
+                DSPoint(x=x + width, y=y + height),
+                DSPoint(x=x, y=y + height),
+            ],
+        )
+    ]
 
 
 def bbox_label_from_coco_annotation(
@@ -234,7 +239,7 @@ def bbox_label_from_coco_annotation(
         item for item in labelset.classes if item.id == stringified_id
     )
 
-    bbox_shapes = [shape_from_coco_annotation(annotation)]
+    bbox_shapes = shape_from_coco_annotation(annotation)
 
     # check if attributes have any other key
     # if found, add to labelset.classes
