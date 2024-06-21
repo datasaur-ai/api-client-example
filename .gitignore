@@ -3,3 +3,4 @@ readme.txt
 output/
 __pycache__
 .env
+bounding-boxes/outdir/

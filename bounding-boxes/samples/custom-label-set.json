@@ -1,0 +1,42 @@
+{
+  "classes": [
+    {
+      "name": "merchant_name",
+      "color": "#219896",
+      "questions": [
+        {
+          "id": 0,
+          "label": "bio_tag",
+          "required": false,
+          "type": "DROPDOWN",
+          "config": {
+            "options": [
+              {
+                "id": "B",
+                "label": "B"
+              },
+              {
+                "id": "I",
+                "label": "I"
+              }
+            ],
+            "multiple": false,
+            "defaultValue": "B"
+          }
+        },
+        {
+          "id": 1,
+          "label": "label-2",
+          "type": "TEXT",
+          "required": false,
+          "config": {
+            "multiple": false
+          }
+        }
+      ]
+    },
+    {
+      "name": "plain_label"
+    }
+  ]
+}

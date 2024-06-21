@@ -1,0 +1,70 @@
+{
+  "licenses": [
+    {
+      "name": "DATASAUR",
+      "id": 0,
+      "URL": "datasaur.ai"
+    }
+  ],
+  "info": {
+    "contributor": "datasaur.ai",
+    "date_created": "2024-04-23",
+    "description": "Description of the dataset",
+    "url": "",
+    "version": "v0.1",
+    "year": 2024
+  },
+  "categories": [
+    {
+      "id": 1,
+      "name": "sample_category",
+      "supercategory": ""
+    },
+    {
+      "id": 2,
+      "name": "merchant_name",
+      "supercategory": ""
+    }
+  ],
+  "images": [
+    {
+      "id": 1,
+      "width": 239.0,
+      "height": 991.0,
+      "file_name": "sample.png",
+      "license": 0,
+      "flickr_url": "",
+      "coco_url": "",
+      "date_captured": 0
+    }
+  ],
+  "annotations": [
+    {
+      "id": 1,
+      "image_id": 1,
+      "category_id": 1,
+      "segmentation": [[73, 153, 113, 153, 113, 169, 74, 169]],
+      "bbox": [73, 153, 40, 16],
+      "area": 7938,
+      "iscrowd": 0,
+      "attributes": {
+        "text": "sample text"
+      }
+    },
+    {
+      "id": 2,
+      "image_id": 1,
+      "category_id": 2,
+      "segmentation": [[78, 158, 118, 158, 118, 174, 79, 174]],
+      "bbox": [78, 158, 40, 16],
+      "area": 7938,
+      "iscrowd": 0,
+      "attributes": {
+        "text": "Hokkaido-Ya",
+        "bio_tag": "B",
+        "order_idx": "1",
+        "occluded": false
+      }
+    }
+  ]
+}

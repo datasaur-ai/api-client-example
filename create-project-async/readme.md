@@ -30,6 +30,26 @@ python api_client.py create_project \
   --team_id TEAM_ID
 ```
 
+## Create Multiple Projects
+
+A thin wrapper around the logic for `create_project`.  
+`CONFIG_FILE` should be a CSV file without header, where the first column contains project names, while the second column contains path to the folders.
+
+```csv
+"project1","./documents"
+"project2","./documents"
+```
+
+```
+python api_client.py create_multiple_projects \
+  --base_url BASE_URL \
+  --client_id CLIENT_ID \
+  --client_secret CLIENT_SECRET \
+  --team_id TEAM_ID 
+  --config CONFIG_FILE
+```
+
+
 ## Get Job Status
 
 ```

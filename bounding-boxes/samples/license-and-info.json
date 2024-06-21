@@ -1,0 +1,17 @@
+{
+  "licenses": [
+    {
+      "name": "datasaur",
+      "id": 0,
+      "url": "datasaur.ai"
+    }
+  ],
+  "info": {
+    "contributor": "datasaur.ai",
+    "date_created": "2024-04-23",
+    "description": "Description of the dataset",
+    "url": "",
+    "version": "v0.1",
+    "year": 2024
+  }
+}
