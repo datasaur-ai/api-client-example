@@ -10,6 +10,7 @@ from src.logger import log as log
 from src.project import Project
 
 DEFAULT_OPERATIONS_PATH = "create_project.json"
+DEFAULT_DOCUMENTS_PATH = "documents"
 
 
 def log_error(message, level=logging.ERROR, **kwargs):
@@ -22,7 +23,7 @@ def create_project(
     client_id,
     client_secret,
     team_id,
-    documents_path="documents",
+    documents_path=DEFAULT_DOCUMENTS_PATH,
     operations_path=DEFAULT_OPERATIONS_PATH,
 ):
     try:
@@ -39,7 +40,7 @@ def create_batched_projects(
     client_id,
     client_secret,
     team_id,
-    documents_path="documents",
+    documents_path=DEFAULT_DOCUMENTS_PATH,
     operations_path=DEFAULT_OPERATIONS_PATH,
     document_batch_size=DEFAULT_BATCH_SIZE,
 ):
