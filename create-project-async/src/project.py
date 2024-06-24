@@ -24,18 +24,16 @@ class Project:
         self.proxy_url = f"{base_url}/api/static/proxy/upload"
         self.client_id = id
         self.client_secret = secret
-        self.headers: dict[str, str] = {}
         self.documents_path = documents_path
 
-    def create(self, team_id: str, operations_path: str, name: str | None = None):
         access_token = get_access_token(
             self.base_url, self.client_id, self.client_secret
         )
+        self.headers: dict[str, str] = {
+            "Authorization": f"Bearer {access_token}",
+        }
 
-        self.headers = self._add_headers(
-            key="Authorization", value=f"Bearer {access_token}"
-        )
-
+    def create(self, team_id: str, operations_path: str, name: str | None = None):
         gql_documents = GraphQLDocumentCreator(
             proxy_url=self.proxy_url, headers=self.headers, documents_path=self.documents_path).create()
 
@@ -66,7 +64,3 @@ class Project:
         operations["variables"]["input"]["documents"] = documents
 
         return operations
-
-    def _add_headers(self, key: str, value: str):
-        self.headers[key] = value
-        return self.headers

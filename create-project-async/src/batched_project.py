@@ -18,14 +18,6 @@ class BatchedProject(Project):
                                           client_id=self.client_id, client_secret=self.client_secret)
 
     def create(self, team_id: str, operations_path: str, name: str | None = None):
-        access_token = get_access_token(
-            self.base_url, self.client_id, self.client_secret
-        )
-
-        self.headers = self._add_headers(
-            key="Authorization", value=f"Bearer {access_token}"
-        )
-
         chunked_gql_documents = self.__get_chunked_gql_documents()
 
         for index, gql_documents in enumerate(chunked_gql_documents):
