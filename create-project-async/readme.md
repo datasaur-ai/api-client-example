@@ -19,7 +19,7 @@ In this new mutation, we no longer support uploading files directly to the Graph
 
 ### With Local Files
 
-Local files are located under `document/` folder.
+Local files are located under `documents/` folder.
 Every file inside the directory will be uploaded to Datasaur as part of the project creation process.
 
 **Note**: If you want to use pairing files, such as inputfile.jpg with inputfile.txt, ensure that they share the same filename. These paired files are commonly used for OCR / Audio projects with transcription.
@@ -30,6 +30,21 @@ python api_client.py create_project \
   --client_id CLIENT_ID \
   --client_secret CLIENT_SECRET \
   --team_id TEAM_ID
+```
+
+### Batched Project Creation
+
+A wrapper around the logic for `create_project`.
+
+Requires an additional `--document_batch_size` param. The value of this param determines the max amount of documents in each project. The batch size value must be between 1 and 100.
+
+```
+python api_client.py create_batched_projects \
+  --base_url BASE_URL \
+  --client_id CLIENT_ID \
+  --client_secret CLIENT_SECRET \
+  --team_id TEAM_ID \
+  --document_batch_size 100
 ```
 
 ## Create Multiple Projects
