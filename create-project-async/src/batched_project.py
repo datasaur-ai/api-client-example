@@ -45,6 +45,8 @@ class BatchedProject(Project):
         return [gql_documents[i:i + self.document_batch_size] for i in range(0, len(gql_documents), self.document_batch_size)]
 
     def __create_project_from_chunk(self, operations):
+        self.__report_before_request(operations)
+
         graphql_response = self.graphql_utils.call_graphql(
             data={
                 "query": operations["query"],
@@ -56,6 +58,16 @@ class BatchedProject(Project):
         )
 
         self.graphql_utils.process_graphql_response(graphql_response)
+
+    def __report_before_request(self, operations):
+        print("\n" + "=" * 50 + "\n")
+        print("Project creation request sent.")
+        print(f"Project name: {operations['variables']['input']['name']}")
+        print(
+            f"Number of documents: {len(operations['variables']['input']['documents'])}")
+        print(
+            f"Document names: {', '.join(doc['document']['name'] for doc in operations['variables']['input']['documents'])}")
+        print("")
 
     def __get_name_with_batch_number(self, name: str, index: int):
         return f"{name} - batch {index + 1}" if name else None
