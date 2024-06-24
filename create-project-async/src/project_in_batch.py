@@ -4,9 +4,11 @@ from src.graphql_utils import GraphQLUtils
 from src.helper import get_access_token
 from src.project import Project
 
+DEFAULT_BATCH_SIZE = 100
+
 
 class ProjectInBatch(Project):
-    def __init__(self, base_url: str, id: str, secret: str, documents_path: str, document_batch_size=20):
+    def __init__(self, base_url: str, id: str, secret: str, documents_path: str, document_batch_size=DEFAULT_BATCH_SIZE):
         if not 1 <= document_batch_size <= 100:
             raise ValueError("document_batch_size must be between 1 and 100")
 
