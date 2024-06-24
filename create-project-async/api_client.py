@@ -41,7 +41,7 @@ def create_batched_projects(
     team_id,
     documents_path="documents",
     operations_path=DEFAULT_OPERATIONS_PATH,
-    document_batch_size=10,
+    document_batch_size=20,
 ):
     try:
         ProjectInBatch(base_url=base_url, id=client_id, secret=client_secret, documents_path=documents_path, document_batch_size=document_batch_size).create(
