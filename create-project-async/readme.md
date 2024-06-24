@@ -2,10 +2,12 @@
 
 ## Pre-requisite
 
-```
-# install dependencies
-python -m pip install -r src/requirements.txt
-```
+- Python 3.10 or higher
+- Install dependencies
+  ```
+  # install dependencies
+  python -m pip install -r src/requirements.txt
+  ```
 
 ## Create Project (v2)
 
@@ -17,7 +19,7 @@ In this new mutation, we no longer support uploading files directly to the Graph
 
 ### With Local Files
 
-Local files are located under `document/` folder.  
+Local files are located under `document/` folder.
 Every file inside the directory will be uploaded to Datasaur as part of the project creation process.
 
 **Note**: If you want to use pairing files, such as inputfile.jpg with inputfile.txt, ensure that they share the same filename. These paired files are commonly used for OCR / Audio projects with transcription.
@@ -32,7 +34,7 @@ python api_client.py create_project \
 
 ## Create Multiple Projects
 
-A thin wrapper around the logic for `create_project`.  
+A thin wrapper around the logic for `create_project`.
 `CONFIG_FILE` should be a CSV file without header, where the first column contains project names, while the second column contains path to the folders.
 
 ```csv
@@ -45,10 +47,9 @@ python api_client.py create_multiple_projects \
   --base_url BASE_URL \
   --client_id CLIENT_ID \
   --client_secret CLIENT_SECRET \
-  --team_id TEAM_ID 
+  --team_id TEAM_ID
   --config CONFIG_FILE
 ```
-
 
 ## Get Job Status
 
