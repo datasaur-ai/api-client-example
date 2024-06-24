@@ -1,15 +1,9 @@
 import json
 import os
 
-from typing import TypedDict
-from src.graphql_document_creator import GraphQLDocumentCreator
+from src.graphql_document_creator import GraphQLDocument, GraphQLDocumentCreator
 from src.graphql_utils import GraphQLUtils
 from src.helper import get_access_token, get_operations
-
-
-class GraphQLDocument(TypedDict):
-    document: dict
-    extras: list[dict] | None
 
 
 class Project:
