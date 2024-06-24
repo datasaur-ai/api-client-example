@@ -7,6 +7,7 @@ from src.helper import parse_multiple_config
 from src.job import Job
 from src.logger import log as log
 from src.project import Project
+from src.project_in_batch import ProjectInBatch
 
 
 def logError(message, level=logging.ERROR, **kwargs):
@@ -23,9 +24,26 @@ def create_project(
     operations_path="create_project.json",
 ):
     try:
-        Project(base_url=base_url, id=client_id, secret=client_secret).create(
+        Project(base_url=base_url, id=client_id, secret=client_secret, documents_path=documents_path).create(
             team_id=team_id,
-            documents_path=documents_path,
+            operations_path=operations_path,
+        )
+    except Exception as e:
+        raise SystemExit(e)
+
+
+def create_batched_projects(
+    base_url,
+    client_id,
+    client_secret,
+    team_id,
+    documents_path="documents",
+    operations_path="create_project.json",
+    document_batch_size=10,
+):
+    try:
+        ProjectInBatch(base_url=base_url, id=client_id, secret=client_secret, documents_path=documents_path, document_batch_size=document_batch_size).create(
+            team_id=team_id,
             operations_path=operations_path,
         )
     except Exception as e:
@@ -56,9 +74,8 @@ def create_multiple_projects(
     project_configs = parse_multiple_config(config)
     for name, documents_path in project_configs:
         try:
-            Project(base_url=base_url, id=client_id, secret=client_secret).create(
+            Project(base_url=base_url, id=client_id, secret=client_secret, documents_path=documents_path).create(
                 team_id=team_id,
-                documents_path=documents_path,
                 operations_path=operations_path,
                 name=name,
             )
