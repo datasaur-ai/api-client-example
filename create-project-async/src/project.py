@@ -32,14 +32,14 @@ class Project:
             self.base_url, self.client_id, self.client_secret
         )
 
-        self.headers = self.__add_headers(
+        self.headers = self._add_headers(
             key="Authorization", value=f"Bearer {access_token}"
         )
 
         gql_documents = GraphQLDocumentCreator(
             proxy_url=self.proxy_url, headers=self.headers, documents_path=self.documents_path).create()
 
-        operations = self.__get_operations(
+        operations = self._get_operations(
             team_id, operations_path, gql_documents, name)
 
         gql = GraphQLUtils(base_url=self.base_url, headers=self.headers,
@@ -57,7 +57,7 @@ class Project:
 
         gql.process_graphql_response(graphql_response)
 
-    def __get_operations(self, team_id: str, operations_path: str, documents: list[GraphQLDocument], name: str | None):
+    def _get_operations(self, team_id: str, operations_path: str, documents: list[GraphQLDocument], name: str | None):
         operations = get_operations(operations_path)
         operations["variables"]["input"]["teamId"] = team_id
         if name is not None:
@@ -67,6 +67,6 @@ class Project:
 
         return operations
 
-    def __add_headers(self, key: str, value: str):
+    def _add_headers(self, key: str, value: str):
         self.headers[key] = value
         return self.headers

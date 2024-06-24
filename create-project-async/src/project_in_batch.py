@@ -20,14 +20,14 @@ class ProjectInBatch(Project):
             self.base_url, self.client_id, self.client_secret
         )
 
-        self.headers = self.__add_headers(
+        self.headers = self._add_headers(
             key="Authorization", value=f"Bearer {access_token}"
         )
 
         chunked_gql_documents = self.__get_chunked_gql_documents()
 
         for index, gql_documents in enumerate(chunked_gql_documents):
-            operations = self.__get_operations(
+            operations = self._get_operations(
                 team_id, operations_path, gql_documents, name)
 
             name_with_batch_number = self.__get_name_with_batch_number(
