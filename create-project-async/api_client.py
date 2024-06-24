@@ -1,16 +1,18 @@
 import logging
-from os import environ
 import traceback
-
 import fire
+
+from os import environ
 from src.helper import parse_multiple_config
 from src.job import Job
 from src.logger import log as log
 from src.project import Project
 from src.project_in_batch import ProjectInBatch
 
+DEFAULT_OPERATIONS_PATH = "create_project.json"
 
-def logError(message, level=logging.ERROR, **kwargs):
+
+def log_error(message, level=logging.ERROR, **kwargs):
     logger = logging.getLogger("api_client")
     return log(logger=logger, level=level, message=message, **kwargs)
 
@@ -21,7 +23,7 @@ def create_project(
     client_secret,
     team_id,
     documents_path="documents",
-    operations_path="create_project.json",
+    operations_path=DEFAULT_OPERATIONS_PATH,
 ):
     try:
         Project(base_url=base_url, id=client_id, secret=client_secret, documents_path=documents_path).create(
@@ -38,7 +40,7 @@ def create_batched_projects(
     client_secret,
     team_id,
     documents_path="documents",
-    operations_path="create_project.json",
+    operations_path=DEFAULT_OPERATIONS_PATH,
     document_batch_size=10,
 ):
     try:
@@ -68,7 +70,7 @@ def create_multiple_projects(
     client_id,
     client_secret,
     team_id,
-    operations_path="create_project.json",
+    operations_path=DEFAULT_OPERATIONS_PATH,
     config="config.csv",
 ):
     project_configs = parse_multiple_config(config)
@@ -80,7 +82,7 @@ def create_multiple_projects(
                 name=name,
             )
         except Exception as e:
-            logError(
+            log_error(
                 message=f"Error creating project: {name}",
                 exception=traceback.format_exception(e),
             )
