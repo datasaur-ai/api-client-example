@@ -24,10 +24,10 @@ class Project:
         self.proxy_url = f"{base_url}/api/static/proxy/upload"
         self.client_id = id
         self.client_secret = secret
-        self.headers = None
+        self.headers: dict[str, str] = {}
         self.documents_path = documents_path
 
-    def create(self, team_id, operations_path, name=None):
+    def create(self, team_id: str, operations_path: str, name: str | None = None):
         access_token = get_access_token(
             self.base_url, self.client_id, self.client_secret
         )
@@ -57,7 +57,7 @@ class Project:
 
         gql.process_graphql_response(graphql_response)
 
-    def __get_operations(self, team_id, operations_path, documents, name):
+    def __get_operations(self, team_id: str, operations_path: str, documents: list[GraphQLDocument], name: str | None):
         operations = get_operations(operations_path)
         operations["variables"]["input"]["teamId"] = team_id
         if name is not None:
@@ -67,10 +67,6 @@ class Project:
 
         return operations
 
-    def __add_headers(self, key, value):
-        if self.headers is None:
-            self.headers = {key: value}
-        else:
-            self.headers[key] = value
-
+    def __add_headers(self, key: str, value: str):
+        self.headers[key] = value
         return self.headers

@@ -11,7 +11,7 @@ class GraphQLDocument(TypedDict):
 
 
 class GraphQLDocumentCreator:
-    def __init__(self, proxy_url, headers, documents_path):
+    def __init__(self, proxy_url: str, headers: dict[str, str], documents_path: str):
         self.proxy_url = proxy_url
         self.headers = headers
         self.documents_path = documents_path
@@ -26,8 +26,8 @@ class GraphQLDocumentCreator:
         mapped_documents = self.__map_documents(sorted_filepaths)
         return mapped_documents
 
-    def __get_graphql_documents(self, mapped_documents):
-        graphql_documents = []
+    def __get_graphql_documents(self, mapped_documents: dict[str, dict]):
+        graphql_documents: list[GraphQLDocument] = []
         for key in mapped_documents:
             upload_document_response = self.__upload_file(
                 filepath=mapped_documents[key]["document"]
@@ -55,7 +55,7 @@ class GraphQLDocumentCreator:
 
         return graphql_documents
 
-    def __upload_file(self, filepath):
+    def __upload_file(self, filepath: str):
         with post(
             url=self.proxy_url,
             headers=self.headers,
@@ -64,14 +64,14 @@ class GraphQLDocumentCreator:
             response.raise_for_status()
             return response.json()
 
-    def __sort_possible_extra_files_last(self, filepaths):
+    def __sort_possible_extra_files_last(self, filepaths: list[str]):
         # Sort file paths ending with .json or .txt to be at the end
         filepaths.sort(key=lambda x: (
             x.endswith(".json") or x.endswith(".txt"), x))
         return filepaths
 
-    def __map_documents(self, filepaths):
-        mapped_documents = {}
+    def __map_documents(self, filepaths: list[str]):
+        mapped_documents: dict[str, dict] = {}
         for filepath in filepaths:
             filename = os.path.basename(filepath).split(".")[0]
             if filename in mapped_documents:
