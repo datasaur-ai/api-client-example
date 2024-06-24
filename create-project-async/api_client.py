@@ -3,11 +3,11 @@ import traceback
 import fire
 
 from os import environ
+from src.batched_project import DEFAULT_BATCH_SIZE, BatchedProject
 from src.helper import parse_multiple_config
 from src.job import Job
 from src.logger import log as log
 from src.project import Project
-from src.project_in_batch import DEFAULT_BATCH_SIZE, ProjectInBatch
 
 DEFAULT_OPERATIONS_PATH = "create_project.json"
 
@@ -44,7 +44,7 @@ def create_batched_projects(
     document_batch_size=DEFAULT_BATCH_SIZE,
 ):
     try:
-        ProjectInBatch(base_url=base_url, id=client_id, secret=client_secret, documents_path=documents_path, document_batch_size=document_batch_size).create(
+        BatchedProject(base_url=base_url, id=client_id, secret=client_secret, documents_path=documents_path, document_batch_size=document_batch_size).create(
             team_id=team_id,
             operations_path=operations_path,
         )

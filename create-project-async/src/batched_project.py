@@ -7,7 +7,7 @@ from src.project import Project
 DEFAULT_BATCH_SIZE = 100
 
 
-class ProjectInBatch(Project):
+class BatchedProject(Project):
     def __init__(self, base_url: str, id: str, secret: str, documents_path: str, document_batch_size=DEFAULT_BATCH_SIZE):
         if not 1 <= document_batch_size <= 100:
             raise ValueError("document_batch_size must be between 1 and 100")
