@@ -56,6 +56,7 @@ class GraphQLDocumentCreator:
         return graphql_documents
 
     def __upload_file(self, filepath: str):
+        print("Uploading file: ", os.path.basename(filepath))
         with post(
             url=self.proxy_url,
             headers=self.headers,
