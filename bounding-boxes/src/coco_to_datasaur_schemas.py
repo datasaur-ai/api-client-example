@@ -64,7 +64,9 @@ def coco_to_datasaur_schemas(
 
         bbox_labels = [
             bbox_label_from_coco_annotation(
-                annot, labelset=bbox_label_set, ignored_attributes=ignored_attributes
+                annot,
+                labelset=bbox_label_set,
+                ignored_attributes=ignored_attributes,
             )
             for annot in annotations_by_images
         ]
@@ -145,9 +147,10 @@ def main() -> None:
     for schema in schemas:
         image_filepath = schema["data"]["document"]["name"]
         image_filename = os.path.basename(image_filepath)
-        filename = image_filename.split(".")[0] + ".json"
+        filename, _extension = os.path.splitext(image_filename)
+        answer_filename = filename + ".json"
 
-        with open(os.path.join(outdir, filename), "w") as f:
+        with open(os.path.join(outdir, answer_filename), "w") as f:
             json.dump(scrub(schema), f, indent=2)
 
 
@@ -203,7 +206,7 @@ def shape_from_coco_segmentation(segmentation: List[float]) -> DSShape:
     return DSShape(pageIndex=0, points=points)
 
 
-def shape_from_coco_annotation(annotation: dict) -> DSShape:
+def shape_from_coco_annotation(annotation: dict) -> list[DSShape]:
     segmentations_valid = all(
         validate_segmentation(segment) for segment in annotation["segmentation"]
     ) and (len(annotation["segmentation"]) > 0)
@@ -232,6 +235,9 @@ def shape_from_coco_annotation(annotation: dict) -> DSShape:
 def bbox_label_from_coco_annotation(
     annotation: dict, labelset: DSBboxLabelSet, ignored_attributes: list[str] | None
 ) -> DSBBoxLabel:
+    if ignored_attributes is None:
+        ignored_attributes = []
+
     attributes = annotation["attributes"]
 
     stringified_id = str(annotation["category_id"])
@@ -244,10 +250,10 @@ def bbox_label_from_coco_annotation(
     # check if attributes have any other key
     # if found, add to labelset.classes
     answers = None
-    ignored_attributes = set([*ignored_attributes, "text"])
-    if attributes.keys() - ignored_attributes:
+    set_ignored_attributes = set([*ignored_attributes, "text"])
+    if attributes.keys() - set_ignored_attributes:
         answers = {}
-        keys: Set = attributes.keys() - ignored_attributes
+        keys: Set = attributes.keys() - set_ignored_attributes
 
         for key in keys:
             questions = bbox_label_class.questions
