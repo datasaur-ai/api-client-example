@@ -30,35 +30,15 @@ class GraphQLDocumentCreator:
         return mapped_documents
 
     def __get_graphql_documents(self, mapped_documents: dict[str, dict]):
-        def upload_and_create_document(key: str):
-            upload_document_response = self.__upload_file(
-                filepath=mapped_documents[key]["document"]
-            )
-            document: GraphQLDocument = {
-                "document": {
-                    "name": os.path.basename(mapped_documents[key]["document"]),
-                    "objectKey": upload_document_response["objectKey"],
-                },
-                "extras": None,
-            }
-
-            if "extra" in mapped_documents[key]:
-                upload_extra_response = self.__upload_file(
-                    filepath=mapped_documents[key]["extra"]
-                )
-                document["extras"] = [
-                    {
-                        "name": os.path.basename(mapped_documents[key]["extra"]),
-                        "objectKey": upload_extra_response["objectKey"],
-                    }
-                ]
-            return document
-
         print(f"uploading files using {self.MAX_WORKERS} workers")
         graphql_documents: list[GraphQLDocument] = []
         with ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
             futures = [
-                executor.submit(upload_and_create_document, key)
+                executor.submit(
+                    self.__upload_and_create_document,
+                    key=key,
+                    mapped_documents=mapped_documents,
+                )
                 for key in mapped_documents.keys()
             ]
 
@@ -72,6 +52,28 @@ class GraphQLDocumentCreator:
             print()
 
         return graphql_documents
+
+    def __upload_and_create_document(self, key: str, mapped_documents: dict[str, dict]):
+        upload_document_response = self.__upload_file(mapped_documents[key]["document"])
+        document: GraphQLDocument = {
+            "document": {
+                "name": os.path.basename(mapped_documents[key]["document"]),
+                "objectKey": upload_document_response["objectKey"],
+            },
+            "extras": None,
+        }
+
+        if "extra" in mapped_documents[key]:
+            upload_extra_response = self.__upload_file(
+                filepath=mapped_documents[key]["extra"]
+            )
+            document["extras"] = [
+                {
+                    "name": os.path.basename(mapped_documents[key]["extra"]),
+                    "objectKey": upload_extra_response["objectKey"],
+                }
+            ]
+        return document
 
     def __upload_file(self, filepath: str):
         with post(
