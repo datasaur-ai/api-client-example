@@ -1,69 +1,43 @@
-import glob
 import json
 import os
 
-from requests import post
+from src.graphql_document_creator import GraphQLDocument, GraphQLDocumentCreator
+from src.graphql_utils import GraphQLUtils
 from src.helper import get_access_token, get_operations
 
 
 class Project:
-    def __init__(self, base_url: str, id: str, secret: str):
-        self.base_url = base_url
-        self.graphql_url = f"{base_url}/graphql"
-        self.proxy_url = f"{base_url}/api/static/proxy/upload"
-        self.client_id = id
-        self.client_secret = secret
-        self.headers = None
-
-    def create(self, team_id, operations_path, documents_path, name=None):
+    def __init__(self, base_url: str, id: str, secret: str, documents_path: str):
         if os.path.isfile(documents_path):
             raise NotImplementedError(
                 "createProject with a list of documents is not yet implemented"
             )
 
+        self.base_url = base_url
+        self.graphql_url = f"{base_url}/graphql"
+        self.proxy_url = f"{base_url}/api/static/proxy/upload"
+        self.client_id = id
+        self.client_secret = secret
+        self.documents_path = documents_path
+
         access_token = get_access_token(
             self.base_url, self.client_id, self.client_secret
         )
-        self.headers = self.__add_headers(
-            key="Authorization", value=f"Bearer {access_token}"
-        )
-        operations = get_operations(operations_path)
+        self.headers: dict[str, str] = {
+            "Authorization": f"Bearer {access_token}",
+        }
 
-        operations["variables"]["input"]["documents"] = []
-        operations["variables"]["input"]["teamId"] = team_id
+    def create(self, team_id: str, operations_path: str, name: str | None = None):
+        gql_documents = GraphQLDocumentCreator(
+            proxy_url=self.proxy_url, headers=self.headers, documents_path=self.documents_path).create()
 
-        filepaths = list(glob.iglob(f"{documents_path}/*"))
-        sorted_filepaths = self.__sort_possible_extra_files_last(filepaths)
-        mapped_documents = self.__map_documents(sorted_filepaths)
+        operations = self._get_operations(
+            team_id, operations_path, gql_documents, name)
 
-        for key in mapped_documents:
-            upload_document_response = self.__upload_file(
-                filepath=mapped_documents[key]["document"]
-            )
-            documents = {
-                "document": {
-                    "name": os.path.basename(mapped_documents[key]["document"]),
-                    "objectKey": upload_document_response["objectKey"],
-                }
-            }
+        gql = GraphQLUtils(base_url=self.base_url, headers=self.headers,
+                           client_id=self.client_id, client_secret=self.client_secret)
 
-            if "extra" in mapped_documents[key]:
-                upload_extra_response = self.__upload_file(
-                    filepath=mapped_documents[key]["extra"]
-                )
-                documents["extras"] = [
-                    {
-                        "name": os.path.basename(mapped_documents[key]["extra"]),
-                        "objectKey": upload_extra_response["objectKey"],
-                    }
-                ]
-
-            operations["variables"]["input"]["documents"].append(documents)
-
-            if name is not None:
-                operations["variables"]["input"]["name"] = name
-
-        graphql_response = self.__call_graphql(
+        graphql_response = gql.call_graphql(
             data={
                 "query": operations["query"],
                 "variables": json.dumps(operations["variables"]),
@@ -73,54 +47,14 @@ class Project:
             }
         )
 
-        self.__process_graphql_response(graphql_response)
+        gql.process_graphql_response(graphql_response)
 
-    def __upload_file(self, filepath):
-        with post(
-            url=self.proxy_url,
-            headers=self.headers,
-            files=[("file", open(filepath, "rb"))],
-        ) as response:
-            response.raise_for_status()
-            return response.json()
+    def _get_operations(self, team_id: str, operations_path: str, documents: list[GraphQLDocument], name: str | None):
+        operations = get_operations(operations_path)
+        operations["variables"]["input"]["teamId"] = team_id
+        if name is not None:
+            operations["variables"]["input"]["name"] = name
 
-    def __call_graphql(self, data):
-        return post(url=self.graphql_url, headers=self.headers, data=data)
+        operations["variables"]["input"]["documents"] = documents
 
-    def __process_graphql_response(self, response):
-        if "json" in response.headers["content-type"]:
-            json_response: dict = json.loads(response.text.encode("utf8"))
-            if "errors" in json_response:
-                print(json.dumps(json_response["errors"], indent=1))
-            else:
-                job = json_response["data"]["result"]["job"]
-                print(json.dumps(job, indent=1))
-                print("Check job status using command bellow")
-                get_job_status_command = f"python api_client.py get_job_status --base_url {self.base_url} --client_id {self.client_id} --client_secret {self.client_secret} --job_id {job['id']}"
-                print(get_job_status_command)
-        else:
-            print(response.text.encode("utf8"))
-            print(response)
-
-    def __add_headers(self, key, value):
-        if self.headers is None:
-            self.headers = {key: value}
-        else:
-            self.headers[key] = value
-
-        return self.headers
-
-    def __sort_possible_extra_files_last(self, filepaths):
-        # Sort file paths ending with .json or .txt to be at the end
-        filepaths.sort(key=lambda x: (x.endswith(".json") or x.endswith(".txt"), x))
-        return filepaths
-
-    def __map_documents(self, filepaths):
-        mapped_documents = {}
-        for filepath in filepaths:
-            filename = os.path.basename(filepath).split(".")[0]
-            if filename in mapped_documents:
-                mapped_documents[filename]["extra"] = filepath
-            else:
-                mapped_documents[filename] = {"document": filepath}
-        return mapped_documents
+        return operations

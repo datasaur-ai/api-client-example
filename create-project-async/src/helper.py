@@ -5,6 +5,7 @@ from csv import reader as csvreader
 
 
 def get_access_token(base_url, client_id, client_secret):
+    print("Getting access token...")
     client = BackendApplicationClient(client_id=client_id)
     oauth = OAuth2Session(client=client)
     token = oauth.fetch_token(
@@ -12,6 +13,7 @@ def get_access_token(base_url, client_id, client_secret):
         client_id=client_id,
         client_secret=client_secret,
     )
+    print("Access token received.")
     return token["access_token"]
 
 
