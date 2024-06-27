@@ -18,7 +18,7 @@ class BatchedProject(Project):
 
     def create(self, team_id: str, operations_path: str, name: str | None = None):
         chunked_gql_documents = self.__get_chunked_gql_documents()
-
+        print(f"creating {len(chunked_gql_documents)} projects...")
         for index, gql_documents in enumerate(chunked_gql_documents):
             operations = self._get_operations(
                 team_id, operations_path, gql_documents, name)
