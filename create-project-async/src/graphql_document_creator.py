@@ -27,7 +27,6 @@ class GraphQLDocumentCreator:
         filepaths = list(glob.iglob(f"{self.documents_path}/*"))
         sorted_filepaths = self.__sort_possible_extra_files_last(filepaths)
         mapped_documents = self.__map_documents(sorted_filepaths)
-        print(mapped_documents)
         return mapped_documents
 
     def __get_graphql_documents(self, mapped_documents: dict[str, dict]):
