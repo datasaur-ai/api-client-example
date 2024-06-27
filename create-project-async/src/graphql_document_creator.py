@@ -1,7 +1,8 @@
 import glob
 import os
-
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import TypedDict
+
 from requests import post
 
 
@@ -11,6 +12,8 @@ class GraphQLDocument(TypedDict):
 
 
 class GraphQLDocumentCreator:
+    MAX_WORKERS = 8
+
     def __init__(self, proxy_url: str, headers: dict[str, str], documents_path: str):
         self.proxy_url = proxy_url
         self.headers = headers
@@ -27,36 +30,50 @@ class GraphQLDocumentCreator:
         return mapped_documents
 
     def __get_graphql_documents(self, mapped_documents: dict[str, dict]):
-        graphql_documents: list[GraphQLDocument] = []
-        for key in mapped_documents:
+        def upload_and_create_document(key: str):
             upload_document_response = self.__upload_file(
                 filepath=mapped_documents[key]["document"]
             )
-            documents: GraphQLDocument = {
+            document: GraphQLDocument = {
                 "document": {
                     "name": os.path.basename(mapped_documents[key]["document"]),
                     "objectKey": upload_document_response["objectKey"],
                 },
-                "extras": None
+                "extras": None,
             }
 
             if "extra" in mapped_documents[key]:
                 upload_extra_response = self.__upload_file(
                     filepath=mapped_documents[key]["extra"]
                 )
-                documents["extras"] = [
+                document["extras"] = [
                     {
                         "name": os.path.basename(mapped_documents[key]["extra"]),
                         "objectKey": upload_extra_response["objectKey"],
                     }
                 ]
+            return document
 
-            graphql_documents.append(documents)
+        print(f"uploading files using {self.MAX_WORKERS} workers")
+        graphql_documents: list[GraphQLDocument] = []
+        with ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
+            futures = [
+                executor.submit(upload_and_create_document, key)
+                for key in mapped_documents.keys()
+            ]
+
+            uploaded = 0
+            for future in as_completed(futures):
+                gql_document = future.result()
+                uploaded += 1
+                print(f"uploaded {uploaded}/{len(futures)} files", end="\r")
+                graphql_documents.append(gql_document)
+
+            print()
 
         return graphql_documents
 
     def __upload_file(self, filepath: str):
-        print("Uploading file: ", os.path.basename(filepath))
         with post(
             url=self.proxy_url,
             headers=self.headers,
@@ -67,8 +84,7 @@ class GraphQLDocumentCreator:
 
     def __sort_possible_extra_files_last(self, filepaths: list[str]):
         # Sort file paths ending with .json or .txt to be at the end
-        filepaths.sort(key=lambda x: (
-            x.endswith(".json") or x.endswith(".txt"), x))
+        filepaths.sort(key=lambda x: (x.endswith(".json") or x.endswith(".txt"), x))
         return filepaths
 
     def __map_documents(self, filepaths: list[str]):
