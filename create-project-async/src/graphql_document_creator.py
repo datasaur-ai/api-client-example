@@ -54,8 +54,7 @@ class GraphQLDocumentCreator:
         return graphql_documents
 
     def __upload_and_create_document(self, key: str, mapped_documents: dict[str, dict]):
-        upload_document_response = self.__upload_file(
-            mapped_documents[key]["document"])
+        upload_document_response = self.__upload_file(mapped_documents[key]["document"])
         document: GraphQLDocument = {
             "document": {
                 "name": os.path.basename(mapped_documents[key]["document"]),
@@ -87,9 +86,11 @@ class GraphQLDocumentCreator:
 
     def __sort_possible_extra_files_last(self, filepaths: list[str]):
         # Sort file paths ending with .json, .txt, or .xml to be at the end
-        filepaths.sort(key=lambda x: (x.endswith(".json")
-                       or x.endswith(".txt") or x.endswith(".xml"), x))
-        return filepaths
+        EXTRA_FILES_EXTENSIONS = (".json", ".txt", ".xml")
+        return sorted(
+            filepaths,
+            key=lambda x: (os.path.splitext(x)[-1] in EXTRA_FILES_EXTENSIONS, x),
+        )
 
     def __map_documents(self, filepaths: list[str]):
         mapped_documents: dict[str, dict] = {}
