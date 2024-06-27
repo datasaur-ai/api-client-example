@@ -1,7 +1,6 @@
 import json
 from src.graphql_document_creator import GraphQLDocumentCreator
 from src.graphql_utils import GraphQLUtils
-from src.helper import get_access_token
 from src.project import Project
 
 DEFAULT_BATCH_SIZE = 100
