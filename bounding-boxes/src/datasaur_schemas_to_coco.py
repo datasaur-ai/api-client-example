@@ -204,9 +204,13 @@ def coco_categories_from_datasaur_schema(schema: dict) -> list[COCOCategory]:
 
 def coco_images_from_datasaur_schema(id: int, schema: dict) -> COCOImage:
     width, height = 0, 0
-    if schema["data"]["pages"] is not None and len(schema["data"]["pages"]) >= 1:
-        width = schema["data"]["pages"][0]["pageWidth"]
-        height = schema["data"]["pages"][0]["pageHeight"]
+    try:
+        if schema["data"]["pages"] is not None and len(schema["data"]["pages"]) >= 1:
+            width = schema["data"]["pages"][0]["pageWidth"]
+            height = schema["data"]["pages"][0]["pageHeight"]
+    except KeyError:
+        # some older Bounding Box projects may not have pageWidth / pageHeight populated
+        pass
 
     return COCOImage(
         id=id,
