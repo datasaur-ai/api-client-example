@@ -7,6 +7,7 @@ from typing import Any, Dict
 from zipfile import Path as ZipPath
 from zipfile import ZipFile
 import logging
+import tempfile
 
 
 from common.logger import log as _log
@@ -100,36 +101,39 @@ def main() -> None:
     logging.basicConfig(level=args.log_level, format="%(message)s")
 
     export_zip = os.path.abspath(args.zip_filepath)
-    temp_destination = os.path.abspath("./temp/")
+    temp_destination = tempfile.mkdtemp()
     os.makedirs(temp_destination, exist_ok=True)
+
     log("creating temp directory", directory=temp_destination)
 
-    outfile = os.path.abspath(args.outfile)
-    outdir = os.path.dirname(outfile)
-    os.makedirs(outdir, exist_ok=True)
+    try:
+        outfile = os.path.abspath(args.outfile)
+        outdir = os.path.dirname(outfile)
+        os.makedirs(outdir, exist_ok=True)
 
-    extracted_files: list[str] = unzip_export_result(
-        export_zip=export_zip, dest=temp_destination
-    )
+        extracted_files: list[str] = unzip_export_result(
+            export_zip=export_zip, dest=temp_destination
+        )
 
-    schemas = [load_datasaur_schema_file(f) for f in extracted_files]
+        schemas = [load_datasaur_schema_file(f) for f in extracted_files]
 
-    log("reading licenses and info file", filepath=args.license_and_info_json)
-    license_and_info = json.load(open(os.path.abspath(args.license_and_info_json)))
+        log("reading licenses and info file", filepath=args.license_and_info_json)
+        license_and_info = json.load(open(os.path.abspath(args.license_and_info_json)))
 
-    log("converting datasaur schemas to COCO format", count=len(schemas))
-    coco = datasaur_schemas_to_coco(
-        schemas,
-        licenses=license_and_info.get("licenses", None),
-        info=license_and_info.get("info", None),
-    )
+        log("converting datasaur schemas to COCO format", count=len(schemas))
+        coco = datasaur_schemas_to_coco(
+            schemas,
+            licenses=license_and_info.get("licenses", None),
+            info=license_and_info.get("info", None),
+        )
 
-    log("writing COCO JSON file", outfile=outfile)
-    with open(outfile, "w") as wf:
-        json.dump(coco, wf, indent=2)
+        log("writing COCO JSON file", outfile=outfile)
+        with open(outfile, "w") as wf:
+            json.dump(coco, wf, indent=2)
 
-    log("cleaning up temp directory", directory=temp_destination)
-    rmtree(temp_destination)
+        log("cleaning up temp directory", directory=temp_destination)
+    finally:
+        rmtree(temp_destination)
 
 
 def coco_annots_from_datasaur_schemas(
