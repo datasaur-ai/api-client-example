@@ -11,7 +11,14 @@ import tempfile
 
 
 from common.logger import log as _log
-from formats.coco import COCO, COCOAnnotation, COCOCategory, COCOImage
+from formats.coco import (
+    COCO,
+    COCOAnnotation,
+    COCOCategory,
+    COCOImage,
+    COCOLicense,
+    COCOInfo,
+)
 
 
 def log(message, level=logging.DEBUG, **kwargs):
@@ -51,6 +58,9 @@ def datasaur_schemas_to_coco(
             "year": 2024,
         }
 
+    coco_info = COCOInfo(**info)
+    coco_licenses = [COCOLicense(**l) for l in licenses]
+
     schemas = [s for s in schema_objects]
 
     # assuming all DatasaurSchema are from the same project,
@@ -70,8 +80,8 @@ def datasaur_schemas_to_coco(
 
     return asdict(
         COCO(
-            info=info,
-            licenses=licenses,
+            info=coco_info,
+            licenses=coco_licenses,
             categories=categories,
             images=images,
             annotations=annotations,
