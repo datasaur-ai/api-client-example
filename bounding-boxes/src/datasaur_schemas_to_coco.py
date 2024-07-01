@@ -164,9 +164,10 @@ def coco_annots_from_datasaur_schemas(
                     bbox_label["bboxLabelClassId"], None
                 )
 
-                for key, value in answers.items():
-                    question_label = questions[key]["label"]
-                    attributes[question_label] = value
+                if questions:
+                    for key, value in answers.items():
+                        question_label = questions[key]["label"]
+                        attributes[question_label] = value
 
             annots.append(
                 COCOAnnotation(
