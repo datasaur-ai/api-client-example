@@ -111,12 +111,8 @@ def main() -> None:
     logging.basicConfig(level=args.log_level, format="%(message)s")
 
     export_zip = os.path.abspath(args.zip_filepath)
-    temp_destination = tempfile.mkdtemp()
-    os.makedirs(temp_destination, exist_ok=True)
-
-    log("creating temp directory", directory=temp_destination)
-
-    try:
+    with tempfile.TemporaryDirectory() as temp_destination:
+        log("using temp directory", directory=temp_destination)
         outfile = os.path.abspath(args.outfile)
         outdir = os.path.dirname(outfile)
         os.makedirs(outdir, exist_ok=True)
@@ -142,8 +138,6 @@ def main() -> None:
             json.dump(coco, wf, indent=2)
 
         log("cleaning up temp directory", directory=temp_destination)
-    finally:
-        rmtree(temp_destination)
 
 
 def coco_annots_from_datasaur_schemas(
