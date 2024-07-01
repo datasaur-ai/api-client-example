@@ -248,18 +248,19 @@ def unzip_export_result(export_zip: str, dest: str) -> list[str]:
     retval: list[str] = []
     log("unzipping export result to temp directory", export_zip=export_zip)
     with ZipFile(export_zip, "r") as zf:
-        project_dir: str | None = None
+        project_dirs: list[str] = []
+
         for zippath in ZipPath(zf).iterdir():
             if zippath.is_dir():
-                project_dir = zippath.name
-                break
-        if not (project_dir):
+                project_dirs.append(zippath.name)
+
+        if len(project_dirs) == 0:
             log("no project dir found in export result", level=logging.ERROR)
             raise Exception("no project dir found")
 
-        log("project_dir", project_dir=project_dir)
+        prefixes = [f"{project_dir}/REVIEW" for project_dir in project_dirs]
         for zip_content in zf.infolist():
-            if not zip_content.filename.startswith(os.path.join(project_dir, "REVIEW")):
+            if not any(zip_content.filename.startswith(prefix) for prefix in prefixes):
                 continue
 
             if zip_content.is_dir():
