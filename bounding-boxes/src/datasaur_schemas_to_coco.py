@@ -70,7 +70,7 @@ def datasaur_schemas_to_coco(
     # images from datasaur schemas -- name, dimension info
     images: list[COCOImage] = [
         coco_images_from_datasaur_schema(id, schema)
-        for id, schema in enumerate(schemas)
+        for id, schema in enumerate(schemas, start=1)
     ]
 
     # annotations from bboxLabels
@@ -146,7 +146,7 @@ def coco_annots_from_datasaur_schemas(
 
     name_to_id: Dict[str, int] = {x.name: x.id for x in categories}
     annots: list[COCOAnnotation] = []
-    for image_id, schema in enumerate(schemas):
+    for image_id, schema in enumerate(schemas, start=1):
         annot_id = 1
 
         if (
