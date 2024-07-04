@@ -147,8 +147,6 @@ def coco_annots_from_datasaur_schemas(
     name_to_id: Dict[str, int] = {x.name: x.id for x in categories}
     annots: list[COCOAnnotation] = []
     for image_id, schema in enumerate(schemas, start=1):
-        annot_id = 1
-
         if (
             schema["data"]["bboxLabelSets"] is None
             or len(schema["data"]["bboxLabels"]) < 1
@@ -179,7 +177,7 @@ def coco_annots_from_datasaur_schemas(
 
             annots.append(
                 COCOAnnotation(
-                    id=annot_id,
+                    id=len(annots) + 1,
                     image_id=image_id,
                     category_id=name_to_id[bbox_label["bboxLabelClassName"]],
                     segmentation=shapes_to_segmentation(bbox_label["shapes"]),
@@ -189,7 +187,6 @@ def coco_annots_from_datasaur_schemas(
                     iscrowd=0,
                 )
             )
-            annot_id += 1
 
     return annots
 
