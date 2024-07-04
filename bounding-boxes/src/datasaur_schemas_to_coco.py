@@ -189,6 +189,7 @@ def coco_annots_from_datasaur_schemas(
                     iscrowd=0,
                 )
             )
+            annot_id += 1
 
     return annots
 
