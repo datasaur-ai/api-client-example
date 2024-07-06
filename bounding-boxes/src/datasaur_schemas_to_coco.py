@@ -7,10 +7,18 @@ from typing import Any, Dict
 from zipfile import Path as ZipPath
 from zipfile import ZipFile
 import logging
+import tempfile
 
 
 from common.logger import log as _log
-from formats.coco import COCO, COCOAnnotation, COCOCategory, COCOImage
+from formats.coco import (
+    COCO,
+    COCOAnnotation,
+    COCOCategory,
+    COCOImage,
+    COCOLicense,
+    COCOInfo,
+)
 
 
 def log(message, level=logging.DEBUG, **kwargs):
@@ -50,6 +58,9 @@ def datasaur_schemas_to_coco(
             "year": 2024,
         }
 
+    coco_info = COCOInfo(**info)
+    coco_licenses = [COCOLicense(**l) for l in licenses]
+
     schemas = [s for s in schema_objects]
 
     # assuming all DatasaurSchema are from the same project,
@@ -59,7 +70,7 @@ def datasaur_schemas_to_coco(
     # images from datasaur schemas -- name, dimension info
     images: list[COCOImage] = [
         coco_images_from_datasaur_schema(id, schema)
-        for id, schema in enumerate(schemas)
+        for id, schema in enumerate(schemas, start=1)
     ]
 
     # annotations from bboxLabels
@@ -69,8 +80,8 @@ def datasaur_schemas_to_coco(
 
     return asdict(
         COCO(
-            info=info,
-            licenses=licenses,
+            info=coco_info,
+            licenses=coco_licenses,
             categories=categories,
             images=images,
             annotations=annotations,
@@ -100,36 +111,33 @@ def main() -> None:
     logging.basicConfig(level=args.log_level, format="%(message)s")
 
     export_zip = os.path.abspath(args.zip_filepath)
-    temp_destination = os.path.abspath("./temp/")
-    os.makedirs(temp_destination, exist_ok=True)
-    log("creating temp directory", directory=temp_destination)
+    with tempfile.TemporaryDirectory() as temp_destination:
+        log("using temp directory", directory=temp_destination)
+        outfile = os.path.abspath(args.outfile)
+        outdir = os.path.dirname(outfile)
+        os.makedirs(outdir, exist_ok=True)
 
-    outfile = os.path.abspath(args.outfile)
-    outdir = os.path.dirname(outfile)
-    os.makedirs(outdir, exist_ok=True)
+        extracted_files: list[str] = unzip_export_result(
+            export_zip=export_zip, dest=temp_destination
+        )
 
-    extracted_files: list[str] = unzip_export_result(
-        export_zip=export_zip, dest=temp_destination
-    )
+        schemas = [load_datasaur_schema_file(f) for f in extracted_files]
 
-    schemas = [load_datasaur_schema_file(f) for f in extracted_files]
+        log("reading licenses and info file", filepath=args.license_and_info_json)
+        license_and_info = json.load(open(os.path.abspath(args.license_and_info_json)))
 
-    log("reading licenses and info file", filepath=args.license_and_info_json)
-    license_and_info = json.load(open(os.path.abspath(args.license_and_info_json)))
+        log("converting datasaur schemas to COCO format", count=len(schemas))
+        coco = datasaur_schemas_to_coco(
+            schemas,
+            licenses=license_and_info.get("licenses", None),
+            info=license_and_info.get("info", None),
+        )
 
-    log("converting datasaur schemas to COCO format", count=len(schemas))
-    coco = datasaur_schemas_to_coco(
-        schemas,
-        licenses=license_and_info.get("licenses", None),
-        info=license_and_info.get("info", None),
-    )
+        log("writing COCO JSON file", outfile=outfile)
+        with open(outfile, "w") as wf:
+            json.dump(coco, wf, indent=2)
 
-    log("writing COCO JSON file", outfile=outfile)
-    with open(outfile, "w") as wf:
-        json.dump(coco, wf, indent=2)
-
-    log("cleaning up temp directory", directory=temp_destination)
-    rmtree(temp_destination)
+        log("cleaning up temp directory", directory=temp_destination)
 
 
 def coco_annots_from_datasaur_schemas(
@@ -138,9 +146,7 @@ def coco_annots_from_datasaur_schemas(
 
     name_to_id: Dict[str, int] = {x.name: x.id for x in categories}
     annots: list[COCOAnnotation] = []
-    for image_id, schema in enumerate(schemas):
-        annot_id = 1
-
+    for image_id, schema in enumerate(schemas, start=1):
         if (
             schema["data"]["bboxLabelSets"] is None
             or len(schema["data"]["bboxLabels"]) < 1
@@ -164,13 +170,14 @@ def coco_annots_from_datasaur_schemas(
                     bbox_label["bboxLabelClassId"], None
                 )
 
-                for key, value in answers.items():
-                    question_label = questions[key]["label"]
-                    attributes[question_label] = value
+                if questions:
+                    for key, value in answers.items():
+                        question_label = questions[key]["label"]
+                        attributes[question_label] = value
 
             annots.append(
                 COCOAnnotation(
-                    id=annot_id,
+                    id=len(annots) + 1,
                     image_id=image_id,
                     category_id=name_to_id[bbox_label["bboxLabelClassName"]],
                     segmentation=shapes_to_segmentation(bbox_label["shapes"]),
@@ -203,9 +210,13 @@ def coco_categories_from_datasaur_schema(schema: dict) -> list[COCOCategory]:
 
 def coco_images_from_datasaur_schema(id: int, schema: dict) -> COCOImage:
     width, height = 0, 0
-    if schema["data"]["pages"] is not None and len(schema["data"]["pages"]) >= 1:
-        width = schema["data"]["pages"][0]["pageWidth"]
-        height = schema["data"]["pages"][0]["pageHeight"]
+    try:
+        if schema["data"]["pages"] is not None and len(schema["data"]["pages"]) >= 1:
+            width = schema["data"]["pages"][0]["pageWidth"]
+            height = schema["data"]["pages"][0]["pageHeight"]
+    except KeyError:
+        # some older Bounding Box projects may not have pageWidth / pageHeight populated
+        pass
 
     return COCOImage(
         id=id,
@@ -243,18 +254,19 @@ def unzip_export_result(export_zip: str, dest: str) -> list[str]:
     retval: list[str] = []
     log("unzipping export result to temp directory", export_zip=export_zip)
     with ZipFile(export_zip, "r") as zf:
-        project_dir: str | None = None
+        project_dirs: list[str] = []
+
         for zippath in ZipPath(zf).iterdir():
             if zippath.is_dir():
-                project_dir = zippath.name
-                break
-        if not (project_dir):
+                project_dirs.append(zippath.name)
+
+        if len(project_dirs) == 0:
             log("no project dir found in export result", level=logging.ERROR)
             raise Exception("no project dir found")
 
-        log("project_dir", project_dir=project_dir)
+        prefixes = [f"{project_dir}/REVIEW" for project_dir in project_dirs]
         for zip_content in zf.infolist():
-            if not zip_content.filename.startswith(os.path.join(project_dir, "REVIEW")):
+            if not any(zip_content.filename.startswith(prefix) for prefix in prefixes):
                 continue
 
             if zip_content.is_dir():
