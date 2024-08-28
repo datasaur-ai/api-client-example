@@ -8,12 +8,12 @@
       "documents": [
         {
           "document": {
-            "name": "path/to/file/in/eos/file-1.mp3",
+            "name": "file-1.mp3",
             "objectKey": "path/to/file/in/eos/file-1.mp3"
           },
           "extras": [
             {
-              "name": "path/to/file/in/eos/file-1.json",
+              "name": "file-1.json",
               "objectKey": "path/to/file/in/eos/file-1.json"
             }
           ]
@@ -24,7 +24,7 @@
           "email": "demo@example.com",
           "documents": [
             {
-              "fileName": "path/to/file/in/eos/file-1.mp3",
+              "fileName": "file-1.mp3",
               "part": 0
             }
           ],
@@ -34,40 +34,16 @@
           "email": "demo.labeler-1@example.com",
           "documents": [
             {
-              "fileName": "path/to/file/in/eos/file-1.mp3",
+              "fileName": "file-1.mp3",
               "part": 0
             }
           ],
           "role": "LABELER"
         }
       ],
-      "projectSettings": {
-        "conflictResolution": {
-          "mode": "PEER_REVIEW",
-          "consensus": 1
-        },
-        "shouldConfirmUnusedLabelSetItems": false,
-        "autoMarkDocumentAsComplete": false,
-        "dynamicReviewMethod": null,
-        "dynamicReviewMemberId": null,
-        "enableEditLabelSet": true,
-        "hideLabelerNamesDuringReview": false,
-        "hideLabelsFromInactiveLabelSetDuringReview": false,
-        "hideOriginalSentencesDuringReview": true,
-        "hideRejectedLabelsDuringReview": true,
-        "labelerProjectCompletionNotification": {
-          "enabled": false,
-          "threshold": 1
-        },
-        "spotChecking": {
-          "enabled": false,
-          "percentageThreshold": 0.1
-        },
-        "enableReviewerEditSentence": true,
-        "enableEditSentence": true
-      },
-
-      "kinds": ["TOKEN_BASED"],
+      "kinds": [
+        "TOKEN_BASED"
+      ],
       "purpose": "LABELING",
       "creationSettings": {
         "anonymizationConfig": null,
