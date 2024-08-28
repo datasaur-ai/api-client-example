@@ -1,0 +1,88 @@
+{
+  "operationName": "CreateProjectMutation",
+  "variables": {
+    "input": {
+      "teamId": "<your-team-id>",
+      "externalObjectStorageId": "<your-eos-id>",
+      "name": "Demo via API",
+      "documents": [
+        {
+          "document": {
+            "name": "file-1.mp3",
+            "objectKey": "path/to/file/in/eos/file-1.mp3"
+          },
+          "extras": [
+            {
+              "name": "file-1.json",
+              "objectKey": "path/to/file/in/eos/file-1.json"
+            }
+          ]
+        }
+      ],
+      "documentAssignments": [
+        {
+          "email": "demo@example.com",
+          "documents": [
+            {
+              "fileName": "file-1.mp3",
+              "part": 0
+            }
+          ],
+          "role": "LABELER_AND_REVIEWER"
+        },
+        {
+          "email": "demo.labeler-1@example.com",
+          "documents": [
+            {
+              "fileName": "file-1.mp3",
+              "part": 0
+            }
+          ],
+          "role": "LABELER"
+        }
+      ],
+      "kinds": [
+        "TOKEN_BASED"
+      ],
+      "purpose": "LABELING",
+      "creationSettings": {
+        "anonymizationConfig": null,
+        "customHeaderColumns": [
+          {
+            "name": "Column 1",
+            "displayed": true,
+            "labelerRestricted": false
+          }
+        ],
+        "enableTabularMarkdownParsing": false,
+        "fileTransformerId": null,
+        "firstRowAsHeader": false,
+        "sentenceSeparator": "\n",
+        "splitDocumentConfig": null,
+        "tokenizer": "WINK",
+        "transcriptConfig": {
+          "method": "TRANSCRIPTION"
+        },
+        "viewer": {
+          "mode": "TOKEN"
+        }
+      },
+      "tokenLabelSets": [],
+      "rowQuestions": null,
+      "documentQuestions": null,
+      "bboxLabelSets": null,
+      "kindsDocumentSettings": {
+        "tokenBasedSettings": {
+          "allTokensMustBeLabeled": false,
+          "allowArcDrawing": false,
+          "allowCharacterBasedLabeling": false,
+          "allowMultiLabels": true,
+          "editSentenceTokenizer": "WINK",
+          "textLabelMaxTokenLength": 999999,
+          "autoScrollWhenLabeling": true
+        }
+      }
+    }
+  },
+  "query": "mutation CreateProjectMutation($input: LaunchProjectInput!) { result: createProject(input: $input) { name job { id status progress resultId errors { id stack args } } } }"
+}
