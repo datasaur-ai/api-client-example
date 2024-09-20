@@ -169,7 +169,7 @@ def bbox_label_classes_from_coco(
 
         questions = [
             DSBBoxLabelClassQuestions(
-                id=q.get("id", index),
+                id=index,
                 label=q.get("label", f"Question {index}"),
                 config=QuestionConfig(
                     multiline=q.get("config", {}).get("multiline", None),
