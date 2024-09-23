@@ -6,6 +6,7 @@
       "questions": [
         {
           "id": 0,
+          "internalId": 123,
           "label": "bio_tag",
           "required": false,
           "type": "DROPDOWN",
@@ -25,7 +26,8 @@
           }
         },
         {
-          "id": 1,
+          "id": 0,
+          "internalId": 123,
           "label": "label-2",
           "type": "TEXT",
           "required": false,
