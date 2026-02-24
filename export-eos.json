@@ -1,0 +1,17 @@
+{
+  "operationName": "ExportTextProjectQuery",
+  "variables": {
+    "input": {
+      "projectIds": [""],
+      "role": "REVIEWER",
+      "format": "DATASAUR_SCHEMA",
+      "fileName": "<FILENAME>",
+      "method": "EXTERNAL_OBJECT_STORAGE",
+      "externalObjectStorageParameter": {
+        "externalObjectStorageId": "<EOS_ID>",
+        "prefix": "<PREFIX>"
+      }
+    }
+  },
+  "query": "query ExportTextProjectQuery($input: ExportTextProjectInput!) {\n  result: exportTextProject(input: $input) {\n    ...ExportRequestRedirectResultFragment\n    __typename\n  }\n}\n\nfragment ExportRequestRedirectResultFragment on ExportRequestResult {\n  exportId\n  fileUrl\n  queued\n  redirect\n  key\n  __typename\n}\n"
+}
