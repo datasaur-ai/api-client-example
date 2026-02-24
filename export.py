@@ -25,7 +25,7 @@ def export_project(base_url, client_id, client_secret, project_id, export_file_n
         json_response = json.loads(response.text.encode('utf8'))
         print(json.dumps(json_response, indent=1))
 
-        if json_response["data"]["result"]["fileUrl"] and len(json_response["data"]["result"]["fileUrl"]) > 0:
+        if json_response["data"]["result"]["fileUrl"]:
             export_id = json_response["data"]["result"]["exportId"]
             poll_export_delivery_status(url, access_token, export_id)
 
@@ -40,6 +40,7 @@ def export_project(base_url, client_id, client_secret, project_id, export_file_n
         else: 
             export_id = json_response["data"]["result"]["exportId"]
             poll_export_delivery_status(url, access_token, export_id)
+            return "Success exporting the project. Check your storage bucket for the file."
     else:
         return response
 
