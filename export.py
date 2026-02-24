@@ -11,10 +11,10 @@ from requests_oauthlib import OAuth2Session
 POOLING_INVERVAL = 0.5  # 0.5s
 
 
-def export_project(base_url, client_id, client_secret, project_id, export_file_name, export_format, output_dir):
+def export_project(base_url, client_id, client_secret, project_id, export_file_name, export_format, output_dir, operation_path='export.json'):
     url = base_url + "/graphql"
     access_token = get_access_token(base_url, client_id, client_secret)
-    operations = get_operations('export.json')
+    operations = get_operations(operation_path)
 
     operations["variables"]["input"]["fileName"] = export_file_name
     operations["variables"]["input"]["projectIds"] = [project_id]
@@ -37,6 +37,9 @@ def export_project(base_url, client_id, client_secret, project_id, export_file_n
             output_file = output_dir + '/' + file_name
             open(output_file, 'wb').write(file_response.content)
             return "Success downloading the file. Output file:" + output_file
+        else: 
+            export_id = json_response["data"]["result"]["exportId"]
+            poll_export_delivery_status(url, access_token, export_id)
     else:
         return response
 
